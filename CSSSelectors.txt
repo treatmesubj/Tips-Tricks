@@ -1,0 +1,24 @@
+CSS Selectors
+
+#ID
+.class
+tag
+[attr]
+[attr='value']
+[attr*='txt in value']
+[attr^='txt starting in value']
+[attr$='txt ending in value']
+
+CSS Combinators
++ adjacent sibling, right after
+~ sibling 
+> direct children, not grand children
+  descendent
+
+Example Locator
+$("tag.class[attr*='txt in value']~#siblingId")
+Attribute Contains Two Substrings
+$("[href*='select'][href*='.FCFH']")
+
+JS Parent Node
+parent = driver.execute_script("return arguments[0].parentNode;", elem)

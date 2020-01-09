@@ -1,0 +1,2 @@
+>>cd \
+>>dir *.nsf /s  #* is wildcard
