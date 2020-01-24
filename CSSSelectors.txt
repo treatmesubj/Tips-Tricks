@@ -22,3 +22,6 @@ $("[href*='select'][href*='.FCFH']")
 
 JS Parent Node
 parent = driver.execute_script("return arguments[0].parentNode;", elem)
+
+Dealing with Annoying Webpage Paywalls
+<html **style="overflow: hidden;"**>  -- 'overflow: hidden' in the style attribute prevents you from scrolling, so delete that crap
