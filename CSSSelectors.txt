@@ -1,4 +1,4 @@
-CSS Selectors
+-CSS Selectors
 
 #ID
 .class
@@ -9,19 +9,26 @@ tag
 [attr^='txt starting in value']
 [attr$='txt ending in value']
 
-CSS Combinators
+-CSS Combinators
+
 + adjacent sibling, right after
 ~ sibling 
 > direct children, not grand children
   descendent
 
-Example Locator
+-Example Locator
+
 $("tag.class[attr*='txt in value']~#siblingId")
 Attribute Contains Two Substrings
 $("[href*='select'][href*='.FCFH']")
 
-JS Parent Node
+-JS Parent Node
+
 parent = driver.execute_script("return arguments[0].parentNode;", elem)
 
-Dealing with Annoying Webpage Paywalls
-<html **style="overflow: hidden;"**>  -- 'overflow: hidden' in the style attribute prevents you from scrolling, so delete that crap
+-Webpage Quick Tricks
+
+<html style="overflow: hidden;">  
+    "overflow: hidden" prevents scrolling
+<input id="loginPassword" class="AnimatedForm__textInput" name="password" placeholder="Password" data-empty="false" type="password">
+    "type='password'" prevents copying text
