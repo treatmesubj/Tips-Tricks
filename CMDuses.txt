@@ -1,2 +1,6 @@
+Search files
+
 >>cd \
->>dir *.nsf /s  #* is wildcard
+    root
+>>dir *.nsf /s
+    return all locations of <wildcard>.nsf
