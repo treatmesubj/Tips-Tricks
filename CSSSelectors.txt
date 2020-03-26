@@ -26,9 +26,9 @@ $("[href*='select'][href*='.FCFH']")
 
 parent = driver.execute_script("return arguments[0].parentNode;", elem)
 
--Webpage Quick Tricks
+-HTML Quick Tricks
 
 <html style="overflow: hidden;">  
     "overflow: hidden" prevents scrolling
 <input id="loginPassword" class="AnimatedForm__textInput" name="password" placeholder="Password" data-empty="false" type="password">
-    "type='password'" prevents copying text
+    "type='password'" *s & prevents copying text
