@@ -1,6 +1,6 @@
 {
    "selector": "source.python",
    "windows": {
-       "shell_cmd": "start \"$file_name\" cmd /c \"python $file_name & pause\"",
+       "shell_cmd": "start \"$file_name\" cmd /c \"python -i $file_name & pause\"",
    }
 }
