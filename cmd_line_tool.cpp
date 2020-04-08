@@ -10,6 +10,9 @@ int main(int argc, char** argv)
                 args += " ";
             }
     }
-    std::cout << ("python script.py " + args) << "\n";
+    system(
+        ("python path_script.py " + args).c_str()
+    );
     system("pause");
 }
+
