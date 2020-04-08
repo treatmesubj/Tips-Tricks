@@ -11,7 +11,7 @@ int main(int argc, char** argv)
             }
     }
     system(
-        ("python path_script.py " + args).c_str()
+        ("path_script.py " + args).c_str()
     );
     system("pause");
 }
