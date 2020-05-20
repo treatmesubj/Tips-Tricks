@@ -30,6 +30,9 @@ Decompile .pyc to .py
 
 Pip Install GitHub Repository
 	cmd: pip install https://github.com/<user>/<package>/archive/<branch>.tar.gz
+	
+Upgrade pip package
+	pip install <package> --upgrade
 
 How Does CPython Work?
 	<source_code.py [human readable]>
