@@ -1,0 +1,8 @@
+Programming_Projects path: /storage/emulated/0/Programming_Projects
+
+so, {
+	cd /storage/emulated/0
+	ls
+	python ngate.py
+}
+
