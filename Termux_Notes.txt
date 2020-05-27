@@ -1,8 +1,5 @@
-Programming_Projects path: /storage/emulated/0/Programming_Projects
+# local files
+/storage/emulated/0/
 
-so, {
-	cd /storage/emulated/0
-	ls
-	python <script>
-}
-
+# open file with app
+termux-open --chooser <file>
