@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import os
 from shutil import copyfile
 
+# adds a link to html chapters of a textbook pointing to my dark-mode css file
 
 files = os.listdir(os.getcwd())
 print(files)
