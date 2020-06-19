@@ -1,6 +1,0 @@
-Search files
-
->>cd \
-    root
->>dir *.nsf /s
-    return all locations of <wildcard>.nsf
