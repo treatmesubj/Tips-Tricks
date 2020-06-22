@@ -12,8 +12,14 @@ from selenium.webdriver.support import expected_conditions as EC  # conditions
 from selenium.webdriver.common.by import By  # shortcut for selecting elements
 from selenium.webdriver.support.ui import Select  # choose options from dropdown
 from selenium.common.exceptions import *  # handle exceptions
+from selenium.webdriver.firefox.options import Options  # options
 
 """Selenium things"""
+
+# set up headless browser
+options = Options()
+options.headless = True
+driver = webdriver.Firefox(options=options)
 
 # set up browser with no annoying geckologs
 driver = webdriver.Firefox(service_log_path=os.path.devnull)
