@@ -20,7 +20,8 @@ div[class*="promoted"] {
 div.md,
 li,
 p,
-table {
+table,
+label {
     color: green !important
 }
 
