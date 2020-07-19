@@ -1,0 +1,8 @@
+os.getcwd()
+  returns directory-path of whereever you were when you called the script
+  
+sys.argv[0]
+  returns the path of the script; where it's located
+  
+os.path.dirname(sys.argv[0])
+  returns the directory-path of where the script is
