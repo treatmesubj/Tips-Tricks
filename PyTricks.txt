@@ -5,6 +5,7 @@ Run Script With Interpreter Open at End
 
 Open Debugger at Common Error
 	in <script.py @ line>: breakpoint()
+		in <pdb>: interact
 
 Run Script With Specific Python Version
 	in <script.py @ head>: #! python3.7
