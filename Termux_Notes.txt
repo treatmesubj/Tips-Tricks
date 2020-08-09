@@ -1,5 +1,0 @@
-# local files
-/storage/emulated/0/
-
-# open file with app
-termux-open --chooser <file>
