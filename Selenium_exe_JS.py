@@ -16,3 +16,8 @@ JScommands = (
 
 for command in JScommands:
     driver.execute_script(command)
+
+    
+# selecting parent element by child's CSS selector with JS
+child_elem = driver.find_element_by_css_selector("#child")
+parent_elem = driver.execute_script("return arguments[0].parentNode;", child_elem)
