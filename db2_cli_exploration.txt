@@ -1,0 +1,5 @@
+db2cli execsql -dsn SMS -user J3J3455 -passwd ***** -inputsql test.sql -statementdelimiter ; -outfile test_results.csv
+
+**SQL statements are one-liners!
+
+**ini file: C:\ProgramData\IBM\DB2\IBMDBCL1\cfg
