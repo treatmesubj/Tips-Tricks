@@ -6,6 +6,8 @@ db2cli validate -dsn SMS -connect -odbcdsn -user J3J3455 -passwd ****
 
 **ini file: C:\ProgramData\IBM\DB2\IBMDBCL1\cfg\db2cli.ini
 
+`````````````````````````````````````
+
 Run SQL in Excel
 
 Data > Get Data > From Other Sources > From ODBC
@@ -13,15 +15,20 @@ Data > Get Data > From Other Sources > From ODBC
 	> Advanced Properties
 	SQL Statement: SQL-code
 	> OK
-	
-	>v (Dropdown) Load > Load To
-		>x Add this to the Data Model
-		> OK
+```````````````````````````````````
 
-Create pivot from Data Model
+
+Create Data Model for Formulated Pivot
+
+Data > Existing Connections >T (Tab) Tables > Static Table: table
 
 Insert > PivotTable
 	>x Use this workbook's Data Model
+once pivot is done being formatted,
+
+Analyze > OLAP Tools > Convert to Formulas
+
+```````````````````````````````````````````````````
 
 Create Power Pivot Connection
 
