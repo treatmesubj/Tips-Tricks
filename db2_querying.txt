@@ -1,0 +1,21 @@
+db2cli execsql -dsn SMS -user J3J3455 -passwd ***** -inputsql test.sql -statementdelimiter ; -outfile test_results.csv
+
+db2cli validate -connect -dsn SMS -user J3J3455 -passwd ****
+
+db2cli validate -dsn SMS -connect -odbcdsn -user J3J3455 -passwd ****
+
+**ini file: C:\ProgramData\IBM\DB2\IBMDBCL1\cfg\db2cli.ini
+
+Run SQL in Excel
+
+Data > Get Data > From Other Sources > From ODBC
+	Data-source/DSN: SMS ~~~ these data-source aliases just come from your db2cli.ini file at C:\ProgramData\IBM\DB2\IBMDBCL1\cfg\db2cli.ini
+	> Advanced Properties
+	SQL Statement: SQL-code
+	> OK
+	
+	>v Load (Dropdown) > Load To
+		>x Add this to the Data Model
+		> OK
+
+
