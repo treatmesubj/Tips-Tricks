@@ -14,8 +14,31 @@ Data > Get Data > From Other Sources > From ODBC
 	SQL Statement: SQL-code
 	> OK
 	
-	>v Load (Dropdown) > Load To
+	>v (Dropdown) Load > Load To
 		>x Add this to the Data Model
 		> OK
+
+Create pivot from Data Model
+
+Insert > PivotTable
+	>x Use this workbook's Data Model
+
+Create Power Pivot Connection
+
+Power Pivot > Manage > From Other Sources > ODBC
+	> Build
+		>T (Tab) Provider
+			> IBM OLE DB Provider
+			> Next
+		>T (Tab) All
+			Data Source: SMS ~~~ from db2cli.ini file
+			Password: *******
+			User ID: *******
+	> Next
+		>x Write a query that will specify the data to import
+			> SQL Statement: Select * from whatever
+			> Validate
+			> Finish
+
 
 
