@@ -48,4 +48,17 @@ Power Pivot > Manage > From Other Sources > ODBC
 			> Finish
 
 
+```````````````````````````````````````````````````````````````
+Power Query M Query Results Cleaning
+
+let 
+    Source = Odbc.Query("dsn=SMS",
+"<---SQL Statement----->"
+),
+    res_table = Table.TransformColumnTypes(Source, List.Transform(Table.ColumnNames(Source), each {_, type text})), //data-type text
+    fin_res_table = Table.TransformColumns(res_table, List.Transform(Table.ColumnNames(res_table), each {_, Text.Trim})) //trim crap
+in
+    fin_res_table
+
+
 
