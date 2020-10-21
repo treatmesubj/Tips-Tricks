@@ -55,10 +55,10 @@ let
     Source = Odbc.Query("dsn=SMS",
 "<---SQL Statement----->"
 ),
-    res_table = Table.TransformColumnTypes(Source, List.Transform(Table.ColumnNames(Source), each {_, type text})), //data-type text
-    fin_res_table = Table.TransformColumns(res_table, List.Transform(Table.ColumnNames(res_table), each {_, Text.Trim})) //trim crap
+    #"Appended Query" = Table.Combine({Source, dummy_rows}), //append dummy rows
+    text_cols = Table.ColumnsOfType(#"Appended Query", {type nullable text}),
+    trimmed_table = Table.TransformColumns(#"Appended Query", List.Transform(text_cols, each {_, Text.Trim})) //strip crap
 in
-    fin_res_table
-
+    trimmed_table
 
 
