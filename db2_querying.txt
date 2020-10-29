@@ -1,7 +1,7 @@
 DB2 CLI Commands
 
-	db2cli execsql -dsn SMS -user J3J3455 -passwd ***** -inputsql test.sql -statementdelimiter ; -outfile test_results.csv
-	db2cli validate -connect -dsn SMS -user J3J3455 -passwd ****
+	db2cli execsql -dsn SMS -user ***** -passwd ***** -inputsql test.sql -statementdelimiter ; -outfile test_results.csv
+	db2cli validate -connect -dsn SMS -user ***** -passwd ****
 	db2cli validate -dsn SMS -connect -odbcdsn -user J3J3455 -passwd ****
 
 **ini file: C:\ProgramData\IBM\DB2\IBMDBCL1\cfg\db2cli.ini
@@ -39,6 +39,24 @@ Excel Power Query SQL
 		>v Advanced Properties
 			SQL Statement: SQL-code
 		> OK
+
+**On "Refresh All" you probably want your queries to fully refresh before you refresh your pivots, especially if you're using a macro
+	Data > Queries & Connections
+		Right-click your query
+		> Properties
+			>x (Deselect) Enable background refresh
+
+**You may want to change the logic/composition of your resulting table
+	Data > Queries & Connections
+		Right-click your query
+		> Edit
+
+**Things to Consider
+	Data Types of your columns
+	Cleaning your SQL results
+	If you want to imitate a complicated analytical query,
+		you may need to merge multiple queries
+		you may need to translate any calculated column logic
 ```````````````````````````````````
 Power Query M Query Results Cleaning
 
@@ -50,7 +68,7 @@ Power Query M Query Results Cleaning
 	    //text_table = Table.TransformColumnTypes(Source, List.Transform(Table.ColumnNames(Source), each {_, type text})), //data-type text
 	    text_cols = Table.ColumnsOfType(#"Appended Query", {type nullable text}),
 	    cleaned_table = Table.TransformColumns(#"Appended Query", List.Transform(text_cols, each {_, Text.Clean})), //strip invalid chars
-	    trimmed_table = Table.TransformColumns(cleaned_table, List.Transform(text_cols, each {_, Text.Trim})) //strip crap
+	    trimmed_table = Table.TransformColumns(cleaned_table, List.Transform(text_cols, each {_, Text.Trim})) //strip stuff
 
 	    //general steps: get source, [append queries], set types, clean invalid chars, trim text
 	in
