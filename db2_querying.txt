@@ -1,4 +1,4 @@
-DB2 CLI commands:
+DB2 CLI Commands
 
 	db2cli execsql -dsn SMS -user J3J3455 -passwd ***** -inputsql test.sql -statementdelimiter ; -outfile test_results.csv
 	db2cli validate -connect -dsn SMS -user J3J3455 -passwd ****
@@ -36,7 +36,7 @@ Excel Power Query SQL
 
 	Data > Get Data > From Other Sources > From ODBC
 		Data-source/DSN: SMS ~~~ these data-source aliases just come from your db2cli.ini file at C:\ProgramData\IBM\DB2\IBMDBCL1\cfg\db2cli.ini
-		> Advanced Properties
+		>v Advanced Properties
 			SQL Statement: SQL-code
 		> OK
 ```````````````````````````````````
@@ -55,3 +55,9 @@ Power Query M Query Results Cleaning
 	    //general steps: get source, [append queries], set types, clean invalid chars, trim text
 	in
 	    trimmed_table
+
+
+
+
+
+
