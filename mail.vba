@@ -7,6 +7,11 @@ Sub send_Notes_email()
     Dim carbon_copy As Variant: carbon_copy = wb.Worksheets("Email").Range("carbon_copy").Value
     Dim body_blocks As Range: Set body_blocks = wb.Worksheets("Email").Range("body_blocks")
 
+    Dim email_images(0 To 2) As Range
+    Set email_images(0) = wb.Worksheets("Executive Summary Bud PT+").Range("total_stg_ptplus_view")
+    Set email_images(1) = wb.Worksheets("Executive Summary BP Bud PT+").Range("bp_stg_ptplus_view")
+    Set email_images(2) = wb.Worksheets("Small Deals Changes DtD Firm").Range("small_deals_dtd_firm")
+
     'start Notes session
     Dim Notes_Session As Object:
         Set Notes_Session = CreateObject("Notes.NotesSession")
@@ -34,16 +39,13 @@ Sub send_Notes_email()
 
     Dim body_block As Range
     For Each body_block In body_blocks
-
         'check for attachments
         Dim body_block_portions As Variant, portion As Variant, body_block_file_paths As Variant
         body_block_portions = Split(Replace(body_block.Value, "<file>", "</file>"), "</file>")
         body_block_file_paths = file_paths_from_text(body_block.Value)
 
         For Each portion In body_block_portions
-
             If Not is_in_array(portion, body_block_file_paths) Then
-
                 'text styling
                 block_style.Bold = body_block.Font.Bold
                 block_style.Italic = body_block.Font.Italic
@@ -56,12 +58,9 @@ Sub send_Notes_email()
                     block_style.notescolor = 0
                 Else: block_style.notescolor = body_block.Font.ColorIndex - 1
                 End If
-            
                 doc_body_content.AppendStyle block_style
                 doc_body_content.appendtext portion
-
-            Else
-
+            Else 'embed the attachment
                 block_style.Bold = False
                 block_style.Italic = False
                 block_style.notescolor = BLACK
@@ -69,35 +68,65 @@ Sub send_Notes_email()
                 block_style.FontSize = body_block.Font.Size
                 doc_body_content.AppendStyle block_style
                 Call doc_body_content.EmbedObject(1454, "", portion) '1454: attachment
-
             End If
-            
         Next portion
-
     Next body_block
 
-    'send email
+    'prepare email
     doc.SaveMessageOnSend = True
-    doc.Importance = "2" '1: high, 2: normal
+    doc.Importance = wb.Sheets("Email").Range("email_importance").Value '1: high, 2: normal
     doc.postdate = Date
+    doc.markSubjectConfidential = True
     'doc.Send False 'False: don't attach form
     doc.Save True, False
 
     'open the user interface so we can paste in images
     Set NUIdoc = NUI_work_space.EDITDocument(True, doc)
-    NUIdoc.GoToField "BODY"
-    NUIdoc.FINDSTRING "<dummy_image>"
-    wb.Worksheets("Email").Range("dummy_data").CopyPicture
-    NUIdoc.Paste
+    'for each img in imgs
+    Dim img As Variant
+    For Each img in email_images
+        NUIdoc.GoToField "BODY"
+        NUIdoc.FINDSTRING ("<img>" & img.Name.Name & "</img>")
+        'need to resize image
+        img.CopyPicture Appearance:=xlPrinter
+        With wb.Sheets("Email")
+            .Activate
+            .Range("J7").Select
+            .Pictures.Paste
+            For Each pic In .Shapes
+                If pic.TopLeftCell.Address(0, 0) = "J7" Then
+                    pic.Select
+                    With Selection
+                        .ShapeRange.LockAspectRatio = msoFalse
+                        .ShapeRange.Height = 0.75 * pic.Height
+                        .ShapeRange.Width = 0.75 * pic.Width
+                    End With
+                End If
+            Next pic
+        End With
+        Selection.Copy
+        NUIdoc.Paste
+    Next img
+
+    'send email
     NUIdoc.Send
     NUIdoc.Close
-
 
     'rid vars
     Set Notes_Session = Nothing
     Set Notes_Database = Nothing
     Set doc = Nothing
     Set NUI_work_space = Nothing
+
+    'delete the images in Excel
+    With wb.Sheets("Email")
+        For Each pic In .Shapes
+            If pic.TopLeftCell.Address(0, 0) = "J7" Then
+                pic.Delete
+            End If
+        Next pic
+    End With
+    
     MsgBox "Done"
 
 End Sub
@@ -134,3 +163,21 @@ Public Function file_paths_from_text(text As String) As Variant:
     Wend
     file_paths_from_text = file_paths
 End Function
+
+' Public Function image_names_from_text(text As String) As Variant:
+'     Dim image_names() As String, itr As Integer
+'     itr = 0
+'     ReDim Preserve image_names(itr)
+'     While (InStr(text, "<img>") <> 0)
+'         front_text = Split(text, "<img>", 2)(0)
+'         rest_text = Split(text, "<img>", 2)(1)
+'         image_name = Split(rest_text, "</img>", 2)(0)
+'         end_text = Split(text, "</img>", 2)(1)
+
+'         ReDim Preserve image_names(0 To itr)
+'         image_names(itr) = image_name
+'         itr = itr + 1
+'         text = end_text
+'     Wend
+'     image_names_from_text = image_names
+' End Function
