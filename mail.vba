@@ -1,4 +1,4 @@
-Sub send_Notes_email()
+Sub send_Notes_email() 'John Hupperts 11/3/20
 
     Dim wb As Workbook: Set wb = ThisWorkbook
 
@@ -24,7 +24,8 @@ Sub send_Notes_email()
             Exit Sub
         End If
     End If
-    Set NUI_work_space = CreateObject("Notes.NotesUIWorkspace")
+    Dim NUI_work_space As Object:
+        Set NUI_work_space = CreateObject("Notes.NotesUIWorkspace")
 
     'create document
     Dim doc As Object:
@@ -76,14 +77,13 @@ Sub send_Notes_email()
     doc.SaveMessageOnSend = True
     doc.Importance = wb.Sheets("Email").Range("email_importance").Value '1: high, 2: normal
     doc.postdate = Date
-    doc.markSubjectConfidential = True
-''    doc.Send False 'False: don't attach form
+'    doc.Send False 'False: don't attach form
     doc.Save True, False
 
     'open the user interface so we can paste in images
     Set NUIdoc = NUI_work_space.EDITDocument(True, doc)
     'for each img in imgs
-    Dim img As Variant
+    Dim img As Variant 'really a range
     For Each img In email_images
         NUIdoc.GoToField "BODY"
         NUIdoc.FINDSTRING ("<img>" & img.Name.Name & "</img>")
