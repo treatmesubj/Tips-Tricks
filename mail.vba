@@ -77,14 +77,14 @@ Sub send_Notes_email()
     doc.Importance = wb.Sheets("Email").Range("email_importance").Value '1: high, 2: normal
     doc.postdate = Date
     doc.markSubjectConfidential = True
-    'doc.Send False 'False: don't attach form
+''    doc.Send False 'False: don't attach form
     doc.Save True, False
 
     'open the user interface so we can paste in images
     Set NUIdoc = NUI_work_space.EDITDocument(True, doc)
     'for each img in imgs
     Dim img As Variant
-    For Each img in email_images
+    For Each img In email_images
         NUIdoc.GoToField "BODY"
         NUIdoc.FINDSTRING ("<img>" & img.Name.Name & "</img>")
         'need to resize image
@@ -106,6 +106,14 @@ Sub send_Notes_email()
         End With
         Selection.Copy
         NUIdoc.Paste
+        'delete the images in Excel
+        With wb.Sheets("Email")
+            For Each pic In .Shapes
+                If pic.TopLeftCell.Address(0, 0) = "J7" Then
+                    pic.Delete
+                End If
+            Next pic
+        End With
     Next img
 
     'send email
@@ -117,15 +125,6 @@ Sub send_Notes_email()
     Set Notes_Database = Nothing
     Set doc = Nothing
     Set NUI_work_space = Nothing
-
-    'delete the images in Excel
-    With wb.Sheets("Email")
-        For Each pic In .Shapes
-            If pic.TopLeftCell.Address(0, 0) = "J7" Then
-                pic.Delete
-            End If
-        Next pic
-    End With
     
     MsgBox "Done"
 
@@ -163,21 +162,3 @@ Public Function file_paths_from_text(text As String) As Variant:
     Wend
     file_paths_from_text = file_paths
 End Function
-
-' Public Function image_names_from_text(text As String) As Variant:
-'     Dim image_names() As String, itr As Integer
-'     itr = 0
-'     ReDim Preserve image_names(itr)
-'     While (InStr(text, "<img>") <> 0)
-'         front_text = Split(text, "<img>", 2)(0)
-'         rest_text = Split(text, "<img>", 2)(1)
-'         image_name = Split(rest_text, "</img>", 2)(0)
-'         end_text = Split(text, "</img>", 2)(1)
-
-'         ReDim Preserve image_names(0 To itr)
-'         image_names(itr) = image_name
-'         itr = itr + 1
-'         text = end_text
-'     Wend
-'     image_names_from_text = image_names
-' End Function
