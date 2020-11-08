@@ -15,5 +15,5 @@ for chapter in os.listdir(directory):
 			speech.save(os.path.join(directory, f"{os.path.splitext(chapter)[0]}.mp3"))
 			print(f"{chapter} done...")
 			break
-		except ValueError as e:
-			print(e)
+		except Exception as e:
+			print(f"		{e}...")
