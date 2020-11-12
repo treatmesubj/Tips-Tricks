@@ -1,0 +1,4 @@
+
+    Open command pallet (default: ctrl+shift+p)
+    Type package control install and select command Package Control: Install Package
+    Type Jedi and select Jedi - Python autocompletion
