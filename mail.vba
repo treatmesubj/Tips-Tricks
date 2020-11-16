@@ -37,6 +37,10 @@ Sub send_Notes_email() 'John Hupperts 11/3/20
 
     Set doc_body_content = doc.CreateRichTextItem("BODY")
     Set block_style = Notes_Session.CreateRichTextStyle
+    'set the right margin to 22.75"
+    Set paragraph_style = Notes_Session.CreateRichTextParagraphStyle
+    paragraph_style.RightMargin = 32760
+    doc_body_content.AppendParagraphStyle(paragraph_style)
 
     Dim body_block As Range
     For Each body_block In body_blocks
@@ -48,6 +52,7 @@ Sub send_Notes_email() 'John Hupperts 11/3/20
         For Each portion In body_block_portions
             If Not is_in_array(portion, body_block_file_paths) Then
                 'text styling
+                'block_style.NotesFont = 5
                 block_style.Bold = body_block.Font.Bold
                 block_style.Italic = body_block.Font.Italic
                 block_style.FontSize = body_block.Font.Size
@@ -62,6 +67,7 @@ Sub send_Notes_email() 'John Hupperts 11/3/20
                 doc_body_content.AppendStyle block_style
                 doc_body_content.appendtext portion
             Else 'embed the attachment
+                'block_style.NotesFont = 5
                 block_style.Bold = False
                 block_style.Italic = False
                 block_style.notescolor = BLACK
@@ -86,7 +92,7 @@ Sub send_Notes_email() 'John Hupperts 11/3/20
     Dim img As Variant 'really a range
     For Each img In email_images
         NUIdoc.GoToField "BODY"
-        NUIdoc.FINDSTRING ("<img>" & img.Name.Name & "</img>")
+        NUIdoc.FindString "<img>" & img.Name.Name & "</img>"
         'need to resize image
         img.CopyPicture Appearance:=xlPrinter
         With wb.Sheets("Email")
@@ -98,8 +104,8 @@ Sub send_Notes_email() 'John Hupperts 11/3/20
                     pic.Select
                     With Selection
                         .ShapeRange.LockAspectRatio = msoFalse
-                        .ShapeRange.Height = 0.75 * pic.Height
-                        .ShapeRange.Width = 0.75 * pic.Width
+                        .ShapeRange.Height = 0.90 * pic.Height
+                        .ShapeRange.Width = 0.90 * pic.Width
                     End With
                 End If
             Next pic
@@ -117,8 +123,8 @@ Sub send_Notes_email() 'John Hupperts 11/3/20
     Next img
 
     'send email
-    NUIdoc.Send
-    NUIdoc.Close
+    ' NUIdoc.Send
+    ' NUIdoc.Close
 
     'rid vars
     Set Notes_Session = Nothing
