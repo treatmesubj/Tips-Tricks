@@ -5,14 +5,22 @@ DB2 CLI Commands
 	db2cli validate -dsn SMS -connect -odbcdsn -user ****** -passwd ****
 
 **ini file: C:\ProgramData\IBM\DB2\IBMDBCL1\cfg\db2cli.ini
-`````````````````````````````````````
-Find Tables in Schema
-
-	SELECT NAME, REMARKS FROM SYSIBM.SYSTABLES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Find All Tables in Schema
+	```
+	SELECT NAME, REMARKS, TYPE FROM SYSIBM.SYSTABLES
 	WHERE OWNER = 'FNP';
+	```
 
+Fina All Columns in Table in Schma
 
-`````````````````````````````````````
+	```
+	SELECT NAME FROM SYSIBM.SYSCOLUMNS
+	WHERE TBCREATOR = 'FNP'
+		AND TBNAME = 'AML_ORD_CUR';	
+	````
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Create Data Model for Formulated Pivot
 
 	Data > Existing Connections >T (Tab) Tables > Static Table: table
@@ -21,7 +29,7 @@ Create Data Model for Formulated Pivot
 	Once pivot is done being formatted,
 	Analyze > OLAP Tools > Convert to Formulas
 
-```````````````````````````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Create Power Pivot Connection
 
 	Power Pivot > Manage > From Other Sources > ODBC
@@ -38,7 +46,7 @@ Create Power Pivot Connection
 				> SQL Statement: Select * from whatever
 				> Validate
 				> Finish
-```````````````````````````````````````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Excel Power Query SQL
 
 	Data > Get Data > From Other Sources > From ODBC
@@ -64,7 +72,7 @@ Excel Power Query SQL
 	If you want to imitate a complicated analytical query,
 		you may need to merge multiple queries
 		you may need to translate any calculated column logic
-```````````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Power Query M Query Results Cleaning
 
 	let 
