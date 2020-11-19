@@ -8,8 +8,8 @@ DB2 CLI Commands
 `````````````````````````````````````
 Find Tables in Schema
 
-	select * from sysibm.systables
-	where owner = 'FNP';
+	SELECT NAME, REMARKS FROM SYSIBM.SYSTABLES
+	WHERE OWNER = 'FNP';
 
 
 `````````````````````````````````````
