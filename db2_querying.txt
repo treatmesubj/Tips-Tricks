@@ -2,9 +2,16 @@ DB2 CLI Commands
 
 	db2cli execsql -dsn SMS -user ***** -passwd ***** -inputsql test.sql -statementdelimiter ; -outfile test_results.csv
 	db2cli validate -connect -dsn SMS -user ***** -passwd ****
-	db2cli validate -dsn SMS -connect -odbcdsn -user J3J3455 -passwd ****
+	db2cli validate -dsn SMS -connect -odbcdsn -user ****** -passwd ****
 
 **ini file: C:\ProgramData\IBM\DB2\IBMDBCL1\cfg\db2cli.ini
+`````````````````````````````````````
+Find Tables in Schema
+
+	select * from sysibm.systables
+	where owner = 'FNP';
+
+
 `````````````````````````````````````
 Create Data Model for Formulated Pivot
 
