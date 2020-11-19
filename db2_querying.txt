@@ -8,16 +8,15 @@ DB2 CLI Commands
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Find All Tables in Schema
 	```
-	SELECT NAME, REMARKS, TYPE FROM SYSIBM.SYSTABLES
+	SELECT NAME, REMARKS FROM SYSIBM.SYSTABLES
 	WHERE OWNER = 'FNP';
 	```
 
-Fina All Columns in Table in Schma
-
+Find All Columns in Table in Schma
 	```
 	SELECT NAME FROM SYSIBM.SYSCOLUMNS
 	WHERE TBCREATOR = 'FNP'
-		AND TBNAME = 'AML_ORD_CUR';	
+		AND TBNAME = 'AML_ORD_CUR';
 	````
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
