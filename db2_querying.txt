@@ -9,7 +9,7 @@ DB2 CLI Commands
 Find All Tables in Schema
 	```
 	SELECT NAME, REMARKS FROM SYSIBM.SYSTABLES
-	WHERE OWNER = 'FNP';
+	WHERE CREATOR = 'FNP';
 	```
 
 Find All Columns in Table in Schma
