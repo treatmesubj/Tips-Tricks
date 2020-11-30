@@ -83,7 +83,7 @@ Power Query M Query Results Cleaning
 	    text_cols = Table.ColumnsOfType(#"Appended Query", {type nullable text}),
 	    cleaned_table = Table.TransformColumns(#"Appended Query", List.Transform(text_cols, each {_, Text.Clean})), //strip invalid chars
 	    trimmed_table = Table.TransformColumns(cleaned_table, List.Transform(text_cols, each {_, Text.Trim})), //strip stuff
-            padded_ent_cmr_id = Table.TransformColumns(trimmed_table, {{"ENT_CMR_ID", each Text.PadStart(_, 8, "0"), type text}}) //zero-pad text in a col up to 8 chars
+	    padded_ent_cmr_id = Table.TransformColumns(trimmed_table, {{"ENT_CMR_ID", each if _ <> "" then Text.PadStart(_, 8, "0") else "", type text}}) //zero-pad text in a col up to 8 chars
 
 	    //general steps: get source, [append queries], set types, clean invalid chars, trim text
 	in
