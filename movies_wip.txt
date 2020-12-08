@@ -1,8 +1,0 @@
-import json
-
-# ytInitialData
-
-movies = sanjay['contents']['twoColumnBrowseResultsRenderer']['tabs'][0]['tabRenderer']['content']['sectionListRenderer']['contents'][0]['itemSectionRenderer']['contents'][0]['shelfRenderer']['content']['gridRenderer']['items']
-
-for movie in movies:
-	print(movie['gridMovieRenderer']['title']['runs'][0]['text'])
