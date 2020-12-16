@@ -1,13 +1,32 @@
+import re
 import regex  # conditional look-arounds
 import json
+# legit regex: (?<=var(.|\n)*?javascript_object_name(.|\n)*?=(.|\n)*?)(?<!var(.|\n)*?javascript_object_name(.|\n)*?=(.|\n)*?;(.|\n)*?)({((.|\n)*?)});
 
 
-# legit regex: (?<=var(.|\n)*?javascript_obj_name(.|\n)*?=(.|\n)*?)(?<!var(.|\n)*?javascript_obj_name(.|\n)*?=(.|\n)*?;(.|\n)*?)({((.|\n)*?)});
+
+
+
+def remove_comments(string):
+	"""
+	removes comments from JS source
+	"""
+	pattern = r"(\".*?\"|\'.*?\')|(/\*.*?\*/|//[^\r\n]*$)"
+	regex = re.compile(pattern, re.MULTILINE|re.DOTALL)
+	def _replacer(match):
+	    if match.group(2) is not None:
+	        return ""
+	    else:
+	        return match.group(1)
+	return regex.sub(_replacer, string)
+
 
 def json_from_script_to_dict(javascript_object_name, script):
-
+	"""
+	parses Javascript for an object and returns it as a dictionary
+	"""
 	reggy = fr"(?<=var(.|\n)*?{javascript_object_name}(.|\n)*?=(.|\n)*?)(?<!var(.|\n)*?{javascript_object_name}(.|\n)*?=(.|\n)*?;(.|\n)*?)({{((.|\n)*?)}});"
-	jaysean = regex.search(reggy, text)
+	jaysean = regex.search(reggy, remove_comments(text))
 	sanjay = json.loads(jaysean.group(8))
 	return sanjay
 
@@ -15,6 +34,8 @@ def json_from_script_to_dict(javascript_object_name, script):
 text = """
 <script>
 var lunch = {
+	/* some dumb 
+		comment */
 	"meal": "sammy",
 	"drink": "milk"
 };
@@ -24,6 +45,7 @@ var dummy_obj = {
 	"type": "donut",
 	"name": "Cake",
 	"ppu": 0.55,
+	// hey, I've got something to say
 	"batters":
 		{
 			"batter":
