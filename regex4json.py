@@ -9,24 +9,19 @@ var breakfast = {
 		drink: "oj"
 	}
 };
-
 var obj_name = { blah: "blah",
 	hey: "hey" 
 };
-
 var breakfast = {
 	{
 		meal: "pancake",
 		drink: "oj"
 	}
 };
-
-
 {
 }
 """
 
-jaysean = regex.match(reggy, text)
+jaysean = regex.search(reggy, text)
 
 print(jaysean.group(0))
-
