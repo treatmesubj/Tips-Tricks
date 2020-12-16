@@ -1,6 +1,10 @@
 import regex  # conditional look-arounds
 
-reggy = r"(?<=var(.|\n)*?obj_name(.|\n)*?=(.|\n)*?)(?<!var(.|\n)*?obj_name(.|\n)*?=(.|\n)*?;(.|\n)*?){((.|\n)*?)};"
+javascript_obj_name = "obj_name"
+
+# legit regex: (?<=var(.|\n)*?javascript_obj_name(.|\n)*?=(.|\n)*?)(?<!var(.|\n)*?javascript_obj_name(.|\n)*?=(.|\n)*?;(.|\n)*?){((.|\n)*?)};
+
+reggy = fr"(?<=var(.|\n)*?{javascript_obj_name}(.|\n)*?=(.|\n)*?)(?<!var(.|\n)*?{javascript_obj_name}(.|\n)*?=(.|\n)*?;(.|\n)*?){{((.|\n)*?)}};"
 
 text = """
 var breakfast = {
