@@ -4,9 +4,6 @@ import json
 # legit regex: (?<=var(.|\n)*?javascript_object_name(.|\n)*?=(.|\n)*?)(?<!var(.|\n)*?javascript_object_name(.|\n)*?=(.|\n)*?;(.|\n)*?)({((.|\n)*?)});
 
 
-
-
-
 def remove_comments(string):
 	"""
 	removes comments from JS source
@@ -21,7 +18,7 @@ def remove_comments(string):
 	return regex.sub(_replacer, string)
 
 
-def json_from_script_to_dict(javascript_object_name, script):
+def js_obj_from_script_to_dict(javascript_object_name, script):
 	"""
 	parses Javascript for an object and returns it as a dictionary
 	"""
@@ -76,6 +73,6 @@ var breakfast = {
 </script>
 """
 
-print(json_from_script_to_dict("breakfast", text))
-print(json_from_script_to_dict("lunch", text))
-print(json_from_script_to_dict("dummy_obj", text))
+print(js_obj_from_script_to_dict("breakfast", text))
+print(js_obj_from_script_to_dict("lunch", text))
+print(js_obj_from_script_to_dict("dummy_obj", text))
