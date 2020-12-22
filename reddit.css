@@ -28,3 +28,7 @@ label {
 a[href] {
     color: #369 !important
 }
+
+html {
+    scrollbar-color: grey black;
+}
