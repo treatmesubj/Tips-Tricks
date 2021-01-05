@@ -1,6 +1,6 @@
 DB2 CLI Commands
 
-	db2cli execsql -dsn SMS -user ***** -passwd ***** -inputsql test.sql -statementdelimiter ; -outfile test_results.csv
+	db2cli execsql -dsn SMS -user ***** -passwd ***** -inputsql test.sql -statementdelimiter ';' -outfile test_results.csv
 	db2cli validate -connect -dsn SMS -user ***** -passwd ****
 	db2cli validate -dsn SMS -connect -odbcdsn -user ****** -passwd ****
 
