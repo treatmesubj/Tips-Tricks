@@ -12,12 +12,19 @@ Find All Tables in Schema
 	WHERE CREATOR = 'FNP';
 	```
 
-Find All Columns in Table in Schma
+Find All Columns in Table in Schema
 	```
 	SELECT NAME FROM SYSIBM.SYSCOLUMNS
 	WHERE TBCREATOR = 'FNP'
 		AND TBNAME = 'AML_ORD_CUR';
 	````
+
+Look For Similar Values in a Column in a Table
+	```
+	SELECT CUSTNUM_NAME
+	FROM AIWCB.CUSTOMER_ACCOUNT_R
+	WHERE CUSTNUM_NAME LIKE 'a%'
+	```
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Create Data Model for Formulated Pivot
