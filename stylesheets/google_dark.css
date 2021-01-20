@@ -1,0 +1,23 @@
+html,
+html * :not(input):not([style*='background:url']) {
+    background: black;
+    border: white;
+    color: white;
+}
+
+[href],
+[href] * {
+    color: steelblue !important;
+}
+
+input {
+    background: white !important;
+    color: black !important;
+}
+
+
+img {
+    position: relative;
+    z-index: 1;
+    background: white;
+}

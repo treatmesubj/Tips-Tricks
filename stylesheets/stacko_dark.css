@@ -1,0 +1,25 @@
+body, #content {
+    background-color: black !important;
+    color: grey
+}
+
+header, [role='menubar'] {
+    background-color: black !important;
+}
+
+[class*='code-block'] {
+    background-color: #000 !important;
+    color: white !important;
+    scrollbar-color: grey black !important;
+    border-style: solid;
+    border-width: thin;
+}
+
+form#post-form, [id*='sidebar'] {
+    visibility: hidden !important;
+}
+
+[class*='postcell'], [id*=answer-] {
+    border-style: solid;
+    border-width: thin;
+}

@@ -1,0 +1,39 @@
+div.content,
+div.grippy,
+div.happening-now,
+body {
+    background-color: black !important
+}
+
+div.side {
+    background-color: darkgrey !important
+}
+
+#header-bottom-left {
+    background-color: darkgreen !important
+}
+
+div[class*="promoted"] {
+    display: none !important
+}
+
+div.md,
+li,
+p,
+table,
+label {
+    color: green !important
+}
+
+a[href] {
+    color: #369 !important
+}
+
+pre code {
+    background-color: black !important;
+    color: white;
+}
+
+html {
+    scrollbar-color: grey black;
+}
