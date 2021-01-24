@@ -1,6 +1,6 @@
 body, #content {
     background-color: black !important;
-    color: lightgrey
+    color: #FFBF00
 }
 
 header, [role='menubar'] {
