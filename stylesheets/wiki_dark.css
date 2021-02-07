@@ -1,0 +1,75 @@
+* {
+background: black !important;
+border-color: #3e3e3e !important;
+color: #8a8a8a !important;
+}
+
+a:link {
+color: #a7a15e !important;
+}
+
+pre,
+a:visited {
+color: #a67b07 !important;
+}
+
+h1,
+h1 *,
+h2,
+h2 *,
+h3,
+h3 *,
+h4,
+h4 *,
+h5,
+h5 *,
+h6,
+h6 *,
+a:hover {
+color: #556b2f !important;
+}
+
+b,
+b *,
+strong,
+strong * {
+color: #af5f00 !important;
+}
+
+li,
+i,
+i * {
+color: #705b46 !important;
+}
+
+input,
+button,
+select,
+textarea {
+background: #262626 !important;
+border: 1px solid #3e3e3e !important;
+}
+
+img {
+    z-index: 1 !important;
+    background-color: white !important;
+}
+
+/* img[src*="Wikipedia_wordmark"],
+img[src*="logo"], 
+img[src*="icon"], 
+img[src*="folder"],
+img[src*="/poweredby_mediawiki_88x31.png"],
+img[src*="Bookshelf"],
+img[src*="/wikimedia-button.png"],
+img[src*="174px-Wikipedia-word1_7.png"] {
+display: none !important;
+}
+
+ul {
+list-style-image: none !important;
+}
+
+#simpleSearch label{
+background: none !important;
+} */
