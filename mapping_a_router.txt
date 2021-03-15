@@ -1,0 +1,19 @@
+1. Figure out the IP of router and your device
+	If CMD/Powershell: 
+		`ipconfig`
+			"Default Gateway IPv4 IP" = router IP
+			"IPv4 Address" = your device IP
+
+	If Bash: 
+		`ip route show`
+			"default via" = router IP
+		`ifconfig`
+			"wlan0 inet" = your device IP
+		
+2. Ping a range of IPs on the router to discover devices
+	`nmap -sn X.X.X.X/24`
+    a. If you have sudo, you may be able to see names of devices
+	`sudo nmap -sn X.X.X.X/24`
+
+3. Investigate open ports on a device
+	`nmap -Pn X.X.X.X`
