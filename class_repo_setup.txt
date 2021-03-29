@@ -1,0 +1,6 @@
+1. copy over all folders for unit
+2. cd <unit folder>
+3. rm readme.md
+4. get-childitem -Include Solved -Recurse -force | Remove-Item -Force -Recurse
+5. get-childitem -Include LessonPlan.md -Recurse -force | Remove-Item -Force -Recurse
+6. get-childitem -Include TimeTracker.xlsx -Recurse -force | Remove-Item -Force -Recurse
