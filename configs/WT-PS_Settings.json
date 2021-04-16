@@ -4,7 +4,7 @@
     "name": "Windows PowerShell",
     "commandline": "powershell.exe",
     "hidden": false,
-    "background": "#000000",
+    "background": "#171717",
     "foreground": "#ffcc00",
     "cursorColor" : "#FFFFFF",
     "cursorShape": "filledBox",
