@@ -24,4 +24,18 @@
 	`ping raspberrypi.local`
 
 2. SSH into pi
-	`ssh raspberrypi.local`
+	Pi Setup
+		a. will need an empty file in boot directory: "ssh"
+			`cd /`
+			`sudo touch ssh`
+		b. enable ssh in raspi-config
+			`sudo raspi-config`
+				> 3. Interface Options
+					> P2 SSH
+						> Yes
+						> Ok
+				> Finish
+		# default username:password = pi:raspberry
+		# w/ sudo, can change password: `sudo passwd pi`
+
+	`ssh pi@raspberrypi.local`
