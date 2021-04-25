@@ -17,3 +17,7 @@
 
 3. Investigate open ports on a device
 	`nmap -Pn X.X.X.X`
+
+
+4. If you're on the same wifi as your raspberry pi,
+	`ping raspberrypi.local`
