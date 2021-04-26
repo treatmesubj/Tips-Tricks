@@ -25,10 +25,20 @@
 
 2. SSH into pi
 	Pi Setup
-		a. will need an empty file in boot directory: "ssh"
-			`cd /`
-			`sudo touch ssh`
-		b. enable ssh in raspi-config
+		a. may be handy to have pi auto-connect to wifi
+			1. will need new file in boot directory: "wpa_supplicant.conf"
+				```
+				ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+				update_config=1
+				country=US
+				network = {
+				ssid="your wifi network name"
+				psk="wifi password"
+				key_mgmt=WPA-PSK
+				}
+				```
+		b. will need an empty file in boot directory: "ssh"
+		c. If Pi is booted, can enable ssh in raspi-config
 			`sudo raspi-config`
 				> 3. Interface Options
 					> P2 SSH
