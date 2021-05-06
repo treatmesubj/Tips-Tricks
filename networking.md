@@ -1,6 +1,6 @@
 ### Figure Out Your IP Address
 * CMD/PowerShell
-```PowerShell
+```
 $ipconfig
 
 Wireless LAN adapter Wi-Fi:
@@ -18,7 +18,7 @@ Wireless LAN adapter Wi-Fi:
 ```
 
 * Bash
-```bash
+```
 $ip route show
 
 default via 10.0.0.xxx ***(router IP) dev wlan0 proto dhcp src 10.0.0.xxx ***(this device IP) metric 303
@@ -26,7 +26,7 @@ default via 10.0.0.xxx ***(router IP) dev wlan0 proto dhcp src 10.0.0.xxx ***(th
 ```
 
 ### Find Devices on Network
-```bash
+```
 $sudo nmap -sn 10.0.0.xxx/24
 
 Starting Nmap 7.70 ( https://nmap.org ) at 2021-05-06 11:21 CDT
@@ -48,7 +48,7 @@ Nmap done: 256 IP addresses (17 hosts up) scanned in 9.95 seconds
 ```
 
 ### Map Ports on Device
-```bash
+```
 $mkdir nmap
 $sudo nmap -sC -sV -oA [nmap/scan_res] [ip_addr] -v
 
