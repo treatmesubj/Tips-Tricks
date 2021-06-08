@@ -72,4 +72,5 @@ PORT     STATE SERVICE       VERSION
 5357/tcp open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
 [snip]
 ```
-
+### fuzz files against url with gobuster
+`gobuster dir -u http://url_goes_here -w /opt/SecLists/Discovery/Web-Content/raft-small-words.txt -x php -o gobust_output`

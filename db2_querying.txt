@@ -97,10 +97,12 @@ Power Query M Query Results Cleaning
 	    cleaned_table = Table.TransformColumns(#"Appended Query", List.Transform(text_cols, each {_, Text.Clean})), //strip invalid chars
 	    trimmed_table = Table.TransformColumns(cleaned_table, List.Transform(text_cols, each {_, Text.Trim})), //strip stuff
 	    padded_ent_cmr_id = Table.TransformColumns(trimmed_table, {{"ENT_CMR_ID", each if _ <> "" then Text.PadStart(_, 8, "0") else "", type text}}) //zero-pad text in a col up to 8 chars
+	    //replace <NULL>s with 0s in number columns so aggregates work
+	    fixed_dollar_vals = Table.ReplaceValue(padded_ent_cmr_id,"<NULL>",0,Replacer.ReplaceValue,{"DtD $M", "WtD $M"}),
 
 	    //general steps: get source, [append queries], set types, clean invalid chars, trim text
 	in
-	    padded_ent_cmr_id
+	    fixed_dollar_vals
 
 
 
