@@ -18,12 +18,10 @@ Find All Tables in Schema
 	WHERE CREATOR = 'FNP';
 	```
 
-Find All Columns in Table in Schema
+Find All Columns in Table
 	```
-	SELECT NAME FROM SYSIBM.SYSCOLUMNS
-	WHERE TBCREATOR = 'FNP'
-		AND TBNAME = 'AML_ORD_CUR';
-	````
+	SELECT * FROM schema.table_name WHERE 1 = 0;
+	```
 
 Look For Similar Values in a Column in a Table
 	```
