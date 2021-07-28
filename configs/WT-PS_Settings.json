@@ -5,7 +5,7 @@
     "commandline": "powershell.exe",
     "hidden": false,
     "background": "#171717",
-    "foreground": "#ffcc00",  //#0af6f5
+    "foreground": "#14fc94",  //#0af6f5
     "cursorColor" : "#FFFFFF",
     "cursorShape": "filledBox",
     "fontFace": "IBM Plex Mono",
