@@ -1,0 +1,16 @@
+{
+  "readableLineLength": false,
+  "attachmentFolderPath": "./attachments",
+  "promptDelete": false,
+  "newLinkFormat": "relative",
+  "useMarkdownLinks": true,
+  "foldHeading": true,
+  "foldIndent": true,
+  "showLineNumber": true,
+  "pdfExportSettings": {
+    "pageSize": "Letter",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 65
+  }
+}
