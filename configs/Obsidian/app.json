@@ -13,5 +13,9 @@
     "margin": "0",
     "downscalePercent": 65
   },
-  "showUnsupportedFiles": true
+  "showUnsupportedFiles": true,
+  "strictLineBreaks": true,
+  "spellcheck": true,
+  "showFrontmatter": false,
+  "alwaysUpdateLinks": true
 }

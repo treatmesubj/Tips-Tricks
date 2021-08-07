@@ -9,8 +9,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Pidi_Spotify.md",
-            "mode": "preview"
+            "file": "SSH_Setup.md",
+            "mode": "source"
           }
         }
       }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Pidi_Spotify.md",
+                "file": "SSH_Setup.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,11 +88,13 @@
   },
   "active": "3ac3e3f9484da8da",
   "lastOpenFiles": [
-    "Untitled.md",
     "SSH_Setup.md",
     "Screen_Shot.md",
     "Screen_Share.md",
+    "Pidi_Spotify.md",
     "HTTP_Serve_Files.md",
+    "attachments/stream_web_interface.png",
+    "Untitled.md",
     "pi_ssh_setup.md",
     "Screenshare.md"
   ]
