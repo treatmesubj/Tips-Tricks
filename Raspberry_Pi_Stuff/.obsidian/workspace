@@ -1,0 +1,99 @@
+{
+  "main": {
+    "id": "02ce5b61f1c2d5dd",
+    "type": "split",
+    "children": [
+      {
+        "id": "3ac3e3f9484da8da",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Pidi_Spotify.md",
+            "mode": "preview"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "216cf0e1960f40ee",
+    "type": "split",
+    "children": [
+      {
+        "id": "df9d309dd95cf76f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8d0eb2b3ba8f95c1",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "db637c7099195c74",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 196
+  },
+  "right": {
+    "id": "941aaa8ed612dc55",
+    "type": "split",
+    "children": [
+      {
+        "id": "e775e907e6178683",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "590811081a7f3832",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Pidi_Spotify.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "3ac3e3f9484da8da",
+  "lastOpenFiles": [
+    "Untitled.md",
+    "SSH_Setup.md",
+    "Screen_Shot.md",
+    "Screen_Share.md",
+    "HTTP_Serve_Files.md",
+    "pi_ssh_setup.md",
+    "Screenshare.md"
+  ]
+}
