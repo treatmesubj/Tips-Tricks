@@ -4,13 +4,13 @@
     "type": "split",
     "children": [
       {
-        "id": "3ac3e3f9484da8da",
+        "id": "2be55bfece67a244",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "SSH_Setup.md",
-            "mode": "source"
+            "file": "Wifi_Troubleshooting.md",
+            "mode": "preview"
           }
         }
       }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SSH_Setup.md",
+                "file": "Wifi_Troubleshooting.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -86,15 +86,16 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "3ac3e3f9484da8da",
+  "active": "2be55bfece67a244",
   "lastOpenFiles": [
+    "pi_bash_wifi.md",
     "SSH_Setup.md",
     "Screen_Shot.md",
+    "Untitled.md",
     "Screen_Share.md",
     "Pidi_Spotify.md",
     "HTTP_Serve_Files.md",
     "attachments/stream_web_interface.png",
-    "Untitled.md",
     "pi_ssh_setup.md",
     "Screenshare.md"
   ]
