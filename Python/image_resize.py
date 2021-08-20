@@ -14,7 +14,7 @@ if __name__ == "__main__":
 		full_file_path = os.path.join(directory, file)
 		try:
 			img = Image.open(full_file_path)
-			print(full_file_path, img.size)
+			print(file, img.size)
 		except Exception as e:
 			print(e)
 
@@ -30,6 +30,6 @@ if __name__ == "__main__":
 				hsize = int(float(img.size[1]) * float(wpercent))
 				img = img.resize((width_px, hsize), Image.ANTIALIAS)
 				img.save(full_file_path)
-				print(f"{full_file_path} resized")
+				print(f"{file} resized")
 		except Exception as e:
 			print(e)
