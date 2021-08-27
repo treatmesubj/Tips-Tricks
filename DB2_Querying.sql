@@ -12,7 +12,7 @@ QMF Ad Hoc Queries
 */
 
 /* Select all Schemas from Host DB2 */
-SELECT * FROM SYSCAT.SCHEMATA
+SELECT * FROM SYSCAT.SCHEMATA;
 
 /* Select all Tables in Schema */
 SELECT * FROM SYSIBM.SYSTABLES
@@ -31,4 +31,4 @@ WHERE TBNAME = '<table>'
 
 /* Select all Records Where Column Like <pattern> */
 SELECT * FROM SCHEMA.TABLE_NAME
-WHERE SCHEMA.TABLE_NAME.COLUMN LIKE '<pattern>'
+WHERE SCHEMA.TABLE_NAME.COLUMN LIKE '<pattern>';
