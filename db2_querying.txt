@@ -12,6 +12,12 @@ QMF Simple SQL Query
 
 **ini file: C:\ProgramData\IBM\DB2\IBMDBCL1\cfg\db2cli.ini
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Find All Schemas in a Host
+	```
+	SELECT SCHEMANAME FROM SYSCAT.SCHEMATA
+	WITH UR --for CEDP's DB2 performance
+	```
+
 Find All Tables in Schema
 	```
 	SELECT NAME, REMARKS FROM SYSIBM.SYSTABLES
