@@ -10,15 +10,15 @@ import sys
 in_file = sys.argv[1]
 
 # read infile as list of lines
-f = open(in_file, 'r')
-ls = f.readlines()
-f.close()
-out_ls = []
+with open(in_file) as f:
+	ls = f.read().splitlines()
 
 # iterate lines, manipulate them, write to outlist
+out_ls = []
 for row in ls:
-	# new_ls.append(row.split('WSDIW.')[1].strip())
-	out_ls.append(row.strip().upper())
+	# out_ls.append(f"OR NAME LIKE '{row.strip()[:5]}%'")
+	out_ls.append(f"OR NAME IN '{row.strip()}'")
+out_ls = set(out_ls)
 print(out_ls)
 
 # write out list to outfile

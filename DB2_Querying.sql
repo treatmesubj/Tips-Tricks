@@ -30,5 +30,12 @@ WHERE TBNAME = '<table>'
 	AND TBCREATOR = '<schema>';
 
 /* Select all Records Where Column Like <pattern> */
-SELECT * FROM SCHEMA.TABLE_NAME
-WHERE SCHEMA.TABLE_NAME.COLUMN LIKE '<pattern>';
+SELECT * FROM SCHEMA.TABLE
+WHERE (
+    COLUMN LIKE 'BLAH%'
+    OR COLUMN LIKE 'BLEH%'
+    OR COLUMN LIKE 'BLEK%'
+    OR COLUMN LIKE 'DUH%'
+)
+WITH UR;
+
