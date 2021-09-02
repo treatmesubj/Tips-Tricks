@@ -39,3 +39,6 @@ WHERE (
 )
 WITH UR;
 
+/* Count number of Records in Query*/
+SELECT COUNT(*) AS ROW_COUNT
+FROM SCHEMA.TABLE;
