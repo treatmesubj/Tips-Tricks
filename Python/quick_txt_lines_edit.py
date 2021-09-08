@@ -17,12 +17,13 @@ with open(in_file) as f:
 out_ls = []
 for row in ls:
 	# out_ls.append(f"OR NAME LIKE '{row.strip()[:5]}%'")
-	out_ls.append(f"OR NAME IN '{row.strip()}'")
+	out_ls.append(f"OR NAME IN '{row.strip()[6:]}'")
 out_ls = set(out_ls)
 print(out_ls)
 
 # write out list to outfile
 f = open(f"{os.path.dirname(in_file)}\\out_file.txt", 'w')
 for line in out_ls:
+	print(line)
 	f.writelines(f"{line}\n")
 f.close()
