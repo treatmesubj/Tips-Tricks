@@ -17,8 +17,8 @@ with open(in_file) as f:
 out_ls = []
 for row in ls:
 	# out_ls.append(f"OR NAME LIKE '{row.strip()[:5]}%'")
-	out_ls.append(f"OR NAME IN '{row.strip()[6:]}'")
-out_ls = set(out_ls)
+	out_ls.append(f"{row.strip()[6:]}")
+out_ls = set(out_ls) # take a set of the lines to remove dupes
 print(out_ls)
 
 # write out list to outfile
