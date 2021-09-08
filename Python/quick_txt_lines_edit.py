@@ -7,19 +7,26 @@ import os
 import sys
 
 
+def get_dupes(seq):
+    seen = set()
+    seen_twice = set(x for x in seq if x in seen or seen.add(x))
+    return seen_twice
+
+
 in_file = sys.argv[1]
 
 # read infile as list of lines
 with open(in_file) as f:
-	ls = f.read().splitlines()
+	in_ls = f.read().splitlines()
+in_set = set(in_ls)
+
+print(f"dupes: {get_dupes(in_ls)}")
 
 # iterate lines, manipulate them, write to outlist
 out_ls = []
-for row in ls:
+for row in in_set:
 	# out_ls.append(f"OR NAME LIKE '{row.strip()[:5]}%'")
 	out_ls.append(f"{row.strip()[6:]}")
-out_ls = set(out_ls) # take a set of the lines to remove dupes
-print(out_ls)
 
 # write out list to outfile
 f = open(f"{os.path.dirname(in_file)}\\out_file.txt", 'w')
