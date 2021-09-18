@@ -29,4 +29,4 @@ New desktop is raspberrypi:1 (192.168.1.193:1)
 Looks like VNC is serving on Pi's port 1. \
 You'll need some a VNC client to access `192.168.1.193:1` from another device. [RealVNC's works](https://www.realvnc.com/en/connect/download/viewer/)
 
-![](../VNC_demo.PNG)
+![](../attachments/VNC_demo.PNG)
