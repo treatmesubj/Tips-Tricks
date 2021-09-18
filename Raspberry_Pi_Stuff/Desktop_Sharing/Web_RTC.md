@@ -3,7 +3,7 @@
 If UV4L Streaming Server isn't yet installed on Raspberry Pi, install necessary packages:
  ```bash
 pi@raspberrypi:~ $ sudo apt-get update
-pi@raspberrypi:~ $ sudo apt-install uv4l, uv4l-dummy, uv4l-server, uv4l-webrtc
+pi@raspberrypi:~ $ sudo apt-get install uv4l, uv4l-dummy, uv4l-server, uv4l-webrtc
  ```
 
 ### Generate UV4L HTTPS SSL Private Key & Certificate on Pi
