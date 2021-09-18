@@ -9,8 +9,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Screen_Share.md",
-            "mode": "source"
+            "file": "Desktop_Sharing/VNC.md",
+            "mode": "preview"
           }
         }
       }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Screen_Share.md",
+                "file": "Desktop_Sharing/VNC.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,15 +88,15 @@
   },
   "active": "2be55bfece67a244",
   "lastOpenFiles": [
+    "Desktop_Sharing/VNC.md",
+    "Desktop_Sharing/Web_RTC.md",
+    "Untitled.md",
     "Screen_Share.md",
     "Screen_Shot.md",
     "pi_bash_wifi.md",
     "SSH_Setup.md",
-    "Untitled.md",
     "Pidi_Spotify.md",
     "HTTP_Serve_Files.md",
-    "attachments/stream_web_interface.png",
-    "pi_ssh_setup.md",
-    "Screenshare.md"
+    "attachments/stream_web_interface.png"
   ]
 }

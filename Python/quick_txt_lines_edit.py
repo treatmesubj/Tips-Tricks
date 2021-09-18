@@ -26,7 +26,9 @@ print(f"dupes: {get_dupes(in_ls)}")
 out_ls = []
 for row in in_set:
 	# out_ls.append(f"OR NAME LIKE '{row.strip()[:5]}%'")
-	out_ls.append(f"{row.strip()[6:]}")
+	out_ls.append(f"|{row}|")
+	# out_ls.append(f"{row.strip(',')}")
+	# out_ls += [topic.strip() for topic in row.split(',')]
 
 # write out list to outfile
 f = open(f"{os.path.dirname(in_file)}\\out_file.txt", 'w')

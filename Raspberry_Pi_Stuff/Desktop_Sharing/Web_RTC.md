@@ -35,7 +35,7 @@ pi@raspberrypi:~ $ uv4l --driver dummy --auto-video_nr --enable-server \
 ### Visit Pi Streaming Server and Share Screen
 On your PC in Firefox, visit `https://raspberrypi:9000/stream/webrtc` where `raspberrypi` is host-name or IP of your Pi \
 Under `Cast local Audio/Video sources to remote peer`, choose appropriate settings. Then, click the green `Call!` button to begin sharing \
-![](attachments/stream_web_interface.png)
+![](../attachments/stream_web_interface.png)
 
 ### [Kernel Panics](https://medium.com/home-wireless/headless-streaming-video-with-the-raspberry-pi-zero-w-and-raspberry-pi-camera-38bef1968e1)
 There are two reasons for kernel panics (complete failures). First, if you do full resolution video you must allocate more memory to the GPU. This is done in the `/boot/config.txt` file as a setting for `gpu_mem`. \
