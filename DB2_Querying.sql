@@ -42,3 +42,8 @@ WITH UR;
 /* Count number of Records in Query*/
 SELECT COUNT(*) AS ROW_COUNT
 FROM SCHEMA.TABLE;
+
+/* limit results to 10 rows */
+SELECT * FROM SCHMEMA.TABLE
+FETCH FIRST 10 ROWS ONLY
+WITH UR;
