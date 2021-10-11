@@ -1,1 +1,1 @@
-rm -f <folder_path>
+rm -r <folder_path>
