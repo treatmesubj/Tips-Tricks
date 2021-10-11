@@ -19,14 +19,14 @@ implementation, please see: https://www.realvnc.com/doclink/kb-546
 
 Running applications in /etc/vnc/xstartup
 
-VNC Server catchphrase: "Mars frank cabaret. Orange moment Othello."
-             signature: 41-d8-ed-83-7a-a1-94-b8
+VNC Server catchphrase: "Jupiter bob clarinet. green snapshot piano."
+             signature: 83-d2-li-63-7n-a7-85-c7
 
 Log file is /home/pi/.vnc/raspberrypi:1.log
-New desktop is raspberrypi:1 (192.168.1.193:1)
+New desktop is raspberrypi:1 (xxx.xxx.x.xxx:1)
 ```
 
 Looks like VNC is serving on Pi's port 1. \
-You'll need some a VNC client to access `192.168.1.193:1` from another device. [RealVNC's works](https://www.realvnc.com/en/connect/download/viewer/)
+You'll need some a VNC client to access `xxx.xxx.x.xxx:1` from another device. [RealVNC's works](https://www.realvnc.com/en/connect/download/viewer/)
 
 ![](../attachments/VNC_client.png)
