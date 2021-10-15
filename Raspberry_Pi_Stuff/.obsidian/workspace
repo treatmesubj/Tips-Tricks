@@ -9,8 +9,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "SSH_Setup.md",
-            "mode": "source"
+            "file": "Desktop_Sharing/VNC.md",
+            "mode": "preview"
           }
         }
       }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SSH_Setup.md",
+                "file": "Desktop_Sharing/VNC.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,9 +88,9 @@
   },
   "active": "2be55bfece67a244",
   "lastOpenFiles": [
+    "Desktop_Sharing/VNC.md",
     "SSH_Setup.md",
     "Wifi_Troubleshooting.md",
-    "Desktop_Sharing/VNC.md",
     "Desktop_Sharing/Web_RTC.md",
     "Untitled.md",
     "Screen_Share.md",
