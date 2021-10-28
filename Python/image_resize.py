@@ -1,13 +1,24 @@
 import os
+import sys
 from PIL import Image
 
 """
-downsizes all images in directory to 1000px width
+downsizes all images in directory to desired px width
 """
 
 if __name__ == "__main__":
-	directory = input("pictures folder: ").strip("\"")
-	files = os.listdir(directory)
+	if sys.argv[1] in ('-d', '--directory'):
+		directory = sys.argv[2].strip("\"")
+		files = os.listdir(directory)
+
+	elif sys.argv[1] in ('-f', '--file'):
+		file = sys.argv[2].strip("\"")
+		files = [file,]
+		directory = os.path.dirname(file)
+
+	else:
+		print("usage: python image_resize.py <-d|--directory|-f|--file> <file-path>")
+		sys.exit()
 
 	# print out image sizes before asking for width
 	for file in files:
