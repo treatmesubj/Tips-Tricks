@@ -3,37 +3,47 @@ import sys
 from PIL import Image
 
 """
-downsizes all images in directory to desired px width
+downsizes all images in explicit directory-path or an image file-path to desired px width
 """
 
+class DirFileArgError(Exception):
+	def __str__(self):
+		return "Invalid directory/file flag before file-path"
+
 if __name__ == "__main__":
-	if sys.argv[1] in ('-d', '--directory'):
-		directory = sys.argv[2].strip("\"")
-		files = os.listdir(directory)
 
-	elif sys.argv[1] in ('-f', '--file'):
-		file = sys.argv[2].strip("\"")
-		files = [file,]
-		directory = os.path.dirname(file)
-
-	else:
-		print("usage: python image_resize.py <-d|--directory|-f|--file> <file-path>")
-		sys.exit()
+	try:
+		dir_file_flag = sys.argv[1]
+		if dir_file_flag in ('-d', '--directory'):
+			directory_path = sys.argv[2].strip("\"")
+			file_names = os.listdir(directory_path)
+		elif dir_file_flag in ('-f', '--file'):
+			file_path = sys.argv[2].strip("\"")
+			file_names = [file_path,]
+			directory_path = os.path.dirname(file_path)
+		else:
+			raise DirFileArgError
+	except (IndexError, DirFileArgError) as command_error:
+		print("\nusage: python image_resize.py <-d|--directory|-f|--file> <file-path>\n\n")
+		raise command_error
 
 	# print out image sizes before asking for width
-	for file in files:
-		full_file_path = os.path.join(directory, file)
+	for file_name in file_names:
+		full_file_path = os.path.join(directory_path, file_name)
 		try:
 			img = Image.open(full_file_path)
-			print(file, img.size)
-		except Exception as e:
-			print(e)
+			print(file_name, img.size)
+		except Exception as opening_image_file_error:
+			if dir_file_flag in ('-f', '--file'):
+				raise opening_image_file_error
+			else:
+				print(f"{file_name}: e")
 
 	width_px = int(input("desired pixel width: "))
 
 	# resize images
-	for file in files:
-		full_file_path = os.path.join(directory, file)
+	for file_name in file_names:
+		full_file_path = os.path.join(directory_path, file_name)
 		try:
 			img = Image.open(full_file_path)
 			if img.size[0] > width_px:
@@ -41,6 +51,6 @@ if __name__ == "__main__":
 				hsize = int(float(img.size[1]) * float(wpercent))
 				img = img.resize((width_px, hsize), Image.ANTIALIAS)
 				img.save(full_file_path)
-				print(f"{file} resized: {img.size}")
+				print(f"{file_name} resized: {img.size}")
 		except Exception as e:
-			print(e)
+			print(f"{file_name}: e")
