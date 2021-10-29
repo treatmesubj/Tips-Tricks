@@ -41,6 +41,6 @@ if __name__ == "__main__":
 				hsize = int(float(img.size[1]) * float(wpercent))
 				img = img.resize((width_px, hsize), Image.ANTIALIAS)
 				img.save(full_file_path)
-				print(f"{file} resized")
+				print(f"{file} resized: {img.size}")
 		except Exception as e:
 			print(e)
