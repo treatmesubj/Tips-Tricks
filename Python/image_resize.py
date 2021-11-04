@@ -3,7 +3,7 @@ import sys
 from PIL import Image
 
 """
-downsizes all images in explicit directory-path or an image file-path to desired px width
+downsizes all images in explicit directory-path or an image file-path to desired px width and puts them in a new ./resized directory
 """
 
 class DirFileArgError(Exception):
@@ -19,7 +19,7 @@ if __name__ == "__main__":
 			file_names = os.listdir(directory_path)
 		elif dir_file_flag in ('-f', '--file'):
 			file_path = sys.argv[2].strip("\"")
-			file_names = [file_path,]
+			file_names = [os.path.basename(file_path),]
 			directory_path = os.path.dirname(file_path)
 		else:
 			raise DirFileArgError
@@ -50,7 +50,12 @@ if __name__ == "__main__":
 				wpercent = (width_px / float(img.size[0]))
 				hsize = int(float(img.size[1]) * float(wpercent))
 				img = img.resize((width_px, hsize), Image.ANTIALIAS)
-				img.save(full_file_path)
+				out_dir_path = f"{directory_path}\\resized2"
+				if not os.path.exists(out_dir_path):
+					os.mkdir(out_dir_path)
+				out_file_path = os.path.join(out_dir_path, file_name)
+				img.save(out_file_path)
 				print(f"{file_name} resized: {img.size}")
 		except Exception as e:
-			print(f"{file_name}: e")
+			print(f"{file_name}: {e}")
+			raise e
