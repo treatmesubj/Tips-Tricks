@@ -1,8 +1,3 @@
-"""
-reads in a text file's lines as a list.
-manipulates each line in the list.
-writes resulting lines to an outfile in directory of infile
-"""
 import os
 import sys
 
@@ -13,26 +8,67 @@ def get_dupes(seq):
     return seen_twice
 
 
-in_file = sys.argv[1]
+def one_list_work(in_file):
+	"""
+	change each row in a text-file of rows
+	returns a list of the changed rows
+	"""
 
-# read infile as list of lines
-with open(in_file) as f:
-	in_ls = f.read().splitlines()
-in_set = set(in_ls)
+	with open(in_file) as f:
+		in_ls = f.read().splitlines()
+	in_set = set(in_ls)
 
-print(f"dupes: {get_dupes(in_ls)}")
+	print(f"dupes: {get_dupes(in_ls)}")
 
-# iterate lines, manipulate them, write to outlist
-out_ls = []
-for row in in_set:
-	# out_ls.append(f"OR NAME LIKE '{row.strip()[:5]}%'")
-	out_ls.append(f"'{row}',")
-	# out_ls.append(f"{row.strip(',')}")
-	# out_ls += [topic.strip() for topic in row.split(',')]
+	out_ls = []
+	for row in in_set:
+		# out_ls.append(f"OR NAME LIKE '{row.strip()[:5]}%'")
+		out_ls.append(f"'{row}',")
+		# out_ls.append(f"{row.strip(',')}")
+		# out_ls += [topic.strip() for topic in row.split(',')]
 
-# write out list to outfile
-f = open(f"{os.path.dirname(in_file)}\\out_file.txt", 'w')
-for line in out_ls:
-	print(line)
-	f.writelines(f"{line}\n")
-f.close()
+	return out_ls
+
+
+def two_list_work(in_file1, in_file2):
+	"""
+	pair & change each row of two text-files of rows
+	returns one list of paired & changed rows
+	"""
+
+	with open(in_file1) as f1:
+		in_ls1 = f1.read().splitlines()
+
+	with open(in_file2) as f2:
+		in_ls2 = f2.read().splitlines()
+
+	paired_rows_list = [(in_ls1[i], in_ls2[i]) for i in range(0, len(in_ls1))]
+
+	out_ls = []
+	for pair in paired_rows_list:
+		out_ls.append(f"WHEN COMPETENCY.AREAOFSPEC = '{pair[0]}' THEN '{pair[1]}'")
+
+	return out_ls
+
+
+if __name__ == "__main__":
+	
+	"""
+	# one list work
+	in_file = sys.argv[1]
+	out_ls = one_list_work(in_file)
+	out_dir = os.path.dirname(in_file)
+	"""
+
+	# two list work
+	in_file1 = r"C:\Users\JohnHupperts\Desktop\comp_code.txt"
+	in_file2 = r"C:\Users\JohnHupperts\Desktop\comp_name.txt"
+	out_ls = two_list_work(in_file1, in_file2)
+	out_dir = os.path.dirname(in_file1)
+
+	# write out list to outfile
+	f = open(f"{out_dir}\\out_file.txt", 'w')
+	for line in out_ls:
+		print(line)
+		f.writelines(f"{line}\n")
+	f.close()
