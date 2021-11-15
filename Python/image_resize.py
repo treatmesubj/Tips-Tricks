@@ -50,7 +50,7 @@ if __name__ == "__main__":
 				wpercent = (width_px / float(img.size[0]))
 				hsize = int(float(img.size[1]) * float(wpercent))
 				img = img.resize((width_px, hsize), Image.ANTIALIAS)
-				out_dir_path = f"{directory_path}\\resized2"
+				out_dir_path = f"{directory_path}\\resized"
 				if not os.path.exists(out_dir_path):
 					os.mkdir(out_dir_path)
 				out_file_path = os.path.join(out_dir_path, file_name)
