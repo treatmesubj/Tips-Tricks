@@ -1,6 +1,6 @@
 # Pi Setup
-1. May be handy to have pi auto-connect to wifi
-	1. Create new file `/etc/wpa_supplicant/wpa_supplicant.conf` with the following contents
+1. It may be handy to have pi auto-connect to WiFi if it won't be connected to the router via Ethernet
+	1. On your Micro SD imaged with Raspberry Pi OS, create new file `/etc/wpa_supplicant/wpa_supplicant.conf` with the below contents. If you're writing to the Micro SD from Windows, just add the file to the "Removable Disk (E:)"
 ```
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1

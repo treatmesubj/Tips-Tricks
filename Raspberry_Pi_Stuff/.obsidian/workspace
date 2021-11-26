@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Desktop_Sharing/VNC.md",
+            "file": "SSH_Setup.md",
             "mode": "preview"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Desktop_Sharing/VNC.md",
+                "file": "SSH_Setup.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,15 +88,15 @@
   },
   "active": "2be55bfece67a244",
   "lastOpenFiles": [
-    "Desktop_Sharing/VNC.md",
     "SSH_Setup.md",
+    "Screen_Shot.md",
+    "Pidi_Spotify.md",
+    "HTTP_Serve_Files.md",
     "Wifi_Troubleshooting.md",
+    "Desktop_Sharing/VNC.md",
     "Desktop_Sharing/Web_RTC.md",
     "Untitled.md",
     "Screen_Share.md",
-    "Screen_Shot.md",
-    "pi_bash_wifi.md",
-    "Pidi_Spotify.md",
-    "HTTP_Serve_Files.md"
+    "pi_bash_wifi.md"
   ]
 }
