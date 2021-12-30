@@ -89,13 +89,13 @@
   "active": "2be55bfece67a244",
   "lastOpenFiles": [
     "SSH_Setup.md",
+    "Wifi_Troubleshooting.md",
+    "Camera.md",
+    "HTTP_Server.md",
+    "Desktop_Sharing/Web_RTC.md",
+    "Desktop_Sharing/VNC.md",
     "Screen_Shot.md",
     "Pidi_Spotify.md",
-    "HTTP_Serve_Files.md",
-    "Wifi_Troubleshooting.md",
-    "Desktop_Sharing/VNC.md",
-    "Desktop_Sharing/Web_RTC.md",
-    "Untitled.md",
     "Screen_Share.md",
     "pi_bash_wifi.md"
   ]
