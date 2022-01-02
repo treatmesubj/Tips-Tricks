@@ -5,33 +5,50 @@ from googleapiclient.http import MediaFileUpload
 import os
 import time
 import datetime
+import traceback
 
-scopes = ['https://www.googleapis.com/auth/drive']
-credentials = ServiceAccountCredentials.from_json_keyfile_name('/home/pi/Desktop/drive_service_creds.json', scopes)
 
-http_auth = credentials.authorize(Http())
-drive = build('drive', 'v3', http=http_auth)
-file_metadata = {
-        'name': 'image.jpg',
-        'parents': ['2xy_b8pfegwgBKZ_PEgWf3WL-gdXwZBtt']
-}
+def now():
+    return dt.now().strftime('%Y-%m-%d.%H:%M:%S')
 
-file_id_list = []
-while True:
-    try:
-        print('snapping pic')
-        os.system("raspistill -vf -o /home/pi/Desktop/image.jpg")
-        file_metadata = {
+
+def log_exception(note='', log_path):
+    log_file = open(log_path, 'a')
+    log_file.writelines(now() + ' >> ' + note + "\n" +
+                       traceback.format_exc() + "\n")
+    log_file.close()
+
+
+if __name__ == "__main__":
+
+    log_path = "./camera_script.log"
+
+    scopes = ['https://www.googleapis.com/auth/drive']
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('/home/pi/Desktop/drive_service_creds.json', scopes)
+
+    http_auth = credentials.authorize(Http())
+    drive = build('drive', 'v3', http=http_auth)
+    file_metadata = {
+            'name': 'image.jpg',
+            'parents': ['2xy_b8pfegwgBKZ_PEgWf3WL-gdXwZBtt']
+    }
+
+    file_id_list = []
+    while True:
+        try:
+            print('snapping pic')
+            os.system("raspistill -vf -o /home/pi/Desktop/image.jpg")
+            file_metadata = {
                 'name': f"{datetime.datetime.fromtimestamp(time.time()).strftime('%H-%M-%S')}_image.jpg",
                 'parents': ['2xy_b8pfegwgBKZ_PEgWf3WL-gdXwZBtt']
-        }
-        media = MediaFileUpload('/home/pi/Desktop/image.jpg', mimetype='image/jpeg')
-        upload_response = drive.files().create(body=file_metadata, media_body=media, fields='id,name,mimeType,parents,properties,owners,driveId').execute()
-        if len(file_id_list) > 10:
+            }
+            media = MediaFileUpload('/home/pi/Desktop/image.jpg', mimetype='image/jpeg')
+            upload_response = drive.files().create(body=file_metadata, media_body=media, fields='id,name,mimeType,parents,properties,owners,driveId').execute()
+            if len(file_id_list) > 10:
                 delete_response = drive.files().delete(fileId=file_id_list[0]).execute()
                 file_id_list.pop(0)
-        latest_file_id = upload_response.get('id')
-        file_id_list.append(latest_file_id)
-        time.sleep(5)
-    except Exception as e:
-            print(e)
+            latest_file_id = upload_response.get('id')
+            file_id_list.append(latest_file_id)
+            time.sleep(5)
+        except Exception as e:
+            log_exception(log_path=log_path)
