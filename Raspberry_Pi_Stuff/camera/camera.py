@@ -13,16 +13,17 @@ http_auth = credentials.authorize(Http())
 drive = build('drive', 'v3', http=http_auth)
 file_metadata = {
         'name': 'image.jpg',
-        'parents': ['1ih_b8pfegwgBKZ_PEgWf3WL-hkXwZBtt']
+        'parents': ['2xy_b8pfegwgBKZ_PEgWf3WL-gdXwZBtt']
 }
 
 file_id_list = []
 while True:
+    try:
         print('snapping pic')
         os.system("raspistill -vf -o /home/pi/Desktop/image.jpg")
         file_metadata = {
                 'name': f"{datetime.datetime.fromtimestamp(time.time()).strftime('%H-%M-%S')}_image.jpg",
-                'parents': ['1ih_b8pfegwgBKZ_PEgWf3WL-hkXwZBtt']
+                'parents': ['2xy_b8pfegwgBKZ_PEgWf3WL-gdXwZBtt']
         }
         media = MediaFileUpload('/home/pi/Desktop/image.jpg', mimetype='image/jpeg')
         upload_response = drive.files().create(body=file_metadata, media_body=media, fields='id,name,mimeType,parents,properties,owners,driveId').execute()
@@ -32,3 +33,5 @@ while True:
         latest_file_id = upload_response.get('id')
         file_id_list.append(latest_file_id)
         time.sleep(5)
+    except Exception as e:
+            print(e)
