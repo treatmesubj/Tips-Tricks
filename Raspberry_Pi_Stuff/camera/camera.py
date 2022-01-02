@@ -12,7 +12,7 @@ def now():
     return dt.now().strftime('%Y-%m-%d.%H:%M:%S')
 
 
-def log_exception(note='', log_path):
+def log_exception(log_path, note=''):
     log_file = open(log_path, 'a')
     log_file.writelines(now() + ' >> ' + note + "\n" +
                        traceback.format_exc() + "\n")
@@ -21,7 +21,7 @@ def log_exception(note='', log_path):
 
 if __name__ == "__main__":
 
-    log_path = "./camera_script.log"
+    log_path = "/home/pi/Desktop/camera_script.log"
 
     scopes = ['https://www.googleapis.com/auth/drive']
     credentials = ServiceAccountCredentials.from_json_keyfile_name('/home/pi/Desktop/drive_service_creds.json', scopes)
@@ -30,7 +30,7 @@ if __name__ == "__main__":
     drive = build('drive', 'v3', http=http_auth)
     file_metadata = {
             'name': 'image.jpg',
-            'parents': ['2xy_b8pfegwgBKZ_PEgWf3WL-gdXwZBtt']
+            'parents': ['1ih_b8pRyWZfBKZ_PEgWf3WL-hkXwZBtt']
     }
 
     file_id_list = []
@@ -40,7 +40,7 @@ if __name__ == "__main__":
             os.system("raspistill -vf -o /home/pi/Desktop/image.jpg")
             file_metadata = {
                 'name': f"{datetime.datetime.fromtimestamp(time.time()).strftime('%H-%M-%S')}_image.jpg",
-                'parents': ['2xy_b8pfegwgBKZ_PEgWf3WL-gdXwZBtt']
+                'parents': ['1ih_b8pRyWZfBKZ_PEgWf3WL-hkXwZBtt']
             }
             media = MediaFileUpload('/home/pi/Desktop/image.jpg', mimetype='image/jpeg')
             upload_response = drive.files().create(body=file_metadata, media_body=media, fields='id,name,mimeType,parents,properties,owners,driveId').execute()
@@ -51,4 +51,5 @@ if __name__ == "__main__":
             file_id_list.append(latest_file_id)
             time.sleep(5)
         except Exception as e:
+            print(e)
             log_exception(log_path=log_path)
