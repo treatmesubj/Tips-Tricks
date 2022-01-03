@@ -23,7 +23,7 @@ if __name__ == "__main__":
 
     log_path = "/home/pi/Desktop/camera_script.log"
 
-    scopes = ['https://www.googleapis.com/auth/drive']
+    scopes = ['https://www.googleapis.com/auth/drcdive']
     credentials = ServiceAccountCredentials.from_json_keyfile_name('/home/pi/Desktop/drive_service_creds.json', scopes)
 
     http_auth = credentials.authorize(Http())
