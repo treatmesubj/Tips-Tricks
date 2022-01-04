@@ -5,6 +5,7 @@ from googleapiclient.http import MediaFileUpload
 import os
 import time
 import datetime
+from datetime import datetime as dt
 import traceback
 
 
@@ -23,7 +24,7 @@ if __name__ == "__main__":
 
     log_path = "/home/pi/Desktop/camera_script.log"
 
-    scopes = ['https://www.googleapis.com/auth/drcdive']
+    scopes = ['https://www.googleapis.com/auth/drive']
     credentials = ServiceAccountCredentials.from_json_keyfile_name('/home/pi/Desktop/drive_service_creds.json', scopes)
 
     http_auth = credentials.authorize(Http())
@@ -50,6 +51,6 @@ if __name__ == "__main__":
             latest_file_id = upload_response.get('id')
             file_id_list.append(latest_file_id)
             time.sleep(5)
-        except Exception as e:
-            print(e)
+        except Exception:
+            traceback.print_exc()
             log_exception(log_path=log_path)
