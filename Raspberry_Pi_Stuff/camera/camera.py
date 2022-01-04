@@ -21,7 +21,7 @@ def log_exception(log_path, note=''):
 
 if __name__ == "__main__":
 
-    log_path = "/home/pi/Desktop/camera_script.log"
+    log_path = "/home/pi/Desktop/tracebacks.log"
 
     scopes = ['https://www.googleapis.com/auth/drive']
     credentials = ServiceAccountCredentials.from_json_keyfile_name('/home/pi/Desktop/drive_service_creds.json', scopes)
