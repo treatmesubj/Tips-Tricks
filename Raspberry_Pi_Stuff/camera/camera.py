@@ -14,10 +14,9 @@ def now():
 
 
 def log_exception(log_path, note=''):
-    log_file = open(log_path, 'a')
-    log_file.writelines(now() + ' >> ' + note + "\n" +
-                       traceback.format_exc() + "\n")
-    log_file.close()
+    with open(log_path, 'a') as log_file:
+        log_file.writelines(now() + ' >> ' + note + "\n" +
+                               traceback.format_exc() + "\n")
 
 
 if __name__ == "__main__":
