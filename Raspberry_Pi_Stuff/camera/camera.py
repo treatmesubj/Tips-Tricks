@@ -55,12 +55,13 @@ if __name__ == "__main__":
     file_id_list = []
     while True:
         try:
-            print('snapping pic')
+            name_time_stamp = datetime.datetime.fromtimestamp(time.time()).strftime('%H-%M-%S')
+            print(f'snapping {name_time_stamp}')
             raspistill_cmd_response = subprocess.run(['raspistill', '-vf', '-o', '/home/pi/Desktop/image.jpg'])
             if raspistill_cmd_response.returncode != 0:
                 log_raspistill_cmd(raspistill_log_path, raspistill_cmd_response)
             file_metadata = {
-                'name': f"{datetime.datetime.fromtimestamp(time.time()).strftime('%H-%M-%S')}_image.jpg",
+                'name': f"{name_time_stamp}_image.jpg",
                 'parents': ['1ih_b8pRyWZfBKZ_PEgWf3WL-hkXwZBtt']
             }
             media = MediaFileUpload('/home/pi/Desktop/image.jpg', mimetype='image/jpeg')
