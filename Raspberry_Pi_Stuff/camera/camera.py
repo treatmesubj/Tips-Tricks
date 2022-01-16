@@ -2,7 +2,7 @@ from apiclient.discovery import build
 from oauth2client.service_account import ServiceAccountCredentials
 from httplib2 import Http
 from googleapiclient.http import MediaFileUpload
-import os
+import subprocess
 import time
 import datetime
 from datetime import datetime as dt
@@ -15,20 +15,32 @@ def now():
 
 def log_exception(exception_log_path, note=''):
     with open(exception_log_path, 'a') as log_file:
-        log_file.writelines(now() + ' >> ' + note + "\n" +
-                               traceback.format_exc() + "\n")
+        log_file.writelines(now() + ' >> ' + note)
+        log_file.writelines(traceback.format_exc() + "\n")
 
 
 def log_Drive_request(request_log_path, Drive_upload_response, note=''):
     with open(request_log_path, 'a') as log_file:
-        log_file.writelines(now() + ' >> ' + note + "\n" +
-                                Drive_upload_response.__repr__() + "\n")
+        log_file.writelines(now() + ' >> ' + note)
+        log_file.writelines(Drive_upload_response.__repr__() + "\n")
+
+
+def log_raspistill_cmd(raspistill_log_path, raspistill_cmd_response, note=''):
+    with open(raspistill_log_path, 'a') as log_file:
+        log_file.writelines(now() + ' >> ' + note)
+        log_file.writelines(str(raspistill_cmd_response.returncode))
+        if raspistill_cmd_response.stderr:
+            log_file.writelines(str(raspistill_cmd_response.stderr))
+        if raspistill_cmd_response.stdout:
+            log_file.writelines(str(raspistill_cmd_response.stdout))
+
 
 
 if __name__ == "__main__":
 
     exception_log_path = "/home/pi/Desktop/sec_cam_tracebacks.log"
     request_log_path = "/home/pi/Desktop/sec_cam_requests.log"
+    raspistill_log_path = "/home/pi/Desktop/raspistill.log"
 
     scopes = ['https://www.googleapis.com/auth/drive']
     credentials = ServiceAccountCredentials.from_json_keyfile_name('/home/pi/Desktop/drive_service_creds.json', scopes)
@@ -44,7 +56,9 @@ if __name__ == "__main__":
     while True:
         try:
             print('snapping pic')
-            os.system("raspistill -vf -o /home/pi/Desktop/image.jpg")
+            raspistill_cmd_response = subprocess.run(['raspistill', '-vf', '-o', '/home/pi/Desktop/image.jpg'])
+            if raspistill_cmd_response.returncode != 0:
+                log_raspistill_cmd(raspistill_log_path, raspistill_cmd_response)
             file_metadata = {
                 'name': f"{datetime.datetime.fromtimestamp(time.time()).strftime('%H-%M-%S')}_image.jpg",
                 'parents': ['1ih_b8pRyWZfBKZ_PEgWf3WL-hkXwZBtt']
