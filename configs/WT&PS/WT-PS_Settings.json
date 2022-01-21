@@ -1,5 +1,6 @@
 // C:\Users\JohnHupperts\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState
 {
+    // to add custom functions & aliases, edit Microsoft.PowerShell_profile.ps1
     "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
     "name": "Windows PowerShell",
     "commandline": "powershell.exe",
