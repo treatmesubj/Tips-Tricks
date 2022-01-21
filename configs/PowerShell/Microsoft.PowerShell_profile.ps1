@@ -1,5 +1,15 @@
 # $profile => C:\Users\JohnHupperts\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
 
+echo "===========  ============     ========       ======== `
+===========  ===============  =========     ========= `
+   =====        ====   =====    ========   ======== `
+   =====        ===========     ====  === ===  ==== `
+   =====        ===========     ====  =======  ==== `
+   =====        ====   =====    ====   =====   ==== `
+===========  ===============  ======    ===    ====== `
+===========  ============     ======     =     ====== `
+"
+
 Set-Alias -Name sublime -Value "C:\Program Files\Sublime Text 3\sublime_text.exe"
 
 function thesr {
