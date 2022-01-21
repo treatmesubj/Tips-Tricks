@@ -1,0 +1,9 @@
+pkg install neofetch
+
+# to remove welcome banner text
+rm /data/data/com.termux/files/usr/etc/motd
+
+# add neofetch to ~/.bash_profile
+echo neofetch >> ~/.bash_profile
+
+pkg install python
