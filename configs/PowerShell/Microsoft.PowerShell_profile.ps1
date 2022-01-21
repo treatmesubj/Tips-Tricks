@@ -13,9 +13,9 @@ echo "===========  ============     ========       ======== `
 Set-Alias -Name sublime -Value "C:\Program Files\Sublime Text 3\sublime_text.exe"
 
 function thesr {
-	python "C:\Users\JohnHupperts\Documents\Programming_Projects\thesr.py" $args
+   python "C:\Users\JohnHupperts\Documents\Programming_Projects\thesr.py" $args
 }
 
 function prompt {
-	'PS [' + ($pwd -split '\\')[0] + '] ' + '[' + ($env:UserName) + '] ' + '\'+$(($pwd -split '\\')[-1] -join '\') + '> '
+   'PS [' + ($env:UserName) + '] ' + '[' + ($pwd -split '\\')[0] + '] ' + '...\'+$(($pwd -split '\\')[-1] -join '\') + '> '
 }
