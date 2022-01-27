@@ -1,9 +1,17 @@
-pkg install neofetch
+# fix keyboard issues
+nano ~/.termux/termux.properties
+... enforce-char-based-input = true
 
 # to remove welcome banner text
 rm /data/data/com.termux/files/usr/etc/motd
 
+pkg install tmux
+pkg install libxml2 libxslt
+
+pkg install neofetch
 # add neofetch to ~/.bash_profile
 echo neofetch >> ~/.bash_profile
 
 pkg install python
+pkg install git
+
