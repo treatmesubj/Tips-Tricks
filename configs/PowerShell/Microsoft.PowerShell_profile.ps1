@@ -1,5 +1,6 @@
 # $profile => C:\Users\JohnHupperts\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
 
+function ibm-art {
 Write-Host "===========  ============     ========       ======== `
 ===========  ===============  =========     ========= `
    =====        ====   =====    ========   ========   `
@@ -9,6 +10,8 @@ Write-Host "===========  ============     ========       ======== `
 ===========  ===============  ======    ===    ====== `
 ===========  ============     ======     =     ====== `
 " -ForegroundColor DarkBlue
+}
+ibm-art
 
 Set-Alias -Name sublime -Value "C:\Program Files\Sublime Text 3\sublime_text.exe"
 
