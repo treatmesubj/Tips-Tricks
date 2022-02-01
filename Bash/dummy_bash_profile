@@ -1,2 +1,4 @@
+neofetch
+alias thesr='/usr/bin/python3 /home/john/Documents/Thesaurus_Rex/thesr.py'
 # export TERM="xterm-256color"
 export TERM=linux
