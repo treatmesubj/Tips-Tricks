@@ -21,7 +21,7 @@ mmcblk0     179:0    0 116.5G  0 disk
 
 ```
 
-# mounting an SSD
+# mounting an storage device
 ```
 sudo mkdir /media/pi_ssd
 sudo mount -t vfat /dev/mmcblk0p1 /media/pi_ssd
