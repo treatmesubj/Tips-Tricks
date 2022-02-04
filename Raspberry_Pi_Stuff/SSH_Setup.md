@@ -29,4 +29,5 @@
 
 ---
 If you've ssh'd into your Pi from a Windows machine before, but forgot the IP address of your Pi, just look at your `C:\Users\<user>\.ssh\known_hosts` file \
-If you've ssh'd into some machine from your Debian Linux Raspberry Pi, but for the IP address of that machine, just look at your `/home/<user>/.ssh/known_hosts` file
+If you've ssh'd into some machine from your Debian Linux Raspberry Pi, but for the IP address of that machine, just look at your `/home/<user>/.ssh/known_hosts` file \
+[SSH Shenanigans](https://blog.0xffff.info/2021/07/25/ssh-shenanigans-part-1-tips-tricks/)
