@@ -18,3 +18,7 @@
 1. `export`
 	1. check `DISPLAY=:<display>`
 2. If necessary, `export DISPLAY=:<display>`
+
+## Firefox from Server to Host
+1. Kill any Firefox instances
+2.  `firefox -no-remote`
