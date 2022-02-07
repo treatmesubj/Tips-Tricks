@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "SSH_Setup.md",
+            "file": "Desktop_Sharing/X11 Forwarding.md",
             "mode": "preview"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SSH_Setup.md",
+                "file": "Desktop_Sharing/X11 Forwarding.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,6 +88,7 @@
   },
   "active": "2be55bfece67a244",
   "lastOpenFiles": [
+    "Desktop_Sharing/X11 Forwarding.md",
     "SSH_Setup.md",
     "Wifi_Troubleshooting.md",
     "Camera.md",
@@ -96,7 +97,6 @@
     "Desktop_Sharing/VNC.md",
     "Screen_Shot.md",
     "Pidi_Spotify.md",
-    "Screen_Share.md",
-    "pi_bash_wifi.md"
+    "Screen_Share.md"
   ]
 }
