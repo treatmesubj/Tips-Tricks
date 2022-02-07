@@ -16,5 +16,5 @@
 ---
 ## Troubleshooting
 1. `export`
-	1. check `DISPLAY=:`
+	1. check `DISPLAY=:<display>`
 2. If necessary, `export DISPLAY=:<display>`
