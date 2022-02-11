@@ -111,3 +111,21 @@ Nmap done: 1 IP address (1 host up) scanned in 25.24 seconds
 
 ### fuzz files against url with gobuster
 `gobuster dir -u http://url_goes_here -w /opt/SecLists/Discovery/Web-Content/raft-small-words.txt -x php -o gobust_output`
+
+### [Linux Dig DNS Lookup](https://linuxize.com/post/how-to-use-dig-command-to-query-dns-in-linux/)
+
+A host name can have multiple ip addresses
+
+```
+% dig <ip_addr | Host Name>
+
+
+```
+
+### OpenSSL
+
+```
+% openssl s_client -host <ip_addr> -port <port>
+
+
+```
