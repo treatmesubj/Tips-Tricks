@@ -1,0 +1,9 @@
+# https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/
+
+1. Circuits & Electronics: https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-002-circuits-and-electronics-spring-2007/
+2. Great Ideas in Theoretical Comp Sci: https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-080-great-ideas-in-theoretical-computer-science-spring-2008/
+3. Networks: https://ocw.mit.edu/courses/economics/14-15j-networks-spring-2018/
+4. Computer Networks: https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-829-computer-networks-fall-2002/
+5. Database Systems: https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-830-database-systems-fall-2010/
+6. Network and Computer Security: https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-857-network-and-computer-security-spring-2014/
+7. The Society of Mind: https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-868j-the-society-of-mind-fall-2011/
