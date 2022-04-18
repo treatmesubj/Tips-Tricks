@@ -1,5 +1,5 @@
 # this file is ~/.bash_profile
-PS1='[\e[1;31m${debian_chroot:+($debian_chroot)}\u\e[m@\e[0;33m\h\e[m] \e[1;34m.../\W\e[m \n\e[0;32m\$\e[m ' # WSL Ubuntu
+PS1='[\[\e[1;31m\]${debian_chroot:+($debian_chroot)}\u\[\e[m\]@\[\e[0;33m\]\h\[\e[m\]] \[\e[1;34m\].../\W\[\e[m\]\r\n\[\e[0;32m\]\$\[\e[m\] ' # WSL Ubuntu
 neofetch
 alias thesr='/usr/bin/python3 /home/john/Documents/Thesaurus_Rex/thesr.py'
 # export TERM="xterm-256color"
