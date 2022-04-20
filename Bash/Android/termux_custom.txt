@@ -2,7 +2,7 @@
 nano ~/.termux/termux.properties
 ... enforce-char-based-input = true
 
-# allow Termux to access files
+# allow Termux to access phone's emualted storage: /storage/emulated/0
 termux-setup-storage
 
 # to remove welcome banner text
