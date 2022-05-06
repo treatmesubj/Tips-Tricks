@@ -1,1 +1,1 @@
-DISPLAY=:0 chromium-browser --start-fullscreen
+DISPLAY=:0 chromium-browser --start-fullscreen https://www.google.com
