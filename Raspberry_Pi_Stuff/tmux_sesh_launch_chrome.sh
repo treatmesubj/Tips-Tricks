@@ -1,0 +1,1 @@
+DISPLAY=:0 chromium-browser --start-fullscreen
