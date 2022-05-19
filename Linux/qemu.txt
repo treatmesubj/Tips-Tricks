@@ -1,0 +1,11 @@
+1. In BIOS, enable Virtualization
+2. $ egrep -c '(vmx|svm)' /proc/cpuinfo
+	a. ensure this number is > 0
+3. $ qemu-img create -f qcow2 fedora.img 10G
+4. $ qemu-system-x86_64 -enable-kvm -cdrom fedora.iso -boot menu=on -drive file=fedora.img -m 2G -cpu host -vga virtio -display sdl,gl=on
+	a. <ESC>
+	b. 4 (CD ROM)
+5. Install to drive so you don't have to boot from disk next time
+6. $ qemu-system-x86_64 -enable-kvm -boot menu=on -drive file=fedora.img -m 2G -cpu host -vga virtio -display sdl,gl=on
+	a. <ESC>
+	b. 1 (hard disk)
