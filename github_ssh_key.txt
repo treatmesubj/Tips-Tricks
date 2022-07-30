@@ -1,0 +1,6 @@
+$ ls -al ~/.ssh
+$ ssh-keygen -t my_key_for_github -C "jrock4503@hotmail.com"
+$ ssh-add ~/.ssh/my_key_for_github
+$ cat ~/.ssh/my_key_for_github.pub
+
+# https://github.com/settings/keys
