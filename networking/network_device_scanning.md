@@ -1,6 +1,6 @@
 ### Find Devices on Network
 ```
-$sudo nmap -sn 10.0.0.xxx/24
+$ sudo nmap -sn 10.0.0.xxx/24
 
 Starting Nmap 7.70 ( https://nmap.org ) at 2021-05-06 11:21 CDT
 Nmap scan report for 10.0.0.xxx
@@ -22,8 +22,8 @@ Nmap done: 256 IP addresses (17 hosts up) scanned in 9.95 seconds
 
 ### Map Ports on Device/IP
 ```
-$mkdir nmap
-$sudo nmap -sC -sV -oA [nmap/scan_res] [ip_addr] -v
+$ mkdir nmap
+$ sudo nmap -sC -sV -oA [nmap/scan_res] [ip_addr] -v
 
 [snip]
 Discovered open port 135/tcp on 10.0.0.xxx
