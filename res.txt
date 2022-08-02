@@ -1,5 +1,0 @@
-./Bash/Android/dummy_bash_profile:3:neofetch
-./Bash/Android/termux_custom.txt:14:pkg install neofetch
-./Bash/Android/termux_custom.txt:15:# add neofetch to ~/.bash_profile
-./Bash/Android/termux_custom.txt:16:echo neofetch >> ~/.bash_profile
-./Bash/dummy_bash_profile:3:neofetch
