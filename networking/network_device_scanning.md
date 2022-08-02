@@ -32,7 +32,7 @@ Discovered open port 139/tcp on 10.0.0.xxx
 Discovered open port 5357/tcp on 10.0.0.xxx
 [snip]
 
-$cat /nmap/scan_res.nmap
+$ cat /nmap/scan_res.nmap
 
 # Nmap 7.70 scan initiated Thu May  6 11:29:29 2021 as: nmap -sC -sV -oA nmap/scan_res -v 10.0.0.xxx
 Nmap scan report for 10.0.0.xxx
