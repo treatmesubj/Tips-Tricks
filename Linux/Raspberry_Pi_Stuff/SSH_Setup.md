@@ -5,7 +5,13 @@ To do so, you'll need to create 2 files in the _boot partition_ of the Raspberry
 - If you're writing to the Micro SD from Windows, you should see 2 external drives available, which are probably `(D:)` and `(E:)`, one of which will not be a format readable by Windows & the other, will. The readable drive, probably shown as `boot(E:)` or `Removable Disk (E:)` is the `/boot/` directory of the Raspberry Pi.
 - If you're writing to the Micros SD from Linux, you'll need to mount the _boot partition_ as a directory on your host machine's file system and create the files in that directory. For help, see my [Bash Storage Management notes](<../Bash/storage_management.md>)
 
- ## 1. Create `/boot/wpa_supplicant.conf`
+If you haven't set up a default user on a fresh install of Raspbian OS, follow below.
+1. `$ echo 'mypassword' | openssl passwd -6 -stdin`
+2. In boot partition of Micro SD, `$ touch userconf.txt`
+3. In boot partition of Micro SD, add `<username>:<encrypted-password>` to `userconf.txt`
+
+
+## 1. Create `/boot/wpa_supplicant.conf`
 Within `wpa_supplicant.conf`, add the below contents
 ```
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
