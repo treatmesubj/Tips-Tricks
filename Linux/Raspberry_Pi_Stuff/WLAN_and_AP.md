@@ -1,4 +1,4 @@
-# Wireless Local Area Network (WLAN) & Access Point; Adapted From [cjimti/iotwifi](https://github.com/cjimti/iotwifi)but for setup via SSH over Wifi
+# Wireless Local Area Network (WLAN) & Access Point; Adapted From [cjimti/iotwifi](https://github.com/cjimti/iotwifi) but for setup via SSH over Wifi
 ## WLAN
 1. `$ curl -sSL https://get.docker.com | sh`
 2.  `$ sudo usermod -aG docker john`
