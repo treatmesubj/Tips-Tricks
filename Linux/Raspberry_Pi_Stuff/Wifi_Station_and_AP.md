@@ -16,7 +16,7 @@
 	    "host_apd_cfg": {
 	       "ip": "192.168.27.1",
 	       "ssid": "johnpiwifi",
-	       "wpa_passphrase":"iotwifipass",
+	       "wpa_passphrase":"<password>",
 	       "channel": "6"
 	    },
 	      "wpa_supplicant_cfg": {
