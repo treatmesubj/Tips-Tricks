@@ -35,7 +35,7 @@ HEIGHT = disp.height
 img = Image.new('RGB', (WIDTH, HEIGHT), color=(0, 0, 0))
 
 draw = ImageDraw.Draw(img)
-font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf", 30)
+font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf", 12)
 size_x, size_y = draw.textsize(MESSAGE, font) # width, height of text
 
 draw.rectangle((0, 0, disp.width, disp.height), (0, 0, 0))
