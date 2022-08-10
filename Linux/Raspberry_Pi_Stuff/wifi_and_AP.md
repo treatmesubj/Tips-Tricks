@@ -1,5 +1,6 @@
-# Wifi Client & Access Point; Adapted From [cjimti/iotwifi](https://github.com/cjimti/iotwifi) but for setup via SSH over Wifi
+# Wifi Client & Access Point; Adapted From [cjimti/iotwifi](https://github.com/cjimti/iotwifi) but setup from SSH
 ## Wifi Client
+So that you can configure your Pi's connection to a wifi network over its own wifi network, probably using SSH
 1. `$ curl -sSL https://get.docker.com | sh`
 2.  `$ sudo usermod -aG docker john`
 3. `$ sudo reboot`
