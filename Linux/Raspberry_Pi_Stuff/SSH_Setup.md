@@ -38,9 +38,11 @@ network={
 # w/ sudo, can change password: `sudo passwd pi`
 ```
 
-- Finally, ssh in from another device: `ssh <pi@raspberrypi.local | pi@xx.x.x.xx>`
+- Finally, ssh in from another device: `$ ssh <pi@raspberrypi.local | pi@xx.x.x.xx>`
+- Set the terminal type: `$ export TERM="xterm-256color"`
 
 ---
 If you've ssh'd into your Pi from a Windows machine before, but forgot the IP address of your Pi, just look at your `C:\Users\<user>\.ssh\known_hosts` file \
 If you've ssh'd into some machine from your Debian Linux Raspberry Pi, but for the IP address of that machine, just look at your `/home/<user>/.ssh/known_hosts` file \
+Your Raspberry Pi's host key might change over time. You'll be warned by SSH that it has. Just remove its entry from your `~/.ssh/known_hosts` file
 [SSH Shenanigans](https://blog.0xffff.info/2021/07/25/ssh-shenanigans-part-1-tips-tricks/)
