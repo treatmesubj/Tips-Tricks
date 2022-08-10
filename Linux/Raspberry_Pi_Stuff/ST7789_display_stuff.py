@@ -9,6 +9,7 @@ import ST7789
 def get_message():
     if not sys.stdin.isatty():
         return sys.stdin.read()
+        # printf "hey\nthere\n" | python3 show_text.py
     else:
         return sys.argv[1]
 
@@ -35,18 +36,7 @@ img = Image.new('RGB', (WIDTH, HEIGHT), color=(0, 0, 0))
 
 draw = ImageDraw.Draw(img)
 font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf", 30)
-size_x, size_y = draw.textsize(MESSAGE, font)
-# text_x = disp.width
-# text_y = 0 # - size_y
-
-
-# t_start = time.time()
-# while True:
-#     x = (time.time() - t_start) * 100
-#     x %= (size_x + disp.width)
-#     draw.rectangle((0, 0, disp.width, disp.height), (0, 0, 0))
-#     draw.text((int(text_x - x), text_y), MESSAGE, font=font, fill=(255, 255, 255))
-#     disp.display(img)
+size_x, size_y = draw.textsize(MESSAGE, font) # width, height of text
 
 draw.rectangle((0, 0, disp.width, disp.height), (0, 0, 0))
 draw.text((0, 0), MESSAGE, font=font, fill=(255, 255, 255))
