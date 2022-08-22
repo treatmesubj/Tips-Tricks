@@ -7,12 +7,8 @@
         "id": "69cf40c03cda5b5c",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "Linux/Raspberry_Pi_Stuff/SSH_Setup.md",
-            "mode": "source",
-            "source": false
-          }
+          "type": "empty",
+          "state": {}
         }
       }
     ],
@@ -69,7 +65,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Linux/Raspberry_Pi_Stuff/SSH_Setup.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -90,9 +85,9 @@
   "active": "69cf40c03cda5b5c",
   "lastOpenFiles": [
     "Linux/Raspberry_Pi_Stuff/wifi_and_AP.md",
+    "Linux/Raspberry_Pi_Stuff/SSH_Setup.md",
     "Linux/Raspberry_Pi_Stuff/Wifi_Troubleshooting.md",
     "Linux/Raspberry_Pi_Stuff/WLAN_and_AP.md",
-    "Linux/Raspberry_Pi_Stuff/SSH_Setup.md",
     "Linux/Raspberry_Pi_Stuff/Screen_Shot.md",
     "Ubuntu/Untitled.md"
   ]

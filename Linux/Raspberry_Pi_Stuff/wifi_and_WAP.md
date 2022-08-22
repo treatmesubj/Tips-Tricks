@@ -1,5 +1,5 @@
-# Wifi Client & Access Point; Adapted From [cjimti/iotwifi](https://github.com/cjimti/iotwifi) but setup from SSH
-## Wifi Client
+# Wireless Router Wifi Client & Wireless Access Point (WAP)... to Another Router \[Connected to the Internet\]; Adapted From [cjimti/iotwifi](https://github.com/cjimti/iotwifi) but setup from SSH
+## Wireless Router Wifi Client
 So that you can configure your Pi's connection to a wifi network over its own wifi network, probably using SSH
 1. `$ curl -sSL https://get.docker.com | sh`
 2.  `$ sudo usermod -aG docker john`
@@ -36,7 +36,7 @@ So that you can configure your Pi's connection to a wifi network over its own wi
 10. Exit the hung `ssh` session in your terminal: `[Enter] ~.`
 11. Reboot Raspberry Pi
 
-## Access Point
+## Wireless Access Point (WAP)... to Another Router \[Connected to the Internet\]
 1. Scan wifi networks: `$ curl http://<raspberry_pi_ip>:8080/scan`
 2. Connect to wifi network:
 	```bash
