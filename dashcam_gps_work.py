@@ -11,10 +11,8 @@ for file in os.listdir():
     p2 = subprocess.run(["grep", "-e" "GPRMC", "-e", "GPVTG", "-e", "GPGSA", "-e", "GPGSV", "-e", "GPGLL"], input=p.stdout, capture_output=True, text=True)
     mp4_gps_metadata = p2.stdout
 
-    # TODO: appending all the metadata from the directory into 1 text file
-
-    for line in mp4_gps_metadata.splitlines():
-        print(line)
-        results = reggy.findall(line)
-        mph = float(results[0][10]) * 1.15078
-        date = f"{results[0][13]}/{results[0][12]}/{results[0][14]}"
+    with open('mp4_gps_metadata.gps', 'a') as filey:
+        filey.writelines(mp4_gps_metadata)
+        # results = reggy.findall(line)
+        # mph = float(results[0][10]) * 1.15078
+        # date = f"{results[0][13]}/{results[0][12]}/{results[0][14]}"
