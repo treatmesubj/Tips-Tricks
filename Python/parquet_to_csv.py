@@ -4,6 +4,11 @@ import pandas as pd
 
 
 def parquet_to_csv(in_file, out_file=None):
+	"""
+	Creates a CSV file from parquet file.
+	If no desired resulting CSV file-path is given,
+	the CSV is created in the directory of the parquet file.
+	"""
 	df = pd.read_parquet(in_file, engine='fastparquet')
 	if out_file:
 		df.to_csv(out_file, index=False)
