@@ -7,6 +7,7 @@ via https://gist.github.com/NickCrews/7a47ef4083160011e8e533531d73428c
 from __future__ import annotations
 
 import sys
+import os
 from pathlib import Path
 from typing import Callable, Iterable, TypeVar
 
@@ -90,5 +91,5 @@ if __name__ == "__main__":
     try:
         out_file = sys.argv[2]
     except IndexError:
-        out_file = f"{in_dir}/coalesced.parquet"
+        out_file = os.path.join(in_dir, "coalesced.parquet")
     coalese_parquets(in_directory=in_dir, outpath=out_file)
