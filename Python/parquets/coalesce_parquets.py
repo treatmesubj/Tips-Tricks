@@ -1,5 +1,4 @@
-"""coalesce_parquets.py
-
+"""
 gist of how to coalesce small row groups into larger row groups.
 Solves the problem described in https://issues.apache.org/jira/browse/PARQUET-1115
 via https://gist.github.com/NickCrews/7a47ef4083160011e8e533531d73428c
