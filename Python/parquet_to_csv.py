@@ -1,12 +1,24 @@
 import sys
+import os
 import pandas as pd
 
 
+def parquet_to_csv(in_file, out_file=None):
+	df = pd.read_parquet(in_file, engine='fastparquet')
+	if out_file:
+		df.to_csv(out_file, index=False)
+		print(out_file)
+	else:
+		pre, ext = os.path.splitext(in_file)
+		out_file = f"{pre}.csv"
+		df.to_csv(out_file, index=False)
+		print(out_file)
+
+
 if __name__ == "__main__":
-	df = pd.read_parquet(sys.argv[1], engine='fastparquet')
+	in_file = sys.argv[1]
 	try:
-		df.to_csv(sys.argv[2], index=False)
-		print(sys.argv[2])
+		out_file = sys.argv[2]
 	except IndexError:
-		df.to_csv(f"{sys.argv[1].split('.parquet')[0]}.csv", index=False)
-		print(f"{sys.argv[1].split('.parquet')[0]}.csv")
+		out_file = None
+	parquet_to_csv(in_file=in_file, out_file=out_file)
