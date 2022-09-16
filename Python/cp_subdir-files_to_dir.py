@@ -20,11 +20,14 @@ def main(source_dir, target_dir):
 	Copies all files from a directory and its sub-directories
 	to a target directory.
 	"""
+	i = 0
 	for root, dirs, files in os.walk(source_dir):
 		for file in files:
 			path_file = os.path.join(root, file)
-			# shutil.copy2(path_file, target_dir)
-			target_file = os.path.join(target_dir, f"{regex_date(path_file)}.parquet")
+			# shutil.copy2(path_file, target_dir) # if uniquely named files
+			# target_file = os.path.join(target_dir, f"{regex_date(path_file)}.parquet") # unique dates in the dirs
+			i += 1 
+			target_file = os.path.join(target_dir, f"{str(i)}.parquet") # whatever, just name 'em #s
 			print(target_file)
 			shutil.copy2(path_file, target_file)
 
