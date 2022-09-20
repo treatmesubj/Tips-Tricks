@@ -45,4 +45,4 @@ So that you can configure your Pi's connection to a wifi network over its own wi
 	     -X POST <raspberry_pi_ip>:8080/connect
 	```
 3. Check wifi status: `$ curl http://raspberry_pi_ip:8080/status`
-4. Kill the wifi connection: `$ curl http://raspberry_pi_ip:8080/status`
+4. Kill the wifi connection: `$ curl http://raspberry_pi_ip:8080/kill`
