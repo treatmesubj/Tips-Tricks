@@ -68,3 +68,11 @@ fi
 ```
 
 10. Add `logo.nologo` to end of first line in `/boot/cmdline.txt` to remove Raspberry Pi logo splash from boot
+
+11. ssh to raspberry pi. Attach to the shared session: `$ tmux a -t tmuxsesh`.
+12. Check the current tmux sessions: `$tmux list-clients`
+```
+/dev/tty1: tmuxsesh [30x30 linux] (utf8)
+/dev/pts/1: tmuxsesh [133x30 linux] (utf8)
+```
+13. You probably want to resize your TMUX terminal to the size of tty1's on the tiny LCD: `<control-b> : resize-window -a`
