@@ -75,7 +75,7 @@ fi
 /dev/tty1: tmuxsesh [30x30 linux] (utf8)
 /dev/pts/1: tmuxsesh [133x30 linux] (utf8)
 ```
-13. You probably want to resize your TMUX terminal to the size of tty1's on the tiny LCD: `<control-b> : resize-window -a`
+13. You may want to resize your TMUX terminal to the size of tty1's on the tiny LCD: `<control-b> : resize-window -a`
 
 ## Bonus: Sound out Aux jack
 
