@@ -1,4 +1,4 @@
-# [SPI-Based LCD Driver] (https://github.com/juj/fbcp-ili9341)
+# [SPI-Based LCD Driver](https://github.com/juj/fbcp-ili9341)
 My changes for Pimroni PirateAudio 240x240 LCD
 
 1. Edit `/boot/config.txt` to use custom SPI driver
