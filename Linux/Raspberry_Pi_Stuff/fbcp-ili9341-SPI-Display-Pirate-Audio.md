@@ -44,42 +44,36 @@ $ make -j
 
 6. Edit `/etc/rc.local` & add command for driving LCD on boot
 ```
-sudo /home/john/fbcp-ili9341/build/fbcp-ili9341 >/home/john/lcd_log.txt &
+sudo /home/john/fbcp-ili9341/build/fbcp-ili9341 &
 ```
 
 ## Bonus: RPi OS Lite, Launch TMUX Session & Display on LCD on boot
 
-7. Create Bash script to launch a TMUX session: `$ touch ~/tmux_launch.sh`
+7. Edit `~/.bashrc` to launch and attach to a TMUX session from `/dev/tty1` by adding below contents
 
-8. Add below to `~/tmux_launch.sh`;  [script also here](<./tmux_launch.sh>)
 ```
-#!/bin/bash
-
-tmux new-session -d -s tmuxsesh -c ~
-```
-
-9. Have boot terminal attach to the TMUX session; Add below to `~/.bashrc`
-```
-# if logged in as tty1, attach to tmux session started by /etc/rc.local
 if [[ $(tty) == "/dev/tty1" ]]; then
-  "echo yep, we're tty1"
+  tmux new-session -d -s tmuxsesh -c ~
   tmux a -t tmuxsesh
+fi
+if [[ $(tty) == "/dev/pts/0" ]]; then
+  PS1="$ "
 fi
 ```
 
-10. Add `logo.nologo` to end of first line in `/boot/cmdline.txt` to remove Raspberry Pi logo splash from boot
+8. Add `logo.nologo` to end of first line in `/boot/cmdline.txt` to remove Raspberry Pi logo splash from boot
 
-11. ssh to raspberry pi. Attach to the shared session: `$ tmux a -t tmuxsesh`.
-12. Check the current tmux sessions: `$ tmux list-clients`
+9. ssh to raspberry pi. Attach to the shared session: `$ tmux a -t tmuxsesh`.
+10. Check the current tmux sessions: `$ tmux list-clients`
 ```
 /dev/tty1: tmuxsesh [30x30 linux] (utf8)
 /dev/pts/1: tmuxsesh [133x30 linux] (utf8)
 ```
-13. You may want to resize your TMUX terminal to the size of tty1's on the tiny LCD: `<control-b> : resize-window -a`
+11. You may want to resize your TMUX terminal to the size of tty1's on the tiny LCD: `<control-b> : resize-window -a`
 
 ## Bonus: Sound out Aux jack
 
-14. Add below to `/boot/config.txt`
+12. Add below to `/boot/config.txt`
 ```
 dtoverlay=hifiberry-dac
 gpio=25=op,dh
