@@ -1,5 +1,11 @@
+![](<./attachments/pi0_audio_vis.gif>)
+
+This is my Raspberry Pi Zero W with a Pirate Audio hat on it, which has a ST7789 240x240 LCD display and an audio jack. The display is being driven by the very cool [fbcp-ili9341](https://github.com/juj/fbcp-ili9341). I've got Raspberry Pi OS Lite booting to `/dev/tty1`, which `~/.bashrc` checks, then spawns and attaches to a `tmux` session. I can `ssh` into my Pi's own wifi network spun up via the very cool [iotwifi docker container](https://github.com/cjimti/iotwifi) ([my tweaks](<./wifi_and_WAP.md>)), attach to the session from there too, and display a shared terminal session on the Pi's LCD. The Pi can connect to an actual network, too.
+TODO: pulseaudio server stuff
+The command line tool displaying the visualization of the sine wave audio is [cli-visualizer](https://github.com/dpayne/cli-visualizer). 
+
+
 # [SPI-Based LCD Driver](https://github.com/juj/fbcp-ili9341)
-My changes for Pimroni PirateAudio 240x240 LCD
 
 1. Edit `/boot/config.txt` to use custom SPI driver
 ```
@@ -40,14 +46,14 @@ $ make -j
 
 5. Run LCD driver process: `$ sudo ./fbcp-ili9341/build/fbcp-ili9341`
 
-## Bonus: Run LCD driver process on boot
+## Run LCD driver process on boot
 
 6. Edit `/etc/rc.local` & add command for driving LCD on boot
 ```
 sudo /home/john/fbcp-ili9341/build/fbcp-ili9341 &
 ```
 
-## Bonus: RPi OS Lite, Launch TMUX Session & Display on LCD on boot
+## RPi OS Lite - Launch TMUX Session & Display on LCD on boot
 
 7. Edit `~/.bashrc` to launch and attach to a TMUX session from `/dev/tty1` by adding below contents
 
@@ -71,7 +77,7 @@ fi
 ```
 11. You may want to resize your TMUX terminal to the size of tty1's on the tiny LCD: `<control-b> : resize-window -a`
 
-## Bonus: Sound out Aux jack
+## Pirate Audio - Sound out Aux jack
 
 12. Add below to `/boot/config.txt`
 ```
@@ -80,3 +86,5 @@ gpio=25=op,dh
 # dtparam=audio=on
 dtparam=audio=off
 ```
+
+## 
