@@ -87,4 +87,15 @@ gpio=25=op,dh
 dtparam=audio=off
 ```
 
-## 
+## PulseAudio Server
+
+13. Start the PulseAudio TCP server & client modules
+```
+# Pi  server
+pactl load-module module-native-protocol-tcp auth-ip-acl="127.0.0.0/8;10.0.0.0/8;172.16.0.0/12;192.168.0.0/16;fe80::/10"
+pactl load-module module-zeroconf-publish
+```
+```
+# client
+pactl load-module module-zeroconf-discover
+```
