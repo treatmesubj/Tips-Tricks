@@ -1,5 +1,8 @@
 ## Raspberry Pi Zero W Wifi Client, Audio Server, LCD Display, Lorenz Audio Visualization
-![](<./attachments/pi0_audio_vis.gif>) [![](<./attachments/pi0_audio_vis.png>)](https://www.youtube.com/watch?v=rCKuR259FjY)
+
+|||
+|---|---|
+|![](<./attachments/pi0_audio_vis.gif>)|[![pi0](<./attachments/pi0_youtube_vid.png>)](https://www.youtube.com/watch?v=rCKuR259FjY)|
 
 This is my Raspberry Pi Zero W with a Pirate Audio hat on it, which has a ST7789 240x240 LCD display and an audio jack. The display is being driven by the very cool [juj/fbcp-ili9341](https://github.com/juj/fbcp-ili9341). I've got Raspberry Pi OS Lite booting to `/dev/tty1`, which `~/.bashrc` checks, then spawns and attaches to a `tmux` session. I can `ssh` into my Pi's own wifi network spun up via the very cool [cjimti/iotwifi](https://github.com/cjimti/iotwifi) docker container ([my tweaks](<./wifi_and_WAP.md>)), attach to the session from there too, and display a shared terminal session on the Pi's LCD. The Pi can connect to an actual network, too. The Pi can play audio from another device as a PulseAudio server. The command line tool displaying the Lorenz visualization of the sine wave audio is [cli-visualizer](https://github.com/dpayne/cli-visualizer). 
 
