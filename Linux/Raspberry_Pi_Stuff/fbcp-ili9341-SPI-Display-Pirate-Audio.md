@@ -21,11 +21,11 @@ hdmi_cvt=240 240 60 1 0 0 0
 ```
 
 2. Clone Repo
-```
-$ sudo apt-get install cmake
-$ cd ~
-$ git clone https://github.com/juj/fbcp-ili9341.git
-$ cd fbcp-ili9341
+```bash
+sudo apt-get install cmake
+cd ~
+git clone https://github.com/juj/fbcp-ili9341.git
+cd fbcp-ili9341
 ```
 
 3. Edit `~/fbcp-ili9341/config.h` and comment out some stuff
@@ -40,11 +40,11 @@ $ cd fbcp-ili9341
 ```
 
 4. Build 
-```
-$ mkdir build
-$ cd build
-$ cmake -DPIRATE_AUDIO_ST7789_HAT=ON -DSPI_BUS_CLOCK_DIVISOR=6 -DBACKLIGHT_CONTROL=ON -DSTATISTICS=0 ..
-$ make -j
+```bash
+mkdir build
+cd build
+cmake -DPIRATE_AUDIO_ST7789_HAT=ON -DSPI_BUS_CLOCK_DIVISOR=6 -DBACKLIGHT_CONTROL=ON -DSTATISTICS=0 ..
+make -j
 ```
 
 5. Run LCD driver process: `$ sudo ./fbcp-ili9341/build/fbcp-ili9341`
@@ -52,7 +52,7 @@ $ make -j
 ### Run LCD driver process on boot
 
 6. Edit `/etc/rc.local` & add command for driving LCD on boot
-```
+```bash
 sudo /home/john/fbcp-ili9341/build/fbcp-ili9341 &
 ```
 
@@ -60,7 +60,7 @@ sudo /home/john/fbcp-ili9341/build/fbcp-ili9341 &
 
 7. Edit `~/.bashrc` to launch and attach to a TMUX session from `/dev/tty1` by adding below contents
 
-```
+```bash
 if [[ $(tty) == "/dev/tty1" ]]; then
   tmux new-session -d -s tmuxsesh -c ~
   tmux a -t tmuxsesh
@@ -93,12 +93,12 @@ dtparam=audio=off
 ### PulseAudio Pi Server & Remote Client
 
 13. Start the PulseAudio TCP server & client modules
-```
+```bash
 # Pi  server (on LAN here)
 pactl load-module module-native-protocol-tcp auth-ip-acl="127.0.0.0/8;10.0.0.0/8;172.16.0.0/12;192.168.0.0/16;fe80::/10"
 pactl load-module module-zeroconf-publish
 ```
-```
+```bash
 # client
 pactl load-module module-zeroconf-discover
 ```
