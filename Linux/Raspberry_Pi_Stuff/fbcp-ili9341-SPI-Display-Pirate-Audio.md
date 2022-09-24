@@ -29,7 +29,7 @@ cd fbcp-ili9341
 ```
 
 3. Edit `~/fbcp-ili9341/config.h` and comment out some stuff
-```
+```C
 // Disable ALL_TASKS_SHOULD_DMA
 // #ifndef ALL_TASKS_SHOULD_DMA
 // #define ALL_TASKS_SHOULD_DMA
