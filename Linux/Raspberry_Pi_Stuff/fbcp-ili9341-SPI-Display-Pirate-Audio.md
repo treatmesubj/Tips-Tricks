@@ -5,7 +5,7 @@
 </p>
 
 
-This is my Raspberry Pi Zero W with a Pirate Audio hat on it, which has a ST7789 240x240 LCD display and an audio jack. The display is being driven by the very cool [juj/fbcp-ili9341](https://github.com/juj/fbcp-ili9341). I've got Raspberry Pi OS Lite booting to `/dev/tty1`, which `~/.bashrc` checks, then spawns and attaches to a `tmux` session. I can `ssh` into my Pi's own wifi network spun up via the very cool [cjimti/iotwifi](https://github.com/cjimti/iotwifi) Docker container ([my tweaks](<./wifi_and_WAP.md>)), attach to the session from there too, and display a shared terminal session on the Pi's LCD. The Pi can connect to an actual network, too. The Pi can play audio from another device as a PulseAudio server. The command line tool displaying the Lorenz visualization of the sine wave audio is [cli-visualizer](https://github.com/dpayne/cli-visualizer). 
+This is my Raspberry Pi Zero W with a Pirate Audio hat on it, which has a ST7789 240x240 LCD display and an audio jack. The display is being driven by the very cool [juj/fbcp-ili9341](https://github.com/juj/fbcp-ili9341). I've got Raspberry Pi OS Lite booting to `/dev/tty1`, which `~/.bashrc` checks, then spawns and attaches to a `tmux` session. I can `ssh` into my Pi's own wifi network spun up via the very cool [cjimti/iotwifi](https://github.com/cjimti/iotwifi) Docker container ([my tweaks](<./wifi_and_WAP.md>)), attach to the session from there too, and display a shared terminal session on the Pi's LCD. The Pi can connect to an actual network, too. As a PulseAudio server, the Pi can play audio from another device on the network. The command line tool displaying the Lorenz visualization of the sine wave audio is [cli-visualizer](https://github.com/dpayne/cli-visualizer). 
 
 
 ### [SPI-Based LCD Driver](https://github.com/juj/fbcp-ili9341)
@@ -21,15 +21,15 @@ hdmi_cvt=240 240 60 1 0 0 0
 ```
 
 2. Clone Repo
-```
-$ sudo apt-get install cmake
-$ cd ~
-$ git clone https://github.com/juj/fbcp-ili9341.git
-$ cd fbcp-ili9341
+```bash
+sudo apt-get install cmake
+cd ~
+git clone https://github.com/juj/fbcp-ili9341.git
+cd fbcp-ili9341
 ```
 
 3. Edit `~/fbcp-ili9341/config.h` and comment out some stuff
-```
+```C
 // Disable ALL_TASKS_SHOULD_DMA
 // #ifndef ALL_TASKS_SHOULD_DMA
 // #define ALL_TASKS_SHOULD_DMA
@@ -40,11 +40,11 @@ $ cd fbcp-ili9341
 ```
 
 4. Build 
-```
-$ mkdir build
-$ cd build
-$ cmake -DPIRATE_AUDIO_ST7789_HAT=ON -DSPI_BUS_CLOCK_DIVISOR=6 -DBACKLIGHT_CONTROL=ON -DSTATISTICS=0 ..
-$ make -j
+```bash
+mkdir build
+cd build
+cmake -DPIRATE_AUDIO_ST7789_HAT=ON -DSPI_BUS_CLOCK_DIVISOR=6 -DBACKLIGHT_CONTROL=ON -DSTATISTICS=0 ..
+make -j
 ```
 
 5. Run LCD driver process: `$ sudo ./fbcp-ili9341/build/fbcp-ili9341`
@@ -52,7 +52,7 @@ $ make -j
 ### Run LCD driver process on boot
 
 6. Edit `/etc/rc.local` & add command for driving LCD on boot
-```
+```bash
 sudo /home/john/fbcp-ili9341/build/fbcp-ili9341 &
 ```
 
@@ -60,7 +60,7 @@ sudo /home/john/fbcp-ili9341/build/fbcp-ili9341 &
 
 7. Edit `~/.bashrc` to launch and attach to a TMUX session from `/dev/tty1` by adding below contents
 
-```
+```bash
 if [[ $(tty) == "/dev/tty1" ]]; then
   tmux new-session -d -s tmuxsesh -c ~
   tmux a -t tmuxsesh
@@ -93,12 +93,12 @@ dtparam=audio=off
 ### PulseAudio Pi Server & Remote Client
 
 13. Start the PulseAudio TCP server & client modules
-```
+```bash
 # Pi  server (on LAN here)
 pactl load-module module-native-protocol-tcp auth-ip-acl="127.0.0.0/8;10.0.0.0/8;172.16.0.0/12;192.168.0.0/16;fe80::/10"
 pactl load-module module-zeroconf-publish
 ```
-```
+```bash
 # client
 pactl load-module module-zeroconf-discover
 ```
