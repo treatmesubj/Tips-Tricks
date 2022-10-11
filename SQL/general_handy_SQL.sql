@@ -177,3 +177,68 @@ DELETE FROM
     (SELECT ROWNUMBER() OVER (PARTITION BY EMAIL, META_GEO, META_MKT) AS RN
      FROM ACCESS_A.META_GEO_MKT_EMAIL_ENTLMNTS) AS A
 WHERE RN > 1;
+
+
+/* Custom Order By Field */
+SELECT WEEKDAY(MISCHIEF_DATE) WEEKDAY, MISCHIEF_DATE, AUTHOR, TITLE
+FROM MISCHIEF
+ORDER BY WEEKDAY, FIELD(AUTHOR, 'Huey', 'Dewey', 'Louie'), MISCHIEF_DATE, TITLE;
+
+/* More complicated string parsing logic */
+SELECT *
+FROM users
+WHERE attribute LIKE BINARY CONCAT('_%\%', first_name, '\_', second_name, '\%%')
+-- one or more chars before first_name, then _, then 2nd name, then %, then anything
+ORDER BY ATTRIBUTE;
+
+/* HAVING is WHERE for GROUP BY */
+select distinct director
+from moviesInfo 
+where year > 2000
+group by director
+having sum(oscars) > 2  
+order by director;
+
+/* GROUP_CONCAT */
+WITH my_countries AS (
+	SELECT DISTINCT COUNTRY
+	FROM DIARY
+	ORDER BY COUNTRY
+)
+SELECT GROUP_CONCAT(COUNTRY SEPARATOR ';') AS COUNTRIES
+FROM my_countries;
+
+WITH stringys AS (
+	SELECT
+	DISTINCT CONCAT(FIRST_NAME, ' ', SURNAME, ' #', PLAYER_NUMBER) STR
+	FROM SOCCER_TEAM
+	ORDER BY PLAYER_NUMBER
+)
+SELECT GROUP_CONCAT(STR SEPARATOR '; ') AS PLAYERS
+FROM stringys;
+
+/* Proper TRIMMING */
+SELECT COUNT(*) NUMBER_OF_NULLS
+FROM DEPARTMENTS
+WHERE TRIM(DESCRIPTION) IN ('NULL', 'nil', '-')
+OR DESCRIPTION IS NULL;
+
+/* Multiply characters of strings in column */
+/*
+      So the 'trick' here is to MULTPLY by the ADDITION of logs
+      We have a SUM function but not a MULT fuction
+      So first find the length then take log of that for each row
+      and use sum to add up the logs.  Now exp to reverse it so
+      that we have just x*y*z*.....  But it will be a decimal so round it.
+*/
+SELECT ROUND(
+               EXP(
+                     SUM(
+                           LOG(
+                                LENGTH(characters)
+                               )
+                         )
+                  )
+             ) 
+AS combinations
+FROM discs;
