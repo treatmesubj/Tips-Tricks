@@ -242,3 +242,72 @@ SELECT ROUND(
              ) 
 AS combinations
 FROM discs;
+
+/* If a table for some reason uses a 'hobbies' set column */
+SELECT name
+FROM people_hobbies
+WHERE hobbies & FIND_IN_SET('reading', hobbies)
+AND hobbies & FIND_IN_SET('sports', hobbies)
+ORDER BY NAME;
+
+/* You can sum with conditions */
+WITH SUMMED AS (
+	SELECT
+		SUM(IF(first_team_score > second_team_score, 1, 0)) team1_wins,
+		SUM(IF(second_team_score > first_team_score, 1, 0)) team2_wins,
+		SUM(first_team_score) team1_goals,
+		SUM(second_team_score) team2_goals,
+		SUM(IF(match_host= 2, first_team_score, 0)) team1_away_goals,
+		SUM(IF(match_host= 1, second_team_score, 0)) team2_away_goals
+	FROM scores
+)
+SELECT 
+	CASE
+		WHEN team1_wins > team2_wins THEN 1
+		WHEN team2_wins > team1_wins THEN 2
+		WHEN team1_goals > team2_goals THEN 1
+		WHEN team2_goals > team1_goals THEN 2
+		WHEN team1_away_goals > team2_away_goals THEN 1
+		WHEN team2_away_goals > team1_away_goals THEN 2
+		ELSE 0
+	END AS WINNER
+FROM SUMMED;
+
+/* Variables and DateDiff */
+SET @MAX_DATE = (SELECT MAX(EVENT_DATE) FROM EVENTS);
+SELECT name, event_date
+FROM EVENTS
+WHERE DATEDIFF(@MAX_DATE, event_date) > 0
+	AND DATEDIFF(@MAX_DATE, event_date) <= 7
+ORDER BY EVENT_DATE DESC;
+
+/* add foreign key */
+ALTER TABLE TABLE_A ADD FOREIGN KEY (COLUMN_1)
+REFERENCES TABLE_B(COLUMN_1)
+--ON DELETE CASCADE; -- delete from all tables
+ON DELETE SET NULL; -- just make it NULL in referenced tables
+
+/* update string column text */
+UPDATE TABLE_A
+SET COLUMN_A = CONCAT('prefix - ', COLUMN_A),
+	COLUMN_B = CONCAT('prefix - ', COLUMN_B)
+
+/* to table, add columns with default values */
+ALTER TABLE TABLE_A
+ADD COLUMN COLUMN_A VARCHAR(100) DEFAULT 'placeholder',
+ADD COLUMN COLUMN_B TINYINT(1) DEFAULT 1;
+
+/* which IDs are missing from TABLE_B? */
+SELECT ID
+FROM TABLE_A
+WHERE EXISTS (
+    SELECT *
+    FROM TABLE_B
+    WHERE TABLE_A.ID = TABLE_B.ID
+);
+
+SELECT ID
+FROM TABLE_A a
+LEFT JOIN TABLE_B b
+	ON a.ID = b.ID
+WHERE b.ID IS NULL;
