@@ -122,12 +122,14 @@ WITH UR
 SELECT * FROM syscat.SCHEMAAUTH WHERE schemaname='EAL_EAL' WITH ur;
 
 /* Create empty table in same structure as other */
-CREATE TABLE ACCESS_B.DATA_SOURCE AS (
+CREATE TABLE SCHEMA.TABLE_B AS (
 	SELECT *
-	FROM ACCESS_A.DATA_SOURCE ds
+	FROM SCHEMA.TABLE_A ds
 	WHERE 1=0
 )
 WITH DATA;
+-- INSERT INTO SCHEMA.TABLE_B
+-- SELECT * FROM SCHEMA_TABLE_A
 
 /* Create View */
 CREATE VIEW SCHEMA.VIEW AS (
@@ -324,26 +326,119 @@ WITH pr5 AS (
 		FROM pr_department
 		ORDER BY date_joined desc
 		LIMIT 5
-	),
-	it5 AS (
-		SELECT name, 2 filter
-		FROM it_department
-		ORDER BY date_joined desc
-		LIMIT 5
-	),
-	sales5 AS (
-		SELECT name, 3 filter
-		FROM sales_department
-		ORDER BY date_joined desc
-		LIMIT 5
-	),
-	joined_ordered AS (
-		SELECT name, filter from pr5
-		UNION ALL
-		SELECT name, filter from it5
-		UNION ALL
-		SELECT name, filter from sales5
-		order by filter, name
-	)
-	SELECT NAME
-	FROM joined_ordered;
+),
+it5 AS (
+	SELECT name, 2 filter
+	FROM it_department
+	ORDER BY date_joined desc
+	LIMIT 5
+),
+sales5 AS (
+	SELECT name, 3 filter
+	FROM sales_department
+	ORDER BY date_joined desc
+	LIMIT 5
+),
+joined_ordered AS (
+	SELECT name, filter from pr5
+	UNION ALL
+	SELECT name, filter from it5
+	UNION ALL
+	SELECT name, filter from sales5
+	order by filter, name
+)
+SELECT NAME
+FROM joined_ordered;
+
+/* more painful ordering of crap */
+WITH joined_crap AS (
+	SELECT
+		ID,
+		'name' COLUMN_NAME,
+		NAME VALUE,
+		1 filter
+	FROM WORKERS_INFO
+	WHERE NAME IS NOT NULL
+	UNION ALL
+	SELECT
+		ID,
+		'date_of_birth' COLUMN_NAME,
+		DATE_OF_BIRTH VALUE,
+		2 filter
+	FROM WORKERS_INFO
+	WHERE DATE_OF_BIRTH IS NOT NULL
+	UNION ALL
+	SELECT
+		ID,
+		'salary' COLUMN_NAME,
+		SALARY VALUE,
+		3 filter
+	FROM WORKERS_INFO
+	WHERE SALARY IS NOT NULL
+)
+SELECT ID, COLUMN_NAME, VALUE
+FROM joined_crap
+ORDER BY ID, filter;
+
+/* Easier ordering of crap */
+SELECT COL_A, COL_B
+FROM SCHEMA.TABLE
+ORDER BY COL_A, FIELD(COL_B, 'value1', 'value2', 'value3')
+
+
+/*
+fetch last each anonymous-id's event and its first signed-up-user event
+using  row_number partion & order
+*/
+WITH LAST_NULLS AS (
+	SELECT anonymous_id, event_name, received_at,
+		ROW_NUMBER() OVER (
+			PARTITION BY anonymous_id
+			ORDER BY RECEIVED_AT DESC
+		) LATEST_1
+	from tracks
+	where user_id is NULL
+),
+FIRST_NOTNULLS AS (
+	SELECT anonymous_id, event_name, received_at,
+	ROW_NUMBER() OVER (
+			PARTITION BY anonymous_id
+			ORDER BY RECEIVED_AT ASC
+		) FIRST_1
+	from tracks
+	where user_id is NOT NULL
+)
+SELECT
+	LAST_NULLS.ANONYMOUS_ID anonym_id,
+	LAST_NULLS.EVENT_NAME last_null,
+	FIRST_NOTNULLS.EVENT_NAME first_notnull
+FROM LAST_NULLS
+LEFT JOIN FIRST_NOTNULLS
+	ON LAST_NULLS.ANONYMOUS_ID = FIRST_NOTNULLS.ANONYMOUS_ID
+WHERE LAST_NULLS.LATEST_1 = 1
+AND (FIRST_NOTNULLS.FIRST_1 = 1
+	OR FIRST_NOTNULLS.FIRST_1 IS NULL);
+
+
+/* transpose column headers and values */
+SELECT
+	ID,
+	'name' COLUMN_NAME,
+	NAME VALUE
+FROM WORKERS_INFO
+WHERE NAME IS NOT NULL
+UNION ALL
+SELECT
+	ID,
+	'date_of_birth' COLUMN_NAME,
+	DATE_OF_BIRTH VALUE
+FROM WORKERS_INFO
+WHERE DATE_OF_BIRTH IS NOT NULL
+UNION ALL
+SELECT
+	ID,
+	'salary' COLUMN_NAME,
+	SALARY VALUE
+FROM WORKERS_INFO
+WHERE SALARY IS NOT NULL
+	
