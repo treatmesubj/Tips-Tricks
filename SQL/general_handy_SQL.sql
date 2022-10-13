@@ -281,6 +281,11 @@ WHERE DATEDIFF(@MAX_DATE, event_date) > 0
 	AND DATEDIFF(@MAX_DATE, event_date) <= 7
 ORDER BY EVENT_DATE DESC;
 
+/* Variables */
+SET @MAX_SALARY = (SELECT MAX(SALARY) FROM EMPLOYEES);
+SET @MIN_SALARY = (SELECT MIN(SALARY) FROM EMPLOYEES);
+SELECT @MAX_SALARY - @MIN_SALARY SALARY_DIFF;
+
 /* add foreign key */
 ALTER TABLE TABLE_A ADD FOREIGN KEY (COLUMN_1)
 REFERENCES TABLE_B(COLUMN_1)
@@ -311,3 +316,34 @@ FROM TABLE_A a
 LEFT JOIN TABLE_B b
 	ON a.ID = b.ID
 WHERE b.ID IS NULL;
+
+
+/* painful ordering of tables, then joining tables & preserving their orders */
+WITH pr5 AS (
+		SELECT name, 1 filter
+		FROM pr_department
+		ORDER BY date_joined desc
+		LIMIT 5
+	),
+	it5 AS (
+		SELECT name, 2 filter
+		FROM it_department
+		ORDER BY date_joined desc
+		LIMIT 5
+	),
+	sales5 AS (
+		SELECT name, 3 filter
+		FROM sales_department
+		ORDER BY date_joined desc
+		LIMIT 5
+	),
+	joined_ordered AS (
+		SELECT name, filter from pr5
+		UNION ALL
+		SELECT name, filter from it5
+		UNION ALL
+		SELECT name, filter from sales5
+		order by filter, name
+	)
+	SELECT NAME
+	FROM joined_ordered;
