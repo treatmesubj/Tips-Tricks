@@ -22,3 +22,11 @@ function thesr {
 function prompt {
    'PS [' + ($env:UserName) + '] ' + '[' + ($pwd -split '\\')[0] + '] ' + '...\'+$(($pwd -split '\\')[-1] -join '\') + '> '
 }
+
+# https://github.com/ankitpokhrel/jira-cli
+# API token auth: https://jsw.ibm.com/plugins/servlet/de.resolution.apitokenauth/admin
+# Installation type: Local
+# Jira Server: https://jsw.ibm.com
+# config: C:\Users\JohnHupperts/.config/.jira/.config.yml
+$env:JIRA_API_TOKEN = "blahblah"
+$env:JIRA_AUTH_TYPE = "bearer"
