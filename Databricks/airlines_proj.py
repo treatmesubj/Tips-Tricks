@@ -117,7 +117,10 @@
 
 # MAGIC %md
 # MAGIC ### By volume of occurence, which origin-airports have most departure-delays?
+# MAGIC - (data, visual)
 # MAGIC ### For each origin-airport, how many departure-delays were related to each delay-cause?
+# MAGIC - (data)
+# MAGIC 
 # MAGIC 1 delayed flight can have multiple delay causes. See above.
 
 # COMMAND ----------
@@ -150,12 +153,16 @@
 # MAGIC """)
 # MAGIC depart_delays_df.limit(30).display()  # just display 30 rows in chart
 # MAGIC depart_delays_df.createOrReplaceTempView("depart_delays")
+# MAGIC # hm, there seems to be irregular ratios among the top 30. Let's dig deeper
 
 # COMMAND ----------
 
 # MAGIC %md
 # MAGIC ### By ratio of departure-delay occurences to departures, which origin-airports have the most departure-delays?
+# MAGIC - (data, visual)
 # MAGIC ### For each origin-airport, what proportion of total departures is delayed by each delay-cause?
+# MAGIC - (data)
+# MAGIC 
 # MAGIC 1 delayed flight can have multiple causes. See above.
 
 # COMMAND ----------
@@ -177,6 +184,7 @@
 # MAGIC """)
 # MAGIC depart_delays_ratios_df.display()
 # MAGIC depart_delays_ratios_df.createOrReplaceTempView("depart_delays_ratios")
+# MAGIC # hm, there's a very broad range of delay-ratios across airports. Let's dig deeper
 
 # COMMAND ----------
 
@@ -187,7 +195,9 @@
 
 # MAGIC %md
 # MAGIC ### By summation of departure delay-time, which origin-airports have the most delay-time?
+# MAGIC - (data, visual)
 # MAGIC ### For each origin-airport, how much delay-time is each delay-cause responsible for?
+# MAGIC - (data, visual)
 
 # COMMAND ----------
 
@@ -212,11 +222,13 @@
 # MAGIC """)
 # MAGIC depart_delays_minutes_df.limit(30).display()  # just display 30 rows in chart
 # MAGIC depart_delays_minutes_df.createOrReplaceTempView("depart_delays_minutes")
+# MAGIC # hm, there seems to be an irregular skew of delay-causes among airports. I wonder if we can dig deeper and hypothesize about some pattern
 
 # COMMAND ----------
 
 # MAGIC %md
 # MAGIC ### For each origin-airport, what's the distribution of total departure delay-time among delay-causes?
+# MAGIC - (data, visual)
 
 # COMMAND ----------
 
@@ -235,11 +247,13 @@
 # MAGIC """)
 # MAGIC depart_delays_minutes_ratios_df.limit(30).display()  # just display 30 rows in chart
 # MAGIC depart_delays_minutes_ratios_df.createOrReplaceTempView("depart_delays_minutes_ratios")
+# MAGIC # hm, yep different skews of delay-causes among airports, better visualized independent of volume. I wonder if we can dig deeper and hypothesize about some pattern
 
 # COMMAND ----------
 
 # MAGIC %md
 # MAGIC ### Among all origin-airports, what's the distribution of total departure delay-time among delay-causes?
+# MAGIC - (data, visual)
 
 # COMMAND ----------
 
@@ -272,6 +286,8 @@
 # MAGIC     WHERE IsDepDelayed = 'YES';
 # MAGIC """)
 # MAGIC depart_delays_minutes_df.display()
+# MAGIC # that's good that there aren't many security delays. I am surprised at how little weather-delays' share of the pie is.
+# MAGIC # I suspect that there could be a pattern for weather delays.
 
 # COMMAND ----------
 
@@ -397,6 +413,7 @@
 # MAGIC   ON ddmr.Origin = asif.IATA;
 # MAGIC """)
 # MAGIC weather_delay_chart_df.display()
+# MAGIC # maybe winters are harsh in the north, tornadoes in the middle, hurricanes in Florida
 
 # COMMAND ----------
 
@@ -468,15 +485,17 @@
 
 # COMMAND ----------
 
-fig = plt.figure()
-ax = plt.axes()
-
-fig.set_size_inches(20, 10)
-# ax.patch.set_facecolor('black')
-
-routes.plot(ax=ax, color='black', linewidth=0.1)
-
-plt.setp(ax.spines.values(), color='black')
-plt.setp([ax.get_xticklines(), ax.get_yticklines()], color='black')
-
-plt.show()
+# MAGIC %python
+# MAGIC fig = plt.figure()
+# MAGIC ax = plt.axes()
+# MAGIC 
+# MAGIC fig.set_size_inches(20, 10)
+# MAGIC # ax.patch.set_facecolor('black')
+# MAGIC 
+# MAGIC routes.plot(ax=ax, color='black', linewidth=0.1)
+# MAGIC 
+# MAGIC plt.setp(ax.spines.values(), color='black')
+# MAGIC plt.setp([ax.get_xticklines(), ax.get_yticklines()], color='black')
+# MAGIC 
+# MAGIC plt.show()
+# MAGIC # it would be cool to overlay this on a map with major cities highlighted
