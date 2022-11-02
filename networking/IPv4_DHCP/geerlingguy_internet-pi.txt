@@ -1,0 +1,26 @@
+# https://github.com/geerlingguy/internet-pi
+
+before running `ansible-playbook main.yml`,
+be sure to edit `templates/pi-hole-docker-compose.yml.j2`.
+remove below
+```
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+{% if domain_name_enable and domain_name and domain_pihole %}
+      - "38080:80/tcp"
+{% else %}
+      - "80:80/tcp"
+{% endif %}
+      - "443:443/tcp"
+```
+
+add instead
+```
+    network_mode: host
+    privileged: true
+```
+
+# https://docs.docker.com/network/host/
+this will allow the pi-hole Docker container to share Pi's networking namespace, allowing it to directly access the network
