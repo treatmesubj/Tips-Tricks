@@ -1,0 +1,5 @@
+rock@pi$ docker stats  # show containers
+rock@pi$ docker exec -it pihole bash
+
+root# tail -n 5000 pihole.log | grep dhcp  # dhcp requests & offers
+root# tail -n 100 pihole-FTL.log | more
