@@ -1,0 +1,1 @@
+sudo ifconfig wlo1 192.168.1.209
