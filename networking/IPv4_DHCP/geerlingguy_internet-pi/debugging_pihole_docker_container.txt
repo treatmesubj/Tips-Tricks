@@ -1,9 +1,10 @@
 rock@raspberrypi:~ $ docker stats  # show containers
-rock@raspberrypi:~ $ docker exec -it pihole bash
 
+# 1 way
+rock@raspberrypi:~ $ docker exec -it pihole bash
 root@pihole:/# tail -n 5000 /var/log/pihole.log | grep dhcp  # dhcp requests & offers
 root@pihole:/# tail -n 100 /var/log/pihole-FTL.log | more
 
-# if you've got teh micro SD of the pi instead
-root@spectre:~ $ sudo -s
-root@spectre:/media/john/rootfs# find -iwholename ./var/lib/docker/overlay2/*/var/log/pihole.log
+# 2 way
+rock@raspberrypi:~ $ docker cp pihole:/var/log/pihole.log ./debug_pihole.log
+rock@raspberrypi:~ $ docker cp pihole:/var/log/pihole-FTL.log ./debug_pihole-FTL.log
