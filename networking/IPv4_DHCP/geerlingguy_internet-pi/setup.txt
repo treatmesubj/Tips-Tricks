@@ -24,3 +24,8 @@ add instead
 
 # https://docs.docker.com/network/host/
 this will allow the pi-hole Docker container to share Pi's networking namespace, allowing it to directly access the network
+
+On the router, I set a static IPv4 address 192.168.1.73 for the pihole
+Also, on the pihole itself, I set its IPv4 address to static 192.168.1.73 `rock@raspberrypi:~ $ sudo ifconfig eth0 192.168.1.73`
+I believe it thought its IPv4 address lease would expire after 24 hours and thus would drop itself off the LAN? IDK
+
