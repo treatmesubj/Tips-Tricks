@@ -2,7 +2,7 @@ rock@raspberrypi:~ $ docker stats  # show containers
 
 # 1 way
 rock@raspberrypi:~ $ docker exec -it pihole bash
-root@pihole:/# tail -n 5000 /var/log/pihole/pihole.log | grep dhcp  # dhcp requests & offers
+root@pihole:/# tail -n 5000 /var/log/pihole/pihole.log | grep -iF dhcp  # dhcp requests & offers
 root@pihole:/# tail -n 100 /var/log/pihole/pihole-FTL.log | more
 
 # 2 way
