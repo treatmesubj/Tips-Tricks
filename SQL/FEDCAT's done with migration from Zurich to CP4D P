@@ -1,6 +1,0 @@
-FEDCAT's done with migration from Zurich to CP4D Prod BigSQL
-I migrated our consumption over and everything's working
-
-DevOps stuff I had to update some secrets in the OpenShift cluster and restart a pod
-Then for DBA stuff I rebuilt the DDL table structure for the tables in our DB2
-Then for data engineer stuff I updated the Airflow jobs and merged my pull request
