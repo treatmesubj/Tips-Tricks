@@ -24,3 +24,15 @@ Add to `/etc/fstab`:
 ```
 sudo mount -a
 lsblk
+
+# add some stuff to that storage
+cd /mnt/usb_share
+# do some stuff, curl a file
+sync
+
+# enable mass storage device mode
+sudo modprobe g_mass_storage file=/piusb.bin stall=0 ro=1
+# use it as a USB flashdrive
+
+# stop using it as a USB flashdrive
+sudo modprobe -r g_mass_storage
