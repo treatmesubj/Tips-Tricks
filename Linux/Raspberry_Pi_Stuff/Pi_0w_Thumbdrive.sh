@@ -1,12 +1,12 @@
-adapted from: https://magpi.raspberrypi.com/articles/pi-zero-w-smart-usb-flash-drive
+# adapted from: https://magpi.raspberrypi.com/articles/pi-zero-w-smart-usb-flash-drive
 
 
-add to `/boot/config.txt`:
+# add to `/boot/config.txt`:
 ```
 dtoverlay=dwc2
 ```
 
-add to `/etc/modules`:
+# add to `/etc/modules`:
 ```
 dwc2
 ```
@@ -19,7 +19,7 @@ sudo mkdosfs /piusb.bin -F 32 -I
 
 # mount storage
 sudo mkdir /mnt/usb_share
-Add to `/etc/fstab`:
+# add to `/etc/fstab`:
 ```
 /piusb.bin /mnt/usb_share vfat users,umask=000 0 2
 ```
