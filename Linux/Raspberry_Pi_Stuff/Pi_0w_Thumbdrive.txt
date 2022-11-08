@@ -8,7 +8,6 @@ dtoverlay=dwc2
 
 add to `/etc/modules`:
 ```
-i2c-dev
 dwc2
 ```
 
