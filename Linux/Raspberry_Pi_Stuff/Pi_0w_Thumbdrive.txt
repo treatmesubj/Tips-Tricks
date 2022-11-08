@@ -11,8 +11,10 @@ add to `/etc/modules`:
 dwc2
 ```
 
+sudo reboot
+
 # Create 1Gb USB flashdrive storage & format as FAT32
-sudo dd bs=1M if=/dev/zero of=/piusb.bin count=1024
+sudo dd bs=1M if=/dev/zero of=/piusb.bin count=1024  # takes a minute
 sudo mkdosfs /piusb.bin -F 32 -I
 
 # mount storage
