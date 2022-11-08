@@ -1,0 +1,26 @@
+adapted from: https://magpi.raspberrypi.com/articles/pi-zero-w-smart-usb-flash-drive
+
+
+add to `/boot/config.txt`:
+```
+dtoverlay=dwc2
+```
+
+add to `/etc/modules`:
+```
+i2c-dev
+dwc2
+```
+
+# Create 1Gb USB flashdrive storage & format as FAT32
+sudo dd bs=1M if=/dev/zero of=/piusb.bin count=1024
+sudo mkdosfs /piusb.bin -F 32 -I
+
+# mount storage
+sudo mkdir /mnt/usb_share
+Add to `/etc/fstab`:
+```
+/piusb.bin /mnt/usb_share vfat users,umask=000 0 2
+```
+sudo mount -a
+lsblk
