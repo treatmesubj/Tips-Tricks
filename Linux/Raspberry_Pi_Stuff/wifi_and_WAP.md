@@ -18,7 +18,7 @@ So that you can configure your Pi's connection to a wifi network over its own wi
 	    "host_apd_cfg": {
 	       "ip": "192.168.27.1",
 	       "ssid": "johnpiwifi",
-	       "wpa_passphrase":"<password>",
+	       "wpa_passphrase":"raspberry",
 	       "channel": "6"
 	    },
 	      "wpa_supplicant_cfg": {
