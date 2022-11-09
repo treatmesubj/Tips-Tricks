@@ -1,6 +1,7 @@
 # https://pinout.xyz/pinout/pirate_audio_line_out#
 # $ pinout
 # need to lower PWM to GPIO 13 (33)
+# button Pins: https://github.com/pimoroni/pirate-audio/blob/master/examples/buttons.py
 
 import RPi.GPIO as GPIO
 
