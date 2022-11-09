@@ -1,10 +1,10 @@
 /* Meaningless Query */
 WITH BLAH AS (
-	SELECT *
-	FROM (
-		VALUES ('Hello world')
-	) t1 (col1)
-	WHERE 1 = 1
+    SELECT *
+    FROM (
+        VALUES ('Hello world')
+    ) t1 (col1)
+    WHERE 1 = 1
 )
 SELECT *
 FROM BLAH
@@ -12,12 +12,12 @@ LIMIT 1 OFFSET 0
 
 /* Storage Size of Tables in Schemas */
 SELECT TABNAME,
-	TABSCHEMA,
-	SUM(DATA_OBJECT_P_SIZE) + SUM(INDEX_OBJECT_P_SIZE) + SUM(LONG_OBJECT_P_SIZE) + SUM(LOB_OBJECT_P_SIZE) + SUM(XML_OBJECT_P_SIZE) SIZE_KB 
+    TABSCHEMA,
+    SUM(DATA_OBJECT_P_SIZE) + SUM(INDEX_OBJECT_P_SIZE) + SUM(LONG_OBJECT_P_SIZE) + SUM(LOB_OBJECT_P_SIZE) + SUM(XML_OBJECT_P_SIZE) SIZE_KB 
 FROM SYSIBMADM.ADMINTABINFO
 WHERE TABSCHEMA IN ('FNP_A', 'SMS01_A')
 GROUP BY TABNAME,
-	TABSCHEMA
+    TABSCHEMA
 
 /* Delete Duplicates */
 DELETE FROM
@@ -35,9 +35,9 @@ WITH UR;
 SELECT NAME, CREATOR, TYPE, CTIME, BASE_NAME, BASE_SCHEMA, LAST_REGEN_TIME, ALTER_TIME, LASTUSED
 FROM SYSIBM.SYSTABLES
 WHERE (
-	NAME IN 'BLAH'
-	OR NAME IN 'BLEH'
-	OR NAME IN 'BLEK'
+    NAME IN 'BLAH'
+    OR NAME IN 'BLEH'
+    OR NAME IN 'BLEK'
 )
 WITH UR;
 
@@ -58,9 +58,9 @@ WITH UR;
 SELECT NAME, TBNAME, TBCREATOR, REMARKS, COLTYPE, LENGTH, NULLS
 FROM SYSIBM.SYSCOLUMNS
 WHERE (
-	NAME IN 'BLAH'
-	OR NAME IN 'BLEH'
-	OR NAME IN 'BLEK'
+    NAME IN 'BLAH'
+    OR NAME IN 'BLEH'
+    OR NAME IN 'BLEK'
 )
 WITH UR;
 
@@ -97,14 +97,14 @@ GROUP BY COLUMN_NAME;
 
 /* Cases */
 SELECT 
-	COLUMN_A, 
-	COLUMN_B,
-	CASE
-	   WHEN ...
-	   THEN ...
-	   ELSE ...
-	END AS COLUMN_C,
-	COLUMN_D
+    COLUMN_A, 
+    COLUMN_B,
+    CASE
+       WHEN ...
+       THEN ...
+       ELSE ...
+    END AS COLUMN_C,
+    COLUMN_D
 FROM SCHEMA.TABLE
 
 
@@ -123,9 +123,9 @@ SELECT * FROM syscat.SCHEMAAUTH WHERE schemaname='EAL_EAL' WITH ur;
 
 /* Create empty table in same structure as other */
 CREATE TABLE SCHEMA.TABLE_B AS (
-	SELECT *
-	FROM SCHEMA.TABLE_A ds
-	WHERE 1=0
+    SELECT *
+    FROM SCHEMA.TABLE_A ds
+    WHERE 1=0
 )
 WITH DATA;
 -- INSERT INTO SCHEMA.TABLE_B
@@ -133,8 +133,8 @@ WITH DATA;
 
 /* Create View */
 CREATE VIEW SCHEMA.VIEW AS (
-	SELECT *
-	FROM SCHEMA.TABLE
+    SELECT *
+    FROM SCHEMA.TABLE
 );
 
 /* INSERT slightly edited data from old table into new table */
@@ -159,15 +159,15 @@ GRANT SELECT ON SCHMEMA.TABLE TO ROLE READER;
 
 /* Looking for duplicates from join */
 WITH joined AS (
-	SELECT
-		a.COL1,
-		b.COL1,
-		b.COL2,
-		b.COL3,
-		ROWNUMBER() OVER (PARTITION BY a.COL1) AS RN
-	FROM SCHEMA.TABLE_A a
-	LEFT JOIN SCHEMA.TABLE_B b
-		ON a.COL1 = b.COL2
+    SELECT
+        a.COL1,
+        b.COL1,
+        b.COL2,
+        b.COL3,
+        ROWNUMBER() OVER (PARTITION BY a.COL1) AS RN
+    FROM SCHEMA.TABLE_A a
+    LEFT JOIN SCHEMA.TABLE_B b
+        ON a.COL1 = b.COL2
 )
 SELECT *
 FROM joined
@@ -203,18 +203,18 @@ order by director;
 
 /* GROUP_CONCAT */
 WITH my_countries AS (
-	SELECT DISTINCT COUNTRY
-	FROM DIARY
-	ORDER BY COUNTRY
+    SELECT DISTINCT COUNTRY
+    FROM DIARY
+    ORDER BY COUNTRY
 )
 SELECT GROUP_CONCAT(COUNTRY SEPARATOR ';') AS COUNTRIES
 FROM my_countries;
 
 WITH stringys AS (
-	SELECT
-	DISTINCT CONCAT(FIRST_NAME, ' ', SURNAME, ' #', PLAYER_NUMBER) STR
-	FROM SOCCER_TEAM
-	ORDER BY PLAYER_NUMBER
+    SELECT
+    DISTINCT CONCAT(FIRST_NAME, ' ', SURNAME, ' #', PLAYER_NUMBER) STR
+    FROM SOCCER_TEAM
+    ORDER BY PLAYER_NUMBER
 )
 SELECT GROUP_CONCAT(STR SEPARATOR '; ') AS PLAYERS
 FROM stringys;
@@ -254,25 +254,25 @@ ORDER BY NAME;
 
 /* You can sum with conditions */
 WITH SUMMED AS (
-	SELECT
-		SUM(IF(first_team_score > second_team_score, 1, 0)) team1_wins,
-		SUM(IF(second_team_score > first_team_score, 1, 0)) team2_wins,
-		SUM(first_team_score) team1_goals,
-		SUM(second_team_score) team2_goals,
-		SUM(IF(match_host= 2, first_team_score, 0)) team1_away_goals,
-		SUM(IF(match_host= 1, second_team_score, 0)) team2_away_goals
-	FROM scores
+    SELECT
+        SUM(IF(first_team_score > second_team_score, 1, 0)) team1_wins,
+        SUM(IF(second_team_score > first_team_score, 1, 0)) team2_wins,
+        SUM(first_team_score) team1_goals,
+        SUM(second_team_score) team2_goals,
+        SUM(IF(match_host= 2, first_team_score, 0)) team1_away_goals,
+        SUM(IF(match_host= 1, second_team_score, 0)) team2_away_goals
+    FROM scores
 )
 SELECT 
-	CASE
-		WHEN team1_wins > team2_wins THEN 1
-		WHEN team2_wins > team1_wins THEN 2
-		WHEN team1_goals > team2_goals THEN 1
-		WHEN team2_goals > team1_goals THEN 2
-		WHEN team1_away_goals > team2_away_goals THEN 1
-		WHEN team2_away_goals > team1_away_goals THEN 2
-		ELSE 0
-	END AS WINNER
+    CASE
+        WHEN team1_wins > team2_wins THEN 1
+        WHEN team2_wins > team1_wins THEN 2
+        WHEN team1_goals > team2_goals THEN 1
+        WHEN team2_goals > team1_goals THEN 2
+        WHEN team1_away_goals > team2_away_goals THEN 1
+        WHEN team2_away_goals > team1_away_goals THEN 2
+        ELSE 0
+    END AS WINNER
 FROM SUMMED;
 
 /* Variables and DateDiff */
@@ -280,7 +280,7 @@ SET @MAX_DATE = (SELECT MAX(EVENT_DATE) FROM EVENTS);
 SELECT name, event_date
 FROM EVENTS
 WHERE DATEDIFF(@MAX_DATE, event_date) > 0
-	AND DATEDIFF(@MAX_DATE, event_date) <= 7
+    AND DATEDIFF(@MAX_DATE, event_date) <= 7
 ORDER BY EVENT_DATE DESC;
 
 /* Variables */
@@ -297,7 +297,7 @@ ON DELETE SET NULL; -- just make it NULL in referenced tables
 /* update string column text */
 UPDATE TABLE_A
 SET COLUMN_A = CONCAT('prefix - ', COLUMN_A),
-	COLUMN_B = CONCAT('prefix - ', COLUMN_B)
+    COLUMN_B = CONCAT('prefix - ', COLUMN_B)
 
 /* to table, add columns with default values */
 ALTER TABLE TABLE_A
@@ -316,65 +316,65 @@ WHERE EXISTS (
 SELECT ID
 FROM TABLE_A a
 LEFT JOIN TABLE_B b
-	ON a.ID = b.ID
+    ON a.ID = b.ID
 WHERE b.ID IS NULL;
 
 
 /* painful ordering of tables, then joining tables & preserving their orders */
 WITH pr5 AS (
-		SELECT name, 1 filter
-		FROM pr_department
-		ORDER BY date_joined desc
-		LIMIT 5
+        SELECT name, 1 filter
+        FROM pr_department
+        ORDER BY date_joined desc
+        LIMIT 5
 ),
 it5 AS (
-	SELECT name, 2 filter
-	FROM it_department
-	ORDER BY date_joined desc
-	LIMIT 5
+    SELECT name, 2 filter
+    FROM it_department
+    ORDER BY date_joined desc
+    LIMIT 5
 ),
 sales5 AS (
-	SELECT name, 3 filter
-	FROM sales_department
-	ORDER BY date_joined desc
-	LIMIT 5
+    SELECT name, 3 filter
+    FROM sales_department
+    ORDER BY date_joined desc
+    LIMIT 5
 ),
 joined_ordered AS (
-	SELECT name, filter from pr5
-	UNION ALL
-	SELECT name, filter from it5
-	UNION ALL
-	SELECT name, filter from sales5
-	order by filter, name
+    SELECT name, filter from pr5
+    UNION ALL
+    SELECT name, filter from it5
+    UNION ALL
+    SELECT name, filter from sales5
+    order by filter, name
 )
 SELECT NAME
 FROM joined_ordered;
 
 /* more painful ordering of crap */
 WITH joined_crap AS (
-	SELECT
-		ID,
-		'name' COLUMN_NAME,
-		NAME VALUE,
-		1 filter
-	FROM WORKERS_INFO
-	WHERE NAME IS NOT NULL
-	UNION ALL
-	SELECT
-		ID,
-		'date_of_birth' COLUMN_NAME,
-		DATE_OF_BIRTH VALUE,
-		2 filter
-	FROM WORKERS_INFO
-	WHERE DATE_OF_BIRTH IS NOT NULL
-	UNION ALL
-	SELECT
-		ID,
-		'salary' COLUMN_NAME,
-		SALARY VALUE,
-		3 filter
-	FROM WORKERS_INFO
-	WHERE SALARY IS NOT NULL
+    SELECT
+        ID,
+        'name' COLUMN_NAME,
+        NAME VALUE,
+        1 filter
+    FROM WORKERS_INFO
+    WHERE NAME IS NOT NULL
+    UNION ALL
+    SELECT
+        ID,
+        'date_of_birth' COLUMN_NAME,
+        DATE_OF_BIRTH VALUE,
+        2 filter
+    FROM WORKERS_INFO
+    WHERE DATE_OF_BIRTH IS NOT NULL
+    UNION ALL
+    SELECT
+        ID,
+        'salary' COLUMN_NAME,
+        SALARY VALUE,
+        3 filter
+    FROM WORKERS_INFO
+    WHERE SALARY IS NOT NULL
 )
 SELECT ID, COLUMN_NAME, VALUE
 FROM joined_crap
@@ -391,54 +391,54 @@ fetch last each anonymous-id's event and its first signed-up-user event
 using  row_number partion & order
 */
 WITH LAST_NULLS AS (
-	SELECT anonymous_id, event_name, received_at,
-		ROW_NUMBER() OVER (
-			PARTITION BY anonymous_id
-			ORDER BY RECEIVED_AT DESC
-		) LATEST_1
-	from tracks
-	where user_id is NULL
+    SELECT anonymous_id, event_name, received_at,
+        ROW_NUMBER() OVER (
+            PARTITION BY anonymous_id
+            ORDER BY RECEIVED_AT DESC
+        ) LATEST_1
+    from tracks
+    where user_id is NULL
 ),
 FIRST_NOTNULLS AS (
-	SELECT anonymous_id, event_name, received_at,
-	ROW_NUMBER() OVER (
-			PARTITION BY anonymous_id
-			ORDER BY RECEIVED_AT ASC
-		) FIRST_1
-	from tracks
-	where user_id is NOT NULL
+    SELECT anonymous_id, event_name, received_at,
+    ROW_NUMBER() OVER (
+            PARTITION BY anonymous_id
+            ORDER BY RECEIVED_AT ASC
+        ) FIRST_1
+    from tracks
+    where user_id is NOT NULL
 )
 SELECT
-	LAST_NULLS.ANONYMOUS_ID anonym_id,
-	LAST_NULLS.EVENT_NAME last_null,
-	FIRST_NOTNULLS.EVENT_NAME first_notnull
+    LAST_NULLS.ANONYMOUS_ID anonym_id,
+    LAST_NULLS.EVENT_NAME last_null,
+    FIRST_NOTNULLS.EVENT_NAME first_notnull
 FROM LAST_NULLS
 LEFT JOIN FIRST_NOTNULLS
-	ON LAST_NULLS.ANONYMOUS_ID = FIRST_NOTNULLS.ANONYMOUS_ID
+    ON LAST_NULLS.ANONYMOUS_ID = FIRST_NOTNULLS.ANONYMOUS_ID
 WHERE LAST_NULLS.LATEST_1 = 1
 AND (FIRST_NOTNULLS.FIRST_1 = 1
-	OR FIRST_NOTNULLS.FIRST_1 IS NULL);
+    OR FIRST_NOTNULLS.FIRST_1 IS NULL);
 
 
 /* transpose column headers and values */
 SELECT
-	ID,
-	'name' COLUMN_NAME,
-	NAME VALUE
+    ID,
+    'name' COLUMN_NAME,
+    NAME VALUE
 FROM WORKERS_INFO
 WHERE NAME IS NOT NULL
 UNION ALL
 SELECT
-	ID,
-	'date_of_birth' COLUMN_NAME,
-	DATE_OF_BIRTH VALUE
+    ID,
+    'date_of_birth' COLUMN_NAME,
+    DATE_OF_BIRTH VALUE
 FROM WORKERS_INFO
 WHERE DATE_OF_BIRTH IS NOT NULL
 UNION ALL
 SELECT
-	ID,
-	'salary' COLUMN_NAME,
-	SALARY VALUE
+    ID,
+    'salary' COLUMN_NAME,
+    SALARY VALUE
 FROM WORKERS_INFO
 WHERE SALARY IS NOT NULL
-	
+    
