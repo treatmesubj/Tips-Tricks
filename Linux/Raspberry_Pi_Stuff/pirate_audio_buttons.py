@@ -3,7 +3,7 @@ import os
 import RPi.GPIO as GPIO
 
 
-# to run this in background on boot, add nohup python `pirate_audio_buttons.py &>/dev/null &` to `/etc/rc.local`
+# to run this in background on boot, add `nohup python /home/john/pirate_audio_buttons.py &>/dev/null &` to `/etc/rc.local`
 print("""buttons.py - Detect which button has been pressed
 
 This example should demonstrate how to:
