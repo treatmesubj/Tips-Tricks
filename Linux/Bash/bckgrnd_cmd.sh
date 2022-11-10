@@ -1,0 +1,1 @@
+nohup COMMAND &>/dev/null &
