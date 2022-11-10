@@ -1,0 +1,1 @@
+sudo fbi -a -vt 1 /mnt/usb_share/holding_big_gar.jpeg

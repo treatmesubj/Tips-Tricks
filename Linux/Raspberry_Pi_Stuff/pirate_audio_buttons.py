@@ -4,7 +4,6 @@ import RPi.GPIO as GPIO
 
 
 # to run this in background: `nohup python /home/john/pirate_audio_buttons.py &>/dev/null &`
-# can add this to `~/.bashrc` to run on spawn of /dev/tty1 on Raspberry Pi OS Lite
 print("""buttons.py - Detect which button has been pressed
 
 This example should demonstrate how to:
