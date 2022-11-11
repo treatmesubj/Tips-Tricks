@@ -1,5 +1,5 @@
-sudo fbi -a -vt 1 /mnt/usb_share/holding_big_gar.jpeg  # view image on tty1
-sudo fbi -vt 1 -q  # quit fbi
+sudo fbi -a -vt 2 /mnt/usb_share/holding_big_gar.jpeg  # view image on tty2, if it exists
+sudo fbi -vt 2 -q  # quit fbi
 
 sudo openvt -c 2 -f -s -- fbi -a /mnt/usb_share/holding_big_gar.jpeg  # create and switch to tty2 just to view an image
 sudo chvt 1  # switch back to tty1
