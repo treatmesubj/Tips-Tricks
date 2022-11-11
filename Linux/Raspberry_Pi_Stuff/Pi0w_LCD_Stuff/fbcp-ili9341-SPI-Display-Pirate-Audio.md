@@ -1,7 +1,7 @@
 ## Raspberry Pi Zero W Wifi Client, Audio Server, LCD Display, Lorenz Audio Visualization
 
 <p align="center">
-  <img src="./attachments/pi0_audio_vis.gif"/> <a href="https://www.youtube.com/watch?v=rCKuR259FjY"><img src="./attachments/pi0_youtube_vid.png"></a>
+  <img src="../attachments/pi0_audio_vis.gif"/> <a href="https://www.youtube.com/watch?v=rCKuR259FjY"><img src="./attachments/pi0_youtube_vid.png"></a>
 </p>
 
 
