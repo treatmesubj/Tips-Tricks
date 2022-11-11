@@ -9,7 +9,7 @@ For more info about how that works, see [my last project](./fbcp-ili9341-SPI-Dis
 
 
 ### [Teletypes, Pseudo-Terminal Slaves, & X11 Displays](https://unix.stackexchange.com/a/336527)
-My Pi has no Graphical User Interface (GUI) or Desktop Environment. It's got no mouse or keyboard either.
+My Pi has no Graphical User Interface (GUI) or Desktop Environment. It's got no mouse or keyboard either. \
 ...
 
 ### Just Show me the IP; General Purpose Input/Output (GPIO), Pulse-Width Modulation (PWM), & Dutytime
