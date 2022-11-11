@@ -20,7 +20,9 @@ It'd be nice if I could just push a button.
 ...
 
 ### [Linux Framebuffer](https://www.kernel.org/doc/Documentation/fb/framebuffer.txt)
-Use the kernel to process memory of color values for each pixel and display it on the LCD, ideally at 60hz/fps.
+Use the kernel to write color values for each pixel to memory and display it on the LCD, ideally at 60hz/fps. \
+Luckily the LCD display itself is already set up, reading pixel data from memory and showing it on the screen, courtesy of [juj/fbcp-ili9341](https://github.com/juj/fbcp-ili9341) \
+Now we just have to write the right pixel data to memory and let the display driver know what to display. \
 ...
 
 ### Tying It All Together
