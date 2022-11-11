@@ -12,7 +12,7 @@ For more info about how that works, see [my last project](./fbcp-ili9341-SPI-Dis
 My Pi has no Graphical User Interface (GUI) or Desktop Environment. It's got no mouse or keyboard either. \
 ...
 
-### Just Show me the IP; General Purpose Input/Output (GPIO), Pulse-Width Modulation (PWM), & Dutytime
+### Just Show me the IP - General Purpose Input/Output (GPIO), Pulse-Width Modulation (PWM), & Dutytime
 It'd be nice if I could just push a button. 
 - [pirate_audio_buttons.py](../pirate_audio_buttons.py)
 - [pirate_audio_LCD_backlight.py](../pirate_audio_LCD_backlight.py)
