@@ -34,9 +34,8 @@ GPIO.setup(BUTTONS, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 # It receives one argument: the associated input pin.
 def handle_button(pin):
     label = LABELS[BUTTONS.index(pin)]
-    if label == 'A':
+    if label == 'A':  # write IP addresses to tmux session
         os.system("tmux send 'ip -br addr' ENTER;")
-
 
 # Loop through out buttons and attach the "handle_button" function to each
 # We're watching the "FALLING" edge (transition from 3.3V to Ground) and
