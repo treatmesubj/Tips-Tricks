@@ -8,8 +8,15 @@ This is my Raspberry Pi Zero W with a Pirate Audio hat on it, which has a ST7789
 For more info about how that works, see [my last project](./fbcp-ili9341-SPI-Display-Pirate-Audio.md), which I'm building off for this one.
 
 
-### [Teletypes, Pseudo-Terminal Slaves, & X11 Displays](https://unix.stackexchange.com/a/336527)
-My Pi has no Graphical User Interface (GUI) or Desktop Environment. It's got no mouse or keyboard either. \
+### [Teletypes, Pseudo-Terminal Slaves, & X Window System](https://unix.stackexchange.com/a/336527)
+My Pi has no Graphical User Interface (GUI) or Desktop Environment. It's got no mouse or keyboard either. It does have a display: the LCD.\
+
+On Linux, you've got a few instances of Teletypes (`tty`s). In short, a `tty` is a text input/output environment. A `tty` is a console: a hardware display-screen, hardware keyboard, & software command-line-interface/shell to interact with the kernel, the interface to control the hardware, via issuance of typed out commands which the kernel executes and writes any relevant output or errors to the display. \
+
+A Pseudo-Terminal Slave (`pts`) is like a `tty` but without the physical display & keyboard hardware.
+
+Most machines have adequate hardware resources to host an [X server](https://en.wikipedia.org/wiki/X_Window_System) to display a Graphical User Interface (GUI). An X server is software that "provides display and I/O services to applications; applications \[(clients)\] use these services." The Pi's hardware resources become pretty burdened by graphical applications. \
+
 ...
 
 ### Just Show me the IP - General Purpose Input/Output (GPIO), Pulse-Width Modulation (PWM), & Dutytime
