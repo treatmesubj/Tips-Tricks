@@ -90,6 +90,13 @@ gpio=25=op,dh
 dtparam=audio=off
 ```
 
+#### Nice audio for good vis
+```bash
+speaker-test -c 1 -t sine
+```
+
+
+
 ### PulseAudio Pi Server & Remote Client
 
 13. Start the PulseAudio TCP server & client modules
