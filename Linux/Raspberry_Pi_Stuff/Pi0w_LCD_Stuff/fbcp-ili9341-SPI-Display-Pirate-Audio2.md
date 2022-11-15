@@ -18,7 +18,57 @@ Also, I'll have a `tty` on the Pi spawn a `tmux` terminal mutliplexer session w/
 Most machines have adequate hardware resources to host an [X server](https://en.wikipedia.org/wiki/X_Window_System) to display a Graphical User Interface (GUI). An X server is software that "provides display and I/O services to applications; applications \[(clients)\] use these services." The Pi's hardware resources become pretty burdened by graphical applications. This is a limitation that is interesting to work around.
 
 ### Just Show me the IP - General Purpose Input/Output (GPIO), Pulse-Width Modulation (PWM), & Dutytime
-It'd be nice if I could just push a button. 
+It'd be nice if I could just push a button.\
+The Pirate Audio circuit board w/ the LCD sits on 40 General-Purpose Input/Output (GPIO) software controlled digital signal pins I soldered to my Pi.
+```
+$ pinout
+.-------------------------.
+| oooooooooooooooooooo J8 |
+| 1ooooooooooooooooooo   |c
+---+       +---+ PiZero W|s
+ sd|       |SoC|   V1.1  |i
+---+|hdmi| +---+  usb pwr |
+`---|    |--------| |-| |-'
+
+Revision           : 9000c1
+SoC                : BCM2835
+RAM                : 512MB
+Storage            : MicroSD
+USB ports          : 1 (of which 0 USB3)
+Ethernet ports     : 0 (0Mbps max. speed)
+Wi-fi              : True
+Bluetooth          : True
+Camera ports (CSI) : 1
+Display ports (DSI): 0
+
+J8:
+   3V3  (1) (2)  5V
+ GPIO2  (3) (4)  5V
+ GPIO3  (5) (6)  GND
+ GPIO4  (7) (8)  GPIO14
+   GND  (9) (10) GPIO15
+GPIO17 (11) (12) GPIO18
+GPIO27 (13) (14) GND
+GPIO22 (15) (16) GPIO23
+   3V3 (17) (18) GPIO24
+GPIO10 (19) (20) GND
+ GPIO9 (21) (22) GPIO25
+GPIO11 (23) (24) GPIO8
+   GND (25) (26) GPIO7
+ GPIO0 (27) (28) GPIO1
+ GPIO5 (29) (30) GND
+ GPIO6 (31) (32) GPIO12
+GPIO13 (33) (34) GND
+GPIO19 (35) (36) GPIO16
+GPIO26 (37) (38) GPIO20
+   GND (39) (40) GPIO21
+```
+
+For the software to control the pins' digital signals, the Python library [RPi.GPIO](https://pypi.org/project/RPi.GPIO/) can be used.\
+Referring to the [Pirate Audio circuit board's lineout](https://pinout.xyz/pinout/pirate_audio_line_out#), software on the Pi can listen for input signal on 4 pins mapped to the 4 buttons on the hat, so that processes can programmatically execute when buttons are pressed. Also, the LCD's backlight is controlled by a Pulse-Width Moduled (PWM) digital signal output through pin 13, which software on the Pi can manipulate to change the screen's brightness.
+
+
+
 - [pirate_audio_buttons.py](../pirate_audio_buttons.py)
 - [pirate_audio_LCD_backlight.py](../pirate_audio_LCD_backlight.py)
 
