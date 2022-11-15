@@ -65,11 +65,52 @@ GPIO26 (37) (38) GPIO20
 ```
 
 For the software to control the pins' digital signals, the Python library [RPi.GPIO](https://pypi.org/project/RPi.GPIO/) can be used.\
-Referring to the [Pirate Audio circuit board's lineout](https://pinout.xyz/pinout/pirate_audio_line_out#), software on the Pi can listen for input signal on 4 pins mapped to the 4 buttons on the hat, so that processes can programmatically execute when buttons are pressed. Also, the LCD's backlight is controlled by a Pulse-Width Moduled (PWM) digital signal output through pin 13, which software on the Pi can manipulate to change the screen's brightness.
+Referring to the [Pirate Audio circuit board's lineout](https://pinout.xyz/pinout/pirate_audio_line_out#), software on the Pi can listen for input signal on 4 pins mapped to the 4 buttons on the hat, so that processes can programmatically execute when buttons are pressed. Also, the LCD's backlight is controlled by a [Pulse-Width Moduled (PWM)](https://en.wikipedia.org/wiki/Pulse-width_modulation) digital signal output through pin 13, which software on the Pi can manipulate to change the screen's brightness.\
+A nice feature is to have the Pi display its IP addresses on screen at the push of a button, so that I don't have to [nmap](https://nmap.org/book/toc.html) scan a network's IP address range to find it.\
+Since I have `tty1` spawn a `tmux` session on the display at boot, I want execute the `ip -br addr` command in the `tmux` session on screen so that the output is displayed. Here's the Python script to do that:
+
+```python
+import signal
+import os
+import RPi.GPIO as GPIO
 
 
+# The buttons on Pirate Audio are connected to pins 5, 6, 16 and 24
+# Boards prior to 23 January 2020 used 5, 6, 16 and 20
+# try changing 24 to 20 if your Y button doesn't work.
+BUTTONS = [5, 6, 16, 24]
 
-- [pirate_audio_buttons.py](../pirate_audio_buttons.py)
+# These correspond to buttons A, B, X and Y respectively
+LABELS = ['A', 'B', 'X', 'Y']
+
+# Set up RPi.GPIO with the "BCM" numbering scheme
+GPIO.setmode(GPIO.BCM)
+
+# Buttons connect to ground when pressed, so we should set them up
+# with a "PULL UP", which weakly pulls the input signal to 3.3V.
+GPIO.setup(BUTTONS, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+
+# "handle_button" will be called every time a button is pressed
+# It receives one argument: the associated input pin.
+def handle_button(pin):
+    label = LABELS[BUTTONS.index(pin)]
+    if label == 'A':  # write IP addresses to tmux session
+        os.system("tmux send 'ip -br addr' ENTER;")
+
+# Loop through out buttons and attach the "handle_button" function to each
+# We're watching the "FALLING" edge (transition from 3.3V to Ground) and
+# picking a generous bouncetime of 100ms to smooth out button presses.
+for pin in BUTTONS:
+    GPIO.add_event_detect(pin, GPIO.FALLING, handle_button, bouncetime=100)
+
+# Finally, since button handlers don't require a "while True" loop,
+# we pause the script to prevent it exiting immediately.
+signal.pause()
+```
+
+And I need to have the above Python script running in the background at boot, so ...
+
 - [pirate_audio_LCD_backlight.py](../pirate_audio_LCD_backlight.py)
 
 ...
