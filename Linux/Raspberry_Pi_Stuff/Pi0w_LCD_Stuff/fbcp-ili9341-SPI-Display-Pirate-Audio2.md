@@ -66,7 +66,7 @@ GPIO26 (37) (38) GPIO20
 
 For the software to control the pins' digital signals, the Python library [RPi.GPIO](https://pypi.org/project/RPi.GPIO/) can be used.\
 Referring to the [Pirate Audio circuit board's lineout](https://pinout.xyz/pinout/pirate_audio_line_out#), software on the Pi can listen for input signal on 4 pins mapped to the 4 buttons on the hat, so that processes can programmatically execute when buttons are pressed. Also, the LCD's backlight is controlled by a [Pulse-Width Moduled (PWM)](https://en.wikipedia.org/wiki/Pulse-width_modulation) digital signal output through pin 13, which software on the Pi can manipulate to change the screen's brightness.\
-A nice feature is to have the Pi display its IP addresses on screen at the push of a button, so that I don't have to [nmap](https://nmap.org/book/toc.html) scan a network's IP address range to find it, so that I can `ssh` into it from another device.\
+A nice feature is to have the Pi display its IP addresses on screen at the push of a button, so that I don't have to [nmap](https://nmap.org/book/toc.html) scan a network's whole IP address range to find it, so that I can `ssh` into it from another device.\
 Since I have `tty1` spawn a `tmux` session on the display at boot, I want execute the `ip -br addr` command in the `tmux` session on screen so that the output is displayed. So I need to listen for digital signal input on pin 5, which will occur when button 'A' is pressed, then run the `ip -br addr` command in the `tmux` session on screen.\
 Here's the Python script to do that:
 
