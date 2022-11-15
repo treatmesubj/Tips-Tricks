@@ -15,7 +15,7 @@ On Linux, you've got a few instances of Teletypes (`tty`s). In short, a `tty` is
 A Pseudo-Terminal Slave (`pts`) is like a `tty` but without the physical display & keyboard hardware. I'll be using a `pts` on the Pi from a remote device via the secure shell protocol (`ssh`).\
 Also, I'll have a `tty` on the Pi spawn a `tmux` terminal mutliplexer session w/ a `pts` that both my Pi and I can share and because a `tty` spawned it, I can see it live on Pi's hardware display.
 
-Most machines have adequate hardware resources to host an [X server](https://en.wikipedia.org/wiki/X_Window_System) to display a Graphical User Interface (GUI). An X server is software that "provides display and I/O services to applications \[(clients)\]" The Pi's hardware resources become pretty burdened by graphical applications. This is a limitation that is interesting to work around.
+Most machines have adequate hardware resources to host an [X server](https://en.wikipedia.org/wiki/X_Window_System) to display a Graphical User Interface (GUI). An X server is software that "provides display and I/O services to applications \[(clients)\]." The Pi's hardware resources become pretty burdened by graphical applications. This is a limitation that is interesting to work around.
 
 ### Just Show me the IP - General Purpose Input/Output (GPIO), Pulse-Width Modulation (PWM), & Dutytime
 It'd be nice if I could just push a button. 
