@@ -8,7 +8,7 @@ This is my Raspberry Pi Zero W with a Pirate Audio hat on it, which has a ST7789
 For more info about how that works, see [my last project](./fbcp-ili9341-SPI-Display-Pirate-Audio.md), which I'm building off for this one.
 
 ### [Teletypes, Pseudo-Terminal Slaves, & X Window System](https://unix.stackexchange.com/a/336527)
-My Pi has no Desktop Environment Graphical User Interface (GUI). It's got no mouse or keyboard either. It does have a hardware display: the 1" LCD.
+My Pi has no Desktop Environment Graphical User Interface (GUI). It's got no mouse or keyboard either. It does have a hardware display: the 1" LCD. The distinction between a `tty` and a `pts` will be relevant later when I want to display images/videos on the Pi's LCD screen.
 
 On Linux, you've got a few instances of Teletypes (`tty`s). In short, a `tty` is a text input/output environment. A `tty` is a console: a hardware display-screen, hardware keyboard, & software command-line-interface/shell to interact with the kernel (the interface to control the hardware) via issuance of typed out commands which the kernel executes and then writes any relevant output or errors to the display. On 1 computer with 1 kernel, 1 keyboard, & 1 display, you can have multiple `tty`s which you can switch between. On a typical desktop computer which has a Linux distribution installed, one of the `tty`s runs a command to launch a process to spawn the familar GUI desktop environment with your wallpaper, mouse-pointer/cursor, files, etc, and the actual `tty` command-line-interface/shell under it all is never seen.
 
