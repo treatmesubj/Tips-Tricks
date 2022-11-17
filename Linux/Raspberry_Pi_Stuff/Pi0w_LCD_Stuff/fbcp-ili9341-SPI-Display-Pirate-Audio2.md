@@ -181,12 +181,12 @@ sudo openvt -s -l -- mplayer -vo fbdev BigBuckBunny_240x240.mp4
 ```
 
 It's a cool trick to be able to remotely display frame buffer video on the Pi's LCD display from an `ssh` `pts`.\
-The `mplayer` process can be killed with `kill` & `pgrep`
+The `mplayer` process can be killed with `kill` & `pgrep`.
 ```bash
 sudo kill -9 $(pgrep mplayer)
 ```
 
-The foreground `tty` can then be switched back to `tty1`'s `tmux` session w/ `chvt`
+The foreground `tty` can then be switched back to `tty1`'s `tmux` session w/ `chvt`.
 ```bash
 sudo chvt 1
 ```
