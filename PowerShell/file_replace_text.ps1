@@ -1,0 +1,1 @@
+((Get-Content ~\Desktop\concatted.xml) -replace '[^\x00-\x7F]', '*').Replace("<?xml version=`"1.0`"encoding=`"UTF-8`" standalone=`"yes`"?>","") | Out-File ~\Desktop\cleaned_concatted.xml

@@ -1,0 +1,1 @@
+Get-Content *.xml | Set-Content ~\Desktop\concatted.xml
