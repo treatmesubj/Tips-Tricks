@@ -123,7 +123,7 @@ fi
 PS1="$ "
 ```
 
-When I hit button `A`, I'll see below on the LCD, which briefly shows me the various network interfaces and IP addresses.
+When I hit button `A`, I'll see below on the LCD, which briefly shows me the various network interfaces and their IP addresses.
 ```
 $ ip -br addr                 │
 lo               UNKNOWN      │
@@ -139,7 +139,6 @@ uap0             UP           │
   192.168.27.1/24 169.254.112.│
 76/16 fe80::e8cd:a7da:1589:4a9│
 f/64                          │
-$                             │
 ```
 
 If I feel more motivated one day, I'll map a sequence of button presses in [pirate_audio_buttons.py](../pirate_audio_buttons.py) to turn off the LCD backlight via the below Python script & do a soft poweroff of the Pi. Maybe I'll add some logic for button `A` to spawn another `tmux` session and have the Pi change the foreground `tty` to show it on the LCD too if I've accidentally killed it or something.
