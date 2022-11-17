@@ -177,7 +177,7 @@ ffmpeg -i BigBuckBunny.mp4 -vf scale=240:240 BigBuckBunny_240x240.mp4
 
 Since `mplayer`'s frame buffer video output depends on a proper `teletype` at the foreground of the display, I need to open a new `tty` and send a command along to it to watch the video with `mplayer`.
 ```bash
-sudo openvt -s -l -- mplayer -vo fbdev output.mp4
+sudo openvt -s -l -- mplayer -vo fbdev BigBuckBunny_240x240.mp4
 ```
 
 It's a cool trick to be able to remotely display frame buffer video on the Pi's LCD display from an `ssh` `pts`.\
