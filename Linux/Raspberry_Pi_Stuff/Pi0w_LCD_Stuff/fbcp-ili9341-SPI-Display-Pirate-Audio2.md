@@ -157,8 +157,9 @@ backlight_pin.ChangeDutyCycle(50)  # for each pulse cycle, the signal should be 
 backlight_pin.stop()
 ```
 
-### [Linux Framebuffer](https://www.kernel.org/doc/Documentation/fb/framebuffer.txt)
-Use the kernel to write color values for each pixel to memory and display it on the LCD, ideally at 60hz/fps. \
-Luckily the LCD display itself is already set up, reading pixel data from memory and showing it on the screen, courtesy of [juj/fbcp-ili9341](https://github.com/juj/fbcp-ili9341) \
-Now we just have to write the right pixel data to memory and let the display driver know what to display. \
-...
+### [Linux Frame Buffer](https://www.kernel.org/doc/Documentation/fb/framebuffer.txt)
+The above excercise helped me get a bit more familiar with `tty`s and `pts`s and `tmux`, which I could build off in pursuit of the more amusing goal of viewing pictures and watching videos on the 1" LCD.\
+Luckily, the LCD display is already set up to impressively, efficiently read pixel data from memory and show it on screen courtesy of [juj/fbcp-ili9341](https://github.com/juj/fbcp-ili9341); I just have to write the right pixel data to memory for it to read and display, ideally at, like, 60hz/fps.\
+I need to use the kernel's frame buffer device, which is an API that knows the right physical registers in memory hardware to write color values for each pixel.\
+
+
