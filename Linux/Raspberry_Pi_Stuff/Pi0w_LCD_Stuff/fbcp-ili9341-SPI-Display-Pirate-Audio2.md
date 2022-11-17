@@ -165,3 +165,28 @@ I need to use the kernel's frame buffer device, which is an API that knows the r
 For viewing images utilizing the frame buffer, [fbi-improved](https://www.nongnu.org/fbi-improved/) does the trick.\
 For watching videos utilizing the frame buffer, [mplayer](http://www.mplayerhq.hu/design7/documentation.html) does the trick.
 
+For the video demo, I grabbed [BigBuckBunny](https://peach.blender.org/about/) which is licensed under [Creative Commons](https://en.wikipedia.org/wiki/Creative_Commons).
+```bash
+curl http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4 -O
+```
+
+I scaled it down to 240x240 pixels with [ffmpeg](https://en.wikipedia.org/wiki/FFmpeg) to suit the LCD.
+```bash
+ffmpeg -i BigBuckBunny.mp4 -vf scale=240:240 BigBuckBunny_240x240.mp4
+```
+
+Since `mplayer`'s frame buffer video output depends on a proper `teletype` at the foreground of the display, I need to open a new `tty` and send a command along to it to watch the video with `mplayer`.
+```bash
+sudo openvt -s -l -- mplayer -vo fbdev output.mp4
+```
+
+It's a cool trick to be able to remotely display frame buffer video on the Pi's LCD display from an `ssh` `pts`.\
+The `mplayer` process can be killed with `kill` & `pgrep`
+```bash
+sudo kill -9 $(pgrep mplayer)
+```
+
+The foreground `tty` can then be switched back to `tty1`'s `tmux` session w/ `chvt`
+```bash
+sudo chvt 1
+```
