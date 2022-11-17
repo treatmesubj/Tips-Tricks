@@ -67,7 +67,7 @@ GPIO26 (37) (38) GPIO20
 For the software to control the pins' digital signals, the Python library [RPi.GPIO](https://pypi.org/project/RPi.GPIO/) can be used.\
 Referring to the [Pirate Audio circuit board's lineout](https://pinout.xyz/pinout/pirate_audio_line_out#), software on the Pi can listen for input signal on 4 pins mapped to the 4 buttons on the hat, so that processes can programmatically execute when buttons are pressed. Also, the LCD's backlight is controlled by a [Pulse-Width Moduled (PWM)](https://en.wikipedia.org/wiki/Pulse-width_modulation) digital signal output through pin 13, which software on the Pi can manipulate to change the screen's brightness.\
 A nice feature is to have the Pi display its IP addresses on screen at the push of a button, so that I don't have to [nmap](https://nmap.org/book/toc.html) scan a network's whole IP address range to find it, so that I can `ssh` into it from another device.\
-Since I have `tty1` spawn a `tmux` session on the display at boot, I want execute the `ip -br addr` command in the `tmux` session on screen so that the output is displayed. So I need to listen for digital signal input on pin 5, which will occur when button 'A' is pressed, then run the `ip -br addr` command in the `tmux` session on screen.\
+Since I have `tty1` spawn a `tmux` session on the display at boot, I want execute the `ip -br addr` command in the `tmux` session on screen so that the output is displayed. So I need to listen for digital signal input on pin 5, which will occur when button `A` is pressed, then run the `ip -br addr` command in the `tmux` session on screen.\
 Here's the Python script to do that:
 
 ```python
@@ -123,7 +123,7 @@ fi
 PS1="$ "
 ```
 
-When I hit button 'A', I'll see below on the LCD, which briefly shows me the various network interfaces and IP addresses.
+When I hit button `A`, I'll see below on the LCD, which briefly shows me the various network interfaces and IP addresses.
 ```
 $ ip -br addr                 │
 lo               UNKNOWN      │
@@ -142,7 +142,7 @@ f/64                          │
 $                             │
 ```
 
-If I feel more motivated one day, I'll map a sequence of button presses in [pirate_audio_buttons.py](../pirate_audio_buttons.py) to turn off the LCD backlight via the below Python script & do a soft poweroff of the Pi. Maybe I'll add some logic for button 'A' to spawn another `tmux` session and have the Pi change the foreground `tty` to show it on the LCD too if I've accidentally killed it or something.
+If I feel more motivated one day, I'll map a sequence of button presses in [pirate_audio_buttons.py](../pirate_audio_buttons.py) to turn off the LCD backlight via the below Python script & do a soft poweroff of the Pi. Maybe I'll add some logic for button `A` to spawn another `tmux` session and have the Pi change the foreground `tty` to show it on the LCD too if I've accidentally killed it or something.
 ```python
 import RPi.GPIO as GPIO
 
@@ -162,7 +162,4 @@ backlight_pin.stop()
 Use the kernel to write color values for each pixel to memory and display it on the LCD, ideally at 60hz/fps. \
 Luckily the LCD display itself is already set up, reading pixel data from memory and showing it on the screen, courtesy of [juj/fbcp-ili9341](https://github.com/juj/fbcp-ili9341) \
 Now we just have to write the right pixel data to memory and let the display driver know what to display. \
-...
-
-### Tying It All Together
 ...
