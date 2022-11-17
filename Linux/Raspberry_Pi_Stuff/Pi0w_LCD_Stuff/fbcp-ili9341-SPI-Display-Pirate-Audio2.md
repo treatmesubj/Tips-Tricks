@@ -109,11 +109,54 @@ for pin in BUTTONS:
 signal.pause()
 ```
 
-And I need to have the above Python script running in the background at boot, so ...
+And I want to have the above Python script already running in the background at boot, so utilizing `~/.bashrc`, upon boot and auto-login into `tty1`, I have `~/.bashrc` lazily send a [nohup](https://linuxhint.com/how_to_use_nohup_linux/) command to the `tmux` session to run the Python script in the background right away. And because it's `nohup`, it'll keep running even if I accidentally kill the `tmux` session and have to start a new one.
+```bash
+# if logged in as tty1, create and attach to a tmux session
+if [[ $(tty) == "/dev/tty1" ]]; then
+  tmux new-session -d -s tmuxsesh -c ~
+  tmux send 'nohup python /home/john/pirate_audio_buttons.py &>/dev/null &' ENTER
+  tmux send ENTER
+  tmux send clear ENTER
+  tmux a -t tmuxsesh
+fi
 
-- [pirate_audio_LCD_backlight.py](../pirate_audio_LCD_backlight.py)
+PS1="$ "
+```
 
-...
+When I hit button 'A', I'll see below on the LCD, which briefly shows me the various network interfaces and IP addresses.
+```
+$ ip -br addr                 │
+lo               UNKNOWN      │
+  127.0.0.1/8 ::1/128         │
+wlan0            UP           │
+  192.168.1.245/24 2600:1700:1│
+28:400::3a/128 2600:1700:128:4│
+00:c45d:45e3:45e3:5e8a/64 fe80│
+::3d70:3094:b97a:2531/64      │
+docker0          DOWN         │
+  172.17.0.1/16               │
+uap0             UP           │
+  192.168.27.1/24 169.254.112.│
+76/16 fe80::e8cd:a7da:1589:4a9│
+f/64                          │
+$                             │
+```
+
+If I feel more inspired one day, I will map another button to turn off the LCD backlight via the below Python script & do a soft poweroff of the Pi.
+```python
+import RPi.GPIO as GPIO
+
+
+GPIO.setmode(GPIO.BCM)
+# we'll have GPIO package deal with BCM (Broadcom GPIO 00..nn numbers)
+# rather than BOARD (Raspberry Pi board numbers)
+GPIO.setup(13, GPIO.OUT)  # set BCM pin 13 to output a signal
+backlight_pin = GPIO.PWM(13, 500)  # set BMC pin 13 to pulse signal waves high(on)/low(off) modulated at 500Hz frequency (500 times a second)
+backlight_pin.start(100)  # for each pulse cycle, the signal should be high (on duty) for 100% of the cycle; duty-cycle = 100%
+backlight_pin.ChangeDutyCycle(50)  # for each pulse cycle, the signal should be high for 50% of the cycle; duty-cycle = 50%
+
+backlight_pin.stop()
+```
 
 ### [Linux Framebuffer](https://www.kernel.org/doc/Documentation/fb/framebuffer.txt)
 Use the kernel to write color values for each pixel to memory and display it on the LCD, ideally at 60hz/fps. \
