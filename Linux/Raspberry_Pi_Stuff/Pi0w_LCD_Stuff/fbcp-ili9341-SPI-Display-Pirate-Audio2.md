@@ -160,7 +160,7 @@ backlight_pin.stop()
 ### [Linux Frame Buffer](https://www.kernel.org/doc/Documentation/fb/framebuffer.txt)
 The above excercise helped me get a bit more familiar with `tty`s and `pts`s and `tmux`, which I could build off in pursuit of the more amusing goal of viewing pictures and watching videos on the 1" LCD.\
 Luckily, the LCD display is already set up to impressively, efficiently read pixel data from memory and show it on screen courtesy of [juj/fbcp-ili9341](https://github.com/juj/fbcp-ili9341); I just have to write the right pixel data to memory for it to read and display, ideally at, like, 60hz/fps.\
-I need to use the kernel's frame buffer device, which is an API that knows the right physical registers in memory hardware to write color values for each pixel.\
+I need to use the kernel's frame buffer device, which is an API that knows the right physical registers in memory hardware to write color values for each pixel.
 
 For viewing images utilizing the frame buffer, [fbi-improved](https://www.nongnu.org/fbi-improved/) does the trick.\
 For watching videos utilizing the frame buffer, [mplayer](http://www.mplayerhq.hu/design7/documentation.html) does the trick.
