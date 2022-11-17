@@ -109,7 +109,7 @@ for pin in BUTTONS:
 signal.pause()
 ```
 
-And I want to have the above Python script already running in the background, so upon boot and auto-login into `tty1`, I have `~/.bashrc` lazily send a [nohup](https://linuxhint.com/how_to_use_nohup_linux/) command to the `tmux` session to run the Python script in the background right away. And because it's `nohup`, it'll keep running even if I accidentally kill the `tmux` session.
+And I want to have the above Python script already running in the background, so upon boot and auto-login into `tty1`, I lazily have `~/.bashrc` send a [nohup](https://linuxhint.com/how_to_use_nohup_linux/) command to the `tmux` session to run the Python script in the background right away. And because it's `nohup`, it'll keep running even if I accidentally kill the `tmux` session.
 ```bash
 # if logged in as tty1, create and attach to a tmux session
 if [[ $(tty) == "/dev/tty1" ]]; then
