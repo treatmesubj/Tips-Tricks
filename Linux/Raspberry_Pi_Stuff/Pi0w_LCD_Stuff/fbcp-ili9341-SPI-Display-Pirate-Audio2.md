@@ -109,7 +109,7 @@ for pin in BUTTONS:
 signal.pause()
 ```
 
-And I want to have the above Python script already running in the background at boot, so utilizing `~/.bashrc`, upon boot and auto-login into `tty1`, I have `~/.bashrc` lazily send a [nohup](https://linuxhint.com/how_to_use_nohup_linux/) command to the `tmux` session to run the Python script in the background right away. And because it's `nohup`, it'll keep running even if I accidentally kill the `tmux` session and have to start a new one.
+And I want to have the above Python script already running in the background always, so upon boot and auto-login into `tty1`, I have `~/.bashrc` lazily send a [nohup](https://linuxhint.com/how_to_use_nohup_linux/) command to the `tmux` session to run the Python script in the background right away. And because it's `nohup`, it'll keep running even if I accidentally kill the `tmux` session.
 ```bash
 # if logged in as tty1, create and attach to a tmux session
 if [[ $(tty) == "/dev/tty1" ]]; then
@@ -142,7 +142,7 @@ f/64                          │
 $                             │
 ```
 
-If I feel more inspired one day, I will map another button to turn off the LCD backlight via the below Python script & do a soft poweroff of the Pi.
+If I feel more motivated one day, I'll map a sequence of button presses in [pirate_audio_buttons.py](../pirate_audio_buttons.py) to turn off the LCD backlight via the below Python script & do a soft poweroff of the Pi. Maybe I'll add some logic for button 'A' to spawn another `tmux` session and have the Pi change the foreground `tty` to show it on the LCD too if I've accidentally killed it or something.
 ```python
 import RPi.GPIO as GPIO
 
