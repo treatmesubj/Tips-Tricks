@@ -123,7 +123,7 @@ fi
 PS1="$ "
 ```
 
-When I hit button `A`, I'll see below on the LCD, which briefly shows me the various network interfaces and their IP addresses.
+When I hit button `A`, I'll see below output on the LCD, which briefly shows me the various network interfaces and their IP addresses.
 ```
 $ ip -br addr                 │
 lo               UNKNOWN      │
