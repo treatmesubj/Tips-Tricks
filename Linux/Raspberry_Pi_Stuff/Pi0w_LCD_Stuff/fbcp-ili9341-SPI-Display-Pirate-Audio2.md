@@ -175,7 +175,7 @@ I scaled it down to 240x240 pixels with [ffmpeg](https://en.wikipedia.org/wiki/F
 ffmpeg -i BigBuckBunny.mp4 -vf scale=240:240 BigBuckBunny_240x240.mp4
 ```
 
-Since `mplayer`'s frame buffer video output depends on a proper `teletype` at the foreground of the display, I need to open a new `tty` and send a command along to it to watch the video with `mplayer`.
+Since `mplayer`'s frame buffer video output depends on a proper `teletype` at the foreground of the display, I need to open a new `tty` and send a command along to it to display the video with `mplayer`.
 ```bash
 sudo openvt -s -l -- mplayer -vo fbdev BigBuckBunny_240x240.mp4
 ```
