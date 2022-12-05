@@ -51,9 +51,9 @@ make -j
 
 ### Run LCD driver process on boot
 
-6. Edit `/etc/rc.local` & add command for driving LCD on boot
+6. Via `crontab -e`, add below command for driving LCD on boot
 ```bash
-sudo /home/john/fbcp-ili9341/build/fbcp-ili9341 &
+@reboot sudo /home/john/fbcp-ili9341/build/fbcp-ili9341 &
 ```
 
 ### RPi OS Lite - Launch TMUX Session & Display on LCD on boot
@@ -94,8 +94,6 @@ dtparam=audio=off
 ```bash
 speaker-test -c 1 -t sine
 ```
-
-
 
 ### PulseAudio Pi Server & Remote Client
 
