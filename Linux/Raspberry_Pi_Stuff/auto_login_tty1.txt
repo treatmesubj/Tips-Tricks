@@ -1,0 +1,5 @@
+Run: sudo raspi-config
+Choose option: 1 System Options
+Choose option: S5 Boot / Auto Login
+Choose option: B2 Console Autologin
+Select Finish, and reboot the Raspberry Pi.
