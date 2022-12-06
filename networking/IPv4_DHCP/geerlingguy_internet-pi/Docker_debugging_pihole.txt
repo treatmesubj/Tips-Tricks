@@ -9,8 +9,8 @@ root@pihole:/# tail -n 100 /var/log/pihole/pihole-FTL.log | more
 rock@raspberrypi:~ $ docker cp pihole:/var/log/pihole/pihole.log ./debug_pihole.log
 rock@raspberrypi:~ $ docker cp pihole:/var/log/pihole/FTL.log ./debug_pihole-FTL.log
 
-#3 way
-# if you've got teh micro SD of the pi instead
+# 3 way
+# if you've got the micro SD of the pi instead
 root@spectre:~ $ sudo -s
 root@spectre:/media/john/rootfs# find -iwholename ./var/lib/docker/overlay2/*/var/log/pihole/pihole.log
 root@spectre:/media/john/rootfs# find -iwholename ./var/lib/docker/overlay2/*/var/log/pihole/FTL.log
