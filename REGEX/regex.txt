@@ -1,0 +1,26 @@
+# Letters
+[abc]		a, b, or c
+[^abc]		not a, b, or c
+[a-z]		a to z
+[A-Z]		A to Z
+[a-zA-Z]	a to z, A to Z
+[0-9]		0 to 9
+
+# Quantifiers
+[ ]			occurs 1 time
+[ ]?		occurs 0 or 1 time
+[ ]+		occurs 1 or more times
+[ ]*		ocurrs 0 or more times
+[ ]{n} 		occurs n times
+[ ]{n,}		occurs n or more times
+[ ]{y,z}	occurs at least y times, but less than z times
+
+# Escape Character
+\
+
+# Examples
+1) 10 digit phone number starting with 8 or 9
+[89][0-9]{9}
+
+2) Email address e.g. jrock4503@hotmail.com
+[a-zA-Z0-9_\-\.]+[@][a-z]+[\.][a-z]{2,3}
