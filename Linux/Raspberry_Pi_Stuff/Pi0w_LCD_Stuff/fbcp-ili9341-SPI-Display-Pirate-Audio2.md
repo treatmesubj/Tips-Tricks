@@ -5,7 +5,7 @@
 </p>
 <h3>Custom Boot Animations</h3>
 <p align="center">
-  <a href="https://www.youtube.com/watch?v=JVH54AAEjyE"><img src="../attachments/pi0w_Halo_CE.png"></a> <a href="https://www.youtube.com/watch?v=BGSKWNUXjsQ"><img src="../attachments/pi0w_xbox.png"></a>
+  <a href="https://www.youtube.com/watch?v=JVH54AAEjyE"><img src="../attachments/pi0w_xbox.png"></a> <a href="https://www.youtube.com/watch?v=BGSKWNUXjsQ"><img src="../attachments/pi0w_Halo_CE.png"></a>
 </p>
 
 This is my Raspberry Pi Zero W with a Pirate Audio hat on it, which has a ST7789 240x240 LCD display and an audio jack. The display is being driven by the very cool [juj/fbcp-ili9341](https://github.com/juj/fbcp-ili9341). I've got Raspberry Pi OS Lite booting to `/dev/tty1`, which `~/.bashrc` checks, then spawns and attaches to a `tmux` session. I can `ssh` into my Pi's own wifi network spun up via the very cool [cjimti/iotwifi](https://github.com/cjimti/iotwifi) Docker container ([my tweaks](<./wifi_and_WAP.md>)), attach to the session from there too, and display a shared terminal session on the Pi's LCD. The Pi can connect to an actual network, too. \
