@@ -1,0 +1,13 @@
+treatmesubj@htb[/htb]$ ls -l /etc/passwd
+
+- rwx rw- r--   1 root root 1641 May  4 23:42 /etc/passwd
+- --- --- ---   |  |    |    |   |__________|
+|  |   |   |    |  |    |    |        |_ Date
+|  |   |   |    |  |    |    |__________ File Size
+|  |   |   |    |  |    |_______________ Group
+|  |   |   |    |  |____________________ User
+|  |   |   |    |_______________________ Number of hard links
+|  |   |   |_ Permission of others (read)
+|  |   |_____ Permissions of the group (read, write)
+|  |_________ Permissions of the owner (read, write, execute)
+|____________ File type (- = File, d = Directory, l = Link, ... )
