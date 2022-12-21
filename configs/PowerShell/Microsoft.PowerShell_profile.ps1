@@ -30,3 +30,8 @@ function prompt {
 # config: C:\Users\JohnHupperts/.config/.jira/.config.yml
 $env:JIRA_API_TOKEN = "blahblah"
 $env:JIRA_AUTH_TYPE = "bearer"
+
+# 'rm' should kindly move stuff to trash. 'which rm' will still point to binary unfortunately
+# https://github.com/bdukes/PowerShellModules/blob/main/Recycle/Recycle.psm1
+Import-Module "C:\Program Files\WindowsPowerShell\Modules\Recycle\1.5.0\Recycle.psm1"
+Set-Alias -Name rm -Value "Remove-ItemSafely" -Option AllScope
