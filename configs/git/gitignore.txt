@@ -1,4 +1,0 @@
-~*
-*.swp
-*.swo
-git config --global core.excludesfile ~/.gitignore
