@@ -57,3 +57,5 @@ set is "partial-search-match
 set number "line-numbers
 set mouse= "no-mouse
 set ttymouse= "no-mouse
+set directory=\tmp
+set backupdir=\tmp
