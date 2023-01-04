@@ -1,0 +1,23 @@
+$ adduser john
+$ login john  # user john is for nmap
+
+$ vim /etc/passwd  # change root & john's shells to bash from ash
+
+touch & add below contents to ...
+/root/.bashrc
+/root/.bash_profile
+/root/.bash_login
+/home/john/.bashrc
+/home/john/.bash_profile
+/home/john/.bash_login
+"""
+export PS1="\u:\w\$ "
+"""
+
+add below to just ...
+/root/.bashrc
+/root/.bash_profile
+/root/.bash_login
+"""
+alias thesr='python3 /root/Thesaurus_Rex/thesr.py'
+"""
