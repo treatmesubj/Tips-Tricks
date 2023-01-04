@@ -16,7 +16,7 @@ ibm-art
 Set-Alias -Name sublime -Value "C:\Program Files\Sublime Text 3\sublime_text.exe"
 
 function thesr {
-   python "C:\Users\JohnHupperts\Documents\Programming_Projects\thesr.py" $args
+   python "C:\Users\JohnHupperts\Documents\Programming_Projects\Thesaurus_Rex\thesr.py" $args
 }
 
 function prompt {
