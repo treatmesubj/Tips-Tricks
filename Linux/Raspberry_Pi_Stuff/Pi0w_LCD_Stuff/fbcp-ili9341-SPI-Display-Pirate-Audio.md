@@ -29,21 +29,35 @@ cd fbcp-ili9341
 ```
 
 3. Edit `~/fbcp-ili9341/config.h` and comment out some stuff
-```C
-// Disable ALL_TASKS_SHOULD_DMA
-// #ifndef ALL_TASKS_SHOULD_DMA
-// #define ALL_TASKS_SHOULD_DMA
-// #endif
-// If enabled, reads keyboard for input events to detect when the system has gone inactive and backlight
-// can be turned off
-// #define BACKLIGHT_CONTROL_FROM_KEYBOARD
+```
+193 // If enabled, build to utilize DMA transfers to communicate with the SPI peripheral. Otherwise polling
+194 // writes will be performed (possibly with interrupts, if using kernel side driver module)
+195 // #define USE_DMA_TRANSFERS
+196
+197 // If defined, enables code to manage the backlight.
+198 // #define BACKLIGHT_CONTROL
+199
+200 // #if defined(BACKLIGHT_CONTROL)
+201
+202 // If enabled, reads keyboard for input events to detect when the system has gone inactive and backlight
+203 // can be turned off
+204 // #define BACKLIGHT_CONTROL_FROM_KEYBOARD
+205
+206 // This device file is used to capture keyboard input. This may be "/dev/input/event0" or something else
+207 // on some Pis
+208 // #define KEYBOARD_INPUT_FILE "/dev/input/event1"
+209
+210 // If enabled, the display backlight will be turned off after this many usecs of no activity on screen.
+211 // #define TURN_DISPLAY_OFF_AFTER_USECS_OF_INACTIVITY (1 * 60 * 1000000)
+212
+213 // #endif
 ```
 
 4. Build 
 ```bash
 mkdir build
 cd build
-cmake -DPIRATE_AUDIO_ST7789_HAT=ON -DSPI_BUS_CLOCK_DIVISOR=6 -DBACKLIGHT_CONTROL=ON -DSTATISTICS=0 ..
+cmake -DPIRATE_AUDIO_ST7789_HAT=ON -DSPI_BUS_CLOCK_DIVISOR=6 -DSTATISTICS=0 ..
 make -j
 ```
 
