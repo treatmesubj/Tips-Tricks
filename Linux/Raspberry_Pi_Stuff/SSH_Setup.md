@@ -6,8 +6,9 @@ To do so, you'll need to create 2 files in the _boot partition_ of the Raspberry
 - If you're writing to the Micros SD from Linux, you'll need to mount the _boot partition_ as a directory on your host machine's file system and create the files in that directory. For help, see my [Bash Storage Management notes](<../Bash/storage_management.md>)
 
 If you haven't set up a default user on a fresh install of Raspbian OS, follow below.
-1. In boot partition of Micro SD, `$ echo 'mypassword' | openssl passwd -6 -stdin > userconf.txt`
-2. Edit `userconf.txt` to be `<username>:<encrypted-password>`
+1. `$ echo 'mypassword' | openssl passwd -6 -stdin > userconf.txt`
+2. Move the `userconf.txt` file to the boot partition of the Micro SD: `$ mv userconf.txt /media/pi_ssd_boot`
+3. Edit `userconf.txt` to be `<username>:<encrypted-password>`
 
 
 ## 1. Create `/boot/wpa_supplicant.conf`
