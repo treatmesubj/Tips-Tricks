@@ -3,7 +3,7 @@
 
 or 
 
-1. Download a [Raspberry Pi OS image](https://www.raspberrypi.com/software/operating-systems/)
+1. Download a [Raspberry Pi OS Image](https://www.raspberrypi.com/software/operating-systems/)
 2. Download and run [Balena Etcher](https://www.balena.io/etcher)
 
 ## With Another Machine, Mount the SD
