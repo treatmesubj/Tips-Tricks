@@ -7,7 +7,7 @@ To do so, you'll need to create 2 files in the _boot partition_ of the Raspberry
 
 If you haven't set up a default user on a fresh install of Raspbian OS, follow below.
 1. Encrpyt a password and copy it to your clipboard: `$ echo 'mypassword' | openssl passwd -6 -stdin | xclip -select clipboard`
-2. In boot partition of Micro SD, `$ touch userconf.txt`
+2. In boot partition of Micro SD, `$ sudo touch userconf.txt`
 3. In boot partition of Micro SD, add `<username>:<encrypted-password>` to `userconf.txt`
 
 
