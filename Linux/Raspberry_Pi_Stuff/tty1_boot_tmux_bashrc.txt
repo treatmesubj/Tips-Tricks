@@ -1,0 +1,8 @@
+# for ~/.bashrc
+if [[ $(tty) == "/dev/tty1" ]]; then
+  tmux new-session -d -s tmuxsesh -c ~
+  tmux a -t tmuxsesh
+fi
+if [[ $(tty) == "/dev/pts/0" ]]; then
+  PS1="$ "
+fi
