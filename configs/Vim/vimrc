@@ -1,9 +1,14 @@
 call plug#begin('~/.vim/plugged')
 Plug 'patstockwell/vim-monokai-tasty'
+" Plug 'morhetz/gruvbox'
+Plug 'vim-python/python-syntax'
 call plug#end()
+let g:python_highlight_all = 1
+" colorscheme gruvbox
+" let g:gruvbox_contrast_dark='hard'
 let g:vim_monokai_tasty_italic=1
 colorscheme vim-monokai-tasty
-highlight Normal ctermbg=black
+" highlight Normal ctermbg=black
 
 " When started as "evim", evim.vim will already have done these settings, bail
 " out.
@@ -46,3 +51,4 @@ set directory=/tmp
 set backupdir=/tmp
 set undofile  " keep an undo file (undo changes after closing)
 set undodir=~/.vim/undodir  "put all undo files in a tidy dir
+set background=dark
