@@ -3,6 +3,7 @@ Plug 'patstockwell/vim-monokai-tasty'
 call plug#end()
 let g:vim_monokai_tasty_italic=1
 colorscheme vim-monokai-tasty
+highlight Normal ctermbg=black
 
 " When started as "evim", evim.vim will already have done these settings, bail
 " out.
