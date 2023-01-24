@@ -121,15 +121,22 @@ WITH UR
 /* Learn about schema access */
 SELECT * FROM syscat.SCHEMAAUTH WHERE schemaname='EAL_EAL' WITH ur;
 
-/* Create empty table in same structure as other */
+/* --------------------------------------------
+Create empty table in same structure as other
+ -------------------------------------------- */
+DROP TABLE SCHEMA.TABLE_B;
+
 CREATE TABLE SCHEMA.TABLE_B AS (
     SELECT *
     FROM SCHEMA.TABLE_A ds
     WHERE 1=0
 )
 WITH DATA;
--- INSERT INTO SCHEMA.TABLE_B
--- SELECT * FROM SCHEMA_TABLE_A
+
+INSERT INTO SCHEMA.TABLE_B
+SELECT * FROM SCHEMA_TABLE_A;
+
+GRANT SELECT ON SCHEMA.TABLE_B TO ROLE READER;
 
 /* Create View */
 CREATE VIEW SCHEMA.VIEW AS (
