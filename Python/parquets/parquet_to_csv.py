@@ -23,6 +23,14 @@ def parquet_to_csv(in_file, out_file=None):
     return df
 
 
+def print_df_column_lengths(df):
+    for col in df.columns:
+        try:
+            print(f"{col}: {df[col].str.len().max()}")
+        except AttributeError:
+            print(col)
+
+
 if __name__ == "__main__":
     in_file = sys.argv[1]
     try:
@@ -30,4 +38,5 @@ if __name__ == "__main__":
     except IndexError:
         out_file = None
     df = parquet_to_csv(in_file=in_file, out_file=out_file)
+    print_df_column_lengths(df)
     table = pq.read_table(in_file)
