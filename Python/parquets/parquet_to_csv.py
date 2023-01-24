@@ -19,6 +19,7 @@ def parquet_to_csv(in_file, out_file=None):
 		out_file = f"{pre}.csv"
 		df.to_csv(out_file, index=False)
 		print(out_file)
+        return df
 
 
 if __name__ == "__main__":
@@ -27,4 +28,4 @@ if __name__ == "__main__":
 		out_file = sys.argv[2]
 	except IndexError:
 		out_file = None
-	parquet_to_csv(in_file=in_file, out_file=out_file)
+	df = parquet_to_csv(in_file=in_file, out_file=out_file)
