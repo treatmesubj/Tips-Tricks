@@ -1,6 +1,7 @@
 import sys
 import os
 import pandas as pd
+import pyarrow.parquet as pq
 
 
 def parquet_to_csv(in_file, out_file=None):
@@ -19,7 +20,7 @@ def parquet_to_csv(in_file, out_file=None):
         out_file = f"{pre}.csv"
         df.to_csv(out_file, index=False)
         print(out_file)
-        return df
+    return df
 
 
 if __name__ == "__main__":
@@ -29,3 +30,4 @@ if __name__ == "__main__":
     except IndexError:
         out_file = None
     df = parquet_to_csv(in_file=in_file, out_file=out_file)
+    table = pq.read_table(in_file)
