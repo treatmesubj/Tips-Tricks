@@ -145,7 +145,7 @@ uap0             UP           │
 f/64                          │
 ```
 
-If I feel more motivated one day, I'll map a sequence of button presses in [pirate_audio_buttons.py](../pirate_audio_buttons.py) to turn off the LCD backlight via the below Python script & do a soft poweroff of the Pi. Maybe I'll add some logic for button `A` to spawn another `tmux` session and have the Pi change the foreground `tty` to show it on the LCD too if I've accidentally killed `tmux` session or something.
+If I feel more motivated one day, I'll map a sequence of button presses in [pirate_audio_buttons.py](./pirate_audio_buttons.py) to turn off the LCD backlight via the below Python script & do a soft poweroff of the Pi. Maybe I'll add some logic for button `A` to spawn another `tmux` session and have the Pi change the foreground `tty` to show it on the LCD too if I've accidentally killed `tmux` session or something.
 ```python
 import RPi.GPIO as GPIO
 
