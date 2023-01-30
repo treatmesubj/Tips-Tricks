@@ -52,3 +52,4 @@ set backupdir=/tmp
 set undofile  " keep an undo file (undo changes after closing)
 set undodir=~/.vim/undodir  "put all undo files in a tidy dir
 set background=dark
+set tabstop=4 shiftwidth=4 expandtab
