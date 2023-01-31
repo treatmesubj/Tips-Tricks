@@ -47,6 +47,7 @@ set is  "partial-search-match
 set number  "line-numbers
 set mouse=  "no-mouse
 set ttymouse=  "no-mouse
+set wrap "don't literally insert newlines
 set directory=/tmp
 set backupdir=/tmp
 set undofile  " keep an undo file (undo changes after closing)
