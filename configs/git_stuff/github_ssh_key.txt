@@ -1,9 +1,16 @@
-$ ls -al ~/.ssh
-$ ssh-keygen -t my_key_for_github -C "jrock4503@hotmail.com"
-$ ssh-add ~/.ssh/my_key_for_github
+$ ls -la ~/.ssh
+$ ssh-keygen -t ed25519 -C "jrock4503@hotmail.com"
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/john/.ssh/id_ed25519): 
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in id_ed25519
+Your public key has been saved in id_ed25519.pub
+$ eval "$(ssh-agent -s)"  # start ssh-agent & set SSH_AUTH_SOCK env var
+$ ssh-add ~/.ssh/id_ed25519
 $ git config --global user.name "treatmesubj"
 $ git config --global user.email "jrock4503@hotmail.com"
 
-$ cat ~/.ssh/my_key_for_github.pub
+$ cat ~/.ssh/id_ed25519.pub
 
 # https://github.com/settings/keys
