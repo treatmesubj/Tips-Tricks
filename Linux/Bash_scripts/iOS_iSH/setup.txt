@@ -21,3 +21,5 @@ add below to just ...
 """
 alias thesr='python3 /root/Thesaurus_Rex/thesr.py'
 """
+
+might want to `apk add ncurses` for terminal printing stuff
