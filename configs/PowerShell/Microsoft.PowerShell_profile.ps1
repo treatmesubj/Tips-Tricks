@@ -20,7 +20,9 @@ function thesr {
 }
 
 function prompt {
-   'PS [' + ($env:UserName) + '] ' + '[' + ($pwd -split '\\')[0] + '] ' + '...\'+$(($pwd -split '\\')[-1] -join '\') + '> '
+    write-host ('[' + ($env:UserName) + '] ' +  (($pwd) -replace "C:\\Users\\JohnHupperts","~"))
+    write-host 'PS>' -NoNewline -BackgroundColor DarkBlue -ForegroundColor White
+    return " "
 }
 
 # https://github.com/ankitpokhrel/jira-cli
