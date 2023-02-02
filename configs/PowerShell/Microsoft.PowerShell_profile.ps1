@@ -25,6 +25,11 @@ function prompt {
     return " "
 }
 
+Set-PSReadlineKeyHandler -Key 'ctrl+l' -ScriptBlock {
+   [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
+   [Microsoft.PowerShell.PSConsoleReadLine]::CancelLine()
+}
+
 # https://github.com/ankitpokhrel/jira-cli
 # API token auth: https://jsw.ibm.com/plugins/servlet/de.resolution.apitokenauth/admin
 # Installation type: Local
