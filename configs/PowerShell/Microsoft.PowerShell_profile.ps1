@@ -20,7 +20,7 @@ function thesr {
 }
 
 function prompt {
-    write-host ('[' + ($env:UserName) + '] ' +  (($pwd) -replace "C:\\Users\\JohnHupperts","~"))
+    write-host ('[' + ($env:UserName) + '] ' +  (($pwd) -replace "C:\\Users\\JohnHupperts","~")) -ForegroundColor White
     write-host 'PS>' -NoNewline -BackgroundColor DarkBlue -ForegroundColor White
     return " "
 }
