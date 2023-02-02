@@ -16,19 +16,19 @@ ibm-art
 Set-Alias -Name sublime -Value "C:\Program Files\Sublime Text 3\sublime_text.exe"
 
 function thesr {
-   python "C:\Users\JohnHupperts\Documents\Programming_Projects\Thesaurus_Rex\thesr.py" $args
+    python "C:\Users\JohnHupperts\Documents\Programming_Projects\Thesaurus_Rex\thesr.py" $args
 }
 
 function prompt {
-   write-host ('[' + ($env:UserName) + '] ' +  (($pwd) -replace "C:\\Users\\JohnHupperts","~")) -ForegroundColor White
-   write-host 'PS>' -NoNewline -BackgroundColor DarkBlue -ForegroundColor White
-   return " "
+    write-host ('[' + ($env:UserName) + '] ' +  (($pwd) -replace "C:\\Users\\JohnHupperts","~")) -ForegroundColor White
+    write-host 'PS>' -NoNewline -BackgroundColor DarkBlue -ForegroundColor White
+    return " "
 }
 
 Set-PSReadlineKeyHandler -Key 'ctrl+l' -ScriptBlock {
-   [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
-   [Microsoft.PowerShell.PSConsoleReadLine]::CancelLine()
-   $(Clear-Host)
+    [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
+    [Microsoft.PowerShell.PSConsoleReadLine]::CancelLine()
+    $(Clear-Host)
 }
 
 # https://github.com/ankitpokhrel/jira-cli
