@@ -1,1 +1,2 @@
-:%s/foo/bar/g
+:%s/foo/bar/              " replace foo with barg
+:%s/[^\x00-\x7F]/ /g      " replace non-ascii with space
