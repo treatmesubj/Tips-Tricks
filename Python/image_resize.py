@@ -60,11 +60,11 @@ if __name__ == "__main__":
             if width_px:
                 wpercent = (width_px / float(img.size[0]))
                 hsize = int(float(img.size[1]) * float(wpercent))
-                img = img.resize((width_px, hsize), Image.ANTIALIAS)
+                img = img.resize((width_px, hsize), Image.LANCZOS)
             elif height_px:
                 hpercent = (height_px / float(img.size[1]))
                 wsize = int(float(img.size[0]) * float(hpercent))
-                img = img.resize((wsize, height_px), Image.ANTIALIAS)
+                img = img.resize((wsize, height_px), Image.LANCZOS)
             out_dir_path = f"{directory_path}/resized"
             if not os.path.exists(out_dir_path):
                 os.mkdir(out_dir_path)
