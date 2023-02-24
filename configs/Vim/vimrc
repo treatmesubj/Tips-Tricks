@@ -1,3 +1,4 @@
+" see https://github.com/junegunn/vim-plug for installation guide
 call plug#begin('~/.vim/plugged')
 Plug 'patstockwell/vim-monokai-tasty'
 " Plug 'morhetz/gruvbox'
