@@ -46,6 +46,7 @@ endif
 set ic  "ignore-case
 set is  "partial-search-match
 set number  "line-numbers
+set relativenumber  "relative line-numbers
 set mouse=  "no-mouse
 set ttymouse=  "no-mouse
 set wrap "don't literally insert newlines
