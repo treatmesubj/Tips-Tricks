@@ -9,12 +9,21 @@
 2. create `setup.py`
     ```
     from setuptools import setup
+    from pathlib import Path
+
+
+    this_directory = Path(__file__).parent
+    long_description = (this_directory / "README.md").read_text()
+
     setup(
         name="package_name",
         version="0.0.2",
         license="gpl-3.0",
         author="John Hupperts",
         author_email="jrock4503@hotmail.com",
+        description="it's a cool package",
+        long_description=long_description,
+        long_description_content_type="text/markdown",
         url="https://github.com/treatmesubj/repo",
         download_url="https://github.com/treatmesubj/repo/archive/refs/tags/v0.0.2.tar.gz",
         packages=["package_name"],
