@@ -4,13 +4,7 @@
 1. create `setup.cfg`
     ```
     [metadata]
-    requires-dist =
-        markdown-it-py
-        beautifulsoup4
-        html5lib
-
-    long_description = file: README.md
-    long_description_content_type = text/markdown
+    license_files = LICENSE.txt
     ```
 2. create `setup.py`
     ```
@@ -35,7 +29,16 @@
         ],
     )
     ```
-3. `python -m pip install build twine`
-4. `python -m build`
-5. `twine check dist/*` 
-6. `twine upload dist/*`
+3. create `pyproject.toml`
+    ```
+    [build-system]
+    requires = [
+        "setuptools",
+        "wheel"
+    ]
+    build-backend = "setuptools.build_meta"
+    ```
+4. `python -m pip install build twine`
+5. `python -m build`
+6. `twine check dist/*` 
+7. `twine upload dist/*`
