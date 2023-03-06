@@ -3,6 +3,8 @@ import os
 import json
 import requests
 import argparse
+import keyring
+import keyring.util.platform_ as keyring_platform
 
 
 def make_github_issue(
@@ -14,7 +16,10 @@ def make_github_issue(
     url = f"https://github.ibm.com/api/v3/repos/{repo_owner}/{repo_name}/issues"
     # Create an authenticated session to create the issue
     session = requests.Session()
-    session.auth = (username, password)
+    if args.keyring:
+        session.auth(keyring.get_password(service_name="github.ibm.com", username=username))
+    else:
+        session.auth = (username, password)
     # Create our issue
     issue = {
         'title': title,
@@ -33,16 +38,18 @@ def make_github_issue(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--username', '-u', required=True, action="store")
-    parser.add_argument('--password', '-p', required=True, action="store")
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument('--keyring', '-k', default=None, action="store")
+    group.add_argument('--password', '-p', default=None, action="store")
     parser.add_argument('--repo_owner', '-o', required=True, action="store")
     parser.add_argument('--repo_name', '-n', required=True, action="store")
     parser.add_argument('--title', '-t', required=True, action="store")
-    parser.add_argument('--body', '-b', required=True, default=None, action="store")
-    parser.add_argument('--labels', '-l', required=True, default=None, nargs='?', action="store")
+    parser.add_argument('--body', '-b', required=False, default=None, action="store")
+    parser.add_argument('--labels', '-l', required=False, default=None, nargs='?', action="store")
     args = parser.parse_args()
 
     make_github_issue(
-        args.username, args.password,
+        args.username, args.password, args.keyring,
         args.repo_owner, args.repo_name,
         args.title, args.body, args.labels
         )
