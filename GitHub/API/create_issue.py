@@ -7,32 +7,29 @@ import keyring
 import keyring.util.platform_ as keyring_platform
 
 
-def make_github_issue(
+def create_github_issue(
         username, password, keyringy,
         repo_owner, repo_name,
         title, body=None, labels=None
         ):
     # url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/issues"
     url = f"https://github.ibm.com/api/v3/repos/{repo_owner}/{repo_name}/issues"
-    # Create an authenticated session to create the issue
     session = requests.Session()
     if args.keyringy:
         session.auth = (username, keyring.get_password(service_name="github.ibm.com", username=username))
     else:
         session.auth = (username, password)
-    # Create our issue
     issue = {
         'title': title,
          'body': body,
          'labels': labels
     }
-    # Add the issue to our repository
     r = session.post(url, json.dumps(issue))
     if r.status_code == 201:
-        print ('Successfully created Issue {0:s}'.format(title))
+        print (f"Successfully created Issue: {title}")
     else:
-        print ('Could not create Issue {0:s}'.format(title))
-        print ('Response:', r.content)
+        print ("Could not create Issue: {title}")
+        print ('Response: ', r.content)
 
 
 if __name__ == "__main__":
@@ -48,7 +45,7 @@ if __name__ == "__main__":
     parser.add_argument('--labels', '-l', required=False, default=[], nargs='?', action="store")
     args = parser.parse_args()
 
-    make_github_issue(
+    create_github_issue(
         args.username, args.password, args.keyringy,
         args.repo_owner, args.repo_name,
         args.title, args.body, args.labels
