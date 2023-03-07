@@ -1,0 +1,2 @@
+- [repo](https://github.com/cli/cli)
+- [docs](https://cli.github.com/manual/gh_auth_login)
