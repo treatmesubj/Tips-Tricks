@@ -36,7 +36,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--username', '-u', required=True, action="store")
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument('--keyringy', '-k', default=None, action="store_true")
+    group.add_argument('--keyringy', '-k', help="keyring",  default=None, action="store_true")
     group.add_argument('--password', '-p', help="personal access token w/ repo scope", default=None, action="store")
     parser.add_argument('--repo_owner', '-o', required=True, action="store")
     parser.add_argument('--repo_name', '-n', required=True, action="store")
