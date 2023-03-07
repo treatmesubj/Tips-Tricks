@@ -40,12 +40,12 @@ if __name__ == "__main__":
     parser.add_argument('--username', '-u', required=True, action="store")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('--keyringy', '-k', default=None, action="store_true")
-    group.add_argument('--password', '-p', default=None, action="store")
+    group.add_argument('--password', '-p', help="personal access token w/ repo scope", default=None, action="store")
     parser.add_argument('--repo_owner', '-o', required=True, action="store")
     parser.add_argument('--repo_name', '-n', required=True, action="store")
     parser.add_argument('--title', '-t', required=True, action="store")
     parser.add_argument('--body', '-b', required=False, default=None, action="store")
-    parser.add_argument('--labels', '-l', required=False, default=None, nargs='?', action="store")
+    parser.add_argument('--labels', '-l', required=False, default=[], nargs='?', action="store")
     args = parser.parse_args()
 
     make_github_issue(
