@@ -14,12 +14,4 @@ touch & add below contents to ...
 export PS1="\u:\w\$ "
 """
 
-add below to just ...
-/root/.bashrc
-/root/.bash_profile
-/root/.bash_login
-"""
-alias thesr='python3 /root/Thesaurus_Rex/thesr.py'
-"""
-
 might want to `apk add ncurses` for terminal printing stuff
