@@ -15,10 +15,13 @@ ibm-art
 
 Set-Alias -Name sublime -Value "C:\Program Files\Sublime Text 3\sublime_text.exe"
 Set-Alias -Name firefox -Value "C:\Program Files\Mozilla Firefox\firefox.exe"
-Set-Alias -Name list -Value "ls"
+
+function list {
+    wsl ls -a -h -s -1 --color
+}
 
 function thesr {
-    python "C:\Users\JohnHupperts\Documents\Programming_Projects\Thesaurus_Rex\thesr.py" $args
+    python -m thesr.thesr $args
 }
 
 function prompt {
