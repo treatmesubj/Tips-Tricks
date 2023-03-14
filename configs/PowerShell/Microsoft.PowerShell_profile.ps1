@@ -17,7 +17,7 @@ Set-Alias -Name sublime -Value "C:\Program Files\Sublime Text 3\sublime_text.exe
 Set-Alias -Name firefox -Value "C:\Program Files\Mozilla Firefox\firefox.exe"
 
 function list {
-    wsl ls -a -h -s -1 --color
+    wsl ls -a -h -s -1 --color $args
 }
 
 function thesr {
