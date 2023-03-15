@@ -47,7 +47,9 @@
     ]
     build-backend = "setuptools.build_meta"
     ```
-4. `python -m pip install build twine`
-5. `python -m build`
-6. `twine check dist/*` 
-7. `twine upload dist/*`
+4. `git add .`, `git commit -m "v0.0.2"`, `git push`
+5. create GitHub release w/ title and tag as `v0.0.2`
+6. `python -m pip install build twine`
+7. `python -m build`
+8. `twine check dist/*` 
+9. `twine upload dist/*`
