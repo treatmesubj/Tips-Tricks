@@ -52,7 +52,7 @@ def two_list_work(in_file1, in_file2):
 
 
 if __name__ == "__main__":
-	
+
 	"""
 	# one list work
 	in_file = sys.argv[1]

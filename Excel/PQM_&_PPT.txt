@@ -1,0 +1,72 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Create Data Model for Formulated Pivot
+
+	Data > Existing Connections >T (Tab) Tables > Static Table: table
+	Insert > PivotTable
+		>x Use this workbook's Data Model
+	Once pivot is done being formatted,
+	Analyze > OLAP Tools > Convert to Formulas
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Create Power Pivot Connection
+
+	Power Pivot > Manage > From Other Sources > ODBC
+		> Build
+			>T (Tab) Provider
+				> IBM OLE DB Provider
+				> Next
+			>T (Tab) All
+				Data Source: SMS ~~~ from db2cli.ini file
+				Password: *******
+				User ID: *******
+		> Next
+			>x Write a query that will specify the data to import
+				> SQL Statement: Select * from whatever
+				> Validate
+				> Finish
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Excel Power Query SQL
+
+	Data > Get Data > From Other Sources > From ODBC
+		Data-source/DSN: SMS ~~~ these data-source aliases just come from your db2cli.ini file at C:\ProgramData\IBM\DB2\IBMDBCL1\cfg\db2cli.ini
+		>v Advanced Properties
+			SQL Statement: SQL-code
+		> OK
+
+**On "Refresh All" you probably want your queries to fully refresh before you refresh your pivots, especially if you're using a macro
+	Data > Queries & Connections
+		Right-click your query
+		> Properties
+			>x (Deselect) Enable background refresh
+
+**You may want to change the logic/composition of your resulting table
+	Data > Queries & Connections
+		Right-click your query
+		> Edit
+
+**Things to Consider
+	Data Types of your columns
+	Cleaning your SQL results
+	If you want to imitate a complicated analytical query,
+		you may need to merge multiple queries
+		you may need to translate any calculated column logic
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Power Query M Query Results Cleaning
+
+	let 
+	    Source = Odbc.Query("dsn=SMS",
+	"<---SQL Statement----->"
+	),
+	    #"Appended Query" = Table.Combine({Source, dummy_rows}), //append dummy rows
+	    //text_table = Table.TransformColumnTypes(Source, List.Transform(Table.ColumnNames(Source), each {_, type text})), //data-type text
+	    text_cols = Table.ColumnsOfType(#"Appended Query", {type nullable text}),
+	    cleaned_table = Table.TransformColumns(#"Appended Query", List.Transform(text_cols, each {_, Text.Clean})), //strip invalid chars
+	    trimmed_table = Table.TransformColumns(cleaned_table, List.Transform(text_cols, each {_, Text.Trim})), //strip stuff
+	    padded_ent_cmr_id = Table.TransformColumns(trimmed_table, {{"ENT_CMR_ID", each if _ <> "" then Text.PadStart(_, 8, "0") else "", type text}}) //zero-pad text in a col up to 8 chars
+	    //replace <NULL>s with 0s in number columns so aggregates work
+	    fixed_dollar_vals = Table.ReplaceValue(padded_ent_cmr_id,"<NULL>",0,Replacer.ReplaceValue,{"DtD $M", "WtD $M"}),
+
+	    //general steps: get source, [append queries], set types, clean invalid chars, trim text
+	in
+	    fixed_dollar_vals
+
