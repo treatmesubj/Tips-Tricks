@@ -1,4 +1,8 @@
+# OS
+cat /etc/os-release
 uname -a
+
+# Other
 lscpu
 lshw
 hwinfo
