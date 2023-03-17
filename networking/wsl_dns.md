@@ -22,9 +22,9 @@ Ethernet adapter Ethernet 2:
 ```
 - Note the DNS Server `2.0.0.1`
 
-2. from WSL Ubuntu Bash
+2. from WSL Debian...
 ```
-$ sudo nano /etc/resolv.conf # insert at top of list: nameserver 2.0.0.1
+$ sudo vim /etc/resolv.conf # insert at top of list: nameserver 2.0.0.1
 ```
  - if you add below to `/etc/wsl.conf`, you need to exit WSL and run `wsl --shutdown` from PowerShell for it to actually take effect next time you boot WSL
  ```
