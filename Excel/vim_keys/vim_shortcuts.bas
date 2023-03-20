@@ -10,7 +10,7 @@ Sub setup_shortcuts()
 
   Application.OnKey "i", "edit"
   Application.OnKey "a", "edit"
-  'Application.OnKey "+a", "edit_end"
+  Application.OnKey "+a", "edit_end"
   Application.OnKey "+i", "edit_begin"
 
   Application.OnKey "o", "insert_row_below"
@@ -23,8 +23,6 @@ Sub setup_shortcuts()
   Application.OnKey "b", "go_contiguous_left"
   Application.OnKey "w", "go_contiguous_right"
   Application.OnKey "e", "go_contiguous_right"
-  'Application.OnKey "+b", "select_contiguous_left"
-  'Application.OnKey "+w", "select_contiguous_right"
 
   Application.OnKey "+h", "go_top"
   Application.OnKey "^u", "page_up" 
@@ -33,7 +31,6 @@ Sub setup_shortcuts()
   Application.OnKey "+m", "go_mid"
   Application.OnKey "+4", "go_end_of_row"
   Application.OnKey "0", "go_begin_of_row"
-  Application.OnKey " ", "go_right"
 End Sub
 
 Sub teardown_shortcuts()
@@ -46,7 +43,7 @@ Sub teardown_shortcuts()
 
   Application.OnKey "i"
   Application.OnKey "a"
-  'Application.OnKey "+a"
+  Application.OnKey "+a"
   Application.OnKey "+i"
 
   Application.OnKey "o"
@@ -59,8 +56,6 @@ Sub teardown_shortcuts()
   Application.OnKey "b"
   Application.OnKey "w"
   Application.OnKey "e"
-  Application.OnKey "+b"
-  Application.OnKey "+w"
 
   Application.OnKey "+h"
   Application.OnKey "^u"

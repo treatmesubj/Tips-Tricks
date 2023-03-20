@@ -26,6 +26,14 @@ Public Sub edit_begin()
   Call edit
   Application.SendKeys "{HOME}"
 End Sub
+Public Sub edit_end()
+  Dim row As Long
+  Dim col As Long
+  row = Selection.row
+  Cells(row, 16384).Select
+  col = Selection.End(xlToLeft).Column
+  Cells(row, col).Select
+End Sub
 
 ' contiguous left, right
 Public Sub go_contiguous_left()
@@ -64,26 +72,6 @@ Public Sub go_contiguous_right()
     End If
   End If
 End Sub
-'Public Sub select_contiguous_left()
-'  Dim col As Long
-'  Dim row As Long
-'  col = Selection.End(xlToLeft).Column
-'  row = Selection.row
-'  Dim r1 As Range, r2 As Range
-'  Set r1 = Selection
-'  Set r2 = Cells(row, col)
-'  Range(r1, r2).Select
-'End Sub
-'Public Sub select_contiguous_right()
-'  Dim col As Long
-'  Dim row As Long
-'  col = Selection.End(xlToRight).Column
-'  row = Selection.row
-'  Dim start_range As Range, end_range As Range
-'  Set start_range = Selection
-'  Set end_range = Cells(row, col)
-'  Range(start_range, end_range).Select
-'End Sub
 
 ' insert rows 
 Public Sub insert_row_above()
