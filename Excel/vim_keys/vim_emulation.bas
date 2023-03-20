@@ -97,9 +97,6 @@ Public Sub delete_cell()
 End Sub
 
 ' big movements
-Public Sub go_a1()
-  Range("A1").Select
-End Sub
 Public Sub go_top_of_viewport()
   Dim w As Window
   Set w = ActiveWindow
@@ -145,4 +142,7 @@ Public Sub page_down()
   Application.SendKeys "{PGDN}"
 End Sub
 
-
+' search
+Public Sub do_search()
+  Application.SendKeys "^f"
+End Sub

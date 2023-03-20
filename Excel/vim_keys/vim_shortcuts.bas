@@ -31,6 +31,8 @@ Sub setup_shortcuts()
   Application.OnKey "+4", "go_end_of_row_values" '$
   Application.OnKey "0", "go_begin_of_row"
   Application.OnKey "+-", "go_begin_of_row_values" '_
+
+  Application.OnKey "/", "do_search"
 End Sub
 
 Sub teardown_shortcuts()
@@ -60,10 +62,12 @@ Sub teardown_shortcuts()
   Application.OnKey "+h"
   Application.OnKey "^u"
   Application.OnKey "+l"
-  Applicaiton.OnKey "^d"
+  Application.OnKey "^d"
   Application.OnKey "+4"
   Application.OnKey "0"
   Application.OnKey "+-"
+
+  Application.OnKey "/"
 End Sub
 
 Sub Auto_Open()
