@@ -1,5 +1,5 @@
 Rem Attribute VBA_ModuleType=VBAModule
-Option VBASupport 1
+' Option VBASupport 1
 Sub setup_shortcuts()
   Application.OnKey "+a", "edit_end"
   Application.OnKey "b", "go_contiguous_left"
@@ -17,6 +17,7 @@ Sub setup_shortcuts()
   Application.OnKey "+o", "insert_row_above"
   Application.OnKey "t", "transform_selection"
   Application.OnKey "w", "go_contiguous_right"
+  Application.OnKey "e", "go_contiguous_right"
   Application.OnKey "+w", "select_contiguous_right"
   Application.OnKey "+4", "go_end_of_row"
   Application.OnKey "0", "go_begin_of_row"
@@ -40,6 +41,7 @@ Sub teardown_shortcuts()
   Application.OnKey "+o"
   Application.OnKey "t"
   Application.OnKey "w"
+  Application.OnKey "e"
   Application.OnKey "+w"
   Application.OnKey "+4"
   Application.OnKey "0"
