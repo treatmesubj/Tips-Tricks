@@ -79,13 +79,16 @@ Public Sub insert_row_below()
   Application.SendKeys "{F2}"
 End Sub
 
-' delete row
+' delete rows, cells
 Public Sub delete_row()
   Dim row As Long
   row = Selection.row
   Rows(row & ":" & row).EntireRow.Delete
   Cells(row, Selection.Column).Select
   Application.SendKeys "{F2}"
+End Sub
+Public Sub delete_cell()
+  Application.SendKeys "{DEL}"
 End Sub
 
 ' absolute movements

@@ -17,6 +17,8 @@ Sub setup_shortcuts()
   Application.OnKey "+o", "insert_row_above"
 
   'Application.OnKey "dd", "delete_row"
+  'Application.OnKey "dw", "delete_cell"
+  Application.OnKey "x", "delete_cell"
 
   Application.OnKey "b", "go_contiguous_left"
   Application.OnKey "w", "go_contiguous_right"
@@ -47,6 +49,10 @@ Sub teardown_shortcuts()
 
   Application.OnKey "o"
   Application.OnKey "+o"
+
+  'Application.OnKey "dd"
+  'Application.OnKey "dw"
+  Application.OnKey "x"
 
   Application.OnKey "b"
   Application.OnKey "w"
