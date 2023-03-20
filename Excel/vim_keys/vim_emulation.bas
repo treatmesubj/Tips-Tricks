@@ -27,8 +27,7 @@ Public Sub edit_begin()
   Application.SendKeys "{HOME}"
 End Sub
 Public Sub edit_end()
-  Dim row As Long
-  Dim col As Long
+  Dim row As Long: Dim col As Long
   row = Selection.row
   Cells(row, 16384).Select
   col = Selection.End(xlToLeft).Column
@@ -39,16 +38,13 @@ End Sub
 
 ' contiguous left, right
 Public Sub go_contiguous_left()
-  Dim col As Long
-  Dim row As Long
-  col = Selection.End(xlToLeft).Column
-  row = Selection.row
+  Dim row As Long: Dim col As Long
+  row = Selection.row: col = Selection.End(xlToLeft).Column
   Cells(row, col).Select
   If IsEmpty(Selection) Then
     Cells(row-1, 16384).Select
     If IsEmpty(Selection) Then
-      row = Selection.row
-      col = Selection.End(xlToLeft).Column
+      row = Selection.row: col = Selection.End(xlToLeft).Column
       Cells(row, col).Select
       If IsEmpty(Selection) Then
         Cells(row, 1).Select
@@ -57,16 +53,13 @@ Public Sub go_contiguous_left()
   End If
 End Sub
 Public Sub go_contiguous_right()
-  Dim col As Long
-  Dim row As Long
-  col = Selection.End(xlToRight).Column
-  row = Selection.row
+  Dim row As Long: Dim col As Long
+  row = Selection.row: col = Selection.End(xlToRight).Column
   Cells(row, col).Select
   If IsEmpty(Selection) Then
     Cells(row+1, 1).Select
     If IsEmpty(Selection) Then
-      row = Selection.row
-      col = Selection.End(xlToRight).Column
+      row = Selection.row: col = Selection.End(xlToRight).Column
       Cells(row, col).Select
       If IsEmpty(Selection) Then
         Cells(row, 1).Select
@@ -107,25 +100,33 @@ End Sub
 Public Sub go_a1()
   Range("A1").Select
 End Sub
-Public Sub go_top()
+Public Sub go_top_of_viewport()
   Dim w As Window
   Set w = ActiveWindow
   Cells(w.ScrollRow, Selection.Column).Select
 End Sub
 Public Sub go_begin_of_row()
-  Dim thisRow As Long
-  thisRow = Selection.row
-  Cells(thisRow, 1).Select
+  Dim row As Long
+  row = Selection.row
+  Cells(row, 1).Select
 End Sub
-Public Sub go_end_of_row()
-  Dim col As Long
-  Dim thisRow As Long
-  thisRow = Selection.row
-  Cells(thisRow, 16384).Select
+Public Sub go_begin_of_row_values()
+  Call go_begin_of_row
+  Dim row As Long: Dim col As Long
+  row = Selection.row: col = Selection.End(xlToRight).Column
+  Cells(row, col).Select
+  If IsEmpty(Selection) Then
+    Cells(row, 1).Select
+  End If
+End Sub
+Public Sub go_end_of_row_values()
+  Dim row As Long: Dim col As Long
+  row = Selection.row
+  Cells(row, 16384).Select
   col = Selection.End(xlToLeft).Column
   Cells(row, col).Select
 End Sub
-Public Sub go_bottom()
+Public Sub go_bottom_of_viewport()
   Dim new_view_row As Long, old_view_row As Long
   Dim w As Window
   Set w = ActiveWindow

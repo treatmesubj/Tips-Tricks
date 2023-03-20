@@ -24,13 +24,13 @@ Sub setup_shortcuts()
   Application.OnKey "w", "go_contiguous_right"
   Application.OnKey "e", "go_contiguous_right"
 
-  Application.OnKey "+h", "go_top"
+  Application.OnKey "+h", "go_top_of_viewport"
   Application.OnKey "^u", "page_up" 
-  Application.OnKey "+l", "go_bottom"
+  Application.OnKey "+l", "go_bottom_of_viewport"
   Application.OnKey "^d", "page_down"
-  Application.OnKey "+m", "go_mid"
-  Application.OnKey "+4", "go_end_of_row" '$
+  Application.OnKey "+4", "go_end_of_row_values" '$
   Application.OnKey "0", "go_begin_of_row"
+  Application.OnKey "+-", "go_begin_of_row_values" '_
 End Sub
 
 Sub teardown_shortcuts()
@@ -61,9 +61,9 @@ Sub teardown_shortcuts()
   Application.OnKey "^u"
   Application.OnKey "+l"
   Applicaiton.OnKey "^d"
-  Application.OnKey "+m"
   Application.OnKey "+4"
   Application.OnKey "0"
+  Application.OnKey "+-"
 End Sub
 
 Sub Auto_Open()
