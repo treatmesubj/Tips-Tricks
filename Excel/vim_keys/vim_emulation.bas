@@ -1,9 +1,7 @@
 Rem Attribute VBA_ModuleType=VBAModule
-Option VBASupport 1
-' vim: set ft=vb :
+' Option VBASupport 1
 Option Explicit
 
-' should edit last cell on current row?
 Public Sub edit_end()
   Application.SendKeys "{F2}"
 End Sub
@@ -55,8 +53,6 @@ End Sub
 Public Sub go_end_of_row()
   Dim lastColumn As Long
   Dim thisRow As Long
-  'Get Last Column with Data in Row
-  ' Set lastColumn = Selection.End(xlToRight).EntireColumn
   lastColumn = Cells.SpecialCells(xlCellTypeLastCell).Column
   thisRow = Selection.row
   Cells(thisRow, lastColumn).Select
@@ -142,5 +138,15 @@ Public Sub insert_row_above()
   Cells(row, Selection.Column).Select
   Application.SendKeys "{F2}"
 End Sub
+
+Public Sub delete_row()
+  Dim row As Long
+  row = Selection.row
+  Rows(row & ":" & row).EntireRow.Delete
+  Cells(row, Selection.Column).Select
+  Application.SendKeys "{F2}"
+End Sub
+
+
 
 
