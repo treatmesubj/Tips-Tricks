@@ -41,8 +41,8 @@ Public Sub go_contiguous_left()
   Dim row As Long: Dim col As Long
   row = Selection.row: col = Selection.End(xlToLeft).Column
   Cells(row, col).Select
-  If IsEmpty(Selection) Then
-    Cells(row-1, 16384).Select
+  If IsEmpty(Selection) And row > 1 Then
+    Cells(row - 1, 16384).Select
     If IsEmpty(Selection) Then
       row = Selection.row: col = Selection.End(xlToLeft).Column
       Cells(row, col).Select

@@ -69,11 +69,3 @@ Sub teardown_shortcuts()
 
   Application.OnKey "/"
 End Sub
-
-Sub Auto_Open()
-  Call setup_shortcuts
-End Sub
-
-Sub Auto_Close()
-  Call teardown_shortcuts
-End Sub
