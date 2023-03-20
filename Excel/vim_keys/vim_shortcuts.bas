@@ -23,8 +23,8 @@ Sub setup_shortcuts()
   Application.OnKey "b", "go_contiguous_left"
   Application.OnKey "w", "go_contiguous_right"
   Application.OnKey "e", "go_contiguous_right"
-  Application.OnKey "+b", "select_contiguous_left"
-  Application.OnKey "+w", "select_contiguous_right"
+  'Application.OnKey "+b", "select_contiguous_left"
+  'Application.OnKey "+w", "select_contiguous_right"
 
   Application.OnKey "+h", "go_top"
   Application.OnKey "^u", "page_up" 
