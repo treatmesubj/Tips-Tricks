@@ -140,5 +140,11 @@ Public Sub go_mid()
   Application.ScreenUpdating = True
   Cells(Int((new_view_row - old_view_row) / 2), Selection.Column).Select
 End Sub
+Public Sub page_up()
+  Application.SendKeys "{PGUP}"
+End Sub
+Public Sub page_down()
+  Application.SendKeys "{PGDN}"
+End Sub
 
 
