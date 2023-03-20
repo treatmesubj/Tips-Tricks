@@ -29,7 +29,7 @@ Sub setup_shortcuts()
   Application.OnKey "+l", "go_bottom"
   Application.OnKey "^d", "page_down"
   Application.OnKey "+m", "go_mid"
-  Application.OnKey "+4", "go_end_of_row"
+  Application.OnKey "+4", "go_end_of_row" '$
   Application.OnKey "0", "go_begin_of_row"
 End Sub
 

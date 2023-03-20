@@ -33,6 +33,8 @@ Public Sub edit_end()
   Cells(row, 16384).Select
   col = Selection.End(xlToLeft).Column
   Cells(row, col).Select
+  Call edit
+  Application.SendKeys "{END}"
 End Sub
 
 ' contiguous left, right
@@ -101,16 +103,13 @@ Public Sub delete_cell()
   Application.SendKeys "{DEL}"
 End Sub
 
-' absolute movements
+' big movements
 Public Sub go_a1()
   Range("A1").Select
 End Sub
 Public Sub go_top()
   Dim w As Window
   Set w = ActiveWindow
-  ' w.SmallScroll down:=-9999
-  ' w.LargeScroll Down:=1
-  ' w.ScrollRow = Selection.Row
   Cells(w.ScrollRow, Selection.Column).Select
 End Sub
 Public Sub go_begin_of_row()
@@ -119,11 +118,12 @@ Public Sub go_begin_of_row()
   Cells(thisRow, 1).Select
 End Sub
 Public Sub go_end_of_row()
-  Dim lastColumn As Long
+  Dim col As Long
   Dim thisRow As Long
-  lastColumn = Cells.SpecialCells(xlCellTypeLastCell).Column
   thisRow = Selection.row
-  Cells(thisRow, lastColumn).Select
+  Cells(thisRow, 16384).Select
+  col = Selection.End(xlToLeft).Column
+  Cells(row, col).Select
 End Sub
 Public Sub go_bottom()
   Dim new_view_row As Long, old_view_row As Long
@@ -136,19 +136,6 @@ Public Sub go_bottom()
   w.ScrollRow = old_view_row
   Application.ScreenUpdating = True
   Cells(new_view_row - 1, Selection.Column).Select
-End Sub
-Public Sub go_mid()
-  Dim new_view_row As Long
-  Dim old_view_row As Long
-  Dim w As Window
-  Set w = ActiveWindow
-  old_view_row = w.ScrollRow
-  Application.ScreenUpdating = False
-  w.LargeScroll Down:=1
-  new_view_row = w.ScrollRow
-  w.ScrollRow = old_view_row
-  Application.ScreenUpdating = True
-  Cells(Int((new_view_row - old_view_row) / 2), Selection.Column).Select
 End Sub
 Public Sub page_up()
   Application.SendKeys "{PGUP}"
