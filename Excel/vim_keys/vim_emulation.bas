@@ -22,7 +22,7 @@ Public Sub edit()
 End Sub
 Public Sub edit_begin()
   Call go_begin_of_row
-  Call go_continuous_right
+  Call go_contiguous_right
   Call edit
   Application.SendKeys "{HOME}"
 End Sub
