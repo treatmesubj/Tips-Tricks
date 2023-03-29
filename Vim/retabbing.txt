@@ -1,0 +1,5 @@
+set tabstop=2 shiftwidth=2 noexpandtab " every 2 spaces -> tab
+:retab! " convert spaces -> tabs
+set tabstop=4 shiftwidth=4 expandtab "every tab -> 4 spaces
+:"retab " convert tabs -> spaces
+
