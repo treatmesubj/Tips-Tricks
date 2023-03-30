@@ -17,11 +17,11 @@ tag
 descendent
 ```
 
-# -Example Locator
+# Example Locator
 ```
 $("tag.class[attr*='txt in value']~#siblingId")
--Attribute Contains Two Substrings
-    $("[href*='select'][href*='.FCFH']")
+// Attribute Contains Two Substrings
+$("[href*='select'][href*='.FCFH']")
 ```
 
 # JS Parent Element (Python Selenium)
@@ -38,8 +38,8 @@ driver.execute_script(f"arguments[0].value=\"{my_string}\";", my_elem)
 
 # HTML Quick Tricks
 ```
-    <html style="overflow: hidden;">
-        ***"overflow: hidden": prevents scrolling***
-    <input id="loginPassword" class="AnimatedForm__textInput" name="password" placeholder="Password" data-empty="false" type="password">
-        ***"type='password'": *s & prevents copying text***
+<html style="overflow: hidden;">
+    ***"overflow: hidden": prevents scrolling***
+<input id="loginPassword" class="AnimatedForm__textInput" name="password" placeholder="Password" data-empty="false" type="password">
+    ***"type='password'": *s & prevents copying text***
 ```
