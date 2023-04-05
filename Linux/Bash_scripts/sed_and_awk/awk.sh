@@ -1,0 +1,5 @@
+awk '{print $0}' infile.txt             # print each space/tab field-delimited 'field'
+awk '{print $1}' infile.txt             # print 1st space/tab field-delimited 'field'
+awk '{print $1,$3}' infile.txt          # print 1st & 3rd space/tab field-delimited 'field'
+ls -l | awk '{print $1,$NF}'            # print 1st & last space/tab field-demilited 'field'
+cat /etc/passwd | awk -F':' '{print $1,$7}'  # print 1st & 7th colon field-delimited 'field'
