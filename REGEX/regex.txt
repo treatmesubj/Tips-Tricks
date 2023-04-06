@@ -1,19 +1,19 @@
 # Letters
-[abc]		a, b, or c
-[^abc]		not a, b, or c
-[a-z]		a to z
-[A-Z]		A to Z
-[a-zA-Z]	a to z, A to Z
-[0-9]		0 to 9
+[abc]       a, b, or c
+[^abc]      not a, b, or c
+[a-z]       a to z
+[A-Z]       A to Z
+[a-zA-Z]    a to z, A to Z
+[0-9]       0 to 9
 
 # Quantifiers
-[ ]			occurs 1 time
-[ ]?		occurs 0 or 1 time
-[ ]+		occurs 1 or more times
-[ ]*		ocurrs 0 or more times
-[ ]{n} 		occurs n times
-[ ]{n,}		occurs n or more times
-[ ]{y,z}	occurs at least y times, but less than z times
+[ ]         occurs 1 time
+[ ]?        occurs 0 or 1 time
+[ ]+        occurs 1 or more times
+[ ]*        ocurrs 0 or more times
+[ ]{n}      occurs n times
+[ ]{n,}     occurs n or more times
+[ ]{y,z}    occurs at least y times, but less than z times
 
 # Escape Character
 \

@@ -2,4 +2,16 @@ awk '{print $0}' infile.txt             # print each space/tab field-delimited '
 awk '{print $1}' infile.txt             # print 1st space/tab field-delimited 'field'
 awk '{print $1,$3}' infile.txt          # print 1st & 3rd space/tab field-delimited 'field'
 ls -l | awk '{print $1,$NF}'            # print 1st & last space/tab field-demilited 'field'
-cat /etc/passwd | awk -F':' '{print $1,$7}'  # print 1st & 7th colon field-delimited 'field'
+cat /etc/passwd | awk -F ':' '{print $1"\t"$7}'  # print 1st & 7th colon field-delimited 'field' with tab between
+
+awk 'BEGIN{FS=":"; OFS="-"} {print $1, $7}' /etc/passwd 
+
+awk -F "/" '/^\// {print $NF}' /etc/shells | uniq | sort
+
+df | awk '/\/dev\/loop/ {print $1"\t"$2"\t"}'
+
+ps -ef | awk '{ if($NF == "/bin/bash") print $0}'
+
+awk 'BEGIN { for(i=1; i<=10; i++) print "i is", i;}'
+awk 'BEGIN { for(i=1; i<=10; i++) print "i is " i;}'
+awk 'BEGIN { OFS="="; for(i=1; i<=10; i++) print "i", i;}'

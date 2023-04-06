@@ -16,12 +16,13 @@ def one_list_work(in_file):
 
     with open(in_file) as f:
         in_ls = f.read().splitlines()
-    in_set = set(in_ls)
+        in_set = set(in_ls)
 
     print(f"dupes: {get_dupes(in_ls)}")
 
     out_ls = []
-    for row in in_set:
+    # for row in in_set:
+    for row in in_ls:
         #out_row = f"OR NAME LIKE '{row.strip()[:5]}%'"
         #out_row = f"'{row}',"
         out_row = f"TRIM({row}) {row}, "
