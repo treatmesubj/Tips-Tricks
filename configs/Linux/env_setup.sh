@@ -1,6 +1,7 @@
 # vimrc
 curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/vimrc" -o ~/.vimrc
 # python venv
+apt install python3-venv
 python3 -m venv ~/.venv
 # tmux conf
 curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/TMUX/tmux.conf" -o ~/.tmux.conf
