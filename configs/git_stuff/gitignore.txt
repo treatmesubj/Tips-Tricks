@@ -1,7 +1,5 @@
-"""below contents for ~/.gitignore to globally (user) ignore vim swap files"""
+# below contents for ~/.gitignore to globally, then run `git config --global
+core.excludesfile ~/.gitignore`
 ~*
 *.swp
 *.swo
-
-"""below command to set global (user) gitignore"""
-git config --global core.excludesfile ~/.gitignore
