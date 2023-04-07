@@ -3,7 +3,7 @@
 
 1. Download and run [Rasperry Pi Imager](https://www.raspberrypi.com/software/)
 
-or 
+or
 
 1. Download a [Raspberry Pi OS Image](https://www.raspberrypi.com/software/operating-systems/)
 2. Download and run [Balena Etcher](https://www.balena.io/etcher)

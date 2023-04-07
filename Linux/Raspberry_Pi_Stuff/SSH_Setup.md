@@ -18,19 +18,19 @@ ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 country=US
 network={
-	ssid="your wifi network name"
-	psk="wifi password"
-	key_mgmt=WPA-PSK
+    ssid="your wifi network name"
+    psk="wifi password"
+    key_mgmt=WPA-PSK
 }
 ```
 ## 2. Create an empty file `/boot/ssh`
 - alternatively, if the Pi is booted and you have a keyboard, can enable ssh in "raspi-config"
-	1. `pi@raspberrypi:~ $ sudo raspi-config`
-		1. `> 3. Interface Options`
-		2. `> P2 SSH`
-		3. `> Yes`
-		4. `> Ok`
-		5. `> Finish`
+    1. `pi@raspberrypi:~ $ sudo raspi-config`
+        1. `> 3. Interface Options`
+        2. `> P2 SSH`
+        3. `> Yes`
+        4. `> Ok`
+        5. `> Finish`
 
 ## Extra Notes
 ```
