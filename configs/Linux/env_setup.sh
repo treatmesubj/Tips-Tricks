@@ -13,4 +13,4 @@ echo  'source ~/.bashrc_john.sh' >> ~/.bash_login
 source ~/.bashrc
 # git config
 curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/git_stuff/gitignore.txt" -o ~/.gitignore
-git config --globalcore.excludesfile ~/.gitignore
+git config --global core.excludesfile ~/.gitignore
