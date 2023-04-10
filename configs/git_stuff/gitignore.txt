@@ -1,5 +1,4 @@
-# below contents for ~/.gitignore to globally, then run `git config --global
-core.excludesfile ~/.gitignore`
+# below contents for ~/.gitignore to globally, then run `git config --globalcore.excludesfile ~/.gitignore`
 ~*
 *.swp
 *.swo

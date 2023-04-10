@@ -58,4 +58,4 @@ set background=dark
 set tabstop=4 shiftwidth=4 expandtab  " :retab to convert tabs to spaces
 " :set fileformat=unix to fix trailing character issues
 set list
-set listchars=eol:$,tab:<->,trail:-,nbsp:_
+set listchars=eol:$,tab:<->,trail:+,nbsp:_
