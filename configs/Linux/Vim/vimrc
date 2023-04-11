@@ -48,3 +48,4 @@ set tabstop=4 shiftwidth=4 expandtab "every tab -> 4 spaces
 " set fileformat=unix to fix trailing character issues
 set list
 set listchars=eol:$,tab:<->,trail:+,nbsp:_
+set laststatus=2  " status line always
