@@ -1,8 +1,0 @@
-:s/foo/bar/g              " replace foo w/ bar everyw. in line
-:%s/foo/bar/g             " replace foo w/ bar everyw. in file
-:%s/foo/bar/gc            " replace foo w/ bar everyw. in file
-                              " interactively, one by one
-:20,40s/foo/bar/g         " replace foo w/ bar everyw. betw. lines 20 & 40
-
-
-:%s/[^\x00-\x7F]/ /g      " replace non-ascii with space
