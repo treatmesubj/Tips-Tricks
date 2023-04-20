@@ -57,6 +57,7 @@
                 "hidden": false,
                 "name": "Windows PowerShell",
                 "opacity": 85,
+                "suppressApplicationTitle": true,
                 "useAcrylic": true
             },
             {
@@ -71,16 +72,6 @@
                 "source": "Windows.Terminal.Azure"
             },
             {
-                "commandline": "C:\\WINDOWS\\system32\\wsl.exe -d Ubuntu-20.04",
-                "cursorShape": "filledBox",
-                "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
-                "hidden": false,
-                "name": "Ubuntu-22.04.2",
-                "opacity": 85,
-                "source": "Windows.Terminal.Wsl",
-                "useAcrylic": true
-            },
-            {
                 "guid": "{89f2373c-aa37-5994-af62-1a40cd692bdd}",
                 "hidden": false,
                 "name": "Developer Command Prompt for VS 2022",
@@ -90,22 +81,18 @@
                 "guid": "{e917d1c5-f260-558a-b519-5721084cc703}",
                 "hidden": false,
                 "name": "Developer PowerShell for VS 2022",
-                "source": "Windows.Terminal.VisualStudio"
+                "source": "Windows.Terminal.VisualStudio",
+                "suppressApplicationTitle": false
             },
             {
                 "cursorShape": "filledBox",
                 "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
                 "hidden": false,
                 "name": "Debian",
-                "source": "Windows.Terminal.Wsl",
                 "opacity": 85,
+                "source": "Windows.Terminal.Wsl",
+                "suppressApplicationTitle": true,
                 "useAcrylic": true
-            },
-            {
-                "guid": "{17bf3de4-5353-5709-bcf9-835bd952a95e}",
-                "hidden": true,
-                "name": "Ubuntu-22.04",
-                "source": "Windows.Terminal.Wsl"
             }
         ]
     },
@@ -342,7 +329,6 @@
             "yellow": "#808000"
         }
     ],
-    "suppressApplicationTitle": true,
     "showTabsInTitlebar": true,
     "themes": [],
     "useAcrylicInTabRow": true
