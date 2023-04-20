@@ -28,7 +28,13 @@
             },
             "keys": "alt+shift+d"
         },
-        { "command": "nextTab", "keys": "shift+tab" }
+        {
+            "command": 
+            {
+                "action": "nextTab"
+            },
+            "keys": "shift+tab"
+        }
     ],
     "copyFormatting": "none",
     "copyOnSelect": false,
@@ -65,10 +71,11 @@
                 "source": "Windows.Terminal.Azure"
             },
             {
+                "commandline": "C:\\WINDOWS\\system32\\wsl.exe -d Ubuntu-20.04",
                 "cursorShape": "filledBox",
                 "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
                 "hidden": false,
-                "name": "Ubuntu-20.04",
+                "name": "Ubuntu-22.04.2",
                 "opacity": 85,
                 "source": "Windows.Terminal.Wsl",
                 "useAcrylic": true
@@ -84,6 +91,21 @@
                 "hidden": false,
                 "name": "Developer PowerShell for VS 2022",
                 "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "cursorShape": "filledBox",
+                "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
+                "hidden": false,
+                "name": "Debian",
+                "source": "Windows.Terminal.Wsl",
+                "opacity": 85,
+                "useAcrylic": true
+            },
+            {
+                "guid": "{17bf3de4-5353-5709-bcf9-835bd952a95e}",
+                "hidden": true,
+                "name": "Ubuntu-22.04",
+                "source": "Windows.Terminal.Wsl"
             }
         ]
     },
@@ -274,6 +296,29 @@
             "yellow": "#C4A000"
         },
         {
+            "background": "#300A24",
+            "black": "#171421",
+            "blue": "#0037DA",
+            "brightBlack": "#767676",
+            "brightBlue": "#08458F",
+            "brightCyan": "#2C9FB3",
+            "brightGreen": "#26A269",
+            "brightPurple": "#A347BA",
+            "brightRed": "#C01C28",
+            "brightWhite": "#F2F2F2",
+            "brightYellow": "#A2734C",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#3A96DD",
+            "foreground": "#FFFFFF",
+            "green": "#26A269",
+            "name": "Ubuntu-22.04-ColorScheme",
+            "purple": "#881798",
+            "red": "#C21A23",
+            "selectionBackground": "#FFFFFF",
+            "white": "#CCCCCC",
+            "yellow": "#A2734C"
+        },
+        {
             "background": "#000000",
             "black": "#000000",
             "blue": "#000080",
@@ -297,6 +342,8 @@
             "yellow": "#808000"
         }
     ],
+    "suppressApplicationTitle": true,
     "showTabsInTitlebar": true,
+    "themes": [],
     "useAcrylicInTabRow": true
 }
