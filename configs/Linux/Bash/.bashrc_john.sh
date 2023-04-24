@@ -6,14 +6,14 @@ prompt() {
     # py-venv: /home/john/.venv
     if [[ $VIRTUAL_ENV ]]
     then
-        export PS1+="\[\e[1;34m\]py-venv: \[\e[m\]\[\e[1;32m\](\$VIRTUAL_ENV)\[\e[m\]\r\n";
+        export PS1+="\[\e[1;34m\]py-venv\[\e[m\]: \[\e[1;32m\](\$VIRTUAL_ENV)\[\e[m\]\r\n";
     fi;
 
     # branch: master
     branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d')
     if [[ ! -z "$branch" ]]
     then
-       export PS1+="\[\e[1;34m\]branch: \[\e[m\]\[\e[1;32m\]$branch\[\e[m\]\r\n";
+       export PS1+="\[\e[1;34m\]branch\[\e[m\]: \[\e[1;32m\]$branch\[\e[m\]\r\n";
     fi;
 
     # $
