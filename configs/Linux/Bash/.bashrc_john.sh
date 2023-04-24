@@ -1,10 +1,24 @@
-# echo  'source ~/.bashrc_john.sh' >> ~/.bashrc
-# echo  'source ~/.bashrc_john.sh' >> ~/.bash_profile
-# echo  'source ~/.bashrc_john.sh' >> ~/.bash_login
-# export PS1="\[\e[1;31m\]\u\[\e[m\]@\[\e[1;33m\]\h\[\e[m\]:\[\e[1;34m\]\w\[\e[m\]\r\n\[\e[1;32m\]\$\[\e[m\] \[$(tput sgr0)\]"
+# append 'source ~/.bashrc_john.sh' to ~/.bashrc ~/.bash_profile  ~/.bash_login
+prompt() {
+    if [[ $VIRTUAL_ENV ]]
+    then
+        export PS1="\[\e[1;34m\]py-venv: \[\e[m\]\[\e[1;32m\](\$VIRTUAL_ENV)\[\e[m\]\r\n";
+    fi;
+
+    branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d')
+    if [[ ! -z "$branch" ]]
+    then
+       export PS1+="\[\e[1;34m\]branch: \[\e[m\]\[\e[1;32m\]$branch\[\e[m\]\r\n";
+    fi;
+
+    export PS1+="\[\e[1;31m\]\u\[\e[m\]@\[\e[1;33m\]\h\[\e[m\]:\[\e[1;34m\]\w\[\e[m\]\r\n\[\e[1;32m\]\$\[\e[m\] \[$(tput sgr0)\]";
+}
+PROMPT_COMMAND=prompt
 alias list='ls -a -h -s -1 --color'
-# alias thesr='python3 -m thesr.thesr'
-# export TERM="xterm-256color"
+alias thesr='python3 -m thesr.thesr'
+export TERM="xterm-256color"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-source ~/.venv/bin/activate #python venv
-# export winhome="/mnt/c/Users/JohnHupperts"
+source ~/.venv/bin/activate # python venv
+export winhome="/mnt/c/Users/JohnHupperts"
+
+export AIRFLOW_HOME=~/airflow
