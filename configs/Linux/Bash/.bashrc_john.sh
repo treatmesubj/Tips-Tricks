@@ -21,6 +21,7 @@ prompt() {
 }
 PROMPT_COMMAND=prompt
 alias list='ls -a -h -s -1 --color'
+alias pshell='powershell.exe'
 alias thesr='python3 -m thesr.thesr'
 export TERM="xterm-256color"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
