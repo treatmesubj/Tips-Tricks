@@ -1,4 +1,5 @@
-**NOTE**: in `visual-line` mode, you can substitute in selected lines with `:<,>s/foo/bar/g`
+**NOTE**\
+in `visual-line` mode, you can substitute in selected lines with `:<,>s/foo/bar/g`
 
 # Basic
 - `:s/foo/bar/g`: in line, replace foo w/ bar
