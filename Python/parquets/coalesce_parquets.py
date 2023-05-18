@@ -76,7 +76,7 @@ def coalese_parquets(in_directory: Path, outpath, max_size: int = 2**20) -> None
     # use pa.Table.nbytes or something.
     # table_groups = coalesce(tables, max_size, sizer=lambda t: t.nbytes)
     table_groups = coalesce(tables, max_size)
-    coalesced_tables = (pa.concat_tables(group) for group in table_groups)
+    coalesced_tables = (pa.concat_tables(group, promote=True) for group in table_groups)
     stream_to_parquet(outpath, coalesced_tables)
 
 
