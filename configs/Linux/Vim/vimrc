@@ -49,6 +49,8 @@ set list
 set listchars=eol:$,tab:<->,trail:+,nbsp:_
 set laststatus=2  " status line always
 " cursorline for active window
+hi clear CursorLine
+hi CursorLine gui=underline cterm=underline
 augroup CursorLine
   au!
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
