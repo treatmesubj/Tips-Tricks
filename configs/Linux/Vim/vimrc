@@ -1,3 +1,6 @@
+" curl \
+" https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/vimrc \
+" -o .vimrc
 call plug#begin('~/.vim/plugged')
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'vim-python/python-syntax'
