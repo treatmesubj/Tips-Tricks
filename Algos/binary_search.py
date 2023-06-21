@@ -3,6 +3,7 @@ import time
 
 # find a num in sorted ascending array of nums
 # binary search: look to mid; is num > mid or num < mid or num == mid?
+# log n
 def binary_search(sorted_array, target_val):
     low_index = 0
     high_index = len(sorted_array) - 1
