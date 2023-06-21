@@ -1,11 +1,15 @@
-1. [Download Spark](https://spark.apache.org/downloads.html)
-2. Check the downloaded package's keys & signatures
+0. Probably create a [Python Virtual Environment](../../configs/Python/venv) first
+1. Install Java: `sudo apt install openjdk-11-jdk`
+2. Install PySpark: `pip3 install pyspark`
+
+## Old way
+- [Download Spark](https://spark.apache.org/downloads.html)
+- Check the downloaded package's keys & signatures
     - `curl https://downloads.apache.org/spark/KEYS -O`
     - `curl https://downloads.apache.org/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz.asc -O`
     - `gpg --import KEYS`
     - `gpg --verify spark-3.3.1-bin-hadoop3.tgz.asc`
-3. Install Java: `sudo apt install openjdk-11-jdk`
-4. Install PySpark: `pip3 install pyspark`
+
 
 ```
 $ pyspark
