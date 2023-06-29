@@ -2,6 +2,7 @@ from pyspark.sql import SparkSession
 from pyspark.conf import SparkConf
 import os
 
+
 def simple_get_df(
     spark_session,
     jdbc_url: str,
@@ -106,3 +107,14 @@ if __name__ == "__main__":
         """
     )
     print(sub_df.head())
+
+    # version 1
+    sub_df.toPandas().to_excel("sub_df.xlsx", engine="xlsxwriter")
+    # version2
+    # fix utf-8 char problems
+    pd_sub_df = sub_df.toPandas().applymap(
+        lambda x: x.encode("unicode_escape").decode("utf-8")
+        if isinstance(x, str)
+        else x
+    )
+    pd_sub_df.to_excel("sms-bpdm_aligned2.xlsx")
