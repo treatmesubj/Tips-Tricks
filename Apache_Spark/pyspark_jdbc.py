@@ -89,6 +89,9 @@ if __name__ == "__main__":
     )
     spark = SparkSession.builder.config(conf=conf).getOrCreate()
 
+    assert os.getenv("db_user"), f"no db_user env var"
+    assert os.getenv("db_pw"), f"no db_pw env var"
+
     df = simple_get_df(
         spark_session=spark,
         fields="*",
