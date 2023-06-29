@@ -2,8 +2,29 @@ from pyspark.sql import SparkSession
 from pyspark.conf import SparkConf
 import os
 
+def simple_get_df(
+    spark_session,
+    jdbc_url: str,
+    user: str,
+    password: str,
+    sql_statement: str,
+    driver: str = "com.ibm.db2.jcc.DB2Driver",
+):
+    spark_sql_statement = f"({sql_statement}) as tab"
 
-def get_df(
+    df_config = (
+        spark_session.read.format("jdbc")
+        .option("url", jdbc_url)
+        .option("driver", driver)
+        .option("user", user)
+        .option("password", password)
+        .option("dbtable", spark_sql_statement)
+    )
+    df = df_config.load()
+    return df
+
+
+def ETL_get_df(
     spark_session,
     fields: str,
     schema_table: str,
@@ -61,14 +82,17 @@ def get_df(
 
 if __name__ == "__main__":
     conf = SparkConf()
-    conf.set("spark.jars", "/mnt/c/Users/JohnHupperts/Documents/JARs/db2jcc4.jar") 
+    conf.set(
+        "spark.jars",
+        "/mnt/c/Users/JohnHupperts/Documents/JARs/db2jcc4.jar,/mnt/c/Users/JohnHupperts/Documents/JARs/db2jcc_license_cisuz.jar,/mnt/c/Users/JohnHupperts/Documents/JARs/db2jcc_license_cu.jar,",
+    )
     spark = SparkSession.builder.config(conf=conf).getOrCreate()
 
-    df = get_df(
+    df = simple_get_df(
         spark_session=spark,
         fields="*",
         schema_table="SYSIBM.SYSTABLES",
-        jdbc_url="jdbc:db2://db2w-host:50001/BLUDB:sslConnection=true;",
+        jdbc_url="jdbc:db2://db2w-host:50001/BLUDB:sslConnection=true;sslTrustStoreLocation=/home/john/ibm-truststore.jks;sslTrustStorePassword=changeit;",
         user=os.getenv("db_user"),
         password=os.getenv("db_pw"),
     )
