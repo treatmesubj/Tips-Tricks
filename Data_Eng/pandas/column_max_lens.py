@@ -53,6 +53,7 @@ if __name__ == "__main__":
             )
         else:
             df = pd.read_parquet(args.parquet_file)
+            # print(df.info(verbose=True)) col types
 
     # print max lens
     for col in df:
