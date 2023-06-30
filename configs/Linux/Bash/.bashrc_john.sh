@@ -23,6 +23,7 @@ PROMPT_COMMAND=prompt
 alias list='ls -a -h -s -1 --color'
 alias pshell='powershell.exe'
 alias thesr='python3 -m thesr.thesr'
+alias sqlformat='sqlformat --reindent --keywords upper --identifiers lower'
 export TERM="xterm-256color"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 source ~/.venv/bin/activate # python venv
