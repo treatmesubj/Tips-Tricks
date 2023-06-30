@@ -7,7 +7,8 @@ import os
 def round_power_of_2(n: int):
     # decrement `n` (to handle cases when `n` itself
     # is a power of 2)
-    n = n - 1
+    if n > 1:
+        n = n - 1
 
     # do 'til only one bit is left
     while n & n - 1:
