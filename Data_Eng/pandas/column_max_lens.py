@@ -62,6 +62,6 @@ if __name__ == "__main__":
     print("#" * 50)
 
     # print approximate DDL
-    for col in df[:-1]:
+    for col in df[:-2]:
         print(f"{col.upper().replace('-', '_')} VARCHAR({round_power_of_2(df[col].astype(str).str.len().max())}),")
     print(f"{df.columns[-1].upper().replace('-', '_')} VARCHAR({round_power_of_2(df.iloc[:,-1].astype(str).str.len().max())})")
