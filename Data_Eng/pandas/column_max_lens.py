@@ -42,3 +42,7 @@ if args.parquet_file:
 
 for col in df:
     print(col, "->", df[col].astype(str).str.len().max())
+print("#"*50)
+for col in df:
+    print(col.upper())
+
