@@ -15,5 +15,7 @@ if not os.path.isfile(args.file):
 spark = SparkSession.builder.getOrCreate()
 df = spark.read.parquet(args.file, header=True, inferSchema=True)
 df.printSchema()
-ddl = spark.sparkContext._jvm.org.apache.spark.sql.types.DataType.fromJson(df.schema.json()).toDDL()
+ddl = spark.sparkContext._jvm.org.apache.spark.sql.types.DataType.fromJson(
+    df.schema.json()
+).toDDL()
 print(ddl)

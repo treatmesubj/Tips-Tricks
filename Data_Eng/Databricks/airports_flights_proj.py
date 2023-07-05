@@ -14,19 +14,19 @@
 
 # MAGIC %python
 # MAGIC import markdown as md
-# MAGIC 
-# MAGIC 
+# MAGIC
+# MAGIC
 # MAGIC class Markdown:
 # MAGIC     """Markdown class for properly rendering Markdown in Databricks notebook"""
 # MAGIC     def __init__(self, markdown_text):
 # MAGIC         self.html = md.markdown(markdown_text)
 # MAGIC     def _repr_html_(self):
 # MAGIC         return self.html
-# MAGIC     
-# MAGIC 
+# MAGIC
+# MAGIC
 # MAGIC with open("/dbfs/databricks-datasets/airlines/README.md", "r") as f:
 # MAGIC     readme_content = f.read()
-# MAGIC 
+# MAGIC
 # MAGIC Markdown(readme_content)
 
 # COMMAND ----------
@@ -61,15 +61,15 @@
 # MAGIC %python
 # MAGIC from pyspark.sql import SparkSession
 # MAGIC import pandas as pd
-# MAGIC 
-# MAGIC 
+# MAGIC
+# MAGIC
 # MAGIC spark = SparkSession.builder.getOrCreate()
-# MAGIC 
+# MAGIC
 # MAGIC df_first = spark.read.csv('/databricks-datasets/airlines/part-00000', sep=',', header=True, inferSchema=True)                           # grab headers & infer schema from first file
 # MAGIC df_first_ten = spark.read.csv('/databricks-datasets/airlines/part-0000*', sep=',', header=False, schema=df_first.schema).na.drop()      # using schema, read in first 10 CSVs & drop the bogus header row; takes a min
 # MAGIC # df_all = spark.read.csv('/databricks-datasets/airlines/part-*', sep=',', header=False, schema=df_first.schema).na.drop()                # using schema, read in all CSVs & drop the bogus header row; takes 10min+
 # MAGIC df_demo = spark.read.csv('/databricks-datasets/airlines/part-01918', sep=',', header=True, schema=df_first.schema)                      # using schema, read in 2nd to last CSV for demo work; presumably, more likely to have data for all fields
-# MAGIC 
+# MAGIC
 # MAGIC df_first_ten.count()
 
 # COMMAND ----------
@@ -120,7 +120,7 @@
 # MAGIC - (data, visual)
 # MAGIC ### For each origin-airport, how many departure-delays were related to each delay-cause?
 # MAGIC - (data)
-# MAGIC 
+# MAGIC
 # MAGIC 1 delayed flight can have multiple delay causes. See above.
 
 # COMMAND ----------
@@ -162,7 +162,7 @@
 # MAGIC - (data, visual)
 # MAGIC ### For each origin-airport, what proportion of total departures is delayed by each delay-cause?
 # MAGIC - (data)
-# MAGIC 
+# MAGIC
 # MAGIC 1 delayed flight can have multiple causes. See above.
 
 # COMMAND ----------
@@ -292,7 +292,7 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC 
+# MAGIC
 # MAGIC ---
 # MAGIC # Are there geographic areas where a larger share of departure-delays is due to weather?
 
@@ -307,7 +307,7 @@
 
 # MAGIC %python
 # MAGIC """
-# MAGIC whoops, all this FAA stuff was useless. The Origin-Airports seem to be IATA codes, not FAA codes. 
+# MAGIC whoops, all this FAA stuff was useless. The Origin-Airports seem to be IATA codes, not FAA codes.
 # MAGIC """
 # MAGIC """grab FAA codes & Locations from this site"""
 # MAGIC df_airports_faa_states = pd.read_html(requests.get("https://www.airport-data.com/usa-airports/faa-code/O.html").text)[0]
@@ -336,10 +336,10 @@
 # MAGIC         current_state = item
 # MAGIC     if len(item) == 3:
 # MAGIC         states_iata_ls.append([current_state, item])
-# MAGIC 
+# MAGIC
 # MAGIC states_iata_df = pd.DataFrame(states_iata_ls)
 # MAGIC states_iata_df.columns = ["State", "IATA"]
-# MAGIC 
+# MAGIC
 # MAGIC states_iata_df = spark.createDataFrame(states_iata_df)
 # MAGIC states_iata_df.createOrReplaceTempView("states_iata")
 # MAGIC states_iata_df.display()
@@ -348,16 +348,16 @@
 
 # MAGIC %python
 # MAGIC """
-# MAGIC Finally. This had all but a few of the IATA codes in this dataset. The few are presumably smaller airports. 
+# MAGIC Finally. This had all but a few of the IATA codes in this dataset. The few are presumably smaller airports.
 # MAGIC """
 # MAGIC html = requests.get("https://nobleaircharter.com/airport-codes-usa/").text
 # MAGIC soup = BeautifulSoup(html, 'html.parser')
-# MAGIC 
+# MAGIC
 # MAGIC iata_aps = []
 # MAGIC for elem in soup.select("div div[class*='fusion-text-4'] p"):
 # MAGIC     for line in elem.text.splitlines():
 # MAGIC         iata_aps.append(line)
-# MAGIC 
+# MAGIC
 # MAGIC org_iata_aps = []
 # MAGIC for line in iata_aps:
 # MAGIC     split_line = line.split(' ')
@@ -372,7 +372,7 @@
 # MAGIC org_iata_aps_df = pd.DataFrame(org_iata_aps)
 # MAGIC org_iata_aps_df.columns = ["State", "IATA"]
 # MAGIC org_iata_aps_df["IATA"] = org_iata_aps_df["IATA"].str.strip('(').str.strip(')')
-# MAGIC 
+# MAGIC
 # MAGIC org_iata_aps_df = spark.createDataFrame(org_iata_aps_df)
 # MAGIC org_iata_aps_df.createOrReplaceTempView("better_states_iata")
 # MAGIC org_iata_aps_df.display()
@@ -418,7 +418,7 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC 
+# MAGIC
 # MAGIC ---
 # MAGIC ## Can we map all the flights?
 
@@ -430,15 +430,15 @@
 # MAGIC airports_df = pd.read_csv("https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat",
 # MAGIC                           delimiter=',',
 # MAGIC                           names=['id', 'name', 'city', 'country', 'iata', 'icao', 'lat', 'long', 'altitude', 'timezone', 'dst', 'tz', 'type', 'source'])
-# MAGIC 
+# MAGIC
 # MAGIC airports_df = spark.createDataFrame(airports_df)
 # MAGIC airports_df.createOrReplaceTempView("airports_data")
 # MAGIC airports_df = spark.sql("""
 # MAGIC     SELECT iata, lat, long
 # MAGIC     FROM airports_data
 # MAGIC     WHERE COUNTRY = 'United States'
-# MAGIC     AND LAT > 25 AND LAT < 50              -- Normal USA landmass 
-# MAGIC     AND LONG < -65 AND LONG > -125         -- Normal USA landmass 
+# MAGIC     AND LAT > 25 AND LAT < 50              -- Normal USA landmass
+# MAGIC     AND LONG < -65 AND LONG > -125         -- Normal USA landmass
 # MAGIC """)
 # MAGIC airports_df.createOrReplaceTempView("airports_data")
 # MAGIC airports_df.display()
@@ -448,13 +448,13 @@
 
 # MAGIC %python
 # MAGIC import matplotlib.pyplot as plt
-# MAGIC 
+# MAGIC
 # MAGIC fig, ax = plt.subplots()
 # MAGIC fig.set_size_inches(20, 10)
-# MAGIC 
+# MAGIC
 # MAGIC ax.scatter(pd_airports_df['long'], pd_airports_df['lat'], s=5)
 # MAGIC ax.axis('off')
-# MAGIC 
+# MAGIC
 # MAGIC plt.show()
 
 # COMMAND ----------
@@ -476,8 +476,8 @@
 # MAGIC %python
 # MAGIC import geopandas as gpd
 # MAGIC from shapely.geometry import LineString
-# MAGIC 
-# MAGIC 
+# MAGIC
+# MAGIC
 # MAGIC pd_flights_df = flights_df.toPandas().sample(10000) # we just need a random sample of 10,000 flights for the visual, else it's too ridiculous
 # MAGIC geometry = [LineString([[pd_flights_df.iloc[i]['origin_long'], pd_flights_df.iloc[i]['origin_lat']], [pd_flights_df.iloc[i]['dest_long'], pd_flights_df.iloc[i]['dest_lat']]]) for i in range(pd_flights_df.shape[0])]
 # MAGIC routes = gpd.GeoDataFrame(pd_flights_df, geometry=geometry, crs='EPSG:4326')
@@ -488,14 +488,14 @@
 # MAGIC %python
 # MAGIC fig = plt.figure()
 # MAGIC ax = plt.axes()
-# MAGIC 
+# MAGIC
 # MAGIC fig.set_size_inches(20, 10)
 # MAGIC # ax.patch.set_facecolor('black')
-# MAGIC 
+# MAGIC
 # MAGIC routes.plot(ax=ax, color='black', linewidth=0.1)
-# MAGIC 
+# MAGIC
 # MAGIC plt.setp(ax.spines.values(), color='black')
 # MAGIC plt.setp([ax.get_xticklines(), ax.get_yticklines()], color='black')
-# MAGIC 
+# MAGIC
 # MAGIC plt.show()
 # MAGIC # it would be cool to overlay this on a map with major cities highlighted
