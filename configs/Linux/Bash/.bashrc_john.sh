@@ -28,5 +28,7 @@ export TERM="xterm-256color"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 source ~/.venv/bin/activate # python venv
 export winhome="/mnt/c/Users/JohnHupperts"
-
 export AIRFLOW_HOME=~/airflow
+# https://go.dev/doc/install
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:~/go/bin/
