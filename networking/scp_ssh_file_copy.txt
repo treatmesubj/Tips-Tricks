@@ -1,1 +1,2 @@
 scp -r user@remote:/root/stuff .
+# creates a local `./stuff/` directory for the files
