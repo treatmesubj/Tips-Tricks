@@ -17,11 +17,17 @@ prompt() {
     fi;
 
     # $
-    export PS1+="\[\e[1;92m\]\$\[\e[m\] \[$(tput sgr0)\]"
+    # \[$(tput sgr0)\] can be goofy
+    export PS1+="\[\e[1;92m\]\$\[\e[m\] "
 }
 PROMPT_COMMAND=prompt
-alias list='ls -a -h -s -1 --color'
+
+# https://github.com/microsoft/WSL/issues/8843
+# sudo sh -c 'echo :WSLInterop:M::MZ::/init:PF > /usr/lib/binfmt.d/WSLInterop.conf'
+# access Windows executables when System D enbaled
 alias pshell='powershell.exe'
+
+alias list='ls -a -h -s -1 --color'
 alias thesr='python3 -m thesr.thesr'
 alias sqlformat='sqlformat --reindent --keywords upper --identifiers lower'
 export TERM="xterm-256color"
