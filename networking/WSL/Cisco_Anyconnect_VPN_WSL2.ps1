@@ -14,7 +14,7 @@ Get-NetAdapter | Where-Object InterfaceDescription -like "Cisco AnyConnect*" | G
         # see Ethernet adapter with DNS Suffix ibm.com
         # see DNS Servers
             # add DNS Server to WSL's /etc/resolv.conf
-# $ sudo vim etc/resolv.conf
+    # $ sudo vim etc/resolv.conf
 
 
 # go back to normal state when done with WSL tunnelall stuff
