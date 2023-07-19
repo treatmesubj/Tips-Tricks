@@ -1,5 +1,7 @@
 from pyspark.sql import SparkSession
 from pyspark.conf import SparkConf
+from pyspark.sql.types import DateType, TimestampType
+from pyspark.sql.functions import date_format
 import os
 
 
@@ -110,6 +112,11 @@ if __name__ == "__main__":
         """
     )
     print(sub_df.head())
+
+    # fixing up types for conversion to Pandas DF
+    for field in sub_df.schema:
+        if field.dataType in (DateType(), TimestampType()):
+            sub_df = sub_df.withColumn(field.name, date_format(field.name, "MM-dd-yyy"))
 
     # version 1
     sub_df.toPandas().to_excel("sub_df.xlsx", engine="xlsxwriter")
