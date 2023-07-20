@@ -58,6 +58,9 @@ augroup CursorLine
 augroup END
 
 " WSL2 copy yank register to clipboard
+  " access Windows executables when System D enbaled
+  " https://github.com/microsoft/WSL/issues/8843
+  " sudo sh -c 'echo :WSLInterop:M::MZ::/init:PF > /usr/lib/binfmt.d/WSLInterop.conf'
 "function! Clip()
 "  call system("clip.exe",  getreg('0'))
 "endfunction
