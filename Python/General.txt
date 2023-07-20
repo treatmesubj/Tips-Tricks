@@ -46,11 +46,6 @@ How Does CPython Work?
 ------->(Machine's CPU)---> executed hardware instructions [transistors open/closed alter circuits of electrons]
 ------->(Machine's Memory)---> <different electrically charged diodes in ROM>
 
-Run Jupyter Notebooks
-    > pip install jupyterlab
-    > pip install notebook
-    > jupyter notebook
-
 Paths
     os.getcwd()
     returns directory-path of whereever you were when you called the script
