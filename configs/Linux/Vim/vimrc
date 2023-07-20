@@ -1,6 +1,3 @@
-" curl \
-" https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/vimrc \
-" -o .vimrc
 call plug#begin('~/.vim/plugged')
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'vim-python/python-syntax'
@@ -59,3 +56,10 @@ augroup CursorLine
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   au WinLeave * setlocal nocursorline
 augroup END
+
+" WSL2 copy yank register to clipboard
+"function! Clip()
+"  call system("clip.exe",  getreg('0'))
+"endfunction
+command Clip :call system("clip.exe",  getreg('0'))
+
