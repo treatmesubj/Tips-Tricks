@@ -3,3 +3,4 @@ git show
 
 # see just changed file names
 git diff --stat HEAD HEAD~1
+git diff --name-only
