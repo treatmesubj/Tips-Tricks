@@ -1,0 +1,8 @@
+1. update the .gitignore
+2. git add .gitignore
+3. git commit -m "new ignore"
+4. git push
+5. git restore .
+6. git add .
+7. git status
+    - desired ignored files not staged

@@ -2,3 +2,6 @@
 ~*
 *.swp
 *.swo
+
+# to ignore file extension in any subdir & its subdirs 
+dir1/subdir/**.xlsx
