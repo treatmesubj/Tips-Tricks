@@ -1,0 +1,5 @@
+# see each changed file and its changes
+git show
+
+# see just changed file names
+git diff --stat HEAD HEAD~1
