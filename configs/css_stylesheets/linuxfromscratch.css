@@ -10,7 +10,7 @@ body {
 a[href] {
     color: #66d9ef;
 }
-code {
+code, strong {
     color: #e6edf3;
     background-color: #343941;
     font-family: monospace;
