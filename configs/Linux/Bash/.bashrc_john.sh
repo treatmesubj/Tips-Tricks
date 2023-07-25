@@ -1,19 +1,19 @@
-# append 'source ~/.bashrc_john.sh' to ~/.bashrc ~/.bash_profile  ~/.bash_login
+# append 'source ~/.bashrc_john.sh' to ~/.bashrc ~/.bash_profile ~/.bash_login
 prompt() {
     # user@host: ~
-    long_path=$(pwd)
+    long_path=$(dirs)
     short_path1=$(echo $long_path | sed "s/\/mnt\/c\/Users\/JohnHupperts/\$winhome/")
     export PS1="\[\e[1;31m\]\u\[\e[m\]@\[\e[1;33m\]\h\[\e[m\]:\[\e[1;34m\]\$short_path1\[\e[m\]\r\n";
     # export PS1="\[\e[1;31m\]\u\[\e[m\]@\[\e[1;33m\]\h\[\e[m\]:\[\e[1;34m\]\w\[\e[m\]\r\n";
 
-    # py-venv: /home/john/.venv
+    # py-venv: (~/.venv)
     if [[ $VIRTUAL_ENV ]]
     then
         short_path2=$(echo "$VIRTUAL_ENV" | sed "s/\/home\/john/~/")
         export PS1+="\[\e[1;34m\]py-venv\[\e[m\]: \[\e[1;32m\](\$short_path2)\[\e[m\]\r\n";
     fi;
 
-    # branch: master
+    # branch: * master
     branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d')
     if [[ ! -z "$branch" ]]
     then
