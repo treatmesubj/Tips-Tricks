@@ -6,6 +6,11 @@ uname -a
 lscpu
 lshw
 hwinfo
+
+# memory
+free -h
+cat /proc/meminfo
+
 lspci
 lsscsi
 lsusb
