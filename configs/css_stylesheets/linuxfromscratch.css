@@ -20,7 +20,7 @@ code, strong {
 pre {
     padding: 1em;
     border-radius: 6px;
-    background-color: #161b22;
+    background-color: #161b22 !important;
     color: #e6edf3 !important;
 }
 pre code {
