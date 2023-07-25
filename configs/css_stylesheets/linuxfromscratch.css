@@ -52,6 +52,7 @@ h6 {
     padding: .2em .4em;
     border-radius: 6px;
 }
-div[class*='note'] {
+div[class*='note'],
+div.package {
     color: black
 }
