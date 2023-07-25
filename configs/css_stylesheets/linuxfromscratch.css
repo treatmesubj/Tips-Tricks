@@ -45,6 +45,13 @@ h1
 h2,
 h3,
 h4,
-strong {
+h5,
+h6 {
+    background-color: #272822;
     color: #e6edf3;
+    padding: .2em .4em;
+    border-radius: 6px;
+}
+div[class*='note'] {
+    color: black
 }
