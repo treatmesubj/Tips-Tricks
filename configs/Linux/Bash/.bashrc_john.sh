@@ -1,6 +1,6 @@
 # append 'source ~/.bashrc_john.sh' to ~/.bashrc ~/.bash_profile ~/.bash_login
 prompt() {
-    # user@host: ~
+    # user@host:~
     long_path=$(dirs)
     short_path1=$(echo $long_path | sed "s/\/mnt\/c\/Users\/JohnHupperts/\$winhome/")
     export PS1="\[\e[1;31m\]\u\[\e[m\]@\[\e[1;33m\]\h\[\e[m\]:\[\e[1;34m\]\$short_path1\[\e[m\]\r\n";
@@ -26,9 +26,9 @@ prompt() {
 }
 PROMPT_COMMAND=prompt
 
+# access Windows executables when System D enbaled
 # https://github.com/microsoft/WSL/issues/8843
 # sudo sh -c 'echo :WSLInterop:M::MZ::/init:PF > /usr/lib/binfmt.d/WSLInterop.conf'
-# access Windows executables when System D enbaled
 alias pshell='powershell.exe'
 
 alias list='ls -a -h -s -1 --color'
