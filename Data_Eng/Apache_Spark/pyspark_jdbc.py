@@ -89,6 +89,7 @@ if __name__ == "__main__":
         "spark.jars",
         "/mnt/c/Users/JohnHupperts/Documents/JARs/db2jcc4.jar,/mnt/c/Users/JohnHupperts/Documents/JARs/db2jcc_license_cisuz.jar,/mnt/c/Users/JohnHupperts/Documents/JARs/db2jcc_license_cu.jar,",
     )
+    conf.set("spark.driver.memory", "4g")  # extra mem
     spark = SparkSession.builder.config(conf=conf).getOrCreate()
 
     assert os.getenv("db_user"), f"no db_user env var"
