@@ -5,5 +5,5 @@ python3 -m venv ~/.venv
 source ~/.venv/bin/activate
 
 # example flask venv
-python3 -m venv ~/.flask_venv
-source ~/.flask_venv/bin/activate
+python3 -m venv ~/.venv_flask
+source ~/.venv_flask/bin/activate
