@@ -1,5 +1,6 @@
 #https://docs.python.org/3/libary/venv.html
 # main venv
+apt install python3-venv
 python3 -m venv ~/.venv
 source ~/.venv/bin/activate
 
