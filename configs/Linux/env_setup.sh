@@ -18,6 +18,4 @@ source ~/.bashrc_john.sh
 sudo apt install git && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/git_stuff/gitignore.txt" -o ~/.gitignore
 git config --global core.excludesfile ~/.gitignore
 
-echo ""
-echo "Please, to finish Vim setup: '\$ vim ~/.vimrc', then ':PlugInstall'"
-echo ""
+printf "\nPlease, to finish Vim setup: '\$ vim ~/.vimrc', then ':PlugInstall'\n\n"
