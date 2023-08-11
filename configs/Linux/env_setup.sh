@@ -1,9 +1,9 @@
 # curl https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/env_setup.sh > env_setup.sh
 # vimrc
-sudo apt install vim\
-    && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/vimrc" -o ~/.vimrc\
+sudo apt install vim \
+    && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/vimrc" -o ~/.vimrc \
     && curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim\
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 # python venv
 sudo apt install python3-venv -y && python3 -m venv ~/.venv
 # tmux conf
