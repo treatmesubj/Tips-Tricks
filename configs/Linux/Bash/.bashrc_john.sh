@@ -31,6 +31,7 @@ PROMPT_COMMAND=prompt
 # sudo sh -c 'echo :WSLInterop:M::MZ::/init:PF > /usr/lib/binfmt.d/WSLInterop.conf'
 #alias pshell='powershell.exe'
 
+export EDITOR=vim
 alias list='ls -a -h -s -1 --color'
 alias thesr='python3 -m thesr.thesr'
 alias sqlformat='sqlformat --reindent --keywords upper --identifiers lower'
