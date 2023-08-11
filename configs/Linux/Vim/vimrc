@@ -64,5 +64,5 @@ augroup END
 "function! Clip()
 "  call system("clip.exe",  getreg('0'))
 "endfunction
-command Clip :call system("clip.exe",  getreg('0'))
+# command Clip :call system("clip.exe",  getreg('0'))
 
