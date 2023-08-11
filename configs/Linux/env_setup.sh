@@ -19,5 +19,5 @@ sudo apt install git && curl "https://raw.githubusercontent.com/treatmesubj/Tips
 git config --global core.excludesfile ~/.gitignore
 
 echo ""
-echo "please: '\$ vim ~/.vimrc', then ':PlugInstall'"
+echo "Please, to finish Vim setup: '\$ vim ~/.vimrc', then ':PlugInstall'"
 echo ""
