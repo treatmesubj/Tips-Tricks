@@ -64,13 +64,6 @@ WHERE (
 )
 WITH UR;
 
-/* Look for who ingested */
-SELECT *
-FROM COEDL_INGESTION.TIMES_V
-WHERE BIGSQLSCHEMA = 'SCHEMA'
-ORDER BY UPDATED DESC
-WITH UR;
-
 /* get row count of table */
 SELECT COUNT(*) FROM SCHEMA.TABLE
 /* Excel Formula for writing SQL to get row counts for list of tables in Excel 
