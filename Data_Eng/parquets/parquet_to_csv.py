@@ -11,6 +11,7 @@ def parquet_to_csv(in_file, out_file=None):
     the CSV is created in the directory of the parquet file.
     """
     df = pd.read_parquet(in_file, engine="fastparquet")
+    print(df.head())
     df.columns = df.columns.astype(str)
     if out_file:
         df.to_csv(out_file, index=False)
