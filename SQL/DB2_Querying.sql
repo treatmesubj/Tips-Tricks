@@ -1,14 +1,14 @@
 /* 
 DB2 CLI
-	db2cli execsql -dsn SMS -user ***** -passwd ***** -inputsql test.sql -statementdelimiter ';' -outfile test_results.csv
-	db2cli validate -connect -dsn SMS -user ***** -passwd ****
-	db2cli validate -dsn SMS -connect -odbcdsn -user ****** -passwd ****
+    db2cli execsql -dsn SMS -user ***** -passwd ***** -inputsql test.sql -statementdelimiter ';' -outfile test_results.csv
+    db2cli validate -connect -dsn SMS -user ***** -passwd ****
+    db2cli validate -dsn SMS -connect -odbcdsn -user ****** -passwd ****
 
 QMF Ad Hoc Queries
-	# from run command console:
-			RESET QUERY
-	# save .sql text file as .vry file
-	# ini file: C:\ProgramData\IBM\DB2\IBMDBCL1\cfg\db2cli.ini
+    # from run command console:
+            RESET QUERY
+    # save .sql text file as .vry file
+    # ini file: C:\ProgramData\IBM\DB2\IBMDBCL1\cfg\db2cli.ini
 */
 
 /* Looking for Schemas */
@@ -21,9 +21,9 @@ WITH UR;
 SELECT NAME, CREATOR, TYPE, CTIME, BASE_NAME, BASE_SCHEMA, LAST_REGEN_TIME, ALTER_TIME, LASTUSED
 FROM SYSIBM.SYSTABLES
 WHERE (
-	NAME IN 'BLAH'
-	OR NAME IN 'BLEH'
-	OR NAME IN 'BLEK'
+    NAME IN 'BLAH'
+    OR NAME IN 'BLEH'
+    OR NAME IN 'BLEK'
 )
 WITH UR;
 
@@ -44,9 +44,9 @@ WITH UR;
 SELECT NAME, TBNAME, TBCREATOR, REMARKS, COLTYPE, LENGTH, NULLS
 FROM SYSIBM.SYSCOLUMNS
 WHERE (
-	NAME IN 'BLAH'
-	OR NAME IN 'BLEH'
-	OR NAME IN 'BLEK'
+    NAME IN 'BLAH'
+    OR NAME IN 'BLEH'
+    OR NAME IN 'BLEK'
 )
 WITH UR;
 
@@ -76,19 +76,3 @@ SELECT TABSCHEMA, TABNAME, TYPE, TABLEORG
 FROM SYSCAT.TABLES t 
 WHERE TABSCHEMA IN ('WSDIW_A', 'WSDIW_B', 'ECOSYSTEMS_IZ')
 
-/* Get counts of column values for column */
-SELECT COLUMN_NAME, COUNT(*)
-FROM SCHEMA_NAME.TABLE_NAME
-GROUP BY COLUMN_NAME;
-
-/* Cases */
-SELECT 
-	COLUMN_A, 
-	COLUMN_B,
-	CASE
-	   WHEN ...
-	   THEN ...
-	   ELSE ...
-	END AS COLUMN_C,
-	COLUMN_D
-FROM SCHEMA.TABLE
