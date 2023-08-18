@@ -3,9 +3,15 @@
 
 create audit policy exec_policy categories execute status both error type normal;
 audit database using policy exec_policy;
+select * from SYSCAT.AUDITUSE; -- show audit policies
 
 -- *user executes statement*
 
 call audit.update(); -- updates audit.execute table from logs
 
+
 select * from audit.execute
+
+-- remove policy
+audit database remove policy;
+select * from SYSCAT.AUDITUSE; -- show audit policies
