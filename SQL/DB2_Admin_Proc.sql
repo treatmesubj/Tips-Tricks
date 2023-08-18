@@ -1,0 +1,5 @@
+--SELECT * FROM
+--SYSIBMADM.DBMCFG
+--WHERE NAME = 'diaglevel';
+
+CALL SYSPROC.ADMIN_CMD('update dbm cfg using DIAGLEVEL 4');
