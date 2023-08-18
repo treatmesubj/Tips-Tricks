@@ -41,5 +41,7 @@ source ~/.venv/bin/activate # python venv
 #export winhome="/mnt/c/Users/JohnHupperts"
 #export AIRFLOW_HOME=~/airflow
 # https://go.dev/doc/install
+# core
 export PATH=$PATH:/usr/local/go/bin
+# packages
 export PATH=$PATH:~/go/bin/
