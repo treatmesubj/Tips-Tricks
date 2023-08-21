@@ -1,6 +1,13 @@
 call plug#begin('~/.vim/plugged')
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'vim-python/python-syntax'
+if has('nvim')
+    Plug 'wookayin/semshi'
+    let g:semshi#excluded_hl_groups = ['local', 'global']
+    let g:semshi#simplify_markup = v:false
+    let g:semshi#mark_selected_nodes = 2
+endif
+
 call plug#end()
 let g:python_highlight_all = 1
 let g:vim_monokai_tasty_italic=1
@@ -13,7 +20,9 @@ if v:progname =~? "evim"
 endif
 
 " Get the defaults that most users want.
-source $VIMRUNTIME/defaults.vim
+if !has('nvim')
+    source $VIMRUNTIME/defaults.vim
+endif
 
 if &t_Co > 2 || has("gui_running")
   " Switch on highlighting the last used search pattern.
@@ -36,7 +45,9 @@ set is  "partial-search-match
 set number  "line-numbers
 set relativenumber "relative line-numbers
 set mouse=  "no-mouse
-set ttymouse=  "no-mouse
+if !has('nvim')
+    set ttymouse=  "no-mouse
+endif
 set wrap "don't literally insert newlines
 set directory=/tmp
 set backupdir=/tmp
@@ -57,6 +68,12 @@ augroup CursorLine
   au WinLeave * setlocal nocursorline
 augroup END
 
+function SemshiPyHighlights()
+  hi semshiSelf            ctermfg=208 guifg=#FF9700
+  hi semshiImported        cterm=underline gui=underline
+endfunction
+autocmd FileType python call SemshiPyHighlights()
+
 " WSL2 copy yank register to clipboard
   " access Windows executables when System D enbaled
   " https://github.com/microsoft/WSL/issues/8843
@@ -64,5 +81,5 @@ augroup END
 "function! Clip()
 "  call system("clip.exe",  getreg('0'))
 "endfunction
-" command Clip :call system("clip.exe",  getreg('0'))
+command Clip :call system("clip.exe",  getreg('0'))
 

@@ -1,9 +1,15 @@
 # curl https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/env_setup.sh > env_setup.sh
 # vimrc
-sudo apt install vim -y\
+sudo apt install vim neovim -y\
     && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/.vimrc" -o ~/.vimrc \
     && curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+mkdir -p ~/.config/nvim/
+cat << EOF > ~/.config/nvim/file.txt
+set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath = &runtimepath
+source ~/.vimrc
+EOF
 # python venv
 sudo apt install python3-venv -y && python3 -m venv ~/.venv
 # tmux conf
@@ -26,4 +32,4 @@ sudo apt install gawk -y
 sudo apt install texinfo -y
 
 printf "\nPlease, to finish Vim setup: '\$ vim ~/.vimrc', then ':PlugInstall'\n\n"
-
+printf "\nPlease, to finish Neovim setup: '\$ pip install pynvim -y && nvim ~/.vimrc', then ':PlugInstall'\n\n"
