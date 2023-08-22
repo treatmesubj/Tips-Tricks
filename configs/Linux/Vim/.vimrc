@@ -13,20 +13,9 @@ let g:python_highlight_all = 1
 let g:vim_monokai_tasty_italic=1
 colorscheme vim-monokai-tasty
 
-" When started as "evim", evim.vim will already have done these settings, bail
-" out.
-if v:progname =~? "evim"
-  finish
-endif
-
 " Get the defaults that most users want.
 if !has('nvim')
     source $VIMRUNTIME/defaults.vim
-endif
-
-if &t_Co > 2 || has("gui_running")
-  " Switch on highlighting the last used search pattern.
-  set hlsearch
 endif
 
 " Put these in an autocmd group, so that we can delete them easily.
@@ -40,21 +29,23 @@ if has('syntax') && has('eval')
   packadd! matchit
 endif
 
-set ic  "ignore-case
-set is  "partial-search-match
-set number  "line-numbers
-set relativenumber "relative line-numbers
-set mouse=  "no-mouse
+set hlsearch " highlight search
+set incsearch " incremental highlight search
+set ic  " ignore-case
+set is  " partial-search-match
+set number  " line-numbers
+set relativenumber " relative line-numbers
+set mouse=  " no-mouse
 if !has('nvim')
-    set ttymouse=  "no-mouse
+    set ttymouse=  " no-mouse
 endif
-set wrap "don't literally insert newlines
+set wrap " don't literally insert newlines
 set directory=/tmp
 set backupdir=/tmp
 set undofile  " keep an undo file (undo changes after closing)
-set undodir=~/.vim/undodir  "put all undo files in a tidy dir
+set undodir=~/.vim/undodir  " put all undo files in a tidy dir
 set background=dark
-set tabstop=4 shiftwidth=4 expandtab "every tab -> 4 spaces
+set tabstop=4 shiftwidth=4 expandtab " every tab -> 4 spaces
 " set fileformat=unix to fix trailing character issues
 set list
 set listchars=eol:$,tab:<->,trail:+,nbsp:_
@@ -74,14 +65,6 @@ function SemshiPyHighlights()
 endfunction
 autocmd FileType python call SemshiPyHighlights()
 
-" WSL2 copy yank register to clipboard
-  " access Windows executables when System D enbaled
-  " https://github.com/microsoft/WSL/issues/8843
-  " sudo sh -c 'echo :WSLInterop:M::MZ::/init:PF > /usr/lib/binfmt.d/WSLInterop.conf'
-function! Clip()
-  call system("clip.exe",  getreg('0'))
-endfunction
-command Clip :call system("clip.exe",  getreg('0'))
 " space, y to copy last yank to clipboard
 let mapleader = " "
-map <leader>y :call Clip()<CR>
+noremap <leader>y :let @+=@0<CR>

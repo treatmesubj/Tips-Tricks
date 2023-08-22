@@ -1,0 +1,4 @@
+access Windows executables when System D enbaled
+https://github.com/microsoft/WSL/issues/8843
+
+sudo sh -c 'echo :WSLInterop:M::MZ::/init:PF > /usr/lib/binfmt.d/WSLInterop.conf'
