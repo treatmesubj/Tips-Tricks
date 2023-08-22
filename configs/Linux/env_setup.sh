@@ -5,7 +5,7 @@ sudo apt install vim neovim -y\
     && curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 mkdir -p ~/.config/nvim/
-cat << EOF > ~/.config/nvim/file.txt
+cat << EOF > ~/.config/nvim/init.vim
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
