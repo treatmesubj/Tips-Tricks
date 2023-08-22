@@ -11,7 +11,7 @@ let &packpath = &runtimepath
 source ~/.vimrc
 EOF
 # python venv
-sudo apt install python3-venv -y && python3 -m venv ~/.venv
+sudo apt install python3-venv -y && python3 -m venv ~/.venv && ~/.venv/bin/pip install pynvim -y
 # tmux conf
 sudo apt install tmux -y && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/TMUX/tmux.conf" -o ~/.tmux.conf
 # bashrc
@@ -32,4 +32,4 @@ sudo apt install gawk -y
 sudo apt install texinfo -y
 
 printf "\nPlease, to finish Vim setup: '\$ vim ~/.vimrc', then ':PlugInstall'\n\n"
-printf "\nPlease, to finish Neovim setup: '\$ pip install pynvim -y && nvim ~/.vimrc', then ':PlugInstall'\n\n"
+printf "\nPlease, to finish Neovim setup: '\$ nvim ~/.vimrc', then ':PlugInstall'\n\n"
