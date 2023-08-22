@@ -32,4 +32,4 @@ sudo apt install gawk -y
 sudo apt install texinfo -y
 
 printf "\nPlease, to finish Vim setup: '\$ vim ~/.vimrc', then ':PlugInstall'\n\n"
-printf "\nPlease, to finish Neovim setup: '\$ nvim ~/.vimrc', then ':PlugInstall'\n\n"
+printf "\nPlease, to finish Neovim setup: '\$ nvim ~/.vimrc', then ':PlugInstall', then ':UpdateRemotePlugins'\n\n"
