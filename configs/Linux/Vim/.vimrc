@@ -78,8 +78,10 @@ autocmd FileType python call SemshiPyHighlights()
   " access Windows executables when System D enbaled
   " https://github.com/microsoft/WSL/issues/8843
   " sudo sh -c 'echo :WSLInterop:M::MZ::/init:PF > /usr/lib/binfmt.d/WSLInterop.conf'
-"function! Clip()
-"  call system("clip.exe",  getreg('0'))
-"endfunction
+function! Clip()
+  call system("clip.exe",  getreg('0'))
+endfunction
 command Clip :call system("clip.exe",  getreg('0'))
-
+" space, y to copy last yank to clipboard
+let mapleader = " "
+map <leader>y :call Clip()<CR>
