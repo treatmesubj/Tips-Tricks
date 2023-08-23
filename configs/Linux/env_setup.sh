@@ -13,7 +13,7 @@ EOF
 # python venv
 sudo apt install python3-venv -y && python3 -m venv ~/.venv && ~/.venv/bin/pip install pynvim -y
 # tmux conf
-sudo apt install tmux -y && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/TMUX/tmux.conf" -o ~/.tmux.conf
+sudo apt install tmux -y && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/TMUX/.tmux.conf" -o ~/.tmux.conf
 # bashrc
 curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/.bashrc_john.sh" -o ~/.bashrc_john.sh
 echo  'source ~/.bashrc_john.sh' >> ~/.bashrc
