@@ -50,9 +50,10 @@ set tabstop=4 shiftwidth=4 expandtab " every tab -> 4 spaces
 set list
 set listchars=eol:$,tab:<->,trail:+,nbsp:_
 set laststatus=2  " status line always
+hi StatusLine ctermbg=54 ctermfg=white
 " cursorline for active window
 hi clear CursorLine
-hi CursorLine gui=underline cterm=underline
+hi CursorLine cterm=underline gui=underline 
 augroup CursorLine
   au!
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
@@ -68,3 +69,4 @@ autocmd FileType python call SemshiPyHighlights()
 " space, y to copy last yank to clipboard
 let mapleader = " "
 noremap <leader>y :let @+=@0<CR>
+
