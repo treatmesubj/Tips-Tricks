@@ -46,6 +46,12 @@ if __name__ == "__main__":
     parser.add_argument(
         "--double", "-d", action="store_true", help="double VARCHAR length for testing"
     )
+    parser.add_argument(
+        "--select_max_lens",
+        "-s",
+        action="store_true",
+        help="print SELECT statement to select max length of each column from table",
+    )
     args = parser.parse_args()
 
     if args.excel_file:
@@ -85,6 +91,7 @@ if __name__ == "__main__":
     print("#" * 50)
 
     # print approximate DDL
+    print("CREATE TABLE TMP.TMP(")
     for col in df.columns:
         col_name = col.upper().replace("-", "_").replace(" ", "_")
         length = round_power_of_2(df[col].astype(str).str.len().max())
@@ -94,4 +101,20 @@ if __name__ == "__main__":
             comma = ","
         if args.double:
             length = length * 2
-        print(f"{col_name} VARCHAR({length}){comma}")
+        print(f"    {col_name} VARCHAR({length}){comma}")
+    print(");")
+
+    print("#" * 50)
+
+    # print SELECT MAX(LENGTH(<field>)) statement
+    print("SELECT")
+    if args.select_max_lens:
+        for col in df.columns:
+            col_name = col.upper().replace("-", "_").replace(" ", "_")
+            if col == df.columns[-1]:
+                comma = ""
+            else:
+                comma = ","
+            print(f"    MAX(LENGTH({col_name})) {col_name}{comma}")
+    print("FROM TMP.TMP;")
+
