@@ -24,7 +24,6 @@ def nargs_req_len(nmin,nmax):
     class RequiredLength(argparse.Action):
         def __call__(self, parser, args, values, option_string=None):
             if not nmin<=len(values)<=nmax:
-                breakpoint()
                 msg=f"argument '{self.dest}' requires between {nmin} and {nmax} arguments\n{self.help}"
                 raise argparse.ArgumentTypeError(msg)
             setattr(args, self.dest, values)
@@ -67,7 +66,7 @@ if __name__ == "__main__":
                 f"looks like the given `parquet_file` argument's value/path - {args.parquet_file} - cannot be found"
             )
         df = pd.read_parquet(args.parquet_file)
-        # print(df.info(verbose=True)) col types
+        # print(df.info(verbose=True)) # col types
 
     # print max lens
     for col in df:
@@ -80,6 +79,7 @@ if __name__ == "__main__":
         print(
             f"{col.upper().replace('-', '_').replace(' ', '_')} VARCHAR({round_power_of_2(df[col].astype(str).str.len().max())}),"
         )
+    # last col - no trailing comma
     print(
         f"{df.columns[-1].upper().replace('-', '_').replace(' ', '_')} VARCHAR({round_power_of_2(df.iloc[:,-1].astype(str).str.len().max())})"
     )
