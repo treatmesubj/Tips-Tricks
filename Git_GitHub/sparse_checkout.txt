@@ -1,7 +1,7 @@
 mkdir <repo>
 cd <repo>
 git init
-git remote add -f origin <url>
+git remote add -f origin <.git url>
 
 git config core.sparseCheckout true
 
