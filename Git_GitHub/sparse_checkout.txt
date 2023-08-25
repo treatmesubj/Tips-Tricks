@@ -5,7 +5,7 @@ git remote add -f origin <.git url>
 
 git config core.sparseCheckout true
 
-echo "some/dir/" >> .git/info/sparse-checkout
-echo "another/sub/tree" >> .git/info/sparse-checkout
+echo "subdir/dir/dir" >> .git/info/sparse-checkout
+echo "another-subdir/dir/dir" >> .git/info/sparse-checkout
 
 git pull origin <branch>
