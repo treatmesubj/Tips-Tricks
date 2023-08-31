@@ -10,14 +10,14 @@ prompt() {
     if [[ $VIRTUAL_ENV ]]
     then
         short_path2=$(echo "$VIRTUAL_ENV" | sed "s/\/home\/john/~/")
-        export PS1+="\[\e[1;36m\]§\[\e[m\] \[\e[1;32m\](\[\e[m\]\[\e[1;36m\]\$short_path2\[\e[m\]\[\e[1;32m\])\[\e[m\]\r\n";
+        export PS1+="\[\e[1;36m\]§\[\e[m\] \[\e[1;92m\](\[\e[m\]\[\e[1;36m\]\$short_path2\[\e[m\]\[\e[1;92m\])\[\e[m\]\r\n";
     fi;
 
     # branch: * master
     branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' | awk '{print $2}')
     if [[ ! -z "$branch" ]]
     then
-       export PS1+="\[\e[1;35m\]±\[\e[m\] \[\e[1;32m\]*\[\e[m\] \[\e[1;35m\]$branch\[\e[m\]\r\n";
+       export PS1+="\[\e[1;35m\]±\[\e[m\] \[\e[1;45m\]* \[\e[m\]\[\e[92;45m\]$branch\[\e[m\]\r\n";
     fi;
 
     # $
