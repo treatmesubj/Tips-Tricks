@@ -25,25 +25,27 @@ prompt() {
 }
 PROMPT_COMMAND=prompt
 
+# Windows
 # access Windows executables when System D enbaled
 # https://github.com/microsoft/WSL/issues/8843
 # sudo sh -c 'echo :WSLInterop:M::MZ::/init:PF > /usr/lib/binfmt.d/WSLInterop.conf'
 alias pshell='powershell.exe'
+export winhome="/mnt/c/Users/JohnHupperts"
 
 export EDITOR=vim
-alias list='ls -a -h -s -1 --color'
-alias thesr='python3 -m thesr.thesr'
-alias sqlformat='sqlformat --reindent --keywords upper --identifiers lower'
 export TERM="xterm-256color"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 source ~/.venv/bin/activate # python venv
-export winhome="/mnt/c/Users/JohnHupperts"
-export AIRFLOW_HOME=~/airflow
 # https://go.dev/doc/install
 # core
 export PATH=$PATH:/usr/local/go/bin
 # packages
 export PATH=$PATH:~/go/bin/
+
+alias list='ls -a -h -s -1 --color'
+alias sizeup='du -sh $(ls -A) | sort -hr'
+alias thesr='python3 -m thesr.thesr'
+alias sqlformat='sqlformat --reindent --keywords upper --identifiers lower'
 
 # Cirrus login
 source ~/.bashrc_cirrus.sh

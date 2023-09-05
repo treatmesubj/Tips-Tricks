@@ -1,7 +1,7 @@
 # Files
 
 cwd files & dirs
-- `du -sh ./* | sort -hr`
+- `du -sh $(ls -A) | sort -hr`
 
 all sub-files
 - `du -h | sort -hr`
