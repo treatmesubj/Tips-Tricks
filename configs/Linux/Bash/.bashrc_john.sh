@@ -25,6 +25,21 @@ prompt() {
 }
 PROMPT_COMMAND=prompt
 
+sizeup() {
+    if [ $# -eq 1 ]  # file path arg
+    then
+        path=$(readlink -m $1)
+        if [ -d $path ]  # directory
+        then
+            du -sh $path/* $path/.[^.]* 2> /dev/null | sort -hr
+        else
+            du -sh $path | sort -hr
+        fi
+    else
+        du -sh * .[^.]* | sort -hr
+    fi
+}
+
 # Windows
 # access Windows executables when System D enbaled
 # https://github.com/microsoft/WSL/issues/8843
@@ -43,7 +58,6 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:~/go/bin/
 
 alias list='ls -a -h -s -1 --color'
-alias sizeup='du -sh $(ls -A) | sort -hr'
 alias thesr='python3 -m thesr.thesr'
 alias sqlformat='sqlformat --reindent --keywords upper --identifiers lower'
 
