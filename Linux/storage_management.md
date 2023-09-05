@@ -1,13 +1,14 @@
 # Files
-File Size of Directories
+
+cwd files & dirs
 - `du -sh ./* | sort -hr`
 
-File Size of Files & Directories
+all sub-files
 - `du -h | sort -hr`
 
 ---
 
-# devices
+# Devices
 
 `sudo fdisk -l`
 
@@ -30,7 +31,7 @@ mmcblk0     179:0    0 116.5G  0 disk
 
 ```
 
-## mounting a storage device to a directory
+## Mounting a storage device to a directory
 ```
 sudo mkdir /media/pi_ssd
 sudo mount -t vfat /dev/mmcblk0p1 /media/pi_ssd_boot
@@ -44,7 +45,7 @@ mmcblk0     179:0    0 116.5G  0 disk
 └─mmcblk0p2 179:2    0   1.6G  0 part 
 ```
 
-## unmount a device from directory
+## Unmount a device from directory
 ```
 umount /media/pi_ssd
 ```
