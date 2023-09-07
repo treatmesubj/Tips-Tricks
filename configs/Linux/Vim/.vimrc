@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'vim-python/python-syntax'
+Plug 'jlanzarotta/bufexplorer'
 if has('nvim')
     Plug 'wookayin/semshi'
     let g:semshi#excluded_hl_groups = ['local', 'global']
