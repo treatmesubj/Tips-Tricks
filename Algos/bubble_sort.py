@@ -10,10 +10,3 @@ def bubble_sort(array):
             if j < (len(array) - 1 - i):
                 j += 1
 
-
-
-
-if __name__ == "__main__":
-
-
-
