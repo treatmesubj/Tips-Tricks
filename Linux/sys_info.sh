@@ -13,9 +13,10 @@ cat /proc/meminfo
 
 lspci
 lsscsi
-lsusb
+lsusb -t
 lsblk
 df
 fdisk
 mount
 dmidecode
+
