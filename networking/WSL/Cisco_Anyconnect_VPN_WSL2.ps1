@@ -12,9 +12,9 @@ Get-NetAdapter | Where-Object InterfaceDescription -like "Cisco AnyConnect*" | G
     # $ dig -4 w3.ibm.com # to check if DNS works
     # if not, from PS, PS> ipconfig /all
         # see Ethernet adapter with DNS Suffix ibm.com
-        # see DNS Servers
-            # add DNS Server to WSL's /etc/resolv.conf
-    # $ sudo vim etc/resolv.conf
+            # see DNS Servers
+                # add IPv4 DNS Server to WSL's /etc/resolv.conf
+                # $ sudo vim etc/resolv.conf
 
 
 # go back to normal state when done with WSL tunnelall stuff
