@@ -59,7 +59,7 @@ export PATH=$PATH:~/go/bin/
 
 alias list='ls -a -h -s -1 --color'
 alias thesr='python3 -m thesr.thesr'
-alias sqlformat='sqlformat --reindent --keywords upper --identifiers lower'
+# sqlfmt is /usr/local/bin/sqlfmt
 
 # Cirrus login
 source ~/.bashrc_cirrus.sh
