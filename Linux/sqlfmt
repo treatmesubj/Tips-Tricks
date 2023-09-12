@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+# it is /usr/local/bin/sqlfmt
+if [ $# -eq 1 ]  # file path arg
+then
+    echo "$1"
+    sqlformat --reindent --keywords upper --identifiers lower "$1"
+else
+    sqlformat --reindent --keywords upper --identifiers lower
+fi
