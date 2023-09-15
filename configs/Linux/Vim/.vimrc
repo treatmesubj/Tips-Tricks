@@ -63,7 +63,7 @@ function HiNonASCII()
 endfunction
 autocmd BufEnter * call HiNonASCII()
 set laststatus=2  " status line always
-hi StatusLine ctermbg=54 ctermfg=white guibg=54 guifg=white
+hi StatusLine ctermbg=54 ctermfg=white guibg=#5f00d7 guifg=white
 " cursorline for active window
 hi clear CursorLine
 hi CursorLine cterm=underline gui=underline 
