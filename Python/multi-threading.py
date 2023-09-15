@@ -12,6 +12,7 @@ def my_func(arg1, arg2):
 with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
     arg1_list = [1,2,3,4,5]
     arg2_list = ['wow','nice','cool','neat','sweet']
+    # executor.map(my_func, arg1_list, arg2_list)
     results = executor.map(my_func, arg1_list, arg2_list)
 
 
