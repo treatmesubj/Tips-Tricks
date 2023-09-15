@@ -19,4 +19,4 @@ Though, Python multi-threading is still somewhat useful; the CPU is optimally us
 
 ![](./images/multi-thread.png)
 
-See [concurrency.py](./concurrency.py)
+## See [multi-threading.py](./multi-threading.py)
