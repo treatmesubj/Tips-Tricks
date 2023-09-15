@@ -1,0 +1,15 @@
+- syscall table for x86\_64 kernel operations
+    - `https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/`
+- build intermediate object
+    - `$ as asem.s -o asem.o`
+- use linker to build binary
+    - `$ gcc -o asem asem.o -nostdlib -static`
+- run the binary
+    - `$ ./asem`
+- check exit code
+    - `$ echo $?`
+- binary to hex
+    - `$ cat asem | xxd > asem.hex`
+- view hex
+    - `$ nvim -c 'set ft=xxd' asem.hex`
+
