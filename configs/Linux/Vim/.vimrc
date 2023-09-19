@@ -2,14 +2,29 @@ call plug#begin('~/.vim/plugged')
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'vim-python/python-syntax'
 Plug 'jlanzarotta/bufexplorer'
+Plug 'mogelbrod/vim-jsonpath'
+Plug 'itchyny/lightline.vim'
 if has('nvim')
     Plug 'wookayin/semshi'
     let g:semshi#excluded_hl_groups = ['local', 'global']
     let g:semshi#simplify_markup = v:false
     let g:semshi#mark_selected_nodes = 2
 endif
-
 call plug#end()
+
+let g:lightline = {
+      \ 'colorscheme': 'molokai',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
+      \ },
+      \ 'component': {
+      \   'charvaluehex': '0x%B',
+      \ },
+      \ }
+
 let g:python_highlight_all = 1
 let g:vim_monokai_tasty_italic=1
 colorscheme vim-monokai-tasty
@@ -63,7 +78,7 @@ function HiNonASCII()
 endfunction
 autocmd BufEnter * call HiNonASCII()
 set laststatus=2  " status line always
-hi StatusLine ctermbg=54 ctermfg=white guibg=#5f00d7 guifg=white
+"hi StatusLine ctermbg=54 ctermfg=white guibg=#5f00d7 guifg=white
 " cursorline for active window
 hi clear CursorLine
 hi CursorLine cterm=underline gui=underline 
