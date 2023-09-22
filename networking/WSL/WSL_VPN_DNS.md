@@ -31,3 +31,4 @@ This assumes you're using SystemD
     - `sudo systemctl restart dnsmasq`
 
 **NOTE**: `ping`s and `traceroute`s to internet when on `TUNNELALL` VPN may not work, but normal TCP/IP traffic should find its way back to you
+
