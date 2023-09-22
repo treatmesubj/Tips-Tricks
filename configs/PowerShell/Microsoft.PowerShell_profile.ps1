@@ -55,14 +55,6 @@ function reset_wsl_vpn {
     Get-NetAdapter | Where-Object InterfaceDescription -like "Cisco AnyConnect*" | Get-NetIPInterface | Where-Object ConnectionState -like "Connected" | Format-Table -AutoSize
 }
 
-# https://github.com/ankitpokhrel/jira-cli
-# API token auth: https://jsw.ibm.com/plugins/servlet/de.resolution.apitokenauth/admin
-# Installation type: Local
-# Jira Server: https://jsw.ibm.com
-# config: C:\Users\JohnHupperts/.config/.jira/.config.yml
-$env:JIRA_API_TOKEN = "blahblah"
-$env:JIRA_AUTH_TYPE = "bearer"
-
 # 'rm' should kindly move stuff to trash. 'which rm' will still point to binary unfortunately
 # https://github.com/bdukes/PowerShellModules/blob/main/Recycle/Recycle.psm1
 Import-Module "C:\Program Files\WindowsPowerShell\Modules\Recycle\1.5.0\Recycle.psm1"
