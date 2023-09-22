@@ -1,4 +1,4 @@
-# $profile => C:\Users\JohnHupperts\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+# $profile => ~\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
 
 function ibm-art {
 Write-Host "===========  ============     ========       ======== `
@@ -37,7 +37,8 @@ Set-PSReadlineKeyHandler -Key 'ctrl+l' -ScriptBlock {
 }
 
 function wsl_vpn {
-    Start-Process -FilePath powershell.exe -ArgumentList { ~/wsl_vpn.ps1 } -Wait -verb RunAs
+    Start-Process -FilePath powershell.exe -ArgumentList { ~/wsl_vpn.ps1 } -Wait -verb RunAs # Admin
+    # ~/wsl_vpn.ps1:
         # Get-NetAdapter | Where-Object InterfaceDescription -like "Cisco AnyConnect*" | Get-NetIPInterface | Where-Object ConnectionState -like "Connected" | Set-NetIPInterface -InterfaceMetric 6000
     Get-NetAdapter | Where-Object InterfaceDescription -like "Cisco AnyConnect*"
     Get-NetAdapter | Where-Object InterfaceDescription -like "Cisco AnyConnect*" | Get-NetIPInterface | Where-Object ConnectionState -like "Connected" | Format-Table -AutoSize
@@ -47,7 +48,8 @@ function wsl_vpn {
 }
 
 function reset_wsl_vpn {
-    Start-Process -FilePath powershell.exe -ArgumentList { ~/reset_wsl_vpn.ps1 } -Wait -verb RunAs
+    Start-Process -FilePath powershell.exe -ArgumentList { ~/reset_wsl_vpn.ps1 } -Wait -verb RunAs # Admin
+    # ~/reset_wsl_vpn.ps1:
         # Get-NetAdapter | Where-Object InterfaceDescription -like "Cisco AnyConnect*" | Get-NetIPInterface | Where-Object ConnectionState -like "Connected" | Where-Object AddressFamily -like "IPv6" | Set-NetIPInterface -InterfaceMetric 45
         # Get-NetAdapter | Where-Object InterfaceDescription -like "Cisco AnyConnect*" | Get-NetIPInterface | Where-Object ConnectionState -like "Connected" | Where-Object AddressFamily -like "IPv4" | Set-NetIPInterface -InterfaceMetric 1
     Get-NetAdapter | Where-Object InterfaceDescription -like "Cisco AnyConnect*" | Get-NetIPInterface | Where-Object ConnectionState -like "Connected" | Format-Table -AutoSize
