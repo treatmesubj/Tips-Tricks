@@ -12,9 +12,10 @@ let s:pink = [ '#f92672', 161 ]
 let s:red = [ '#ff6b68', 204 ]
 let s:yellow = [ '#ffc66d', 222 ]
 let s:purple = [ '#9876aa', 104 ]
+let s:gold = ["#EBCB8B", 3]
 
 let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
-let s:p.normal.left = [ [ s:spec_white, s:pine ], [ s:purple, s:spec_gray ] ]
+let s:p.normal.left = [ [ s:gold, s:pine ], [ s:purple, s:spec_gray ] ]
 let s:p.normal.middle = [ [ s:black, s:pine ] ]
 let s:p.normal.right = [ [ s:black, s:pink ], [ s:spec_white, s:spec_gray ] ]
 let s:p.normal.error = [ [ s:pink, s:black ] ]
