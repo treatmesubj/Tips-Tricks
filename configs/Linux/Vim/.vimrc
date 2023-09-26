@@ -4,6 +4,7 @@ Plug 'vim-python/python-syntax'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'mogelbrod/vim-jsonpath'
 Plug 'itchyny/lightline.vim'
+Plug 'treatmesubj/rock-lightline'
 if has('nvim')
     Plug 'wookayin/semshi'
     let g:semshi#excluded_hl_groups = ['local', 'global']
