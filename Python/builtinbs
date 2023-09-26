@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# sudo ln -s builtinbs /usr/local/bin
 import random
 import requests
 from bs4 import BeautifulSoup
