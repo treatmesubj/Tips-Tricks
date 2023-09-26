@@ -40,6 +40,15 @@ sizeup() {
     fi
 }
 
+randint() {
+    if [ $# -eq 2 ]  # file path arg
+    then
+        python -c "import random; print(random.randint($1, $2))"
+    else
+        echo "provide 2 integers as arguments"
+    fi
+}
+
 # Windows
 # access Windows executables when System D enbaled
 # https://github.com/microsoft/WSL/issues/8843
