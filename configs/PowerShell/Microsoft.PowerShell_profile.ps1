@@ -11,7 +11,7 @@ Write-Host "===========  ============     ========       ======== `
 ===========  ============     ======     =     ====== `
 " -ForegroundColor DarkBlue
 }
-ibm-art
+# ibm-art
 
 Set-Alias -Name sublime -Value "C:\Program Files\Sublime Text 3\sublime_text.exe"
 Set-Alias -Name firefox -Value "C:\Program Files\Mozilla Firefox\firefox.exe"
