@@ -25,7 +25,7 @@
 # [Post-LFS](https://www.linuxfromscratch.org/lfs/view/stable/chapter11/afterlfs.html)
 
 # Host Machine niceties
-- Add below contents to `mount_virt.sh`
+- Add below contents to `~/mount_virt.sh`
 ```bash
 #!/bin/bash
 
