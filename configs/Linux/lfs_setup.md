@@ -25,7 +25,7 @@
 # [Post-LFS](https://www.linuxfromscratch.org/lfs/view/stable/chapter11/afterlfs.html)
 
 # Host Machine niceties
-- `mount_virt.sh`
+- Add below contents to `mount_virt.sh`
 ```bash
 #!/bin/bash
 
@@ -76,7 +76,7 @@ fi
 #mountbind home
 ```
 
-- ~/.bashrc`
+- Add below contents to `~/.bashrc`
 ```bash
 export LFS=/mnt/lfs
 alias lfs='sh ~/mount-virt.sh && sudo /usr/sbin/chroot /mnt/lfs /usr/bin/env -i HOME=/root TERM="$TERM" PS1="\u:\w\\\\$ " PATH=/bin:/usr/bin:/sbin:/usr/sbin /bin/bash --login'
