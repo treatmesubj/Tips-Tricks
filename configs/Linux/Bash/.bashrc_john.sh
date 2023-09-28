@@ -31,12 +31,12 @@ sizeup() {
         path=$(readlink -m $1)
         if [ -d $path ]  # directory
         then
-            du -sh $path/* $path/.[^.]* 2> /dev/null | sort -hr
+            du -sh $path/* $path/.[^.]* 2>/dev/null | sort -hr
         else
             du -sh $path | sort -hr
         fi
     else
-        du -sh * .[^.]* | sort -hr
+        du -sh * .[^.]* 2>/dev/null | sort -hr
     fi
 }
 
