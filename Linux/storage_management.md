@@ -22,13 +22,13 @@ sizeup
 
 # Mounted Devices
 
-- `lsblk` ☆
+- `lsblk -p` ☆
 ```
 [snip]
-NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
-mmcblk0     179:0    0 116.5G  0 disk 
-├─mmcblk0p1 179:1    0   256M  0 part
-└─mmcblk0p2 179:2    0   1.6G  0 part 
+NAME                MAJ:MIN RM  SIZE    RO  TYPE    MOUNTPOINT
+/dev/mmcblk0        179:0   0   116.5G  0   disk
+├─/dev/mmcblk0p1    179:1   0   256M    0   part    /media/pi/boot
+└─/dev/mmcblk0p2    179:2   0   1.6G    0   part    /media/pi/rootfs
 ```
 
 - `sudo fdisk -l`
