@@ -1,3 +1,4 @@
+ls ~/.ssh  # don't overwrite a key
 ssh-keygen -b 4096
 # Generating public/private rsa key pair.
 # Enter file in which to save the key (/home/john/.ssh/id_rsa): /home/john/.ssh/my_key
