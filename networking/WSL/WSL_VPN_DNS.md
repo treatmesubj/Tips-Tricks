@@ -5,7 +5,7 @@ This assumes you're using SystemD
     - Add below to `/etc/wsl.conf`
         ```
         [network]
-        generateResolvConf = false
+        generateResolvConf=false
         ```
 2. Temporarily, we need Google's DNS to find things on the internet. Add below to `/etc/resolv.conf`
     ```
@@ -25,7 +25,7 @@ This assumes you're using SystemD
     ```
 5. We want DNS to be directed to our own `dnsmasq` server. Set contents of `/etc/resolv.conf` to below.
     ```
-    namserver   127.0.0.1
+    nameserver   127.0.0.1
     ```
 6. Start `dnsmasq`
     - `sudo systemctl restart dnsmasq`
