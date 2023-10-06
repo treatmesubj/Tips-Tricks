@@ -1,4 +1,4 @@
-# WIP
+# Hm, Doesn't seem to work...
 
 1. Set up a BurpSuite proxy to listen on port on WSL interface
     - `PS> ipconfig` or `$ ip route`
@@ -9,4 +9,4 @@
     - `PS> Get-NetIPInterface  # look for 'vEthernet (WSL)'`
     - [PS New-NetFirewallRule Docs](https://learn.microsoft.com/en-us/powershell/module/netsecurity/new-netfirewallrule?view=windowsserver2022-ps)
     - `PS> New-NetFirewallRule -DisplayName "WSL2 to Windows" -InterfaceAlias "vEthernet (WSL)" -Direction Inbound -Protocol TCP -Action Allow`
-    - `PS> Get-NetFirewallRule | Where-Object DisplayName -like "WSL2*"
+    - `PS> Get-NetFirewallRule | Where-Object DisplayName -like "WSL2*"`
