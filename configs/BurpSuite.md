@@ -1,0 +1,2 @@
+- [Install PortSwigger CA Cert in browser](https://portswigger.net/burp/documentation/desktop/external-browser-config/certificate/ca-cert-firefox)
+- [Disable Firefox Captive Portal](https://security.stackexchange.com/questions/187069/burpsuite-just-passthrough-firefox-detect-portal)
