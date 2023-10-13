@@ -2,7 +2,7 @@
 import random
 import requests
 from bs4 import BeautifulSoup
-# import webbrowser
+import webbrowser
 import subprocess
 
 
@@ -17,8 +17,8 @@ def get_builtin_url():
 
 
 def get_linkedin_url():
-    url = 'https://www.linkedin.com/jobs/search/?origin=JOB_SEARCH_PAGE_SEARCH_BUTTON'
-    rand_page = random.randint(1, 5000000)
+    url = 'https://www.linkedin.com/jobs/search/?keywords=&location=United%20States&f_TPR=&f_WT'
+    rand_page = random.randint(1, 5000)
     rand_url = f"{url}&start={rand_page}"
     return rand_url
 
@@ -28,10 +28,9 @@ if __name__ == "__main__":
 
     builtin_url = get_builtin_url()
     print(builtin_url)
-    subprocess.call(f"powershell.exe python -m webbrowser -t {builtin_url}", shell=True)
+    webbrowser.open_new_tab(builtin_url)
 
     linkedin_url = get_linkedin_url()
     print(linkedin_url)
-    subprocess.call(f"powershell.exe python -m webbrowser -t {linkedin_url}", shell=True)
-
+    webbrowser.open_new_tab(linkedin_url)
 
