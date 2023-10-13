@@ -56,7 +56,8 @@ randint() {
 alias pshell='powershell.exe'
 export winhome="/mnt/c/Users/JohnHupperts"
 
-export EDITOR=vim
+export EDITOR=nvim
+alias nvimdiff='nvim -d'
 export TERM="xterm-256color"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 source ~/.venv/bin/activate # python venv
