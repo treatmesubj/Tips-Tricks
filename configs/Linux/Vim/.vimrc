@@ -21,6 +21,12 @@ let g:lightline = {
       \   'right': [ [ 'percent' ],
       \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
       \ },
+      \ 'inactive': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
+      \ },
       \ 'component': {
       \   'charvaluehex': '0x%B',
       \ },
