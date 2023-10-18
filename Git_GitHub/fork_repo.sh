@@ -12,3 +12,7 @@ git remote rename origin upstream
 git remote add origin git@github.com:<your-username>/<your-project>.git
 git push -u origin master
 
+#---
+# merge latest upstream master into origin master
+git pull upstream master
+git push origin master

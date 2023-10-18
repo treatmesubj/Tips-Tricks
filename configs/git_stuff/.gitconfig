@@ -1,0 +1,9 @@
+# global: ~/.gitconfig
+# repo: ~/repo/.git/config
+[user]
+    name = treatmesubj
+    email = jrock4503@hotmail.com
+[core]
+    excludesfile = /home/john/.gitignore
+    editor = vim
+
