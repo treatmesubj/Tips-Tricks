@@ -1,3 +1,4 @@
+# CrashLoopBackOff
 kubectl describe pod <name>
 kubectl logs <podname> -p
 kubectl logs  -n  --previous  # check logs of previous container
