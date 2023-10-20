@@ -21,12 +21,6 @@ let g:lightline = {
       \   'right': [ [ 'percent' ],
       \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
       \ },
-      \ 'inactive': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified' ] ],
-      \   'right': [ [ 'percent' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
-      \ },
       \ 'component': {
       \   'charvaluehex': '0x%B',
       \ },
@@ -98,3 +92,8 @@ augroup END
 " space, y to copy last yank to clipboard
 let mapleader = " "
 noremap <leader>y :let @+=@0<CR>
+# noremap <Leader>be :BufExplorer<CR>
+# noremap <Leader>bt :ToggleBufExplorer<CR>
+# noremap <Leader>bs :BufExplorerHorizontalSplit<CR>
+# noremap <Leader>bv :BufExplorerVerticalSplit<CR>
+
