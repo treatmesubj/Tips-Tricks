@@ -92,8 +92,8 @@ augroup END
 " space, y to copy last yank to clipboard
 let mapleader = " "
 noremap <leader>y :let @+=@0<CR>
-# noremap <Leader>be :BufExplorer<CR>
-# noremap <Leader>bt :ToggleBufExplorer<CR>
-# noremap <Leader>bs :BufExplorerHorizontalSplit<CR>
-# noremap <Leader>bv :BufExplorerVerticalSplit<CR>
+" noremap <Leader>be :BufExplorer<CR>
+" noremap <Leader>bt :ToggleBufExplorer<CR>
+" noremap <Leader>bs :BufExplorerHorizontalSplit<CR>
+" noremap <Leader>bv :BufExplorerVerticalSplit<CR>
 
