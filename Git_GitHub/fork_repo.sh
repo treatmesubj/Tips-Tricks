@@ -13,6 +13,8 @@ git remote add origin git@github.com:<your-username>/<your-project>.git
 git push -u origin master
 
 #---
-# merge latest upstream master into origin master
-git pull upstream master
-git push origin master
+# pull latest upstream master, rebase local master commits on top, push to origin
+# this is janky, idk
+git add . && git commit -m wip
+git pull -r upstream master
+git push origin master --force
