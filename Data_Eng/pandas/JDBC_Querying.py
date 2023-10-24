@@ -39,7 +39,7 @@ if __name__ == "__main__":
             "clientRerouteAlternatePortNumber=443;"\
             f"clientRerouteAlternateServerName={db_dict['host']};",
         # driver_args = {},
-        jars=f"{db_dict['driver_path']}",
+        jars=db_dict['driver_path'],
     )
     db_cursor = db_connection.cursor()
 
