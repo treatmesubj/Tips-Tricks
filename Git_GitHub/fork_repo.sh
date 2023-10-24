@@ -14,7 +14,9 @@ git push -u origin master
 
 #---
 # pull latest upstream master, rebase local master commits on top, push to origin
-# this is janky, idk
+# just be aware that this will rewrite origin master's git log/history
 git add . && git commit -m wip
-git pull -r upstream master
+git pull --rebase upstream master
+# git log
 git push origin master --force
+# git log
