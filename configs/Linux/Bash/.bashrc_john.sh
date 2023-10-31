@@ -14,10 +14,10 @@ prompt() {
     fi;
 
     # branch: * master
-    branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' | awk '{print $2}')
+    branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' | cut -d\  -f2-)
     if [[ ! -z "$branch" ]]
     then
-       export PS1+="\[\e[1;35m\]±\[\e[m\] \[\e[1;45m\]* \[\e[m\]\[\e[92;45m\]$branch\[\e[m\]\r\n";
+       export PS1+="\[\e[1;35m\]±\[\e[m\] \[\e[1;45m\]* \[\e[m\]\[\e[m\]\[\e[92;45m\]$branch\[\e[m\]\r\n";
     fi;
 
     # $
