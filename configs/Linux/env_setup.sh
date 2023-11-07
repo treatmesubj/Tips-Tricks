@@ -5,10 +5,10 @@ sudo apt install vim neovim -y\
     && curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 mkdir -p ~/.config/nvim/
-cat << EOF > ~/.config/nvim/init.vim
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
-source ~/.vimrc
+cat << EOF > ~/.config/nvim/init.lua
+vim.api.nvim_command('set runtimepath^=~/.vim runtimepath+=~/.vim/after')
+vim.api.nvim_command('let &packpath = &runtimepath')
+vim.api.nvim_command('source ~/.vimrc')
 EOF
 # python venv
 sudo apt install python3-venv -y && python3 -m venv ~/.venv && ~/.venv/bin/pip install pynvim -y
