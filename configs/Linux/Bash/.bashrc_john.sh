@@ -49,6 +49,14 @@ randint() {
     fi
 }
 
+pod_bash() {
+    if [ $# -eq 1 ]  # pod-name
+    then
+        kubectl exec --stdin --tty $1 -- /bin/bash
+    else
+        echo "usage: pod_shell <pod-name>"
+    fi
+}
 # Windows
 # access Windows executables when System D enbaled
 # https://github.com/microsoft/WSL/issues/8843
