@@ -52,11 +52,7 @@ randint() {
 pod_shell() {
     pod_name=$1
     shell=$2
-    kubectl exec --stdin --tty $pod_name -- $shell
-    if [ $? -eq 1 ]
-    then
-        echo "usage: pod_shell <pod-name> <shell>"
-    fi
+    kubectl exec --stdin --tty $pod_name -- $shell || echo "usage: pod_shell <pod-name> <shell>"
 }
 
 # Windows
