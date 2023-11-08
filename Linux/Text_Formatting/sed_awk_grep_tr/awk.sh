@@ -15,3 +15,12 @@ ps -ef | awk '{ if($NF == "/bin/bash") print $0}'
 awk 'BEGIN { for(i=1; i<=10; i++) print "i is", i;}'
 awk 'BEGIN { for(i=1; i<=10; i++) print "i is " i;}'
 awk 'BEGIN { OFS="="; for(i=1; i<=10; i++) print "i", i;}'
+
+
+stringy="cool"
+if awk -v var1="$stringy" 'index($0,var1)>0 {r=1;exit} END{exit r!=1}' ./file.txt
+then
+    # stuff
+else
+    # stuff
+fi
