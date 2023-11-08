@@ -11,7 +11,7 @@ vim.api.nvim_command('let &packpath = &runtimepath')
 vim.api.nvim_command('source ~/.vimrc')
 EOF
 # python venv
-sudo apt install python3-venv -y && python3 -m venv ~/.venv && ~/.venv/bin/pip install pynvim -y
+sudo apt install python3-venv -y && python3 -m venv ~/.venv_pynvim && ~/.venv_pynvim/bin/pip install pynvim "python-lsp-server[all]"
 # tmux conf
 sudo apt install tmux -y && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/TMUX/.tmux.conf" -o ~/.tmux.conf
 # bashrc
