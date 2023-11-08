@@ -41,7 +41,7 @@ sizeup() {
 }
 
 randint() {
-    if [ $# -eq 2 ]  # file path arg
+    if [ $# -eq 2 ]
     then
         python -c "import random; print(random.randint($1, $2))"
     else
@@ -49,14 +49,12 @@ randint() {
     fi
 }
 
-pod_bash() {
-    if [ $# -eq 1 ]  # pod-name
-    then
-        kubectl exec --stdin --tty $1 -- /bin/bash
-    else
-        echo "usage: pod_shell <pod-name>"
-    fi
+pod_shell() {
+    pod_name=$1
+    shell=$2
+    kubectl exec --stdin --tty $pod_name -- $shell
 }
+
 # Windows
 # access Windows executables when System D enbaled
 # https://github.com/microsoft/WSL/issues/8843
