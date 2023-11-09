@@ -10,8 +10,17 @@ if has('nvim')
     let g:semshi#excluded_hl_groups = ['local', 'global']
     let g:semshi#simplify_markup = v:false
     let g:semshi#mark_selected_nodes = 2
+    " LSP Support
+    Plug 'neovim/nvim-lspconfig'
+    " Autocompletion
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'L3MON4D3/LuaSnip'
+    " LSP-Zero
+    Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'compat-07'}  " Debian has old nvim
 endif
 call plug#end()
+let g:python3_host_prog = $HOME . '/.venv_pynvim/bin/python'
 
 let g:lightline = {
       \ 'colorscheme': 'rock',
@@ -41,7 +50,6 @@ if !has('nvim')
     source $VIMRUNTIME/defaults.vim
 endif
 
-" Put these in an autocmd group, so that we can delete them easily.
 augroup vimrcEx
   au!
   " For all text files set 'textwidth' to 78 characters.
@@ -91,9 +99,14 @@ augroup END
 
 " space, y to copy last yank to clipboard
 let mapleader = " "
-noremap <leader>y :let @+=@0<CR>
-" noremap <Leader>be :BufExplorer<CR>
-" noremap <Leader>bt :ToggleBufExplorer<CR>
-" noremap <Leader>bs :BufExplorerHorizontalSplit<CR>
-" noremap <Leader>bv :BufExplorerVerticalSplit<CR>
+map <leader>y :let @+=@0<CR>
+" map <Leader>be :BufExplorer<CR>
+" map <Leader>bt :ToggleBufExplorer<CR>
+" map <Leader>bs :BufExplorerHorizontalSplit<CR>
+" map <Leader>bv :BufExplorerVerticalSplit<CR>
 
+" shift + arrow-key to resize pane
+map <S-Up> <c-w>-
+map <S-Down> <c-w>+
+map <S-Right> <c-w>>
+map <S-Left> <c-w><
