@@ -115,3 +115,10 @@ map <S-Up> <c-w>-
 map <S-Down> <c-w>+
 map <S-Right> <c-w>>
 map <S-Left> <c-w><
+function! NetRWPaneResizeShortcuts()
+    map <buffer> <S-Up> <c-w>-
+    map <buffer> <S-Down> <c-w>+
+    map <buffer> <S-Right> <c-w>>
+    map <buffer> <S-Left> <c-w><
+endfunction
+autocmd filetype netrw call NetRWPaneResizeShortcuts()
