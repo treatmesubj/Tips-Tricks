@@ -10,6 +10,7 @@ if has('nvim')
     let g:semshi#excluded_hl_groups = ['local', 'global']
     let g:semshi#simplify_markup = v:false
     let g:semshi#mark_selected_nodes = 2
+    let g:semshi#error_sign = v:false
     " LSP Support
     Plug 'neovim/nvim-lspconfig'
     " Autocompletion
@@ -28,7 +29,7 @@ let g:python3_host_prog = $HOME . '/.venv_pynvim/bin/python'
 function! DiagHighlights() abort
     " :filt Diag hi
     hi DiagnosticError ctermfg=197 guifg=#fd2c40
-    hi DiagnosticWarn ctermfg=208 guifg=#FF9700
+    hi DiagnosticWarn ctermfg=173  guifg=#d7875f
     hi DiagnosticInfo ctermfg=245  guifg=#8a8a8a
     hi DiagnosticHint ctermfg=250 guifg=#BCBCBC
     hi DiagnosticUnderlineError cterm=underline gui=underline guisp=Red
