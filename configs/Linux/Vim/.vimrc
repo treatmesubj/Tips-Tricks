@@ -6,18 +6,18 @@ Plug 'mogelbrod/vim-jsonpath'
 Plug 'itchyny/lightline.vim'
 Plug 'treatmesubj/rock-lightline'
 if has('nvim')
-    Plug 'wookayin/semshi'
-    " LSP Support
-    Plug 'neovim/nvim-lspconfig'
-    " Autocompletion
-    Plug 'hrsh7th/nvim-cmp'
-    Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'L3MON4D3/LuaSnip'
-    " LSP-Zero
-    Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'compat-07'}  " Debian has old nvim
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    " :TSInstall yaml
-    Plug 'cuducos/yaml.nvim'
+  Plug 'wookayin/semshi'
+  " LSP Support
+  Plug 'neovim/nvim-lspconfig'
+  " Autocompletion
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'L3MON4D3/LuaSnip'
+  " LSP-Zero
+  Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'compat-07'}  " Debian has old nvim
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  " :TSInstall yaml
+  Plug 'cuducos/yaml.nvim'
 endif
 call plug#end()
 let g:python3_host_prog = $HOME . '/.venv_pynvim/bin/python'
@@ -26,19 +26,19 @@ let g:python3_host_prog = $HOME . '/.venv_pynvim/bin/python'
 " Custom Colors
 """""""""""""""""""""""""""""""""
 function! DiagHighlights() abort
-    " :filt Diag hi
-    hi DiagnosticError ctermfg=197 guifg=#fd2c40
-    hi DiagnosticWarn ctermfg=173  guifg=#d7875f
-    hi DiagnosticInfo ctermfg=245  guifg=#8a8a8a
-    hi DiagnosticHint ctermfg=250 guifg=#BCBCBC
-    hi DiagnosticUnderlineError cterm=underline gui=underline guisp=Red
-    hi DiagnosticUnderlineWarn cterm=underline gui=underline guisp=Orange
-    hi DiagnosticUnderlineInfo cterm=underline gui=underline guisp=LightBlue
-    hi DiagnosticUnderlineHint cterm=underline gui=underline guisp=LightGrey
+  " :filt Diag hi
+  hi DiagnosticError ctermfg=197 guifg=#fd2c40
+  hi DiagnosticWarn ctermfg=173  guifg=#d7875f
+  hi DiagnosticInfo ctermfg=245  guifg=#8a8a8a
+  hi DiagnosticHint ctermfg=250 guifg=#BCBCBC
+  hi DiagnosticUnderlineError cterm=underline gui=underline guisp=Red
+  hi DiagnosticUnderlineWarn cterm=underline gui=underline guisp=Orange
+  hi DiagnosticUnderlineInfo cterm=underline gui=underline guisp=LightBlue
+  hi DiagnosticUnderlineHint cterm=underline gui=underline guisp=LightGrey
 endfunction
 augroup DiagColors
-    autocmd!
-    autocmd ColorScheme * call DiagHighlights()
+  autocmd!
+  autocmd ColorScheme * call DiagHighlights()
 augroup END
 
 let g:python_highlight_all = 1
@@ -57,8 +57,8 @@ autocmd FileType python call SemshiPyHighlights()
 
 " highlight non-ASCII; shortcut 'ga' to show char's bytes
 function HiNonASCII()
-    syntax match nonascii "[^\u0000-\u007F]"
-    hi nonascii ctermbg=226 ctermfg=black cterm=bold guibg=#ffff00 guifg=black gui=bold
+  syntax match nonascii "[^\u0000-\u007F]"
+  hi nonascii ctermbg=226 ctermfg=black cterm=bold guibg=#ffff00 guifg=black gui=bold
 endfunction
 autocmd BufEnter * call HiNonASCII()
 
@@ -71,17 +71,17 @@ augroup CursorLine
 augroup END
 
 let g:lightline = {
-      \ 'colorscheme': 'rock',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified' ] ],
-      \   'right': [ [ 'percent' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
-      \ },
-      \ 'component': {
-      \   'charvaluehex': '0x%B',
-      \ },
-      \ }
+  \ 'colorscheme': 'rock',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ],
+  \             [ 'readonly', 'filename', 'modified' ] ],
+  \   'right': [ [ 'percent' ],
+  \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
+  \ },
+  \ 'component': {
+  \   'charvaluehex': '0x%B',
+  \ },
+  \ }
 
 """""""""""""""""""""""""""""""""
 " End Custom Colors
@@ -89,7 +89,7 @@ let g:lightline = {
 
 " Get the defaults that most users want.
 if !has('nvim')
-    source $VIMRUNTIME/defaults.vim
+  source $VIMRUNTIME/defaults.vim
 endif
 
 augroup vimrcEx
@@ -110,7 +110,7 @@ set number  " line-numbers
 set relativenumber " relative line-numbers
 set mouse=  " no-mouse
 if !has('nvim')
-    set ttymouse=  " no-mouse
+  set ttymouse=  " no-mouse
 endif
 set wrap " don't literally insert newlines
 set directory=/tmp
@@ -119,6 +119,9 @@ set undofile  " keep an undo file (undo changes after closing)
 set undodir=~/.vim/undodir  " put all undo files in a tidy dir
 set background=dark
 set tabstop=4 shiftwidth=4 expandtab " every tab -> 4 spaces
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab  " yaml
+autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab  " vimscript
+autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab  " lua
 " set fileformat=unix to fix trailing character issues
 set list
 set listchars=eol:$,tab:<->,trail:+,nbsp:_
@@ -144,9 +147,9 @@ map <S-Down> <c-w>+
 map <S-Right> <c-w>>
 map <S-Left> <c-w><
 function! NetRWPaneResizeShortcuts()
-    map <buffer> <S-Up> <c-w>-
-    map <buffer> <S-Down> <c-w>+
-    map <buffer> <S-Right> <c-w>>
-    map <buffer> <S-Left> <c-w><
+  map <buffer> <S-Up> <c-w>-
+  map <buffer> <S-Down> <c-w>+
+  map <buffer> <S-Right> <c-w>>
+  map <buffer> <S-Left> <c-w><
 endfunction
 autocmd filetype netrw call NetRWPaneResizeShortcuts()
