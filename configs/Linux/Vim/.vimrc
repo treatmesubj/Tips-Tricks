@@ -7,10 +7,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'treatmesubj/rock-lightline'
 if has('nvim')
     Plug 'wookayin/semshi'
-    let g:semshi#excluded_hl_groups = ['local', 'global']
-    let g:semshi#simplify_markup = v:false
-    let g:semshi#mark_selected_nodes = 2
-    let g:semshi#error_sign = v:false
     " LSP Support
     Plug 'neovim/nvim-lspconfig'
     " Autocompletion
@@ -43,9 +39,13 @@ augroup DiagColors
 augroup END
 
 let g:python_highlight_all = 1
-let g:vim_monokai_tasty_italic=1
+let g:vim_monokai_tasty_italic = 1
 colorscheme vim-monokai-tasty
 
+let g:semshi#excluded_hl_groups = ['local', 'global']
+let g:semshi#simplify_markup = v:false
+let g:semshi#mark_selected_nodes = 2
+let g:semshi#error_sign = v:false
 function SemshiPyHighlights()
     hi semshiSelf            ctermfg=208 guifg=#FF9700
     hi semshiImported        cterm=underline gui=underline

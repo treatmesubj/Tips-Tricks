@@ -6,7 +6,12 @@ local lsp_zero = require('lsp-zero')
 lsp_zero.on_attach(function(client, bufnr)
   lsp_zero.default_keymaps({buffer = bufnr})
 end)
--- https://github.com/davidhalter/jedi
+-- show most severe errors on top
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        severity_sort = true
+    }
+)
 -- https://github.com/python-lsp/python-lsp-server
 require('lspconfig').pylsp.setup{
   cmd = {(os.getenv("HOME")..'/.venv_pynvim/bin/pylsp')};
@@ -20,4 +25,3 @@ require('lspconfig').pylsp.setup{
     }
   }
 }
-
