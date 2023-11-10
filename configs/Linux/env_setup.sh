@@ -13,7 +13,8 @@ curl -L "https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.
     && sudo cp -r ~/nvim-linux64/bin/* /usr/bin \
     && sudo cp -r ~/nvim-linux64/lib/* /usr/lib \
     && sudo cp -r ~/nvim-linux64/share/* /usr/share \
-    && sudo cp -r ~/nvim-linux64/man/* /usr/share/man
+    && sudo cp -r ~/nvim-linux64/man/* /usr/share/man \
+    && rm -rf ~/nvim-linux64*
 # python venvs
 sudo apt install python3-venv -y \
     && python3 -m venv ~/.venv_pynvim \
