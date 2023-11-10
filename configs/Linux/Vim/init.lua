@@ -12,6 +12,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
         severity_sort = true
     }
 )
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- https://github.com/python-lsp/python-lsp-server
 require('lspconfig').pylsp.setup{
   cmd = {(os.getenv("HOME")..'/.venv_pynvim/bin/pylsp')};
@@ -23,7 +24,11 @@ require('lspconfig').pylsp.setup{
         }
       }
     }
-  }
+  },
+  -- https://github.com/SmiteshP/nvim-navic#%EF%B8%8F-setup
+  -- on_attach = function(client, bufnr)
+  --   navic.attach(client, bufnr)
+  -- end
 }
 -- https://github.com/nvim-treesitter/nvim-treesitter
 require'nvim-treesitter.configs'.setup {
@@ -36,9 +41,9 @@ require'nvim-treesitter.configs'.setup {
 }
 -- https://github.com/cuducos/yaml.nvim
 vim.api.nvim_create_autocmd({ "BufEnter", "CursorMoved" },{
-    pattern = { "*.yaml" },
-    callback = function()
-        vim.opt_local.winbar = require("yaml_nvim").get_yaml_key()
-    end,
+  pattern = { "*.yaml" },
+  callback = function()
+    vim.opt_local.winbar = require("yaml_nvim").get_yaml_key()
+  end,
 })
 vim.api.nvim_command('hi winbar ctermbg=89')
