@@ -15,6 +15,9 @@ if has('nvim')
     Plug 'L3MON4D3/LuaSnip'
     " LSP-Zero
     Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'compat-07'}  " Debian has old nvim
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    " :TSInstall yaml
+    Plug 'cuducos/yaml.nvim'
 endif
 call plug#end()
 let g:python3_host_prog = $HOME . '/.venv_pynvim/bin/python'

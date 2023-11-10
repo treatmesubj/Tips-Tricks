@@ -25,3 +25,19 @@ require('lspconfig').pylsp.setup{
     }
   }
 }
+-- https://github.com/nvim-treesitter/nvim-treesitter
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all" (the five listed parsers should always be installed)
+  ensure_installed = { "yaml", },
+  highlight = {
+    enable = false,
+    additional_vim_regex_highlighting = false,
+  }
+}
+-- https://github.com/cuducos/yaml.nvim
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorMoved" },{
+    pattern = { "*.yaml" },
+    callback = function()
+        vim.opt_local.winbar = require("yaml_nvim").get_yaml_key()
+    end,
+})
