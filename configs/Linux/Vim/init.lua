@@ -41,3 +41,4 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorMoved" },{
         vim.opt_local.winbar = require("yaml_nvim").get_yaml_key()
     end,
 })
+vim.api.nvim_command('hi winbar ctermbg=89')

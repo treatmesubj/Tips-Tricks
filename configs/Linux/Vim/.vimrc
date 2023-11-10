@@ -83,7 +83,6 @@ let g:lightline = {
       \ },
       \ }
 
-hi winbar ctermbg=89
 """""""""""""""""""""""""""""""""
 " End Custom Colors
 """""""""""""""""""""""""""""""""
