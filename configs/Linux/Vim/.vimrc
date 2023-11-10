@@ -119,9 +119,10 @@ set undofile  " keep an undo file (undo changes after closing)
 set undodir=~/.vim/undodir  " put all undo files in a tidy dir
 set background=dark
 set tabstop=4 shiftwidth=4 expandtab " every tab -> 4 spaces
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab  " yaml
 autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab  " vimscript
 autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab  " lua
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab  " yaml
+autocmd FileType yaml set nowrap  " yaml
 " set fileformat=unix to fix trailing character issues
 set list
 set listchars=eol:$,tab:<->,trail:+,nbsp:_
