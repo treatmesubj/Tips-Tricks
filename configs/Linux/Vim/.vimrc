@@ -1,3 +1,4 @@
+" ~/.vimrc
 call plug#begin('~/.vim/plugged')
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'vim-python/python-syntax'
