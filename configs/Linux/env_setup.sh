@@ -1,12 +1,19 @@
 # curl https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/env_setup.sh > env_setup.sh
 # vim & nvim
-sudo apt install vim neovim -y \
+sudo apt install vim -y \
     && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/.vimrc" \
         -o ~/.vimrc \
     && curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" \
     && curl -fLo ~/.config/nvim/init.lua --create-dirs \
         "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/init.lua"
+curl -L "https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz" \
+    -o ~/nvim-linux64.tar.gz \
+    && tar xzvf ~/nvim-linux64.tar.gz --directory ~ \
+    && sudo cp -r ~/nvim-linux64/bin/* /usr/bin \
+    && sudo cp -r ~/nvim-linux64/lib/* /usr/lib \
+    && sudo cp -r ~/nvim-linux64/share/* /usr/share \
+    && sudo cp -r ~/nvim-linux64/man/* /usr/share/man
 # python venvs
 sudo apt install python3-venv -y \
     && python3 -m venv ~/.venv_pynvim \
