@@ -22,6 +22,50 @@ endif
 call plug#end()
 let g:python3_host_prog = $HOME . '/.venv_pynvim/bin/python'
 
+"""""""""""""""""""""""""""""""""
+" Custom Colors
+"""""""""""""""""""""""""""""""""
+function! DiagHighlights() abort
+    " :filt Diag hi
+    hi DiagnosticError ctermfg=197 guifg=#fd2c40
+    hi DiagnosticWarn ctermfg=208 guifg=#FF9700
+    hi DiagnosticInfo ctermfg=245  guifg=#8a8a8a
+    hi DiagnosticHint ctermfg=250 guifg=#BCBCBC
+    hi DiagnosticUnderlineError cterm=underline gui=underline guisp=Red
+    hi DiagnosticUnderlineWarn cterm=underline gui=underline guisp=Orange
+    hi DiagnosticUnderlineInfo cterm=underline gui=underline guisp=LightBlue
+    hi DiagnosticUnderlineHint cterm=underline gui=underline guisp=LightGrey
+endfunction
+augroup DiagColors
+    autocmd!
+    autocmd ColorScheme * call DiagHighlights()
+augroup END
+
+let g:python_highlight_all = 1
+let g:vim_monokai_tasty_italic=1
+colorscheme vim-monokai-tasty
+
+function SemshiPyHighlights()
+    hi semshiSelf            ctermfg=208 guifg=#FF9700
+    hi semshiImported        cterm=underline gui=underline
+endfunction
+autocmd FileType python call SemshiPyHighlights()
+
+" highlight non-ASCII; shortcut 'ga' to show char's bytes
+function HiNonASCII()
+    syntax match nonascii "[^\u0000-\u007F]"
+    hi nonascii ctermbg=226 ctermfg=black cterm=bold guibg=#ffff00 guifg=black gui=bold
+endfunction
+autocmd BufEnter * call HiNonASCII()
+
+hi clear CursorLine
+hi CursorLine cterm=underline gui=underline 
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
+
 let g:lightline = {
       \ 'colorscheme': 'rock',
       \ 'active': {
@@ -35,15 +79,9 @@ let g:lightline = {
       \ },
       \ }
 
-let g:python_highlight_all = 1
-let g:vim_monokai_tasty_italic=1
-colorscheme vim-monokai-tasty
-
-function SemshiPyHighlights()
-  hi semshiSelf            ctermfg=208 guifg=#FF9700
-  hi semshiImported        cterm=underline gui=underline
-endfunction
-autocmd FileType python call SemshiPyHighlights()
+"""""""""""""""""""""""""""""""""
+" End Custom Colors
+"""""""""""""""""""""""""""""""""
 
 " Get the defaults that most users want.
 if !has('nvim')
@@ -80,22 +118,8 @@ set tabstop=4 shiftwidth=4 expandtab " every tab -> 4 spaces
 " set fileformat=unix to fix trailing character issues
 set list
 set listchars=eol:$,tab:<->,trail:+,nbsp:_
-" highlight non-ASCII; shortcut 'ga' to show char's bytes
-function HiNonASCII()
-    syntax match nonascii "[^\u0000-\u007F]"
-    hi nonascii ctermbg=226 ctermfg=black cterm=bold guibg=#ffff00 guifg=black gui=bold
-endfunction
-autocmd BufEnter * call HiNonASCII()
 set laststatus=2  " status line always
-"hi StatusLine ctermbg=54 ctermfg=white guibg=#5f00d7 guifg=white
 " cursorline for active window
-hi clear CursorLine
-hi CursorLine cterm=underline gui=underline 
-augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-augroup END
 
 " netrw customization
 let g:netrw_keepdir = 0
