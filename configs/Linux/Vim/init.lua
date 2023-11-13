@@ -6,7 +6,22 @@ vim.api.nvim_command('source ~/.vimrc')
 local lsp_zero = require('lsp-zero')
 lsp_zero.on_attach(function(client, bufnr)
   lsp_zero.default_keymaps({buffer = bufnr})
+
+  --if client.server_capabilities.documentSymbolProvider then
+  --  require('nvim-navic').attach(client, bufnr)
+  --end
 end)
+-- auto-complete source: words already in buffer
+local cmp = require('cmp')
+local cmp_format = lsp_zero.cmp_format()
+cmp.setup({
+  sources = {
+    {name = 'nvim_lsp'},
+    {name = 'buffer'},
+  },
+  formatting = cmp_format,
+})
+
 -- show most severe errors on top
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -26,10 +41,6 @@ require('lspconfig').pylsp.setup{
       }
     }
   },
-  -- https://github.com/SmiteshP/nvim-navic#%EF%B8%8F-setup
-  -- on_attach = function(client, bufnr)
-  --   navic.attach(client, bufnr)
-  -- end
 }
 -- https://github.com/nvim-treesitter/nvim-treesitter
 require'nvim-treesitter.configs'.setup {
