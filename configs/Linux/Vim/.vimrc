@@ -3,7 +3,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'vim-python/python-syntax'
 Plug 'jlanzarotta/bufexplorer'
-Plug 'mogelbrod/vim-jsonpath'
 Plug 'itchyny/lightline.vim'
 Plug 'treatmesubj/rock-lightline'
 if has('nvim')
@@ -20,6 +19,8 @@ if has('nvim')
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   " :TSInstall yaml
   Plug 'cuducos/yaml.nvim'
+  " :TSInstall json
+  Plug 'phelipetls/jsonpath.nvim'
 endif
 call plug#end()
 let g:python3_host_prog = $HOME . '/.venv_pynvim/bin/python'
