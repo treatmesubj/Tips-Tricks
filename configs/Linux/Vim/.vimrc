@@ -15,7 +15,7 @@ if has('nvim')
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'L3MON4D3/LuaSnip'
   " LSP-Zero
-  Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'compat-07'}  " Debian has old nvim
+  Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v3.x'}
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   " :TSInstall yaml
   Plug 'cuducos/yaml.nvim'
