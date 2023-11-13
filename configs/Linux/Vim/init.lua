@@ -12,6 +12,7 @@ lsp_zero.on_attach(function(client, bufnr)
   --end
 end)
 -- auto-complete source: words already in buffer
+-- https://github.com/hrsh7th/cmp-buffer
 local cmp = require('cmp')
 local cmp_format = lsp_zero.cmp_format()
 cmp.setup({
