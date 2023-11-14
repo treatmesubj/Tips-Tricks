@@ -67,3 +67,13 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorMoved" },{
   end,
 })
 vim.api.nvim_command('hi winbar ctermbg=89')
+
+-- Highlight on yank
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  pattern = { '*' },
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+})
