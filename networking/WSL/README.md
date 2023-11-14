@@ -4,3 +4,6 @@
         - maybe add an alias to `~/.bashrc` for `powershell.exe wsl_vpn`
 2. Configure `dnsmasq` to utilize the VPN's DNServer for VPN/intranet domains and Google's DNServer for other/internet
     - See [WSL\_VPN\_DNS.md](./WSL_VPN_DNS.md)
+
+---
+**NOTE**: also see [wsl-config docs](https://github.com/MicrosoftDocs/WSL/blob/main/WSL/wsl-config.md)
