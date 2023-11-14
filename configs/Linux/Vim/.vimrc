@@ -116,6 +116,7 @@ if !has('nvim')
   set ttymouse=  " no-mouse
 endif
 set wrap " don't literally insert newlines
+set nowrap " actually, don't wrap
 set directory=/tmp
 set backupdir=/tmp
 set undofile  " keep an undo file (undo changes after closing)
