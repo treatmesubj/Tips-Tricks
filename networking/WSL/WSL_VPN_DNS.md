@@ -6,6 +6,8 @@ This assumes you're using SystemD
         ```
         [network]
         generateResolvConf=false
+        [boot]
+        systemd=true
         ```
 2. Temporarily, we need Google's DNS to find things on the internet. Add below to `/etc/resolv.conf`
     ```
