@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'vim-python/python-syntax'
 Plug 'jlanzarotta/bufexplorer'
+Plug 'chrisbra/csv.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'treatmesubj/rock-lightline'
 if has('nvim')
@@ -28,6 +29,8 @@ let g:python3_host_prog = $HOME . '/.venv_pynvim/bin/python'
 """""""""""""""""""""""""""""""""
 " Custom Colors
 """""""""""""""""""""""""""""""""
+set background=dark
+" Diagnostic Colors
 function! DiagHighlights() abort
   " :filt Diag hi
   hi DiagnosticError ctermfg=197 guifg=#fd2c40
@@ -57,6 +60,10 @@ function SemshiPyHighlights()
     hi semshiImported        cterm=underline gui=underline
 endfunction
 autocmd FileType python call SemshiPyHighlights()
+
+" csv.vim
+hi CSVColumnEven ctermfg=166 guifg=#d75f00
+hi CSVColumnOdd  ctermfg=37 guifg=#00afaf
 
 " highlight non-ASCII; shortcut 'ga' to show char's bytes
 function HiNonASCII()
@@ -121,12 +128,17 @@ set directory=/tmp
 set backupdir=/tmp
 set undofile  " keep an undo file (undo changes after closing)
 set undodir=~/.vim/undodir  " put all undo files in a tidy dir
-set background=dark
+
 set tabstop=4 shiftwidth=4 expandtab " every tab -> 4 spaces
 autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab  " vimscript
 autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab  " lua
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab  " yaml
 autocmd FileType yaml set nowrap  " yaml
+" csv.vim
+" (C-Right) to move to right
+" (C-Left) to move to left
+let g:csv_autocmd_arrange = 1
+
 " set fileformat=unix to fix trailing character issues
 set list
 set listchars=eol:$,tab:<->,trail:+,nbsp:_
@@ -158,3 +170,4 @@ function! NetRWPaneResizeShortcuts()
   map <buffer> <S-Left> <c-w><
 endfunction
 autocmd filetype netrw call NetRWPaneResizeShortcuts()
+
