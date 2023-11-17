@@ -135,9 +135,9 @@ autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab  " lua
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab  " yaml
 autocmd FileType yaml set nowrap  " yaml
 " csv.vim
-" (C-Right) to move to right
-" (C-Left) to move to left
-let g:csv_autocmd_arrange = 1
+" <L> to move to right
+" <H> to move to left
+#let g:csv_autocmd_arrange = 1
 
 " set fileformat=unix to fix trailing character issues
 set list
