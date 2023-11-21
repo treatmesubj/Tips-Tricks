@@ -137,6 +137,7 @@ autocmd FileType yaml set nowrap  " yaml
 " csv.vim
 " <L> to move to right
 " <H> to move to left
+" :CSVArrangeColumn! to resize cols under cursor's row(s)
 " let g:csv_autocmd_arrange = 1
 
 " set fileformat=unix to fix trailing character issues
