@@ -137,7 +137,7 @@ autocmd FileType yaml set nowrap  " yaml
 " csv.vim
 " <L> to move to right
 " <H> to move to left
-let g:csv_autocmd_arrange = 1
+" let g:csv_autocmd_arrange = 1
 
 " set fileformat=unix to fix trailing character issues
 set list
@@ -146,7 +146,7 @@ set laststatus=2  " status line always
 " cursorline for active window
 
 " netrw customization
-let g:netrw_keepdir = 0
+let g:netrw_keepdir = 1  " netrw cwd remains with OG nvim buffer's cwd
 let g:netrw_winsize = 30
 let g:netrw_banner = 0
 
