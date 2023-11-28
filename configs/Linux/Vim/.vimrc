@@ -133,6 +133,7 @@ set tabstop=4 shiftwidth=4 expandtab " every tab -> 4 spaces
 autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab  " vimscript
 autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab  " lua
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab  " yaml
+autocmd FileType sql setlocal ts=2 sts=2 sw=2 expandtab  " sql
 autocmd FileType yaml set nowrap  " yaml
 " csv.vim
 " <L> to move to right
