@@ -2,6 +2,8 @@
 ```
 # https://github.com/ktrueda/parquet-tools
 pip install parquet-tools
+
+parquet-tools show --columns DELETED,PLACEHOLDER -n 5 coalesced.parquet
 ```
 
 # Go (Questionable)
