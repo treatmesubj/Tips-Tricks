@@ -10,4 +10,4 @@ sanjay = json.loads(response.text)
 
 
 with open('./response.json', 'w') as f:
-	print(json.dumps(sanjay, indent=4, sort_keys=True), file=f)
+    print(json.dumps(sanjay, indent=4, sort_keys=True), file=f)
