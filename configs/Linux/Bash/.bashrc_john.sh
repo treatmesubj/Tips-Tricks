@@ -55,6 +55,12 @@ pod_shell() {
     kubectl exec --stdin --tty $pod_name -- $shell || echo "usage: pod_shell <pod-name> <shell>"
 }
 
+tmux_clear_history() {
+    for pane in $(tmux list-panes -F '#{pane_id}'); do
+        tmux clear-history -t "${pane}"
+    done
+}
+
 # Windows
 # access Windows executables when System D enbaled
 # https://github.com/microsoft/WSL/issues/8843
