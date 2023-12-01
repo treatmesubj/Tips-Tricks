@@ -78,6 +78,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
 })
 
+-- https://github.com/mrquantumcodes/bufferchad.nvim
 require("bufferchad").setup({
   mapping = "<leader>bb", -- Map any key, or set to NONE to disable key mapping
   mark_mapping = "<leader>bm", -- The keybinding to display just the marked buffers
@@ -85,3 +86,6 @@ require("bufferchad").setup({
   style = "default", -- default, modern (requires dressing.nvim and nui.nvim), telescope (requires telescope.nvim)
   close_mapping = "<Esc><Esc>", -- only for the default style window. 
 })
+
+-- https://github.com/lukas-reineke/indent-blankline.nvim
+require("ibl").setup()
