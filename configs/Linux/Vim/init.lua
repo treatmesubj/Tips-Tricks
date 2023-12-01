@@ -3,6 +3,9 @@ vim.api.nvim_command('set runtimepath^=~/.vim runtimepath+=~/.vim/after')
 vim.api.nvim_command('let &packpath = &runtimepath')
 vim.api.nvim_command('source ~/.vimrc')
 
+vim.o.list = true
+vim.opt.listchars = {leadmultispace = "│ "}
+
 local lsp_zero = require('lsp-zero')
 lsp_zero.on_attach(function(client, bufnr)
   lsp_zero.default_keymaps({buffer = bufnr})
@@ -87,5 +90,3 @@ require("bufferchad").setup({
   close_mapping = "<Esc><Esc>", -- only for the default style window. 
 })
 
--- https://github.com/lukas-reineke/indent-blankline.nvim
-require("ibl").setup()

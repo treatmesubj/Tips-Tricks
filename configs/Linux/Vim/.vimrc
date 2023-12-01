@@ -8,7 +8,6 @@ Plug 'treatmesubj/rock-lightline'
 if has('nvim')
   Plug 'wookayin/semshi'  " python highlights
   Plug 'mrquantumcodes/bufferchad.nvim'  " <leader>bb
-  Plug 'lukas-reineke/indent-blankline.nvim'  " scope lines
   " LSP Support
   Plug 'neovim/nvim-lspconfig'
   " Autocompletion
