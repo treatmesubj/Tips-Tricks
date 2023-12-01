@@ -2,12 +2,12 @@
 call plug#begin('~/.vim/plugged')
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'vim-python/python-syntax'
-Plug 'jlanzarotta/bufexplorer'
 Plug 'chrisbra/csv.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'treatmesubj/rock-lightline'
 if has('nvim')
   Plug 'wookayin/semshi'
+  Plug 'mrquantumcodes/bufferchad.nvim' " <leader>bb
   " LSP Support
   Plug 'neovim/nvim-lspconfig'
   " Autocompletion
@@ -157,10 +157,6 @@ let g:netrw_banner = 0
 " space, y to copy last yank to clipboard
 let mapleader = " "
 map <leader>y :let @+=@0<CR>
-" map <Leader>be :BufExplorer<CR>
-" map <Leader>bt :ToggleBufExplorer<CR>
-" map <Leader>bs :BufExplorerHorizontalSplit<CR>
-" map <Leader>bv :BufExplorerVerticalSplit<CR>
 
 " shift + arrow-key to resize pane
 map <S-Up> <c-w>-
