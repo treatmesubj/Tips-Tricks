@@ -86,10 +86,12 @@ let g:lightline = {
   \   'left': [ [ 'mode', 'paste' ],
   \             [ 'readonly', 'filename', 'modified' ] ],
   \   'right': [ [ 'percent' ],
-  \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
+  \              [ 'fileformat', 'fileencoding', 'filetype', 'pos+hex' ] ]
   \ },
   \ 'component': {
   \   'charvaluehex': '0x%B',
+  \   'position': '%l,%c',
+  \   'pos+hex': '%l,%c:0x%B',
   \ },
   \ }
 
