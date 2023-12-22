@@ -133,6 +133,10 @@ set undofile  " keep an undo file (undo changes after closing)
 set undodir=~/.vim/undodir  " put all undo files in a tidy dir
 set iskeyword-=_  " word boundaries
 
+"keep visual mode after indent
+vnoremap > >gv
+vnoremap < <gv
+
 set tabstop=4 shiftwidth=4 expandtab " every tab -> 4 spaces
 autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab  " vimscript
 autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab  " lua
