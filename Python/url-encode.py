@@ -2,6 +2,7 @@
 # https://docs.python.org/3/library/urllib.parse.html
 import urllib.parse
 import argparse
+import sys
 
 
 if __name__ == '__main__':
@@ -30,6 +31,9 @@ if __name__ == '__main__':
         help='list of strings, url-encoded strings to decode',
     )
     args = argparser.parse_args()
+
+    if not len(sys.argv) > 1:
+        argparser.print_help()
     print('\n', end='')
 
     while len(args.str) > 0:
