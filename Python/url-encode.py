@@ -41,7 +41,7 @@ if __name__ == "__main__":
         url_encoded_str = urllib.parse.quote(decoded_str)
         assert (
             urllib.parse.unquote(url_encoded_str) == decoded_str
-        ), f"Sanity Check Special characters ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #\n{decoded_str:=}\n{url_encoded_str:=}"
+        ), f"Sanity Check Special characters ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #\n{decoded_str=}\n{url_encoded_str=}"
         print(url_encoded_str)
 
     while len(args.url) > 0:
@@ -58,5 +58,5 @@ if __name__ == "__main__":
         decoded_str = urllib.parse.unquote(url_encoded_str)
         assert (
             urllib.parse.quote(decoded_str) == url_encoded_str
-        ), f"Sanity Check Special characters ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #\n{url_encoded_str:=}\n{decoded_str:=}"
+        ), f"Sanity Check Special characters ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #\n{url_encoded_str=}\n{decoded_str=}"
         print(decoded_str)
