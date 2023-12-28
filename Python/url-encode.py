@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
 # https://docs.python.org/3/library/urllib.parse.html
 import urllib.parse
+import re
 import argparse
 import sys
+
+
+def lowercase_url_encode(url_encoded_str):
+    reggy = re.compile(r"%[0-9A-Z]{2}")
+    low_url_enc_str = reggy.sub(
+        lambda matchobj: matchobj.group(0).lower(), url_encoded_str
+    )
+    return low_url_enc_str
 
 
 if __name__ == "__main__":
@@ -36,29 +45,39 @@ if __name__ == "__main__":
         argparser.print_help()
     print("\n", end="")
 
+    # URL-encode strings
     while len(args.str) > 0:
         decoded_str = args.str.pop(0)
-        url_encoded_str = urllib.parse.quote(decoded_str)
+        url_encoded_str = lowercase_url_encode(urllib.parse.quote(decoded_str))
         re_decoded_str = urllib.parse.unquote(url_encoded_str)
         assert (
             re_decoded_str == decoded_str
-        ), f"Sanity Check Special characters ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #\n{decoded_str=}\n{url_encoded_str=}"
+        ), f"Sanity Check Special characters ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #\n\n{decoded_str=}\n{url_encoded_str=}\n{re_decoded_str=}"
         print(url_encoded_str)
 
+    # URL-encode URLs
     while len(args.url) > 0:
         decoded_url = args.url.pop(0)
         components = urllib.parse.urlparse(decoded_url)
         query_dict = urllib.parse.parse_qs(components.query, strict_parsing=True)
-        url_encoded_query_str = urllib.parse.urlencode(query_dict, doseq=True)
+        url_encoded_query_str = lowercase_url_encode(
+            urllib.parse.urlencode(query_dict, doseq=True)
+        )
         components = components._replace(query=url_encoded_query_str)
-        encoded_url = components.geturl()
-        print(encoded_url)
+        url_encoded_url = components.geturl()
+        re_decoded_url = urllib.parse.unquote(url_encoded_url)
+        assert (
+            re_decoded_url == decoded_url
+        ), f"Sanity Check Special characters ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #\n\n{decoded_url=}\n{url_encoded_url=}\n{re_decoded_url=}"
+        print(url_encoded_url)
 
+    # URL-decode strings
     while len(args.decode) > 0:
-        url_encoded_str = args.decode.pop(0)
+        url_encoded_str = lowercase_url_encode(args.decode.pop(0))
+        # components = urllib.parse.urlparse(url_encoded_str)
         decoded_str = urllib.parse.unquote(url_encoded_str)
-        re_url_encoded_str = urllib.parse.quote(decoded_str)
+        re_url_encoded_str = lowercase_url_encode(urllib.parse.quote(decoded_str))
         assert (
             re_url_encoded_str == url_encoded_str
-        ), f"Sanity Check Special characters ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #\n{url_encoded_str=}\n{decoded_str=}"
+        ), f"Sanity Check Special characters ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #\n\n{url_encoded_str=}\n{decoded_str=}\n{re_url_encoded_str=}"
         print(decoded_str)
