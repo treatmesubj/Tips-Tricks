@@ -21,7 +21,7 @@ if __name__ == "__main__":
         nargs="*",
         action="store",
         default=[],
-        help="list of strings, strings of text to url-encode",
+        help="list of strings, strings of text to url-encode. Letters, digits, & characters '_.-~' aren't encoded. Spaces are encoded as '+'.",
     )
     argparser.add_argument(
         "--url",
@@ -48,36 +48,54 @@ if __name__ == "__main__":
     # URL-encode strings
     while len(args.str) > 0:
         decoded_str = args.str.pop(0)
-        url_encoded_str = lowercase_url_encode(urllib.parse.quote(decoded_str))
-        re_decoded_str = urllib.parse.unquote(url_encoded_str)
+        url_encoded_str = lowercase_url_encode(
+            urllib.parse.quote_plus(decoded_str, safe="/_.-~")
+        )
+        re_decoded_str = urllib.parse.unquote_plus(url_encoded_str)
         assert (
             re_decoded_str == decoded_str
-        ), f"Sanity Check Special characters ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #\n\n{decoded_str=}\n{url_encoded_str=}\n{re_decoded_str=}"
+        ), f"Check Special Characters ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #\n\n{decoded_str=}\n{url_encoded_str=}\n{re_decoded_str=}"
         print(url_encoded_str)
 
     # URL-encode URLs
     while len(args.url) > 0:
         decoded_url = args.url.pop(0)
         components = urllib.parse.urlparse(decoded_url)
+
+        # encode netloc
+        url_encoded_netloc = lowercase_url_encode(
+            urllib.parse.quote(components.netloc, safe="_.-~")
+        )
+        components = components._replace(netloc=url_encoded_netloc)
+        # encode path
+        url_encoded_path = lowercase_url_encode(
+            urllib.parse.quote(components.path, safe="/_.-~")
+        )
+        components = components._replace(path=url_encoded_path)
+        # encode query
         query_dict = urllib.parse.parse_qs(components.query, strict_parsing=True)
         url_encoded_query_str = lowercase_url_encode(
             urllib.parse.urlencode(query_dict, doseq=True)
         )
         components = components._replace(query=url_encoded_query_str)
+
         url_encoded_url = components.geturl()
         re_decoded_url = urllib.parse.unquote(url_encoded_url)
         assert (
             re_decoded_url == decoded_url
-        ), f"Sanity Check Special characters ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #\n\n{decoded_url=}\n{url_encoded_url=}\n{re_decoded_url=}"
+        ), f"Check Special Characters ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #\n\n{decoded_url=}\n{url_encoded_url=}\n{re_decoded_url=}"
         print(url_encoded_url)
 
     # URL-decode strings
     while len(args.decode) > 0:
         url_encoded_str = lowercase_url_encode(args.decode.pop(0))
         # components = urllib.parse.urlparse(url_encoded_str)
-        decoded_str = urllib.parse.unquote(url_encoded_str)
-        re_url_encoded_str = lowercase_url_encode(urllib.parse.quote(decoded_str))
+        decoded_str = urllib.parse.unquote_plus(url_encoded_str)
+        re_url_encoded_str = lowercase_url_encode(
+            urllib.parse.quote_plus(decoded_str, safe="/_.-~")
+        )
+        redecoded_str = urllib.parse.unquote_plus(re_url_encoded_str)
         assert (
-            re_url_encoded_str == url_encoded_str
-        ), f"Sanity Check Special characters ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #\n\n{url_encoded_str=}\n{decoded_str=}\n{re_url_encoded_str=}"
+            redecoded_str == decoded_str
+        ), f"Check Special Characters ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #\n\n{url_encoded_str=}\n{decoded_str=}\n{re_url_encoded_str=}"
         print(decoded_str)
