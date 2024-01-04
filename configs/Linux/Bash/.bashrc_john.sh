@@ -81,7 +81,7 @@ export PATH=$PATH:~/go/bin/
 
 alias list='ls -a -h -s -1 --color'
 alias thesr='python3 -m thesr.thesr'
-# sqlfmt is /usr/local/bin/sqlfmt
+# sqlfmt is /usr/local/bin/sqlfmt (bash script)
 
 # Cirrus login
 source ~/.bashrc_cirrus.sh

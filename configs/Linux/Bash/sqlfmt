@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+if [ $# -eq 1 ]  # file path arg
+then
+    echo "$1"
+    sqlformat --reindent --keywords upper --identifiers lower "$1"
+else
+    sqlformat --reindent --keywords upper --identifiers lower
+fi
