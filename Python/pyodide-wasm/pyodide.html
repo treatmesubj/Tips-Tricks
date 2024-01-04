@@ -9,11 +9,14 @@
     <script type="text/javascript">
       async function main(){
         let pyodide = await loadPyodide();
+        await pyodide.loadPackage("micropip");
+        const micropip = pyodide.pyimport("micropip");
+        await micropip.install('snowballstemmer');  // PYPI package
         console.log(pyodide.runPython(`
-            import sys
-            sys.version
+          import snowballstemmer
+          stemmer = snowballstemmer.stemmer('english')
+          print(stemmer.stemWords('go goes going gone'.split()))
         `));
-        pyodide.runPython("print(1 + 2)");
       }
       main();
     </script>
