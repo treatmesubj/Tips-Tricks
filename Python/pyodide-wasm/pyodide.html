@@ -11,7 +11,21 @@
         let pyodide = await loadPyodide();
         await pyodide.loadPackage("micropip");
         const micropip = pyodide.pyimport("micropip");
-        await micropip.install('snowballstemmer');  // PYPI package
+        // globals
+        pyodide.runPython(`x = [3, 4]`);
+        js_x = pyodide.globals.get('x').toJs();
+        console.log(js_x)
+        // manipulate DOM
+        pyodide.runPython(`
+          import js
+
+          x = 'cool'
+          div = js.document.createElement("div")
+          div.innerHTML = f"<h1>This {x} element was created from Python</h1>"
+          js.document.body.prepend(div)
+        `);
+        // install PYPI package
+        await micropip.install('snowballstemmer');
         console.log(pyodide.runPython(`
           import snowballstemmer
           stemmer = snowballstemmer.stemmer('english')
