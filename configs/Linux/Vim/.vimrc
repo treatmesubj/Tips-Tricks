@@ -133,6 +133,11 @@ set undofile  " keep an undo file (undo changes after closing)
 set undodir=~/.vim/undodir  " put all undo files in a tidy dir
 set iskeyword-=_  " word boundaries
 
+" alleviate :W :WQ pain
+command! W write
+command! Q quit
+command! Wq write <bar> quit
+
 "keep visual mode after indent
 vnoremap > >gv
 vnoremap < <gv
