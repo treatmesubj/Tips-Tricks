@@ -1,0 +1,3 @@
+:g/bad-stuff/d
+
+:g/^# silly-lines:\n\n/d
