@@ -1,10 +1,10 @@
 # Regular Expressions (REGEX)
 
 A regular expression is a text-matching-pattern.\
-The syntax of a regex is comprised of _elements_: tokens, characters, and groups.\
-Characters are either simply plain literal characters in text to be matched, or regex _metacharacters_, which have special meaning; they represent prescribed patterns.\
-_Groups_, signified by parentheses, define scope & precendence of operators. They can be a piece of a regex, and match sub-text-strings within the whole string matched by a regex.\
-
+The syntax of a regex is comprised of **_elements_**: tokens, characters, and groups.\
+Characters are either simply plain literal characters in text to be matched, or regex **_metacharacters_**, which have special meaning; they represent prescribed patterns.\
+**_Groups_**, signified by parentheses, define scope & precendence of operators. They can be a piece of a regex, and match sub-text-strings within the whole string matched by a regex.\
+**_Quantifiers_** specify how many times a preceding element can occur.
 
 ## Character Classes
 ```
@@ -23,7 +23,7 @@ _Groups_, signified by parentheses, define scope & precendence of operators. The
 \S          non-whitespace character
 ```
 
-## Anchors
+## Anchors/Assertions
 ```
 ^           start of string or line
 $           end of string or line
@@ -40,9 +40,12 @@ $           end of string or line
 {n}      occurs n times
 {n,}     occurs n or more times
 {y,z}    occurs at least y times, but less than z times
+|        preceding expression or following expression occurs
 ```
 
 ## Groups
+```
 ()      groups an expression
 \1      references a grouped expression
 (?:)    non-capturing group
+```
