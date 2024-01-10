@@ -9,5 +9,6 @@ python3 -m venv ~/.venv_flask
 source ~/.venv_flask/bin/activate
 
 # example python3.10 venv
+# python3.10-venv hack on Debian Bookworm via ../Linux/Debian/hack-deb-dependencies.sh
 sudo apt install python3.10 python3.10-venv
 python3.10 -m venv ~/.venv-epm-eng
