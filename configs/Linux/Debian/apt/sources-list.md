@@ -10,8 +10,21 @@ deb http://deb.debian.org/debian bookworm-updates main
 deb http://security.debian.org/debian-security bookworm-security main
 deb http://ftp.debian.org/debian bookworm-backports main
 
-#Unstable
+# Unstable
 deb http://deb.debian.org/debian unstable main
+```
+
+- `sudo nvim /etc/apt/preferences`
+
+```
+Package: *
+Pin: release a=stable
+Pin-Priority: 700
+
+Package: *
+Pin: release a=unstable
+Pin-Priority: 600
+
 ```
 
 - `sudo apt update`
