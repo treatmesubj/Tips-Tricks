@@ -1,5 +1,5 @@
 # [Debian SourcesList](https://wiki.debian.org/SourcesList)
-- Example: [openjdk-11](https://packages.debian.org/search?keywords=openjdk-11) is no longer supported in Debian 12 Bookwork, but is available via unstable repo
+- Example: [openjdk-11](https://packages.debian.org/search?keywords=openjdk-11) is no longer supported in Debian 12 Bookworm, but is available via unstable repo
 
 # [Apt-Pinning for Beginners](https://jaqque.sbih.org/kplug/apt-pinning.html)
 - `sudo nvim /etc/apt/sources.list`
