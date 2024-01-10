@@ -7,3 +7,7 @@ source ~/.venv/bin/activate
 # example flask venv
 python3 -m venv ~/.venv_flask
 source ~/.venv_flask/bin/activate
+
+# example python3.10 venv
+sudo apt install python3.10 python3.10-venv
+python3.10 -m venv ~/.venv-epm-eng

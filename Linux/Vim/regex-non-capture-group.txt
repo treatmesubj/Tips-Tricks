@@ -1,0 +1,29 @@
+replace every newline, except the last newline, with a '+'
+
+:%s/\n\%($\)\@!/+/g
+:%s,\n\%($\)\@!,+,g
+
+\%(\) is a non-capture-group; it's a piece required for text-matching but,
+    is a part of the matched text that is unimportant to us & can be ignored
+
+    \%(\)   A pattern enclosed by escaped parentheses.
+        Just like \(\), but without counting it as a sub-expression.  This
+        allows using more groups and it's a little bit faster.
+        {not in Vi}
+
+\@<!    Matches with zero width if the preceding atom does NOT match just
+    before what follows.  Thus this matches if there is no position in the
+    current or previous line where the atom matches such that it ends just
+    before what follows.
+
+    Like "(?<!pattern)" in Perl, but Vim allows non-fixed-width patterns.
+    The match with the preceding atom is made to end just before the match
+    with what follows, thus an atom that ends in ".*" will work.
+    Warning: This can be slow (because many positions need to be checked
+    for a match).  Use a limit if you can, see below.
+
+    Example         matches ~
+
+    \(foo\)\@<!bar      any "bar" that's not in "foobar"
+
+    \(\/\/.*\)\@<!in    "in" which is not after "//"
