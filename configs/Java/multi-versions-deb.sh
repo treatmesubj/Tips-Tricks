@@ -9,7 +9,7 @@ apt list --installed | grep openjdk
 
 # understand current state
 java -version
-update-alternatives --query java
+sudo update-alternatives --query java
 ls -l /etc/alternatives/java
 
 sudo update-alternatives --config java  # switch from 17 to 11
