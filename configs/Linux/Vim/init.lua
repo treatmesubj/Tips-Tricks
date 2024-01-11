@@ -29,6 +29,11 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
         severity_sort = true
     }
 )
+-- keybinding: show all diagnostics on current line in floating window
+vim.api.nvim_set_keymap(
+  'n', '<Leader>d', ':lua vim.diagnostic.open_float()<CR>', 
+  { noremap = true, silent = true }
+)
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- https://github.com/python-lsp/python-lsp-server
 require('lspconfig').pylsp.setup{
@@ -67,7 +72,6 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorMoved" },{
   end,
 })
 vim.api.nvim_command('hi winbar ctermbg=89')
-
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -77,7 +81,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
   group = highlight_group,
 })
-
 -- https://github.com/mrquantumcodes/bufferchad.nvim
 require("bufferchad").setup({
   mapping = "<leader>bb", -- Map any key, or set to NONE to disable key mapping
