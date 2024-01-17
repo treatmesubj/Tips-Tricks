@@ -3,14 +3,16 @@
 - `docker run -itd --name containerized-tools -v ./local-dir/:/mount-dir containerized-tools`
 - `docker container ls`
 - `docker exec -it containerized-tools bash`
-## clean up
+
+clean up
 - `docker container kill containerized-tools`
 
 # Docker Compose
 - `docker compose up -d`
 - `docker container ls`
 - `docker exec -it docker_cli_tools-containerized-tools-1 bash`
-## clean up
+
+clean up
 - `docker compose down`
 
 ---
@@ -18,7 +20,8 @@
 - `docker run -itd --name temp bitnami/minideb:bookworm`
 - `docker container ls`
 - `docker exec -it temp bash`
-## clean up
+
+clean up
 - `docker container kill temp`
 
 ---
