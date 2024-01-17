@@ -4,6 +4,8 @@
 pip install parquet-tools
 
 parquet-tools show --columns DELETED,PLACEHOLDER -n 5 coalesced.parquet
+# show column names & data-types
+parquet-tools inspect file.parquet | awk '/Column\(.*\)|^logical_type/'
 ```
 
 # Go (Questionable)

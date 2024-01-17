@@ -1,3 +1,12 @@
+# print lines that have Column(.*) or start with 'logical_type'
+cat file.txt | awk '/Column\(.*\)|^logical_type/'
+
+# for each line, print string that starts with 'stringstart'
+cat file.txt | gawk 'match($0, /(stringstart\w*)/, a) {print a[1]}'
+
+
+
+
 awk '{print $0}' infile.txt             # print each space/tab field-separated 'field'
 awk '{print $1}' infile.txt             # print 1st space/tab field-separated 'field'
 awk '{print $1,$3}' infile.txt          # print 1st & 3rd space/tab field-separated 'field'
