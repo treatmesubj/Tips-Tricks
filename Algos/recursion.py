@@ -1,5 +1,3 @@
-
-
 def factorial(num):
     assert num >= 1
     if num == 1:

@@ -9,4 +9,3 @@ def bubble_sort(array):
         for j in array:
             if j < (len(array) - 1 - i):
                 j += 1
-

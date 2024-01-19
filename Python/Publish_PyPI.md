@@ -53,3 +53,6 @@
 7. `python -m build`
 8. `twine check dist/*` 
 9. `twine upload dist/*`
+    - see `https://pypi.org/help/#apitoken`
+    - username: `__token__`
+    - password: respective-API-Token
