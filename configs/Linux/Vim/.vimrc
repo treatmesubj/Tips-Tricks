@@ -162,6 +162,7 @@ set laststatus=2  " status line always
 
 " netrw customization
 let g:netrw_keepdir = 1  " netrw cwd remains with OG nvim buffer's cwd
+let g:netrw_fastbrowse = 0  " just close netrw after open file
 let g:netrw_winsize = 30
 let g:netrw_banner = 0
 
