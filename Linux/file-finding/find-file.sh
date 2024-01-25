@@ -1,5 +1,6 @@
 find ./ -type f -name *.conf
 find ./ -type f -regex '.*\.conf'
+find ./ -type f -iregex '.*\.CoNf'  # case insensitive
 find / -type f -name *.conf -newermt 2020-03-03
 
 
