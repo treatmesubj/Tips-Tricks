@@ -10,9 +10,22 @@
     diffFilter = delta --color-only
 [delta]
     navigate = true    # use n and N to move between diff sections
-    side-by-side = true
-    line-numbers-left-format = ""
-    line-numbers-right-format = "│ "
+    line-numbers = true
+#    side-by-side = true
+#    line-numbers-left-format = ""
+#    line-numbers-right-format = "│ "
+    file-style = white bold
+    file-decoration-style = white box
+    syntax-theme = Monokai Extended # Light
+    hunk-header-style = line-number syntax bold
+    hunk-header-decoration-style = white box
+    hunk-header-line-number-style = yellow box bold
+    inline-hint-style = brightmagenta
+    line-numbers-left-format = "{nm:>1}┊"
+    line-numbers-left-style = grey
+    line-numbers-right-format = "{np:>1}┊"
+    line-numbers-right-style = grey
+    hunk-label =
 [merge]
     conflictstyle = diff3
 [diff]
