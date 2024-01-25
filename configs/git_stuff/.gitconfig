@@ -1,9 +1,19 @@
-# global: ~/.gitconfig
-# repo: ~/repo/.git/config
 [user]
     name = treatmesubj
     email = jrock4503@hotmail.com
 [core]
     excludesfile = /home/john/.gitignore
     editor = vim
-
+    # https://github.com/dandavison/delta
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    side-by-side = true
+    line-numbers-left-format = ""
+    line-numbers-right-format = "│ "
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
