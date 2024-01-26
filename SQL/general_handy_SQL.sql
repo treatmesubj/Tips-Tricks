@@ -10,6 +10,10 @@ SELECT *
 FROM BLAH
 LIMIT 1 OFFSET 0
 
+/* ensure 2 strings are equal; string compare */
+SELECT instr(',' || replace('     blah ', ' ', '') || ',', ',' || replace('  blah    ', ' ', '') || ',')
+FROM BLAH
+
 /* Storage Size of Tables in Schemas */
 SELECT TABNAME,
     TABSCHEMA,
