@@ -73,6 +73,18 @@ function HiNonASCII()
 endfunction
 autocmd BufEnter * call HiNonASCII()
 
+" highlight git merge conflict markers
+function! HiGitMergeConflict() abort
+  syn region conflictStart start=/^<<<<<<< .*$/ end=/^\ze\(=======$\||||||||\)/
+  syn region conflictMiddle start=/^||||||| .*$/ end=/^\ze=======$/
+  syn region conflictEnd start=/^\(=======$\||||||| |\)/ end=/^>>>>>>> .*$/
+
+  highlight conflictStart ctermbg=green ctermfg=black
+  highlight conflictMiddle ctermbg=blue ctermfg=black
+  highlight conflictEnd ctermbg=red ctermfg=black
+endfunction
+autocmd BufEnter * call HiGitMergeConflict()
+
 hi clear CursorLine
 hi CursorLine cterm=underline gui=underline 
 augroup CursorLine
