@@ -21,7 +21,7 @@ prompt() {
     fi;
 
     # $
-    export PS1+="\[\e[1;92m\]\$\[\e[m\] "
+    export PS1+="\[\e[1;92m\] \$ \[\e[m\]"
 }
 PROMPT_COMMAND=prompt
 
@@ -85,3 +85,4 @@ alias thesr='python3 -m thesr.thesr'
 
 # Cirrus login
 source ~/.bashrc_cirrus.sh
+set -o vi
