@@ -85,4 +85,8 @@ alias thesr='python3 -m thesr.thesr'
 
 # Cirrus login
 source ~/.bashrc_cirrus.sh
+
+# bash vi mode
 set -o vi
+bind -m vi-command 'Control-l: clear-screen'
+bind -m vi-insert 'Control-l: clear-screen'
