@@ -82,7 +82,8 @@ export PATH=$PATH:~/go/bin/
 alias list='ls -a -h -s -1 --color'
 alias thesr='python3 -m thesr.thesr'
 source /usr/share/doc/fzf/examples/key-bindings.bash  # fzf \C-r reverse search
-alias fuzzf='nvim $(fzf --preview '\''cat -n {}'\'')'
+alias nvim-fuzzfile='nvim $(fzf --preview '\''cat -n {}'\'')'
+alias nvim-fuzzline='nvim $(rg . | fzf | cut -d ":" -f 1)'
 # sqlfmt is /usr/local/bin/sqlfmt (bash script)
 
 # Cirrus login
