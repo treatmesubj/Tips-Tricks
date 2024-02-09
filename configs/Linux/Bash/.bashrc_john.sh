@@ -80,6 +80,7 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:~/go/bin/
 
 alias list='ls -a -h -s -1 --color'
+alias fuzzf='nvim $(fzf --preview '\''cat -n {}'\'')'
 alias thesr='python3 -m thesr.thesr'
 # sqlfmt is /usr/local/bin/sqlfmt (bash script)
 
