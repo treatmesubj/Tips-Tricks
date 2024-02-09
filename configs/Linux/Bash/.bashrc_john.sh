@@ -90,6 +90,12 @@ alias nvim-fuzzline='nvim $(rg . | fzf | cut -d ":" -f 1)'
 source ~/.bashrc_cirrus.sh
 
 # bash vi mode
+# see also ~/.inputrc
 set -o vi
 bind -m vi-command 'Control-l: clear-screen'
 bind -m vi-insert 'Control-l: clear-screen'
+
+# add bash history in real time
+shopt -s histappend
+PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+
