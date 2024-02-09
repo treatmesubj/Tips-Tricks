@@ -15,6 +15,7 @@ curl -L "https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.
     && sudo cp -r ~/nvim-linux64/share/* /usr/share \
     && sudo cp -r ~/nvim-linux64/man/* /usr/share/man \
     && rm -rf ~/nvim-linux64*
+
 # python venvs
 sudo apt install python3-venv -y \
     && python3 -m venv ~/.venv_pynvim \
@@ -26,18 +27,29 @@ sudo apt install tmux -y \
     && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/TMUX/.tmux.conf" \
         -o ~/.tmux.conf
 
-# bashrc
+# fzf & ripgrep
+sudo apt install fzf ripgrep -y
+
+# bashrc & inputrc
 curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/.bashrc_john.sh" \
     -o ~/.bashrc_john.sh
 echo 'source ~/.bashrc_john.sh' >> ~/.bashrc
 echo 'source ~/.bashrc_john.sh' >> ~/.bash_profile
 echo 'source ~/.bashrc_john.sh' >> ~/.bash_login
+curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/.inputrc" \
+    -o ~/.inputrc
 source ~/.bashrc_john.sh
 
 # git config
 sudo apt install git -y \
-    && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/git_stuff/gitignore.txt" -o ~/.gitignore
-git config --global core.excludesfile ~/.gitignore
+    && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/git_stuff/gitignore.txt" \
+        -o ~/.gitignore
+    && curl "https://github.com/treatmesubj/Tips-Tricks/blob/master/configs/git_stuff/.gitconfig" \
+        -o ~/.gitconfig
+    # git diff delta
+    && curl -LO "https://github.com/dandavison/delta/releases/download/0.16.5/git-delta_0.16.5_amd64.deb"
+    && sudo dpkg -i git-delta_0.16.5_amd64.deb
+    && rm git-delta_0.16.5_amd64.deb
 
 # lfs requirements
 sudo apt install build-essential -y
