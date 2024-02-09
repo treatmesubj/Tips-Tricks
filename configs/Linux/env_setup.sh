@@ -43,13 +43,13 @@ source ~/.bashrc_john.sh
 # git config
 sudo apt install git -y \
     && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/git_stuff/gitignore.txt" \
-        -o ~/.gitignore
+        -o ~/.gitignore \
     && curl "https://github.com/treatmesubj/Tips-Tricks/blob/master/configs/git_stuff/.gitconfig" \
-        -o ~/.gitconfig
+        -o ~/.gitconfig \
     # git diff delta
-    && curl -LO "https://github.com/dandavison/delta/releases/download/0.16.5/git-delta_0.16.5_amd64.deb"
-    && sudo dpkg -i git-delta_0.16.5_amd64.deb
-    && rm git-delta_0.16.5_amd64.deb
+    && curl -LO "https://github.com/dandavison/delta/releases/download/0.16.5/git-delta_0.16.5_amd64.deb" \
+    && sudo dpkg -i git-delta_0.16.5_amd64.deb \
+    && rm git-delta_0.16.5_amd64.deb \
 
 # lfs requirements
 sudo apt install build-essential -y

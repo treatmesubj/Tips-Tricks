@@ -9,6 +9,7 @@ prompt() {
     # py-venv: (~/.venv)
     if [[ $VIRTUAL_ENV ]]
     then
+        # short_path2=$(echo "$VIRTUAL_ENV" | sed "s/\/home\/rock/~/")
         short_path2=$(echo "$VIRTUAL_ENV" | sed "s/\/home\/john/~/")
         export PS1+="\[\e[1;36m\]§\[\e[m\] \[\e[1;92m\](\[\e[m\]\[\e[1;36m\]\$short_path2\[\e[m\]\[\e[1;92m\])\[\e[m\]\r\n";
     fi;
