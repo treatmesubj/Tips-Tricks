@@ -81,10 +81,12 @@ export PATH=$PATH:~/go/bin/
 
 alias list='ls -a -h -s -1 --color'
 alias thesr='python3 -m thesr.thesr'
+# sqlfmt is /usr/local/bin/sqlfmt (bash script)
+# fzf
+export FZF_DEFAULT_COMMAND='find .'  # hidden files
 source /usr/share/doc/fzf/examples/key-bindings.bash  # fzf \C-r reverse search
 alias nvim-fuzzfile='nvim $(fzf --preview '\''cat -n {}'\'')'
-alias nvim-fuzzline='nvim $(rg . | fzf | cut -d ":" -f 1)'
-# sqlfmt is /usr/local/bin/sqlfmt (bash script)
+alias nvim-fuzzline='nvim $(rg . --hidden | fzf | cut -d ":" -f 1)'
 
 # Cirrus login
 source ~/.bashrc_cirrus.sh
