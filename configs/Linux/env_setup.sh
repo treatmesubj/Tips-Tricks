@@ -44,7 +44,7 @@ source ~/.bashrc_john.sh
 sudo apt install git -y \
     && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/git_stuff/gitignore.txt" \
         -o ~/.gitignore \
-    && curl "https://github.com/treatmesubj/Tips-Tricks/blob/master/configs/git_stuff/.gitconfig" \
+    && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/git_stuff/.gitconfig" \
         -o ~/.gitconfig \
     # git diff delta
     && curl -LO "https://github.com/dandavison/delta/releases/download/0.16.5/git-delta_0.16.5_amd64.deb" \

@@ -13,7 +13,7 @@ source ~/.bashrc_john.sh
 # git
 curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/git_stuff/gitignore.txt" \
     -o ~/.gitignore
-curl "https://github.com/treatmesubj/Tips-Tricks/blob/master/configs/git_stuff/.gitconfig" \
+curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/git_stuff/.gitconfig" \
     -o ~/.gitconfig
 
 printf "\nPlease, to finish Vim setup: '\$ vim ~/.vimrc', then ':PlugInstall'\n\n"
