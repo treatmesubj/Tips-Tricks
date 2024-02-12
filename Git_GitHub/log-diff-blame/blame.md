@@ -27,3 +27,10 @@ Blaming lines: 100% (15/15), done.
 2 weeks ago     treatmesubj     34a25842│ 12 │ # see staged, uncommitted files' changes
                                         │ 13 │ git add .
 ```
+
+- `git blame -w -C -C -C git-diff.sh  # ignore refactors, basically`
+- `git config --global alias.blame-hard 'blame -w -C -C -C'`
+    - ignore whitespace
+    - detect lines moved/copied in same commit
+        - or commit that created file
+        - or any commit at all

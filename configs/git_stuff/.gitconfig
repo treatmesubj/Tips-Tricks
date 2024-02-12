@@ -30,3 +30,5 @@
     conflictstyle = diff3
 [diff]
     colorMoved = default
+[alias]
+    blame-hard = blame -w -C -C -C
