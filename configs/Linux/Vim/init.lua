@@ -30,6 +30,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     }
 )
 -- keybinding: show all diagnostics on current line in floating window
+-- <Leader>d to show diagnostic message
 vim.api.nvim_set_keymap(
   'n', '<Leader>d', ':lua vim.diagnostic.open_float()<CR>', 
   { noremap = true, silent = true }
