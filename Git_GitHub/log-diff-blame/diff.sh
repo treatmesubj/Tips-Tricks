@@ -18,3 +18,11 @@ git diff 44a65e HEAD -- ':!./pipelines/drafts/*'
 git add .
 git diff --cached
 git diff --staged
+
+
+##########
+# GitHub #
+##########
+# https://github.ibm.com/<user>/<repo>/compare/master..feature
+# https://github.ibm.com/<user>/<repo>/compare/master..bda3d2
+# https://github.ibm.com/<user>/<repo>/compare/a8xua9..bda3d2
