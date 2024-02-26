@@ -14,6 +14,9 @@ git diff 154c4b9 HEAD -- ./epmingestion
 # ignore file(s) in git diff; don't show their changes
 git diff 44a65e HEAD -- ':!./pipelines/drafts/*'
 
+# diff 2 files with different names
+git diff --no-index <path> <path>
+
 # see staged, uncommitted files' changes
 git add .
 git diff --cached
