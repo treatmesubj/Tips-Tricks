@@ -90,7 +90,6 @@ require("bufferchad").setup({
   style = "default", -- default, modern (requires dressing.nvim and nui.nvim), telescope (requires telescope.nvim)
   close_mapping = "<Esc><Esc>", -- only for the default style window. 
 })
-
 -- https://github.com/lukas-reineke/indent-blankline.nvim
 vim.cmd('hi RainbowRed ctermfg=1 guifg=#E06C75')
 vim.cmd('hi RainbowYellow ctermfg=3 guifg=#E5C07B')
@@ -100,13 +99,13 @@ vim.cmd('hi RainbowGreen ctermfg=2 guifg=#98C379')
 vim.cmd('hi RainbowViolet ctermfg=5 guifg=#C678DD')
 vim.cmd('hi RainbowCyan ctermfg=14 guifg=#56B6C2')
 local highlite = {
-    "RainbowRed",
-    "RainbowYellow",
-    "RainbowBlue",
-    "RainbowOrange",
-    "RainbowGreen",
-    "RainbowViolet",
-    "RainbowCyan",
+  "RainbowRed",
+  "RainbowYellow",
+  "RainbowBlue",
+  "RainbowOrange",
+  "RainbowGreen",
+  "RainbowViolet",
+  "RainbowCyan",
 }
 require("ibl").setup({
   indent = { highlight = highlite }
