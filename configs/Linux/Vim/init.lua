@@ -91,4 +91,23 @@ require("bufferchad").setup({
   close_mapping = "<Esc><Esc>", -- only for the default style window. 
 })
 
-require("ibl").setup()
+-- https://github.com/lukas-reineke/indent-blankline.nvim
+vim.cmd('hi RainbowRed ctermfg=1 guifg=#E06C75')
+vim.cmd('hi RainbowYellow ctermfg=3 guifg=#E5C07B')
+vim.cmd('hi RainbowBlue ctermfg=4 guifg=#61AFEF')
+vim.cmd('hi RainbowOrange ctermfg=202 guifg=#D19A66')
+vim.cmd('hi RainbowGreen ctermfg=2 guifg=#98C379')
+vim.cmd('hi RainbowViolet ctermfg=5 guifg=#C678DD')
+vim.cmd('hi RainbowCyan ctermfg=14 guifg=#56B6C2')
+local highlite = {
+    "RainbowRed",
+    "RainbowOrange",
+    "RainbowYellow",
+    "RainbowGreen",
+    "RainbowBlue",
+    "RainbowViolet",
+    "RainbowCyan",
+}
+require("ibl").setup({
+  indent = { highlight = highlite }
+})
