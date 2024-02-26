@@ -6,3 +6,5 @@ while num >= 0
     call append(0, 'ctermbg='.num.':....')
     let num = num - 1
 endwhile
+
+" to see all color groups... :so $VIMRUNTIME/syntax/hitest.vim
