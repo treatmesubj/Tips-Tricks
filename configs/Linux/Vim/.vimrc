@@ -51,6 +51,7 @@ augroup END
 let g:python_highlight_all = 1
 let g:vim_monokai_tasty_italic = 1
 colorscheme vim-monokai-tasty
+" hi Normal guibg=NONE ctermbg=NONE  " transparent
 
 let g:semshi#excluded_hl_groups = ['local', 'global']
 let g:semshi#simplify_markup = v:false
@@ -194,4 +195,3 @@ function! NetRWPaneResizeShortcuts()
   map <buffer> <S-Left> <c-w><
 endfunction
 autocmd filetype netrw call NetRWPaneResizeShortcuts()
-
