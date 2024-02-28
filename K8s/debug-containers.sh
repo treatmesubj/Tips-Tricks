@@ -22,3 +22,5 @@ kubectl debug --namespace demo <pod-name> --image alpine \
 
 kubectl --namespace demo delete pod <pod-copy-name>
 
+# ---
+kubectl get pod my-pod --output=yaml | nvim -
