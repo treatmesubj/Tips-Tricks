@@ -1,4 +1,4 @@
-#https://docs.python.org/3/libary/venv.html
+# https://docs.python.org/3/library/venv.html
 # main venv
 apt install python3-venv
 python3 -m venv ~/.venv

@@ -1,4 +1,4 @@
-0. Probably create a [Python Virtual Environment](../configs/Python/venv) first
+0. Probably create a [Python Virtual Environment](../../configs/Python/venv) first
 1. Install Java: `sudo apt install openjdk-17-jdk`
 2. Install PySpark: `pip3 install pyspark`
 
