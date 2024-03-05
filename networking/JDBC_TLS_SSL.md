@@ -30,6 +30,16 @@ Commonly, an analyst will use a SQL client like [DBeaver](https://dbeaver.io/dow
         clientRerouteAlternateServerName=(use hostname earlier in table);
         ```
 
+---
+#### Export certificates from a TrustStore
+- try this to see the certificates in your truststore and take note of each one's alias
+    - `keytool -v -list -keystore ibm-truststore.jks`
+- then try this to export a certificate from the truststore to a `PKCS12` format cert (alias `ibmcaintermediate` in my example)
+    - `keytool -importkeystore -srckeystore ibm-truststore.jks -destkeystore ibmcaintermediate.p12 -deststoretype PKCS12 -srcalias ibmcaintermediate`
+- then try this to convert the cert from PKCS12 format to PEM format
+    - `openssl pkcs12 -in ibmcaintermediate.p12  -nokeys -out cert.pem`
+---
+
 ### JARs - Drivers & Classes
 ```
 db2jcc4.jar                     -- newer DB2 driver & class
