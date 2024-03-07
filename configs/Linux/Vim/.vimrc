@@ -128,6 +128,13 @@ if has('syntax') && has('eval')
   packadd! matchit
 endif
 
+" save folds
+augroup remember_folds
+  autocmd!
+  autocmd BufWinLeave * mkview
+  autocmd BufWinEnter * silent! loadview
+augroup END
+
 set hlsearch " highlight search
 set incsearch " incremental highlight search
 set ic  " ignore-case
