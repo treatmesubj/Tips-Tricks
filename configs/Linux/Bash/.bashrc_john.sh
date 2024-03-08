@@ -89,7 +89,7 @@ alias rg-pipe='rg --heading --line-number'
 export FZF_DEFAULT_COMMAND='find .'  # hidden files
 source /usr/share/doc/fzf/examples/key-bindings.bash  # fzf \C-r reverse search
 alias nvim-fuzzfile='nvim $(fzf --preview '\''cat -n {}'\'')'
-alias nvim-fuzzline='nvim $(rg . --hidden | fzf | cut -d ":" -f 1)'
+alias nvim-fuzzline='i=$(rg . --hidden -n | fzf); f=$(echo $i | cut -d ":" -f 1); l=$(echo $i | cut -d ":" -f 2); nvim $f -c "norm ${l}gg"'
 
 # Cirrus login
 source ~/.bashrc_cirrus.sh
