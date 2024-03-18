@@ -24,4 +24,10 @@ SET s3_endpoint='s3.us.cloud-object-storage.appdomain.cloud';
 SET s3_region='s3.us.cloud-object-storage.appdomain.cloud';
 SELECT *
 FROM read_parquet('s3://<bucket>/path/*', hive_partitioning=1);
+
+DESCRIBE SELECT *
+FROM read_parquet('s3://<bucket>/path/*', hive_partitioning=1);
+
+EXPLAIN ANALYZE SELECT *
+FROM read_parquet('s3://<bucket>/path/*', hive_partitioning=1);
 ```
