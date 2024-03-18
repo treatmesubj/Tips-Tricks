@@ -15,7 +15,7 @@ go install github.com/hangxie/parquet-tools@latest
 ```
 
 # [DuckDB & DBeaver](https://duckdb.org/docs/guides/sql_editors/dbeaver)
-```text
+```sql
 INSTALL httpfs;
 LOAD httpfs;
 SET s3_access_key_id='';
@@ -23,5 +23,5 @@ SET s3_secret_access_key='';
 SET s3_endpoint='s3.us.cloud-object-storage.appdomain.cloud';
 SET s3_region='s3.us.cloud-object-storage.appdomain.cloud';
 SELECT *
-FROM read_parquet('s3://<bucket>/path/*');
+FROM read_parquet('s3://<bucket>/path/*', hive_partitioning=1);
 ```
