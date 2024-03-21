@@ -1,5 +1,5 @@
 # Python
-```
+```bash
 # https://github.com/ktrueda/parquet-tools
 pip install parquet-tools
 
@@ -9,7 +9,7 @@ parquet-tools inspect file.parquet | awk '/Column\(.*\)|^logical_type/'
 ```
 
 # Go (Questionable)
-```
+```bash
 # https://github.com/hangxie/parquet-tools
 go install github.com/hangxie/parquet-tools@latest
 ```
