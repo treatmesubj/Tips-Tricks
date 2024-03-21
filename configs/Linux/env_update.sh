@@ -11,9 +11,9 @@ curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/L
     -o ~/.inputrc
 source ~/.bashrc_john.sh
 # git
-curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/git_stuff/gitignore.txt" \
+curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Git/gitignore.txt" \
     -o ~/.gitignore
-curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/git_stuff/.gitconfig" \
+curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Git/.gitconfig" \
     -o ~/.gitconfig
 
 printf "\nPlease, to finish Vim setup: '\$ vim ~/.vimrc', then ':PlugInstall'\n\n"
