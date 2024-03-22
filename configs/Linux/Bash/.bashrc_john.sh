@@ -83,7 +83,7 @@ export PATH=$PATH:~/go/bin/
 alias list='ls -a -h -s -1 --color'
 alias thesr='python3 -m thesr.thesr'
 # ripgrep
-alias rg-pipe='rg --heading --line-number'
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 # sqlfmt is /usr/local/bin/sqlfmt (bash script)
 # fzf
 export FZF_DEFAULT_COMMAND='find .'  # hidden files
