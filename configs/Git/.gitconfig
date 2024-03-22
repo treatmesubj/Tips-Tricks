@@ -13,8 +13,9 @@
     navigate = true    # use n and N to move between diff sections
     line-numbers = true
 #    side-by-side = true
-#    line-numbers-left-format = ""
-#    line-numbers-right-format = "│ "
+#    git -c delta.side-by-side=true diff --staged
+    line-numbers-left-format = ""
+    line-numbers-right-format = "│ "
     file-style = white bold
     file-decoration-style = white box
     syntax-theme = Monokai Extended # Light
@@ -33,5 +34,6 @@
     colorMoved = default
 [alias]
     blame-hard = blame -w -C -C -C
+    diff-sbs = -c delta.side-by-side=true diff
     checkout-fzf = !git checkout $(git branch | fzf)
     show-merge-conflicts = !git diff --name-only --diff-filter=U --relative && echo \"---\" && git diff --check
