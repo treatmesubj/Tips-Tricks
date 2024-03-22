@@ -28,7 +28,9 @@ sudo apt install tmux -y \
         -o ~/.tmux.conf
 
 # fzf & ripgrep
-sudo apt install fzf ripgrep -y
+sudo apt install fzf ripgrep -y \
+    && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/ripgrep/.ripgreprc" \
+        -o ~/.ripgreprc
 
 # bashrc & inputrc
 curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/.bashrc_john.sh" \
@@ -42,7 +44,7 @@ source ~/.bashrc_john.sh
 
 # git config
 sudo apt install git -y \
-    && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Git/gitignore.txt" \
+    && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Git/.gitignore" \
         -o ~/.gitignore \
     && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Git/.gitconfig" \
         -o ~/.gitconfig \

@@ -1,0 +1,7 @@
+# below contents for ~/.gitignore to globally, then run `git config --globalcore.excludesfile ~/.gitignore`
+~*
+*.swp
+*.swo
+
+# to ignore file extension in any subdir & its subdirs
+dir1/subdir/**.xlsx
