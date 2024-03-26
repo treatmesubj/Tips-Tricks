@@ -37,3 +37,4 @@
     diff-sbs = -c delta.side-by-side=true diff
     checkout-fzf = !git checkout $(git branch | fzf)
     show-merge-conflicts = !git diff --name-only --diff-filter=U --relative && echo \"---\" && git diff --check
+    log-fn = log -p -- filename
