@@ -1,3 +1,6 @@
+# unstage a file
+git restore --staged file-to-unstage.txt
+
 # unstages any files added since last commit
 git reset --soft HEAD~1
 
