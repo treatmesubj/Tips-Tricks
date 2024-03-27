@@ -88,8 +88,21 @@ export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 # fzf
 export FZF_DEFAULT_COMMAND='find .'  # hidden files
 source /usr/share/doc/fzf/examples/key-bindings.bash  # fzf \C-r reverse search
-alias nvim-fuzzfile='nvim $(fzf --preview '\''cat -n {}'\'')'
-alias nvim-fuzzline='i=$(rg . --hidden -n | fzf); f=$(echo $i | cut -d ":" -f 1); l=$(echo $i | cut -d ":" -f 2); nvim $f -c "norm ${l}gg"'
+
+nvim_fuzzfile() {
+    f=$(fzf --preview 'cat -n {}')
+    echo $f
+    nvim $f
+}
+nvim_fuzzline() {
+    i=$(rg . --no-heading --hidden --line-number | fzf)
+    f=$(echo $i | cut -d ":" -f 1)
+    l=$(echo $i | cut -d ":" -f 2)
+    echo "$f:$l"
+    nvim $f -c "norm ${l}gg"
+}
+alias nvim-fuzzfile=nvim_fuzzfile
+alias nvim-fuzzline=nvim_fuzzline
 
 # Cirrus login
 source ~/.bashrc_cirrus.sh
