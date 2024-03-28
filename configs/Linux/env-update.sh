@@ -16,36 +16,43 @@ function update_prompt {
 
 # vim
 if [[ 'y' = $(update_prompt "vimrc") ]]; then
-    curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/.vimrc" \
+    cp ~/.vimrc ~/.vimrc.bak &&\
+    curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/.vimrc"\
         -o ~/.vimrc
     printf "\nPlease, to finish Vim setup: '\$ vim ~/.vimrc', then ':PlugInstall'"
     printf "\nPlease, to finish Neovim setup: '\$ nvim ~/.vimrc', then ':PlugInstall', then ':UpdateRemotePlugins'\n\n"
 fi
 # tmux
 if [[ 'y' = $(update_prompt "tmux.conf") ]]; then
-    curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/TMUX/.tmux.conf" \
+    cp ~/.tmux.conf ~/.tmux.conf.bak &&\
+    curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/TMUX/.tmux.conf"\
         -o ~/.tmux.conf
 fi
 # ripgrep
 if [[ 'y' = $(update_prompt "ripgreprc") ]]; then
+    cp ~/.ripgreprc ~/.ripgreprc.bak &&\
     curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/ripgrep/.ripgreprc" \
         -o ~/.ripgreprc
 fi
 # bashrc
 if [[ 'y' = $(update_prompt "bashrc") ]]; then
+    cp ~/.bashrc_john.sh ~/.bashrc_john.sh.bak  &&\
     curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/.bashrc_john.sh" \
         -o ~/.bashrc_john.sh
     source ~/.bashrc_john.sh
 fi
 # inputrc
 if [[ 'y' = $(update_prompt "inputrc") ]]; then
+    cp ~/.inputrc ~/.inputrc.sh.bak  &&\
     curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/.inputrc" \
         -o ~/.inputrc
 fi
 # git
 if [[ 'y' = $(update_prompt "gitignore & gitconfig") ]]; then
+    cp ~/.gitignore ~/.gitignore.bak  &&\
     curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Git/.gitignore" \
         -o ~/.gitignore
+    cp ~/.gitconfig ~/.gitconfig.bak  &&\
     curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Git/.gitconfig" \
         -o ~/.gitconfig
 fi
