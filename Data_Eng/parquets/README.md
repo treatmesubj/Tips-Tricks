@@ -15,6 +15,11 @@ go install github.com/hangxie/parquet-tools@latest
 ```
 
 # [DuckDB & DBeaver](https://duckdb.org/docs/guides/sql_editors/dbeaver)
+__NOTE__: for DBeaver, Maven's latest driver may not have latest features; you
+can grab latest JAR files from
+[duckdb/releases](https://github.com/duckdb/duckdb/releases), and in DBeaver
+driver settings, add JAR file to `Libraries`, and verify via `Find Class`, that
+you've got `Driver class: org.duckdb.DuckDBDriver`
 ### Quickstart
 ```sql
 FORCE INSTALL httpfs;
@@ -34,7 +39,7 @@ FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partition
 -- https://duckdb.org/docs/extensions/httpfs/s3api
 -- stored in ~/.duckdb/stored_secrets
 
-CREATE PERSISTENT SECRET bucket-cool1 (
+CREATE PERSISTENT SECRET bucketcool1 (
     TYPE S3,
     KEY_ID '',
     SECRET '',
@@ -44,7 +49,7 @@ CREATE PERSISTENT SECRET bucket-cool1 (
 );
 SELECT which_secret('s3://bucket-cool1', 's3');
 
-CREATE PERSISTENT SECRET bucket-cool2 (
+CREATE PERSISTENT SECRET bucketcool2 (
     TYPE S3,
     KEY_ID '',
     SECRET '',
