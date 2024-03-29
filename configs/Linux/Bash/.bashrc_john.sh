@@ -4,7 +4,7 @@ prompt() {
     # long_path=$(dirs)
     # short_path1=$(echo $long_path | sed "s/\/mnt\/c\/Users\/JohnHupperts/\$winhome/")
     # export PS1="\[\e[1;31m\]\u\[\e[m\]@\[\e[1;93m\]\h\[\e[m\]:\[\e[1;34m\]\$short_path1\[\e[m\]\r\n";
-     export PS1="\[\e[1;31m\]\u\[\e[m\]@\[\e[1;33m\]\h\[\e[m\]:\[\e[1;34m\]\w\[\e[m\]\r\n";
+    export PS1="\[\e[1;31m\]\u\[\e[m\]@\[\e[1;33m\]\h\[\e[m\]:\[\e[1;34m\]\w\[\e[m\]\r\n";
 
     # py-venv: (~/.venv)
     if [[ $VIRTUAL_ENV ]]
@@ -90,7 +90,7 @@ export FZF_DEFAULT_COMMAND='find .'  # hidden files
 source /usr/share/doc/fzf/examples/key-bindings.bash  # fzf \C-r reverse search
 
 nvim_fuzzfile() {
-    f=$(fzf --preview 'cat -n {}')
+    f=$(fzf --preview 'cat -n {}' --print-query)
     echo $f
     nvim $f
 }
