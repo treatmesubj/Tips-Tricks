@@ -8,4 +8,9 @@ else
     cat /mount-dir/home.txt
 fi
 
-sleep 99
+secs=$((5 * 60))
+while [ $secs -gt 0 ]; do
+   echo "$secs"
+   sleep 1
+   secs=$((secs-=1))
+done
