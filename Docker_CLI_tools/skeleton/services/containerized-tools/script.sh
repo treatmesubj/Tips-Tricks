@@ -14,3 +14,11 @@ while [ $secs -gt 0 ]; do
    sleep 1
    secs=$((secs-=1))
 done
+
+# count up
+# secs=0
+# while true; do
+#    echo "$secs"
+#    sleep 1
+#    secs=$((secs+=1))
+# done
