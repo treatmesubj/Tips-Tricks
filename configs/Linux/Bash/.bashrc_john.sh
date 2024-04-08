@@ -90,7 +90,7 @@ export FZF_DEFAULT_COMMAND='find .'  # hidden files
 source /usr/share/doc/fzf/examples/key-bindings.bash  # fzf \C-r reverse search
 
 nvim_fuzzfile() {
-    f=$(fzf --preview 'cat -n {}' --print-query)
+    f=$(fzf --preview 'cat -n {}' --print-query | tail -1)
     echo $f
     nvim $f
 }
