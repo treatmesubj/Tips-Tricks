@@ -4,7 +4,8 @@ cat file.txt | awk '/Column\(.*\)|^logical_type/'
 # for each line, print string that starts with 'stringstart'
 cat file.txt | gawk 'match($0, /(stringstart\w*)/, a) {print a[1]}'
 
-
+# find pod name
+set orc_pod = kubectl get pods | awk '{ if ($1 ~ /orchestrator/ && $3 == "Running") { print $1 } }'
 
 
 awk '{print $0}' infile.txt             # print each space/tab field-separated 'field'
