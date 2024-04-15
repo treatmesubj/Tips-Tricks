@@ -69,6 +69,11 @@ tmux_clear_history() {
 alias pshell='powershell.exe'
 export winhome="/mnt/c/Users/JohnHupperts"
 
+kubecontext() {
+    echo "$(kubectl config current-context |
+        cut -f1 -d"/" 2>/dev/null):$(kubectl config view --minify -o jsonpath='{..namespace}')"
+}
+
 export EDITOR=nvim
 alias nvimdiff='nvim -d'
 export TERM="xterm-256color"
