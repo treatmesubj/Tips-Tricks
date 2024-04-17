@@ -69,16 +69,16 @@ hi CSVColumnOdd  ctermfg=37 guifg=#00afaf
 
 " highlight non-ASCII; shortcut 'ga' to show char's bytes
 function HiNonASCII()
-  syntax match nonascii "[^\u0000-\u007F]"
+  syntax match nonascii "[^\u0000-\u007F]" containedin=ALLBUT,nonascii
   hi nonascii ctermbg=226 ctermfg=black cterm=bold guibg=#ffff00 guifg=black gui=bold
 endfunction
 autocmd BufEnter * call HiNonASCII()
 
 " highlight git merge conflict markers
-function! HiGitMergeConflict() abort
-  syn region conflictStart start=/^<<<<<<< .*$/ end=/^\ze\(=======$\||||||||\)/
-  syn region conflictMiddle start=/^||||||| .*$/ end=/^\ze=======$/
-  syn region conflictEnd start=/^\(=======$\||||||| |\)/ end=/^>>>>>>> .*$/
+function! HiGitMergeConflict()
+  syn region conflictStart start=/^<<<<<<< .*$/ end=/^\ze\(=======$\||||||||\)/ containedin=ALLBUT,conflictStart
+  syn region conflictMiddle start=/^||||||| .*$/ end=/^\ze=======$/ containedin=ALLBUT,conflictMiddle
+  syn region conflictEnd start=/^\(=======$\||||||| |\)/ end=/^>>>>>>> .*$/ containedin=ALLBUT,conflictEnd
 
   highlight conflictStart ctermbg=green ctermfg=black
   highlight conflictMiddle ctermbg=blue ctermfg=black
