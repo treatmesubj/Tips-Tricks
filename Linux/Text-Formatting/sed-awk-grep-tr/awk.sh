@@ -8,6 +8,7 @@ cat file.txt | gawk 'match($0, /(stringstart\w*)/, a) {print a[1]}'
 set orc_pod = kubectl get pods | awk '{ if ($1 ~ /orchestrator/ && $3 == "Running") { print $1 } }'
 
 
+pwd | awk -F/ '{print $NF}'             # print last field
 awk '{print $0}' infile.txt             # print each space/tab field-separated 'field'
 awk '{print $1}' infile.txt             # print 1st space/tab field-separated 'field'
 awk '{print $1,$3}' infile.txt          # print 1st & 3rd space/tab field-separated 'field'
