@@ -5,5 +5,18 @@
 2. Configure `dnsmasq` to utilize the VPN's DNServer for VPN/intranet domains and Google's DNServer for other/internet
     - See [WSL\_VPN\_DNS.md](./WSL_VPN_DNS.md)
 
----
 **NOTE**: also see [wsl-config docs](https://github.com/MicrosoftDocs/WSL/blob/main/WSL/wsl-config.md)
+
+## Troubleshooting
+- `dig ibm.com`, `dig google.com`
+- `pshell reset_wsl_vpn`
+- `pshell wsl_vpn`
+1. disconnect/reconnect to VPN
+2. restart `dnsmasq`: `sudo sytemctl restart dnsmasq && sudo systemctl status dnsmasq`
+3. verify `/etc/dnsmasq.conf` is as expected
+4. verify `/etc/wsl.conf` is as expected
+5. try Google's DNS w/o `dnsmasq`: `sudo echo nameserver 8.8.8.8 > /etc/resolv.conf && dig google.com`
+    - return to use of `dnsmasq` DNS: `sudo echo nameserver 127.0.0.1 > /etc/resolv.conf && dig google.com`
+6. disconnect/reconnect to VPN
+- `pshell reset_wsl_vpn`
+- `pshell wsl_vpn`

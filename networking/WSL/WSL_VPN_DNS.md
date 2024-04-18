@@ -11,7 +11,7 @@ This assumes you're using SystemD
         ```
 2. Temporarily, we need Google's DNS to find things on the internet. Add below to `/etc/resolv.conf`
     ```
-    namserver   8.8.8.8
+    nameserver   8.8.8.8
     ```
 3. Install `dnsmasq`
     - `sudo apt install dnsmasq`
