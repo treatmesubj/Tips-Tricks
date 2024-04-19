@@ -1,5 +1,7 @@
 # grep for any SCHEMA.TABLE
 rg -i '\w+\.\w+\s'
+# grep for any MY_SCHEMA*.TABLE
+rg -i 'MY_SCHEMA\w*\.\w+\s'
 
 #   Show all lines that do not contain the # character.
 grep -v -E "#" /etc/ssh/sshd_config
