@@ -168,6 +168,7 @@ autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab  " lua
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab  " yaml
 autocmd FileType sql setlocal ts=2 sts=2 sw=2 expandtab  " sql
 autocmd FileType yaml set nowrap  " yaml
+au BufRead,BufNewFile *.ddl set ft=sql  " ddl is sql
 " csv.vim
 " <L> to move to right
 " <H> to move to left
