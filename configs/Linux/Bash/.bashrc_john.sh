@@ -7,8 +7,7 @@ prompt() {
     # export PS1="\[\e[1;31m\]\u\[\e[m\]@\[\e[1;33m\]\h\[\e[m\]:\[\e[1;34m\]\w\[\e[m\]\r\n";
 
     # py-venv: (~/.venv)
-    if [[ $VIRTUAL_ENV ]]
-    then
+    if [[ $VIRTUAL_ENV ]]; then
         # short_path2=$(echo "$VIRTUAL_ENV" | sed "s/\/home\/rock/~/")
         short_path2=$(echo "$VIRTUAL_ENV" | sed "s/\/home\/john/~/")
         export PS1+="\[\e[1;36m\]§\[\e[m\] \[\e[1;92m\](\[\e[m\]\[\e[1;36m\]\$short_path2\[\e[m\]\[\e[1;92m\])\[\e[m\]\r\n";
@@ -16,11 +15,15 @@ prompt() {
 
     # branch: * master
     branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' | cut -d\  -f2-)
-    if [[ ! -z "$branch" ]]
-    then
+    if [[ $branch ]]; then
        export PS1+="\[\e[1;35m\]±\[\e[m\] \[\e[1;45m\]* \[\e[m\]\[\e[m\]\[\e[92;45m\]$branch\[\e[m\]\r\n";
     fi;
 
+    if [[ $kubeps1 ]]; then
+        kctxt="$(kubectl config current-context | cut -f1 -d"/" 2>/dev/null)"
+        kns="$(kubectl config view --minify -o jsonpath='{..namespace}')"
+        export PS1+="\[\e[44;97m\]Θ\[\e[m\] \[\e[3;93m\]$kctxt\[\e[m\]:\[\e[3;94m\]$kns\[\e[m\]\r\n"
+    fi
     # $
     export PS1+="\[\e[1;92m\] \$ \[\e[m\]"
 }
@@ -69,11 +72,6 @@ tmux_clear_history() {
 alias pshell='powershell.exe'
 export winhome="/mnt/c/Users/JohnHupperts"
 
-kubecontext() {
-    echo "$(kubectl config current-context |
-        cut -f1 -d"/" 2>/dev/null):$(kubectl config view --minify -o jsonpath='{..namespace}')"
-}
-
 export EDITOR=nvim
 alias nvimdiff='nvim -d'
 export TERM="xterm-256color"
@@ -121,4 +119,3 @@ bind -m vi-insert 'Control-l: clear-screen'
 # add bash history in real time
 shopt -s histappend
 PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
-
