@@ -128,12 +128,12 @@ if has('syntax') && has('eval')
   packadd! matchit
 endif
 
-" save folds
-augroup remember_folds
-  autocmd!
-  au BufWinLeave ?* mkview 1
-  au BufWinEnter ?* silent! loadview 1
-augroup END
+" save folds to ~/.vim/view/
+" augroup remember_folds
+"   autocmd!
+"   au BufWinLeave ?* mkview 1
+"   au BufWinEnter ?* silent! loadview 1
+" augroup END
 
 set hlsearch " highlight search
 set incsearch " incremental highlight search
@@ -169,11 +169,7 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab  " yaml
 autocmd FileType sql setlocal ts=2 sts=2 sw=2 expandtab  " sql
 autocmd FileType yaml set nowrap  " yaml
 au BufRead,BufNewFile *.ddl set ft=sql  " ddl is sql
-" csv.vim
-" <L> to move to right
-" <H> to move to left
-" :CSVArrangeColumn! to resize cols under cursor's row(s)
-" let g:csv_autocmd_arrange = 1
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 
 " set fileformat=unix to fix trailing character issues
 set list
@@ -203,3 +199,28 @@ function! NetRWPaneResizeShortcuts()
   map <buffer> <S-Left> <c-w><
 endfunction
 autocmd filetype netrw call NetRWPaneResizeShortcuts()
+
+" Cheat Sheets -----------------------
+"
+" csv.vim
+"   <L> to move to right
+"   <H> to move to left
+"   :CSVArrangeColumn! to resize cols under cursor's row(s)
+"   let g:csv_autocmd_arrange = 1
+"
+" folds
+"   zf#j creates a fold from the cursor down # lines.
+"   zf/string creates a fold from the cursor to string .
+"   zj moves the cursor to the next fold.
+"   zk moves the cursor to the previous fold.
+"   zo opens a fold at the cursor.
+"   zO opens all folds at the cursor.
+"   zm increases the foldlevel by one.
+"   zM closes all open folds.
+"   zr decreases the foldlevel by one.
+"   zR decreases the foldlevel to zero -- all folds will be open.
+"   zd deletes the fold at the cursor.
+"   zE deletes all folds.
+"   [z move to start of open fold.
+"   ]z move to end of open fold.
+
