@@ -202,6 +202,18 @@ autocmd filetype netrw call NetRWPaneResizeShortcuts()
 
 " Cheat Sheets -----------------------
 "
+" screen moves
+"  ctrl+u 1/2 page up
+"  ctrl+d 1/2 page down
+"  zz center cursor line
+"  zL 1/2 page right
+"  zH 1/2 page left
+"
+"  ctrl+e up 1 line
+"  ctrl+y down 1 line
+"  zt top cursor line
+"  zb top cursor line
+"
 " csv.vim
 "   <L> to move to right
 "   <H> to move to left
