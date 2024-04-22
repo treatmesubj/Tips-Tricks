@@ -200,6 +200,12 @@ function! NetRWPaneResizeShortcuts()
 endfunction
 autocmd filetype netrw call NetRWPaneResizeShortcuts()
 
+function YAMLGoToKey(key)
+  let yqcmd = "yq '" . a:key . " | line' " . expand('%:p')
+  let line = trim(system(yqcmd))
+  execute "norm " . line . "gg"
+endfunction
+
 " Cheat Sheets -----------------------
 "
 " screen moves
