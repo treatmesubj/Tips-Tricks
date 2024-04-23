@@ -208,6 +208,9 @@ endfunction
 
 " Cheat Sheets -----------------------
 "
+" vertical list of incrementing numbers
+"   <C-V> to highlight numbers you want to increment then g<C-A>
+"
 " screen moves
 "  ctrl+u 1/2 page up
 "  ctrl+d 1/2 page down
