@@ -23,6 +23,8 @@ if has('nvim')
   Plug 'cuducos/yaml.nvim'
   " :TSInstall json
   Plug 'phelipetls/jsonpath.nvim'
+  " marks
+  Plug 'chentoast/marks.nvim'
 endif
 call plug#end()
 let g:python3_host_prog = $HOME . '/.venv_pynvim/bin/python'
@@ -145,8 +147,8 @@ set mouse=  " no-mouse
 if !has('nvim')
   set ttymouse=  " no-mouse
 endif
-set wrap " don't literally insert newlines
-set nowrap " actually, don't wrap
+set formatoptions-=t " don't literally insert newlines
+set nowrap " don't wrap w/ virtual lines either
 set directory=/tmp
 set backupdir=/tmp
 set undofile  " keep an undo file (undo changes after closing)
