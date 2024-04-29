@@ -8,3 +8,4 @@ while num >= 0
 endwhile
 
 " to see all color groups... :so $VIMRUNTIME/syntax/hitest.vim
+" https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim

@@ -25,6 +25,8 @@ if has('nvim')
   Plug 'phelipetls/jsonpath.nvim'
   " marks
   Plug 'chentoast/marks.nvim'
+  " logs syntax highlights
+  Plug 'fei6409/log-highlight.nvim'
 endif
 call plug#end()
 let g:python3_host_prog = $HOME . '/.venv_pynvim/bin/python'
@@ -95,6 +97,9 @@ augroup CursorLine
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   au WinLeave * setlocal nocursorline
 augroup END
+
+" off-white normal text
+hi Normal ctermfg=254  guifg=#e4e4e4
 
 let g:lightline = {
   \ 'colorscheme': 'rock',
@@ -219,7 +224,6 @@ endfunction
 "  zz center cursor line
 "  zL 1/2 page right
 "  zH 1/2 page left
-"
 "  ctrl+e up 1 line
 "  ctrl+y down 1 line
 "  zt top cursor line

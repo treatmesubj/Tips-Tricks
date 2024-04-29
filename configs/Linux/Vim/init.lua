@@ -129,3 +129,8 @@ require('marks').setup {
   },
   mappings = {}
 }
+
+-- https://github.com/fei6409/log-highlight.nvim
+require('log-highlight').setup {
+    extension = 'log',
+}
