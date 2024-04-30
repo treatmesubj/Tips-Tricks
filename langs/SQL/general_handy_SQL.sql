@@ -10,6 +10,25 @@ SELECT *
 FROM BLAH
 LIMIT 1 OFFSET 0
 
+/* Meaningless Query */
+WITH MY_TAB AS (
+    SELECT *
+    FROM (
+        VALUES
+          ('Hello world', '2024'),
+          ('Hey all', '2023')
+    ) t1 (HEY, YR)
+    WHERE 1 = 1
+),
+DUMMY AS (
+  SELECT *
+  FROM SYSIBM.SYSDUMMY1
+)
+SELECT MY_TAB.*
+FROM DUMMY
+LEFT JOIN MY_TAB
+  ON 1 = 0
+
 /* ensure 2 strings are equal; string compare */
 SELECT instr(',' || replace('     blah ', ' ', '') || ',', ',' || replace('  blah    ', ' ', '') || ',')
 FROM BLAH
