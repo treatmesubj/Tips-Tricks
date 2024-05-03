@@ -31,3 +31,20 @@ for f in $(git diff origin/master...HEAD --name-only | grep ^dags/deployable/);\
 # find names of Db2 tables being loaded to in changed pipelines
 for f in $(git diff origin/master...HEAD --name-only | grep ^pipelines);\
     do rg -ioI --no-line-number --no-heading '(query: )(EPM\w*\.\w+)' $f -or '$2'; done | sort -u
+
+# find all raptors owned pipelines & templates
+raptors_files="$(\
+    for f in $(rg -il "slack: '@epm_raptors'"); do\
+        metadata_name=$(yq '.metadata.name' $f) &&\
+        rg -il "name: $metadata_name";\
+    done\
+)";\
+echo "$raptors_files"
+
+# find all tables loaded by raptors pipelines
+loads="$(\
+    for f in $(rg -il "slack: '@epm_raptors'"); do\
+        yq '.spec.jobs | .[] | .load.connections | .[] | .query' $f;\
+    done\
+)";\
+echo "$loads" | grep -E 'EPM\w*\.\w+' | sort -u
