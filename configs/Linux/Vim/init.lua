@@ -62,7 +62,7 @@ require('nvim-treesitter.configs').setup {
 vim.api.nvim_create_autocmd({ "BufEnter", "CursorMoved" },{
   pattern = { "*.yaml" },
   callback = function()
-    vim.opt_local.winbar = require("yaml_nvim").get_yaml_key()
+    vim.opt_local.winbar = "." .. require("yaml_nvim").get_yaml_key()
   end,
 })
 -- https://github.com/phelipetls/jsonpath.nvim
