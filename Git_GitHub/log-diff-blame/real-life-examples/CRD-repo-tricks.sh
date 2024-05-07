@@ -42,6 +42,19 @@ raptors_files="$(\
 )";\
 echo "$raptors_files"
 
+# find all raptors owned pipelines & templates & their extracted taxonomies
+# cd pipelines/deployable
+raptors_files="$(\
+    for f in $(rg -il "slack: '@epm_raptors'"); do\
+        metadata_name=$(yq '.metadata.name' $f) &&\
+        rg -il "name: $metadata_name";\
+    done\
+)";\
+for f in $raptors_files; do\
+    yq '.spec.jobs | .[] | .extract | .[] | .connections | .[] | select(.connector == "taxonomy") | .query' $f\
+    && yq '.spec.templates | .[] | .extract | .[] | .connections | .[] | select(.connector == "taxonomy") | .query' $f;\
+done;
+
 # find all tables loaded by raptors pipelines
 # cd pipelines/deployable
 loads="$(\
