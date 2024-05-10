@@ -165,6 +165,9 @@ command! W write
 command! Q quit
 command! Wq write <bar> quit
 
+map <C-j> <C-e>
+map <C-k> <C-y>
+
 "keep visual mode after indent
 vnoremap > >gv
 vnoremap < <gv
@@ -219,8 +222,10 @@ endfunction
 "   <C-V> to highlight numbers you want to increment then g<C-A>
 "
 " screen moves
-"  ctrl+u 1/2 page up
-"  ctrl+d 1/2 page down
+"  <C-u> scroll 1/2 page up
+"  <C-d> scroll 1/2 page down
+"  <C-j> scroll 1 line up
+"  <C-k> scroll 1 line down
 "  zz center cursor line
 "  zL 1/2 page right
 "  zH 1/2 page left
