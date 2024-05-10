@@ -8,6 +8,7 @@ in `visual-line` mode, you can substitute in selected lines with `:<,>s/foo/bar/
 - `:20,40s/foo/bar/g`: from lines 20-40, replace foo w/ bar
 
 # Newlines, line-ends
+- `:s/,/,\r/g`: in line, break commas over newlines
 - `:s/foo/\rfoo/g`: in line, replace foo w/ newline-foo
 - `:s/$/\\/g`: in line, add `\` to line-end
 
