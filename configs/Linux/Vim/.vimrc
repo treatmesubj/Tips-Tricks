@@ -90,6 +90,7 @@ function! HiGitMergeConflict()
 endfunction
 autocmd BufEnter * call HiGitMergeConflict()
 
+" cursorline
 hi clear CursorLine
 hi CursorLine cterm=underline gui=underline 
 augroup CursorLine
@@ -100,6 +101,9 @@ augroup END
 
 " off-white normal text
 hi Normal ctermfg=254  guifg=#e4e4e4
+
+" marks.nvim
+hi MarkSignNumHL ctermfg=245  guifg=#8a8a8a
 
 let g:lightline = {
   \ 'colorscheme': 'rock',
