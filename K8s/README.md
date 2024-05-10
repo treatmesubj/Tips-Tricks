@@ -3,5 +3,10 @@
 
 ## Follow Logs
 ```bash
+# follow logs
 kubectl logs -f $(kubectl get pods | grep -i 'headcount-monthly-fact-eid-53572.*driver' | tail -1 | awk '{print $1}')
+```
+```bash
+# dump logs
+kubectl logs $(kubectl get pods | grep -i 'headcount-monthly-fact-eid-53572.*driver' | tail -1 | awk '{print $1}') > ./logs.txt
 ```
