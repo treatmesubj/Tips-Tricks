@@ -92,6 +92,10 @@ export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 export FZF_DEFAULT_COMMAND='find .'  # hidden files
 source /usr/share/doc/fzf/examples/key-bindings.bash  # fzf \C-r reverse search
 
+# man pages in nvim
+export MANPAGER='nvim +Man! -c "set nowrap"'
+export MANWIDTH=999
+
 nvim_fuzzfile() {
     f=$(fzf --preview 'cat -n {}' --print-query | tail -1)
     echo $f
