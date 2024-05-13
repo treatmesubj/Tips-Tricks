@@ -35,3 +35,12 @@ then
 else
     # stuff
 fi
+
+
+# Add line numbers to text
+awk '{ print NR, $0 }' OFS='\t' tmp.json
+# 1       {
+# 2         "a": 1,
+# 3         "b": 1, "c": 1,
+# 4         "d": 1, "e": 1
+# 5       }
