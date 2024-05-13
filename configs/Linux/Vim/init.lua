@@ -69,7 +69,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorMoved" },{
 vim.api.nvim_create_autocmd({ "BufEnter", "CursorMoved" },{
   pattern = { "*.json" },
   callback = function()
-    vim.opt_local.winbar = require("jsonpath").get()
+    vim.opt_local.winbar = "." .. (require("jsonpath").get():sub(2) or "")
   end,
 })
 vim.api.nvim_command('hi winbar ctermbg=89')

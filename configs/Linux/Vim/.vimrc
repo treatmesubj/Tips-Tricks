@@ -22,7 +22,7 @@ if has('nvim')
   " :TSInstall yaml
   Plug 'cuducos/yaml.nvim'
   " :TSInstall json
-  Plug 'phelipetls/jsonpath.nvim'
+  Plug 'treatmesubj/jsonpath.nvim'
   " marks
   Plug 'chentoast/marks.nvim'
   " logs syntax highlights
