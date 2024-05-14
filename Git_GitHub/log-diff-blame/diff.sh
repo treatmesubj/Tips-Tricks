@@ -22,6 +22,8 @@ git add .
 git diff --cached
 git diff --staged
 
+# diff from 3 days ago
+git diff 'HEAD@{3 days ago}' HEAD ./headcount-monthly-static-fact.yaml
 
 ##########
 # GitHub #
