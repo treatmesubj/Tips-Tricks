@@ -3,7 +3,9 @@ git show
 git diff HEAD~1 HEAD
 
 # see changes between branches
-git diff origin/master HEAD --name-only
+git diff origin/master...HEAD --name-only
+# see changes between branches - show file-paths relative to cwd
+git diff origin/master...HEAD --name-only --relative
 
 # see just changed file names
 git diff --stat HEAD~1 HEAD
