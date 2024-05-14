@@ -38,3 +38,4 @@
     checkout-fzf = !git checkout $(git branch | fzf)
     show-merge-conflicts = !git diff --name-only --diff-filter=U --relative && echo \"---\" && git diff --check
     log-fn = log -p -- filename
+    log-lil = log --pretty=\"format:%C(yellow)%h %C(Cyan)%>(10)%ad (%cr) %Cgreen%aN%Cred%d %Creset%s\" --date=short
