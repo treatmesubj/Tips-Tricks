@@ -2,6 +2,7 @@
 call plug#begin('~/.vim/plugged')
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'vim-python/python-syntax'
+Plug 'preservim/vim-markdown'
 Plug 'chrisbra/csv.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'treatmesubj/rock-lightline'
@@ -184,6 +185,20 @@ autocmd FileType sql setlocal ts=2 sts=2 sw=2 expandtab  " sql
 autocmd FileType yaml set nowrap  " yaml
 au BufRead,BufNewFile *.ddl set ft=sql  " ddl is sql
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+
+" preservim/vim-markdown
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_conceal_code_blocks = 0
+let g:vim_markdown_strikethrough = 1
+" let g:vim_markdown_auto_insert_bullets = 0
+" let g:vim_markdown_new_list_item_indent = 0
+" preservim/vim-markdown
+augroup markdown_conceal
+  au!
+  au BufRead,BufNewFile *.md set conceallevel=2  " md
+  " don't conceal brackets
+  au BufRead,BufNewFile *.md execute 'syn region mkdLink matchgroup=mkdDelimiter  start="\\\@<!!\?\[" end="\n\{-,1}[^]]\{-}\zs\]\ze[[(]" contains=@mkdNonListItem,@Spell nextgroup=mkdURL,mkdID skipwhite oneline'
+augroup END
 
 " set fileformat=unix to fix trailing character issues
 set list
