@@ -97,12 +97,12 @@ export MANPAGER='nvim +Man! -c "set nowrap"'
 export MANWIDTH=999
 
 nvim_fuzzfile() {
-    f=$(fzf --preview 'cat -n {}' --print-query | tail -1)
+    f=$(fzf --preview 'batcat --color=always --theme="Monokai Extended" --style=numbers --line-range=:500 -n {}' --preview-window up --print-query | tail -1)
     echo $f
     nvim $f
 }
 nvim_fuzzline() {
-    i=$(rg . --no-heading --hidden --line-number | fzf)
+    i=$(rg . --no-heading --hidden --line-number | fzf --preview 'batcat --color=always --theme="Monokai Extended" --style=numbers --line-range=:500 $(echo {} | cut -d ":" -f 1)' --preview-window up)
     f=$(echo $i | cut -d ":" -f 1)
     l=$(echo $i | cut -d ":" -f 2)
     echo "$f:$l"
@@ -111,8 +111,12 @@ nvim_fuzzline() {
 alias nvim-fuzzfile=nvim_fuzzfile
 alias nvim-fuzzline=nvim_fuzzline
 
+# keys
+source ~/.bashrc_keys.sh
 # Cirrus login
 source ~/.bashrc_cirrus.sh
+# cluster login
+source ~/.bashrc_cluster.sh
 
 # bash vi mode
 # see also ~/.inputrc
