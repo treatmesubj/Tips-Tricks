@@ -39,7 +39,7 @@ FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partition
 -- https://duckdb.org/docs/extensions/httpfs/s3api
 -- stored in ~/.duckdb/stored_secrets
 
-CREATE PERSISTENT SECRET bucketcool1 (
+CREATE PERSISTENT SECRET bucket_cool1 (
     TYPE S3,
     KEY_ID '',
     SECRET '',
@@ -49,7 +49,7 @@ CREATE PERSISTENT SECRET bucketcool1 (
 );
 SELECT which_secret('s3://bucket-cool1', 's3');
 
-CREATE PERSISTENT SECRET bucketcool2 (
+CREATE PERSISTENT SECRET bucket_cool2 (
     TYPE S3,
     KEY_ID '',
     SECRET '',
