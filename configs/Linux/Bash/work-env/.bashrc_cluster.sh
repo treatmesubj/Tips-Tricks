@@ -33,4 +33,6 @@ EOF
     kns="$(kubectl config view --minify -o jsonpath='{..namespace}')"
     echo ""
     echo -e "\033[44;97mΘ\033[m $kctxt:$kns"
+
+    export kubeps1=true
 }
