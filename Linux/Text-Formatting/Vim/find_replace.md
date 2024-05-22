@@ -12,5 +12,8 @@ in `visual-line` mode, you can substitute in selected lines with `:<,>s/foo/bar/
 - `:s/foo/\rfoo/g`: in line, replace foo w/ newline-foo
 - `:s/$/\\/g`: in line, add `\` to line-end
 
+# Delete Empty lines
+- `:%s/^\s*$\n//g`
+
 # Weird Text
 - `:%s/[^\x00-\x7F]/g`: in file, replace non-ascii with space
