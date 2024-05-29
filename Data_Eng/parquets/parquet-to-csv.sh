@@ -1,4 +1,4 @@
-# See ./parquet-tools.md
+# See ./README.md
 
 # https://github.com/ktrueda/parquet-tools
 parquet-tools csv data.parquet > data.csv
