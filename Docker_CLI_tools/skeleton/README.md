@@ -34,3 +34,7 @@ clean up
 # https://github.com/nicolaka/netshoot
 docker run --rm --name netshoot nicolaka/netshoot /bin/bash
 ```
+
+## Quickly Iterating w/ File Changes
+- files mounted in can be quickly changed and tested; the container can be re-spun-up quickly
+- files copied into the Docker image cannot be quickly tested; the image will need to be rebuilt w/ new files
