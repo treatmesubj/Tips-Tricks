@@ -32,6 +32,9 @@
     conflictstyle = diff3
 [diff]
     colorMoved = default
+    tool = nvimdiff
+[difftool]
+    prompt = false
 [alias]
     blame-hard = blame -w -C -C -C
     diff-sbs = -c delta.side-by-side=true diff
@@ -39,3 +42,4 @@
     show-merge-conflicts = !git diff --name-only --diff-filter=U --relative && echo \"---\" && git diff --check
     log-fn = log -p -- filename
     log-lil = log --pretty=\"format:%C(yellow)%h %C(Cyan)%>(10)%ad (%cr) %Cgreen%aN%Cred%d %Creset%s\" --date=short
+    nvimdiff = difftool

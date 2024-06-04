@@ -238,7 +238,7 @@ endfunction
 " Cheat Sheets -----------------------
 "
 " vertical list of incrementing numbers
-"   <C-V> to highlight numbers you want to increment then g<C-A>
+"   <C-v> to highlight numbers you want to increment then g<C-a>
 "
 " screen moves
 "  <C-u> scroll 1/2 page up
