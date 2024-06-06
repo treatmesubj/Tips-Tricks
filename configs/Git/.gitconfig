@@ -43,3 +43,6 @@
     log-fn = log -p -- filename
     log-lil = log --pretty=\"format:%C(yellow)%h %C(Cyan)%>(10)%ad (%cr) %Cgreen%aN%Cred%d %Creset%s\" --date=short
     nvimdiff = difftool
+    branch-short = "!git branch | sed -n '/\\* /s///p' #"
+    # https://stackoverflow.com/a/39616600
+    quote-string = "!read -r l; printf \\\"!; printf %s \"$l\" | sed 's/\\([\\\"]\\)/\\\\\\1/g'; printf \" #\\\"\\n\" #"
