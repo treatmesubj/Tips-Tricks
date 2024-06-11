@@ -24,7 +24,6 @@ df | awk '/\/dev\/loop/ {print $1"\t"$2"\t"}'
 ps -ef | awk '{ if($NF == "/bin/bash") print $0}'
 
 awk 'BEGIN { for(i=1; i<=10; i++) print "i is", i;}'
-awk 'BEGIN { for(i=1; i<=10; i++) print "i is " i;}'
 awk 'BEGIN { OFS="="; for(i=1; i<=10; i++) print "i", i;}'
 
 
@@ -44,3 +43,6 @@ awk '{ print NR, $0 }' OFS='\t' tmp.json
 # 3         "b": 1, "c": 1,
 # 4         "d": 1, "e": 1
 # 5       }
+
+head -1 data.csv | csvquote | awk -v RS=',' '{print NR, $0}' | fzf | cut -d ' ' -f 1
+col=3; regfilt='IV'; awk -v col=$col -v regfilt=$regfilt -F, '{ if ($col ~ regfilt) { print $0 } }' data.csv
