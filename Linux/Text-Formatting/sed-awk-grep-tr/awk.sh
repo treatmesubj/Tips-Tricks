@@ -46,10 +46,11 @@ awk '{ print NR, $0 }' OFS='\t' tmp.json
 
 
 csv_filter() { 
-    # csv-filename or stdin
+    # csv-filename or - (stdin)
     local data=$1
-    if [ -z "$data" ]; then
-        read data
+    if [ -z "$data" ] || [ "$1" = "-" ]; then
+        local data=$(mktemp)
+        cp /dev/stdin $data
     fi
     headers=$(cat $data | head -1 | csvquote)
     colname=$(echo $headers | awk -v RS=',' '{print NR, $0}' | grep . | fzf)
