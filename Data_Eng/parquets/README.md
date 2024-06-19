@@ -71,3 +71,8 @@ FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partition
 EXPLAIN ANALYZE SELECT *
 FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partitioning=1);
 ```
+
+### DuckDB CLI Execute Statement
+```bash
+duckdb < tmp.sql | nvim
+```
