@@ -1,5 +1,6 @@
 " ~/.vimrc
 call plug#begin('~/.vim/plugged')
+" :PlugInstall, :PlugUpdate, :PlugUpgrade
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'vim-python/python-syntax'
 Plug 'preservim/vim-markdown'
@@ -19,7 +20,7 @@ if has('nvim')
   " LSP-Zero
   Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v3.x'}
   Plug 'hrsh7th/cmp-buffer'
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " :TSUpdate
   " :TSInstall yaml
   Plug 'cuducos/yaml.nvim'
   " :TSInstall json
