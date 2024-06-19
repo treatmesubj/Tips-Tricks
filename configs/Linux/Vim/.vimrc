@@ -164,6 +164,7 @@ set backupdir=/tmp
 set undofile  " keep an undo file (undo changes after closing)
 set undodir=~/.vim/undodir  " put all undo files in a tidy dir
 set iskeyword-=_  " word boundaries
+set shellcmdflag=-ic  " interactive shell with ~/.bashrc
 
 " alleviate :W :WQ pain
 command! W write
@@ -185,6 +186,10 @@ autocmd FileType sql setlocal ts=2 sts=2 sw=2 expandtab  " sql
 autocmd FileType yaml set nowrap  " yaml
 au BufRead,BufNewFile *.ddl set ft=sql  " ddl is sql
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+
+" chrisbra/csv.vim CSVTable
+let g:csv_table_leftalign=1
+let g:csv_table_use_ascii=1
 
 " preservim/vim-markdown
 let g:vim_markdown_folding_disabled = 1
