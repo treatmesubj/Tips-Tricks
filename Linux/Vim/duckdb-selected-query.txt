@@ -1,0 +1,4 @@
+:'<,'>yank r
+new
+"rp
+%!duckdb
