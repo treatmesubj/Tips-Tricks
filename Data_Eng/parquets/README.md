@@ -70,6 +70,19 @@ FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partition
 
 EXPLAIN ANALYZE SELECT *
 FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partitioning=1);
+
+-- https://duckdb.org/docs/data/partitioning/partitioned_writes.html
+COPY (
+  SELECT *
+  FROM (
+    SELECT *, row_number() OVER (PARTITION BY SURROGATE_KEY, REVISION) AS RN
+    FROM read_parquet('s3://epm-enterprise-dimensions-staging-2/dimension/DEVELOPMENT_PROJECT_FLAT_DIMENSION/transform.parquet/part-*', hive_partitioning=1) whole
+  ) AS marked
+  WHERE RN = 1
+  ORDER BY SURROGATE_KEY, REVISION, RN DESC
+) TO 's3://epm-hr-staging-2/sandbox/johnh/test.parquet'
+(FORMAT PARQUET, OVERWRITE_OR_IGNORE);
+--(FORMAT PARQUET, PARTITION_BY (YEAR, QUARTER, MONTH), OVERWRITE_OR_IGNORE, FILENAME_PATTERN "part-{uuid}");
 ```
 
 ### DuckDB CLI Execute Statement
