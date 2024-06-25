@@ -46,8 +46,7 @@ sizeup() {
 }
 
 randint() {
-    if [ $# -eq 2 ]
-    then
+    if [ $# -eq 2 ]; then
         python -c "import random; print(random.randint($1, $2))"
     else
         echo "provide 2 integers as arguments"
@@ -66,11 +65,45 @@ tmux_clear_history() {
     done
 }
 
+csv_filter() {
+    # csv-filename or - (stdin)
+    local data=$1
+    if [ -z "$data" ] || [ "$1" = "-" ]; then
+        local data=$(mktemp)
+        cp /dev/stdin $data
+    fi
+    headers=$(cat $data | head -1 | csvquote)
+    colname=$(
+        echo $headers \
+        | awk -v RS=',' '{print NR, $0}' \
+        | grep . \
+        | fzf --preview-window='down:80%' --preview "batcat --language 'csv' \
+        --color=always --line-range=:50 $data"
+    )
+    colnum=$(echo $colname | cut -d ' ' -f 1)
+    reggie=$(
+        cat $data \
+        | csvquote \
+        | awk -v colnum=$colnum -F, '!seen[$colnum]++ { print $colnum }' \
+        | fzf --print-query --disabled --preview-window='down:80%' --preview \
+        "cat $data \
+        | awk -v colnum=$colnum -v reggie={q} -F, \
+        '{ if (NR==1) { print \$0 } else if (\$colnum ~ reggie) { print \$0 } }' \
+        | batcat --language 'csv' --color=always" | head -1
+    )
+    # echo $headers
+    cat $data \
+    | awk -v colnum=$colnum -v reggie=$reggie -F, \
+    '{ if (NR==1) { print $0 } else if ($colnum ~ reggie) { print $0 } }'
+}
+alias csv-filter=csv_filter
+
 # Windows
 # access Windows executables when System D enbaled
 # https://github.com/microsoft/WSL/issues/8843
 # sudo sh -c 'echo :WSLInterop:M::MZ::/init:PF > /usr/lib/binfmt.d/WSLInterop.conf'
 alias pshell='powershell.exe'
+alias duckdb='duckdb.exe'
 export winhome="/mnt/c/Users/JohnHupperts"
 
 export EDITOR=nvim
@@ -98,12 +131,21 @@ export MANPAGER='nvim +Man! -c "set nowrap"'
 export MANWIDTH=999
 
 nvim_fuzzfile() {
-    f=$(fzf --preview 'batcat --color=always --theme="Monokai Extended" --style=numbers --line-range=:500 -n {}' --preview-window up --print-query | tail -1)
+    f=$(
+        fzf --preview 'batcat --color=always --theme="Monokai Extended" \
+        --style=numbers --line-range=:500 -n {}' \
+        --preview-window up --print-query | tail -1
+    )
     echo $f
     nvim $f
 }
 nvim_fuzzline() {
-    i=$(rg . --no-heading --hidden --line-number | fzf --preview 'batcat --color=always --theme="Monokai Extended" --style=numbers --line-range=:500 $(echo {} | cut -d ":" -f 1)' --preview-window up)
+    i=$(
+        rg . --no-heading --hidden --line-number \
+        | fzf --preview 'batcat --color=always --theme="Monokai Extended" \
+        --style=numbers --line-range=:500 $(echo {} | cut -d ":" -f 1)' \
+        --preview-window up
+    )
     f=$(echo $i | cut -d ":" -f 1)
     l=$(echo $i | cut -d ":" -f 2)
     echo "$f:$l"
