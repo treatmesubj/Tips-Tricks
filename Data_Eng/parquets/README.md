@@ -39,25 +39,19 @@ FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partition
 -- https://duckdb.org/docs/extensions/httpfs/s3api
 -- stored in ~/.duckdb/stored_secrets
 
-CREATE PERSISTENT SECRET bucket_cool1 (
+CREATE PERSISTENT SECRET staging_buckets (
     TYPE S3,
     KEY_ID '',
     SECRET '',
     ENDPOINT 's3.us.cloud-object-storage.appdomain.cloud',
     REGION 's3.us.cloud-object-storage.appdomain.cloud',
-    SCOPE 's3://bucket-cool1'
+    SCOPE 's3://staging-one',
+    SCOPE 's3://staging-two',
+    SCOPE 's3://staging-three'
 );
-SELECT which_secret('s3://bucket-cool1', 's3');
-
-CREATE PERSISTENT SECRET bucket_cool2 (
-    TYPE S3,
-    KEY_ID '',
-    SECRET '',
-    ENDPOINT 's3.us.cloud-object-storage.appdomain.cloud',
-    REGION 's3.us.cloud-object-storage.appdomain.cloud',
-    SCOPE 's3://bucket-cool2'
-);
-SELECT which_secret('s3://bucket-cool2', 's3');
+SELECT which_secret('s3://staging-one', 's3');
+SELECT which_secret('s3://staging-two', 's3');
+SELECT which_secret('s3://staging-three', 's3');
 ```
 
 ### Querying Parquets
@@ -79,6 +73,7 @@ COPY (
     FROM read_parquet('s3://epm-enterprise-dimensions-staging-2/dimension/DEVELOPMENT_PROJECT_FLAT_DIMENSION/transform.parquet/part-*', hive_partitioning=1) whole
   ) AS marked
   WHERE RN = 1
+  -- WHERE RN > 1
   ORDER BY SURROGATE_KEY, REVISION, RN DESC
 ) TO 's3://epm-hr-staging-2/sandbox/johnh/test.parquet'
 (FORMAT PARQUET, OVERWRITE_OR_IGNORE);
