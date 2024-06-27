@@ -82,5 +82,5 @@ COPY (
 
 ### DuckDB CLI Execute Statement
 ```bash
-duckdb < tmp.sql | nvim
+duckdb -markdown < tmp.sql | nvim
 ```
