@@ -66,13 +66,14 @@ tmux_clear_history() {
 }
 
 csv_filter() {
-    # csv-filename or - (stdin)
-    local data=$1
-    if [ -z "$data" ] || [ "$1" = "-" ]; then
+    # csv_filter <csv-filename or - (stdin)>
+    local cludesym="~"
+    local data=${1:-'-'}
+    if [ "$data" = "-" ]; then
         local data=$(mktemp)
         cp /dev/stdin $data
     fi
-    headers=$(cat $data | head -1 | csvquote)
+    headers=$(head -1 < $data | csvquote)
     colname=$(
         echo $headers \
         | awk -v RS=',' '{print NR, $0}' \
@@ -82,19 +83,18 @@ csv_filter() {
     )
     colnum=$(echo $colname | cut -d ' ' -f 1)
     reggie=$(
-        cat $data \
-        | csvquote \
+        csvquote < $data \
         | awk -v colnum=$colnum -F, '!seen[$colnum]++ { print $colnum }' \
         | fzf --print-query --disabled --preview-window='down:80%' --preview \
-        "cat $data \
-        | awk -v colnum=$colnum -v reggie={q} -F, \
-        '{ if (NR==1) { print \$0 } else if (\$colnum ~ reggie) { print \$0 } }' \
+        "awk -v colnum=$colnum -v reggie={q} -F, \
+        '{ if (NR==1) { print \$0 } else if (\$colnum $cludesym reggie) { print \$0 } }' \
+        < $data \
         | batcat --language 'csv' --color=always" | head -1
     )
     # echo $headers
-    cat $data \
-    | awk -v colnum=$colnum -v reggie=$reggie -F, \
-    '{ if (NR==1) { print $0 } else if ($colnum ~ reggie) { print $0 } }'
+    awk -v colnum=$colnum -v reggie=$reggie -F, \
+    '{ if (NR==1) { print $0 } else if ($colnum '$cludesym' reggie) { print $0 } }' \
+    < $data
 }
 alias csv-filter=csv_filter
 
