@@ -26,6 +26,7 @@ git diff --staged
 
 # diff from 3 days ago
 git diff 'HEAD@{3 days ago}' HEAD ./headcount-monthly-static-fact.yaml
+git checkout 'HEAD@{one week ago}' job-category-dimension.yaml
 
 ##########
 # GitHub #
