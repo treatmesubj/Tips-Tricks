@@ -66,8 +66,8 @@ tmux_clear_history() {
 }
 
 csv_filter() {
-    # csv_filter <csv-filename or - (stdin)>
-    local cludesym="~"
+    # cludesym='!~' csv_filter <file|stdin>
+    local cludesym=${cludesym:-'~'}
     local data=${1:-'-'}
     if [ "$data" = "-" ]; then
         local data=$(mktemp)
