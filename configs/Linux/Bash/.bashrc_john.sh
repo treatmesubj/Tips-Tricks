@@ -66,7 +66,7 @@ tmux_clear_history() {
 }
 
 csv_filter() {
-    # cludesym='!~' csv_filter <file|stdin>
+    # cludesym='!~' csv_filter <csv-filename or - (stdin)>
     local cludesym=${cludesym:-'~'}
     local data=${1:-'-'}
     if [ "$data" = "-" ]; then
@@ -86,15 +86,14 @@ csv_filter() {
         csvquote < $data \
         | awk -v colnum=$colnum -F, '!seen[$colnum]++ { print $colnum }' \
         | fzf --print-query --disabled --preview-window='down:80%' --preview \
-        "awk -v colnum=$colnum -v reggie={q} -F, \
+        "csvquote < $data \
+        | awk -v colnum=$colnum -v reggie={q} -F, \
         '{ if (NR==1) { print \$0 } else if (\$colnum $cludesym reggie) { print \$0 } }' \
-        < $data \
         | batcat --language 'csv' --color=always" | head -1
     )
-    # echo $headers
-    awk -v colnum=$colnum -v reggie=$reggie -F, \
-    '{ if (NR==1) { print $0 } else if ($colnum '$cludesym' reggie) { print $0 } }' \
-    < $data
+    csvquote < $data \
+    | awk -v colnum=$colnum -v reggie=$reggie -F, \
+    '{ if (NR==1) { print $0 } else if ($colnum '$cludesym' reggie) { print $0 } }'
 }
 alias csv-filter=csv_filter
 
