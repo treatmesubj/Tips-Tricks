@@ -44,37 +44,6 @@ awk '{ print NR, $0 }' OFS='\t' tmp.json
 # 4         "d": 1, "e": 1
 # 5       }
 
-csv_filter() { 
-    # csv-filename or - (stdin)
-    local data=$1
-    if [ -z "$data" ] || [ "$1" = "-" ]; then
-        local data=$(mktemp)
-        cp /dev/stdin $data
-    fi
-    headers=$(cat $data | head -1 | csvquote)
-    colname=$(
-        echo $headers \
-        | awk -v RS=',' '{print NR, $0}' \
-        | grep . \
-        | fzf --preview-window='down:80%' --preview "batcat --language 'csv' \
-        --color=always --line-range=:50 $data"
-    )
-    colnum=$(echo $colname | cut -d ' ' -f 1)
-    reggie=$(
-        cat $data \
-        | csvquote \
-        | awk -v colnum=$colnum -F, '!seen[$colnum]++ { print $colnum }' \
-        | fzf --print-query --disabled --preview-window='down:80%' --preview \
-        "cat $data \
-        | awk -v colnum=$colnum -v reggie={q} -F, \
-        '{ if (NR==1) { print \$0 } else if (\$colnum ~ reggie) { print \$0 } }' \
-        | batcat --language 'csv' --color=always" | head -1
-    )
-    # echo $headers
-    cat $data \
-    | awk -v colnum=$colnum -v reggie=$reggie -F, \
-    '{ if (NR==1) { print $0 } else if ($colnum ~ reggie) { print $0 } }'
-}
 
 head -1 data.csv | csvquote | awk -v RS=',' '{print NR, $0}' | fzf | cut -d ' ' -f 1
 col=3; regfilt='IV'; awk -v col=$col -v regfilt=$regfilt -F, '{ if ($col ~ regfilt) { print $0 } }' data.csv
