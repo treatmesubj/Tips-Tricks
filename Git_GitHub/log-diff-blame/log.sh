@@ -1,3 +1,6 @@
+# git log-lil
+git log --pretty=\"format:%C(yellow)%h %C(Cyan)%>(10)%ad (%cr) %Cgreen%aN%Cred%d %Creset%s\" --date=short
+
 # Ascii Tree
 git log --graph --pretty=oneline --abbrev-commit
 
@@ -17,3 +20,5 @@ git log -S regex -p # https://git-scm.com/docs/git-log#Documentation/git-log.txt
 
 # log across all branches by author
 git log --all --stat --author="John.Hupperts@ibm.com"
+# branches with last commit by author
+git log-lil --all --simplify-by-decoration --date-order --author="John.Hupperts@ibm.com"
