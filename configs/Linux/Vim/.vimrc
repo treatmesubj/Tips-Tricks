@@ -221,6 +221,8 @@ let g:netrw_banner = 0
 " space, y to copy last yank to clipboard
 let mapleader = " "
 map <leader>y :let @+=@0<CR>
+" space, p to paste last yanked
+map <leader>p "0p<CR>
 
 " shift + arrow-key to resize pane
 map <S-Up> <c-w>-
