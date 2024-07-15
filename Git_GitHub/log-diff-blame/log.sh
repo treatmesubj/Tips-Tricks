@@ -15,3 +15,5 @@ git log --name-only
 git log -G regex # https://git-scm.com/docs/git-log#Documentation/git-log.txt--Gltregexgt
 git log -S regex -p # https://git-scm.com/docs/git-log#Documentation/git-log.txt--Sltstringgt
 
+# log across all branches by author
+git log --all --stat --author="John.Hupperts@ibm.com"
