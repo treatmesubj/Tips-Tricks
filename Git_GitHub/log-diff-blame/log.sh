@@ -21,4 +21,4 @@ git log -S regex -p # https://git-scm.com/docs/git-log#Documentation/git-log.txt
 # log across all branches by author
 git log --all --stat --author="John.Hupperts@ibm.com"
 # branches with last commit by author
-git log-lil --all --simplify-by-decoration --date-order --author="John.Hupperts@ibm.com"
+git log-lil -10 --all --simplify-by-decoration --date-order --author="John.Hupperts@ibm.com"
