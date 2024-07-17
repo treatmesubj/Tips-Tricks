@@ -7,6 +7,8 @@ Plug 'preservim/vim-markdown'
 Plug 'chrisbra/csv.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'treatmesubj/rock-lightline'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 if has('nvim')
   Plug 'wookayin/semshi'  " python highlights
   Plug 'mrquantumcodes/bufferchad.nvim'  " <leader>bb
@@ -160,12 +162,14 @@ if !has('nvim')
 endif
 set formatoptions-=t " don't literally insert newlines
 set nowrap " don't wrap w/ virtual lines either
+" temporarily wrap current line
+nnoremap <silent> <Space><Space> :SoftWrapShow<CR>
 set directory=/tmp
 set backupdir=/tmp
 set undofile  " keep an undo file (undo changes after closing)
 set undodir=~/.vim/undodir  " put all undo files in a tidy dir
 set iskeyword-=_  " word boundaries
-set shellcmdflag=-ic  " interactive shell with ~/.bashrc
+set shellcmdflag=-c
 
 " alleviate :W :WQ pain
 command! W write
@@ -205,6 +209,22 @@ augroup markdown_conceal
   " don't conceal brackets
   au BufRead,BufNewFile *.md execute 'syn region mkdLink matchgroup=mkdDelimiter  start="\\\@<!!\?\[" end="\n\{-,1}[^]]\{-}\zs\]\ze[[(]" contains=@mkdNonListItem,@Spell nextgroup=mkdURL,mkdID skipwhite oneline'
 augroup END
+
+" Use emoji-fzf and fzf to fuzzy-search for emoji, and insert the result
+function! InsertEmoji(emoji)
+    let @a = system('cut -d " " -f 1 | emoji-fzf get', a:emoji)
+    normal! "agP
+endfunction
+
+command! -bang Emoj
+  \ call fzf#run({
+      \ 'source': 'emoji-fzf preview',
+      \ 'options': '--preview ''emoji-fzf get --name {1}''',
+      \ 'sink': function('InsertEmoji')
+      \ })
+" Ctrl-e in normal and insert mode will open the emoji picker.
+map <C-e> :Emoj<CR>
+imap <C-e> <C-o><C-e>
 
 " set fileformat=unix to fix trailing character issues
 set list
