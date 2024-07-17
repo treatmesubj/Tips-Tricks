@@ -94,9 +94,13 @@ function! HiGitMergeConflict()
 endfunction
 autocmd BufEnter * call HiGitMergeConflict()
 
+" higlight trailing white spaces
+highlight ExtraWhitespace ctermbg=197
+match ExtraWhitespace /\s\+$/
+
 " cursorline
 hi clear CursorLine
-hi CursorLine cterm=underline gui=underline 
+hi CursorLine cterm=underline gui=underline
 augroup CursorLine
   au!
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
