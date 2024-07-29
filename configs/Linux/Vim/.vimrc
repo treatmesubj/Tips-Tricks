@@ -220,15 +220,13 @@ function! InsertEmoji(emoji)
     normal! "agP
 endfunction
 
+" :Emoj
 command! -bang Emoj
   \ call fzf#run({
       \ 'source': 'emoji-fzf preview',
       \ 'options': '--preview ''emoji-fzf get --name {1}''',
       \ 'sink': function('InsertEmoji')
       \ })
-" Ctrl-e in normal and insert mode will open the emoji picker.
-map <C-e> :Emoj<CR>
-imap <C-e> <C-o><C-e>
 
 " set fileformat=unix to fix trailing character issues
 set list
