@@ -21,3 +21,8 @@ Host github.com
  HostName github.com
  IdentityFile ~/.ssh/my_github_key
 ```
+
+$ ssh git@github.com
+PTY allocation request failed on channel 0
+Hi user! You've successfully authenticated, but GitHub does not provide shell access.
+Connection to github.com closed.
