@@ -174,6 +174,7 @@ set undofile  " keep an undo file (undo changes after closing)
 set undodir=~/.vim/undodir  " put all undo files in a tidy dir
 set iskeyword-=_  " word boundaries
 set shellcmdflag=-c
+let $BASH_ENV = "~/.bashrc_john.sh"  " expand aliases for non-interactive shells
 
 " alleviate :W :WQ pain
 command! W write

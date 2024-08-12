@@ -66,7 +66,7 @@ tmux_clear_history() {
 }
 
 csv_filter() {
-    # cludesym='!~' csv_filter <csv-filename or - (stdin)>
+    # cludesym='!~' csv_filter <file|stdin>
     local cludesym=${cludesym:-'~'}
     local data=${1:-'-'}
     if [ "$data" = "-" ]; then
@@ -169,3 +169,5 @@ bind -m vi-insert 'Control-l: clear-screen'
 # add bash history in real time
 shopt -s histappend
 PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+# expand aliases for non-interactive shells
+shopt -s expand_aliases
