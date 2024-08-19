@@ -29,6 +29,19 @@ FROM DUMMY
 LEFT JOIN MY_TAB
   ON 1 = 0
 
+/* 1 Row, all nulls */
+WITH BLAH AS (
+  SELECT *
+  FROM (
+    VALUES
+      (null),
+  ) t1 (blah)
+)
+SELECT tab.*
+FROM SCHEMA.TABLE tab
+RIGHT JOIN BLAH
+  ON 1=0;
+
 /* ensure 2 strings are equal; string compare */
 SELECT instr(',' || replace('     blah ', ' ', '') || ',', ',' || replace('  blah    ', ' ', '') || ',')
 FROM BLAH
