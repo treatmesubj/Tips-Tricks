@@ -28,4 +28,6 @@ kubectl logs $( \
 kubectl top nodes
 kubectl describe nodes
 kubectl describe nodes | grep -A 2 -e "^\\s*CPU Requests"
+
+kubectl top pods -n <namespace>
 ```
