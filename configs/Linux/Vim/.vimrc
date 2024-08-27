@@ -11,7 +11,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 if has('nvim')
   Plug 'wookayin/semshi'  " python highlights
-  Plug 'mrquantumcodes/bufferchad.nvim'  " <leader>bb
   Plug 'lukas-reineke/indent-blankline.nvim'
   " LSP Support
   Plug 'neovim/nvim-lspconfig'
@@ -31,6 +30,8 @@ if has('nvim')
   Plug 'chentoast/marks.nvim'
   " logs syntax highlights
   Plug 'fei6409/log-highlight.nvim'
+  " extra lua funcs
+  Plug 'nvim-lua/plenary.nvim'
 endif
 call plug#end()
 let g:python3_host_prog = $HOME . '/.venv_pynvim/bin/python'
@@ -246,6 +247,8 @@ let mapleader = " "
 map <leader>y :let @+=@0<CR>
 " space, p to paste last yanked
 map <leader>p "0p<CR>
+" switch & preview buffers
+map <leader>bb :Buffer<CR>
 
 " shift + arrow-key to resize pane
 map <S-Up> <c-w>-
@@ -265,6 +268,8 @@ function YAMLGoToKey(key)
   let line = trim(system(yqcmd))
   execute "norm " . line . "gg"
 endfunction
+" :YAMLGoToKey
+command! -nargs=1 -complete=command YAMLGoToKey call YAMLGoToKey(<q-args>)
 
 " Cheat Sheets -----------------------
 "
@@ -305,4 +310,3 @@ endfunction
 "   zE deletes all folds.
 "   [z move to start of open fold.
 "   ]z move to end of open fold.
-

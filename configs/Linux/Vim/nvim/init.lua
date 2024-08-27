@@ -34,7 +34,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 -- keybinding: show all diagnostics on current line in floating window
 -- <Leader>d to show diagnostic message
 vim.api.nvim_set_keymap(
-  'n', '<Leader>d', ':lua vim.diagnostic.open_float()<CR>', 
+  'n', '<Leader>d', ':lua vim.diagnostic.open_float()<CR>',
   { noremap = true, silent = true }
 )
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
@@ -84,14 +84,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
   group = highlight_group,
 })
--- https://github.com/mrquantumcodes/bufferchad.nvim
-require("bufferchad").setup({
-  mapping = "<leader>bb", -- Map any key, or set to NONE to disable key mapping
-  mark_mapping = "<leader>bm", -- The keybinding to display just the marked buffers
-  order = "LAST_USED_UP", -- LAST_USED_UP (default)/ASCENDING/DESCENDING/REGULAR
-  style = "default", -- default, modern (requires dressing.nvim and nui.nvim), telescope (requires telescope.nvim)
-  close_mapping = "<Esc><Esc>", -- only for the default style window.
-})
 
 -- https://github.com/lukas-reineke/indent-blankline.nvim
 vim.cmd('hi RainbowRed ctermfg=88 guifg=#E06C75')
@@ -136,3 +128,6 @@ require('marks').setup {
 require('log-highlight').setup {
     extension = 'log',
 }
+
+-- ~/.config/nvim/lua/Redir.lua
+require('Redir')
