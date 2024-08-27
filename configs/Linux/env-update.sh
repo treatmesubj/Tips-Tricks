@@ -15,10 +15,17 @@ function update_prompt {
 }
 
 # vim
-if [[ 'y' = $(update_prompt "vimrc") ]]; then
+if [[ 'y' = $(update_prompt "vimrc & nvim config") ]]; then
     cp ~/.vimrc ~/.vimrc.bak &&\
-    curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/.vimrc"\
-        -o ~/.vimrc
+    cp ~/.config/nvim/init.lua ~/.config/nvim/init.lua.bak &&\
+    && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/.vimrc" \
+        -o ~/.vimrc \
+    && curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" \
+    && curl -fLo ~/.config/nvim/init.lua --create-dirs \
+        "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/nvim/init.lua" \
+    && curl -fLo ~/.config/nvim/lua/Redir.lua --create-dirs \
+        "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/nvim/lua/Redir.lua"
     printf "\nPlease, to finish Vim setup: '\$ vim ~/.vimrc', then ':PlugInstall'"
     printf "\nPlease, to finish Neovim setup: '\$ nvim ~/.vimrc', then ':PlugInstall', then ':UpdateRemotePlugins'\n\n"
 fi

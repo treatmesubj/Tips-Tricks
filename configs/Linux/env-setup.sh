@@ -6,7 +6,9 @@ sudo apt install vim -y \
     && curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" \
     && curl -fLo ~/.config/nvim/init.lua --create-dirs \
-        "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/init.lua"
+        "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/nvim/init.lua" \
+    && curl -fLo ~/.config/nvim/lua/Redir.lua --create-dirs \
+        "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/nvim/lua/Redir.lua"
 curl -L "https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz" \
     -o ~/nvim-linux64.tar.gz \
     && tar xzvf ~/nvim-linux64.tar.gz --directory ~ \
