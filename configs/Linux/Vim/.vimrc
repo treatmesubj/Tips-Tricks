@@ -194,7 +194,7 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab  " yaml
 autocmd FileType sql setlocal ts=2 sts=2 sw=2 expandtab  " sql
 autocmd FileType yaml set nowrap  " yaml
 au BufRead,BufNewFile *.ddl set ft=sql  " ddl is sql
-au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml " foldmethod=indent
 
 " chrisbra/csv.vim CSVTable
 let g:csv_table_leftalign=1
