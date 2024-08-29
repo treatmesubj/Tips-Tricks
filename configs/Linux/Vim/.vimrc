@@ -30,8 +30,6 @@ if has('nvim')
   Plug 'chentoast/marks.nvim'
   " logs syntax highlights
   Plug 'fei6409/log-highlight.nvim'
-  " extra lua funcs
-  Plug 'nvim-lua/plenary.nvim'
 endif
 call plug#end()
 let g:python3_host_prog = $HOME . '/.venv_pynvim/bin/python'
