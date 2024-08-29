@@ -129,5 +129,5 @@ require('log-highlight').setup {
     extension = 'log',
 }
 
--- ~/.config/nvim/lua/Redir.lua
-require('Redir')
+-- ~/.config/nvim/lua/Duckdb.lua
+require('Duckdb')
