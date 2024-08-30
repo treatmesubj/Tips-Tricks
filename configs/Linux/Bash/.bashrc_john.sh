@@ -106,7 +106,6 @@ alias duckdb='duckdb.exe'
 export winhome="/mnt/c/Users/JohnHupperts"
 
 export EDITOR=nvim
-alias nvimdiff='nvim -d'
 export TERM="xterm-256color"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 source ~/.venv/bin/activate # python venv
@@ -128,6 +127,18 @@ source /usr/share/doc/fzf/examples/key-bindings.bash  # fzf \C-r reverse search
 # man pages in nvim
 export MANPAGER='nvim +Man! -c "set nowrap"'
 export MANWIDTH=999
+
+alias nvimdiff='nvim -d'
+nvimgitdiff() {
+    if [[ "$#" == 2 ]]; then
+        local ref=${1}
+        local gitrelfp=${2}
+        gitfullfp=$(git ls-files --full-name $gitrelfp)
+        nvimdiff <(git show $ref:$gitfullfp) $gitrelfp
+    else
+        echo "usage: nvimgitdiff <ref|branch|commit> <relative-file-path>"
+    fi
+}
 
 nvim_fuzzfile() {
     f=$(
