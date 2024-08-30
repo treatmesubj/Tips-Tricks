@@ -1,4 +1,4 @@
-#!/usr/bin/env
+#!/usr/bin/env bash
 alias login-us-south1-nonprod='oc login --username="$CIRRUS_USER" --password="$CIRRUS_PASS" --server=https://api.us-south1-dev.ciocloud.nonprod.intranet.ibm.com:6443 --insecure-skip-tls-verify=true'
 alias login-us-south2-nonprod='oc login --username="$CIRRUS_USER" --password="$CIRRUS_PASS" --server=https://api.us-south2-dev.core.cirrus.ibm.com:6443 --insecure-skip-tls-verify=true'
 alias login-us-south1-prod='oc login --username="$CIRRUS_USER" --password="$CIRRUS_PASS" --server=https://api.us-south1-prod.ciocloud.nonprod.intranet.ibm.com:6443 --insecure-skip-tls-verify=true'

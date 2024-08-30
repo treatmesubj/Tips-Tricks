@@ -13,7 +13,7 @@ while :; do
     [[ $pod ]] && break
     echo -n .
     sleep 3
-done; kubectl logs -f $pod
+done; kubectl logs -f $pod | tee $pod.log
 ```
 ```bash
 # dump logs

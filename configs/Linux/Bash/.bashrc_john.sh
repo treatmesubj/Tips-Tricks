@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # append 'source ~/.bashrc_john.sh' to ~/.bashrc ~/.bash_profile ~/.bash_login
 prompt() {
     # user@host:~

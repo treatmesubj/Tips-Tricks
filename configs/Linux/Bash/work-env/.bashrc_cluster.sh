@@ -1,4 +1,4 @@
-#!/usr/bin/env
+#!/usr/bin/env bash
 cluster_login() {
     ibmcloud login -r 'us-south' --apikey $ibmc_api_gcdo
     ibmcloud ks cluster ls
