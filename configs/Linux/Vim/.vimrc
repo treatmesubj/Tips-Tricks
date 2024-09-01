@@ -214,6 +214,7 @@ augroup markdown_conceal
   au BufRead,BufNewFile *.md execute 'syn region mkdLink matchgroup=mkdDelimiter  start="\\\@<!!\?\[" end="\n\{-,1}[^]]\{-}\zs\]\ze[[(]" contains=@mkdNonListItem,@Spell nextgroup=mkdURL,mkdID skipwhite oneline'
 augroup END
 
+" pip install emoji-fzf
 " Use emoji-fzf and fzf to fuzzy-search for emoji, and insert the result
 function! InsertEmoji(emoji)
     let @a = system('cut -d " " -f 1 | emoji-fzf get', a:emoji)
