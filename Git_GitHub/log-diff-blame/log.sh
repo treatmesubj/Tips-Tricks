@@ -22,3 +22,13 @@ git log -S regex -p # https://git-scm.com/docs/git-log#Documentation/git-log.txt
 git log --all --stat --author="John.Hupperts@ibm.com"
 # branches with last commit by author
 git log-lil -10 --all --simplify-by-decoration --date-order --author="John.Hupperts@ibm.com"
+
+####
+# Reference logs, record when the tips of branches and other references were updated in the local repo
+git reflog
+# undo a rebase
+git reset --hard HEAD@{2}
+
+# This will take all commits on topic that aren't on master
+# and replay them on top of 0deadbeef, an old commit in master
+git rebase --onto 0deadbeef master topic
