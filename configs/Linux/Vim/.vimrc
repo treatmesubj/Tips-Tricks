@@ -199,6 +199,7 @@ au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml " foldmethod=indent
 " chrisbra/csv.vim CSVTable
 let g:csv_table_leftalign=1
 let g:csv_table_use_ascii=1
+let g:csv_default_delim=','
 
 " preservim/vim-markdown
 let g:vim_markdown_folding_disabled = 1
