@@ -11,11 +11,19 @@ local function duckdb(args)
 
   if range ~= 0 then
     local output = vim.system({'bash', '-c', 'duckdb -csv'}, {text=true, stdin=stdin}):wait()
+    -- print(vim.inspect(output))
     local new_buf = vim.api.nvim_create_buf(true, false)
-    vim.api.nvim_set_option_value("ft", "csv", { buf = new_buf})
-    vim.api.nvim_buf_set_lines(new_buf, 0, -1, false, vim.fn.split(output.stdout, "\n"))
-    local win = vim.api.nvim_open_win(new_buf, true, {vertical = false,})
-    vim.cmd "CSVInit"
+    if output.code == 0 then
+      vim.api.nvim_set_option_value("ft", "csv", { buf = new_buf})
+      vim.api.nvim_buf_set_lines(new_buf, 0, -1, false, vim.fn.split(output.stdout, "\n"))
+      local win = vim.api.nvim_open_win(new_buf, true, {vertical = false,})
+      vim.cmd "CSVInit"  -- chrisbra/csv.vim
+    else
+      vim.api.nvim_buf_set_lines(new_buf, 0, -1, false,
+        vim.fn.split(tostring(output.code) .. ": " .. output.stderr, "\n")
+      )
+      local win = vim.api.nvim_open_win(new_buf, true, {vertical = false,})
+    end
   else
     print('no stdin')
   end
