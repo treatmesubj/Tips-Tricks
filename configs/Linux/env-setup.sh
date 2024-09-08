@@ -12,10 +12,9 @@ sudo apt install vim -y \
 curl -L "https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz" \
     -o ~/nvim-linux64.tar.gz \
     && tar xzvf ~/nvim-linux64.tar.gz --directory ~ \
-    && sudo cp -r ~/nvim-linux64/bin/* /usr/bin \
-    && sudo cp -r ~/nvim-linux64/lib/* /usr/lib \
-    && sudo cp -r ~/nvim-linux64/share/* /usr/share \
-    && sudo cp -r ~/nvim-linux64/man/* /usr/share/man \
+    && sudo rm -rf /usr/bin/nvim && sudo cp -r ~/nvim-linux64/bin/* /usr/bin \
+    && sudo rm -rf /usr/lib/nvim && sudo cp -r ~/nvim-linux64/lib/* /usr/lib \
+    && sudo rm -rf /usr/lib/nvim && sudo cp -r ~/nvim-linux64/share/* /usr/share \
     && rm -rf ~/nvim-linux64*
 
 # python venvs
