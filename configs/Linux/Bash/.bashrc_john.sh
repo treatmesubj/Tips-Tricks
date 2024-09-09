@@ -136,8 +136,9 @@ nvimgitdiff() {
         local gitrelfp=${2}
         gitfullfp=$(git ls-files --full-name $gitrelfp)
         fname=$(basename ${gitrelfp})
-        git show $ref:$gitfullfp > /tmp/$ref-$fname
-        nvimdiff /tmp/$ref-$fname $gitrelfp -c "setlocal nomodifiable"  # RO ref buffer
+        tmpfname=/tmp/$(sed "s/\//-/g" <<< $ref)-$fname
+        git show $ref:$gitfullfp > $tmpfname
+        nvimdiff $tmpfname $gitrelfp -c "setlocal nomodifiable"  # RO ref buffer
     else
         echo "usage: nvimgitdiff <ref|branch|commit> <relative-file-path>"
     fi
