@@ -1,6 +1,11 @@
 - [K8s API](https://kubernetes.io/docs/reference/kubernetes-api/)
 - [Red Hat OpenShift Container Platform Templates](https://docs.openshift.com/container-platform/3.11/dev_guide/templates.html#dev-guide-templates)
 
+### Pods
+```bash
+kubectl get pods | grep 43729 | grep driver | column -t
+```
+
 ### Logs
 ```bash
 # follow logs
