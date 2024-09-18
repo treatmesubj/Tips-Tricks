@@ -36,3 +36,21 @@ EOF
 
     export kubeps1=true
 }
+
+
+kubectl_fl() {
+    # follow logs
+    pod_grep=$1
+    while :; do
+        pod=$(
+            kubectl get pods --field-selector=status.phase==Running \
+            --sort-by=.status.startTime \
+            | grep -E ".*$pod_grep.*-[0-9]{10}-driver" | tail -1 \
+            | awk '{print $1}'
+        )
+        [[ $pod ]] && break
+        echo -n .
+        sleep 3
+    done; kubectl logs -f $pod | tee $pod.log
+}
+alias k-fl=kubectl_fl
