@@ -57,13 +57,13 @@ SELECT which_secret('s3://staging-three', 's3');
 ### Querying Parquets
 ```sql
 SELECT *
-FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partitioning=1);
+FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partitioning=1, filename=1);
 
 DESCRIBE SELECT *
-FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partitioning=1);
+FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partitioning=1, filename=1);
 
 EXPLAIN ANALYZE SELECT *
-FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partitioning=1);
+FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partitioning=1, filename=1);
 
 -- https://duckdb.org/docs/data/partitioning/partitioned_writes.html
 COPY (
