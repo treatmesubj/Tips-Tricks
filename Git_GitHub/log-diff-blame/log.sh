@@ -8,6 +8,10 @@ git log --graph --pretty=oneline --abbrev-commit
 git log path/to/file
 # log of commits pertaining to certain lines in file
 git log -L 14,26:path/to/file
+
+# log of commits, with diffs, with merges diff'd as 1 commit
+git log -p --first-parent -m
+
 # log of commits pertaining to file, with diffs
 git log -p -- filename my-file.txt
 
