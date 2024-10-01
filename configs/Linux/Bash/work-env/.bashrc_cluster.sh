@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 cluster_login() {
-    ibmcloud login -r 'us-south' --apikey $ibmc_api_gcdo
+    nologin=$(ibmcloud ks cluster ls 2>&1 >/dev/null | grep FAILED)
+    if [[ $nologin ]]; then
+        ibmcloud login -r 'us-south' --apikey $ibmc_api_gcdo
+    fi
     ibmcloud ks cluster ls
 
     cat << EOF
