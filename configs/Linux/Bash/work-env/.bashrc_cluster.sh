@@ -38,19 +38,22 @@ EOF
 }
 
 
-kubectl_fl() {
+kfl() {
     # follow logs
     pod_grep=$1
     while :; do
-        pod=$(
+        pods=$(
             kubectl get pods --field-selector=status.phase==Running \
             --sort-by=.status.startTime \
-            | grep -E ".*$pod_grep.*-[0-9]{10}-driver" | tail -1 \
-            | awk '{print $1}'
+            | grep -E ".*$pod_grep.*-[0-9]{10}-driver" | awk '{print $1}'
         )
+        if [ $(wc -l <<< "$pods") -gt 1 ]; then
+            pod=$(echo "$pods" | fzf)
+        else
+            pod=$pods
+        fi
         [[ $pod ]] && break
         echo -n .
         sleep 3
-    done; kubectl logs -f $pod | tee $pod.log
+    done; echo $pod && kubectl logs -f $pod | tee $pod.log
 }
-alias k-fl=kubectl_fl
