@@ -77,6 +77,7 @@ COPY (
   ORDER BY SURROGATE_KEY, REVISION, RN DESC
 ) TO 's3://epm-hr-staging-2/sandbox/johnh/test.parquet'
 (FORMAT PARQUET, OVERWRITE_OR_IGNORE);
+-- https://duckdb.org/docs/sql/statements/copy.html#parquet-options
 --(FORMAT PARQUET, PARTITION_BY (YEAR, QUARTER, MONTH), OVERWRITE_OR_IGNORE, FILENAME_PATTERN "part-{uuid}");
 ```
 
