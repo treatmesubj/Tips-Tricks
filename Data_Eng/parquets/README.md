@@ -76,9 +76,10 @@ COPY (
   -- WHERE RN > 1
   ORDER BY SURROGATE_KEY, REVISION, RN DESC
 ) TO 's3://epm-hr-staging-2/sandbox/johnh/test.parquet'
-(FORMAT PARQUET, OVERWRITE_OR_IGNORE);
+(FORMAT PARQUET, OVERWRITE_OR_IGNORE, ROW_GROUP_SIZE 122880, ROW_GROUPS_PER_FILE 2, FILENAME_PATTERN "part-00000-{uuid}.snappy");
 -- https://duckdb.org/docs/sql/statements/copy.html#parquet-options
---(FORMAT PARQUET, PARTITION_BY (YEAR, QUARTER, MONTH), OVERWRITE_OR_IGNORE, FILENAME_PATTERN "part-{uuid}");
+--(FORMAT PARQUET, PARTITION_BY (YEAR, QUARTER, MONTH), OVERWRITE_OR_IGNORE, FILENAME_PATTERN "part-00000-{uuid}.snappy");
+
 ```
 
 ### DuckDB CLI Execute Statement
