@@ -16,13 +16,19 @@ local function duckdb(args)
     if output.code == 0 then
       vim.api.nvim_set_option_value("ft", "csv", { buf = new_buf})
       vim.api.nvim_buf_set_lines(new_buf, 0, -1, false, vim.fn.split(output.stdout, "\n"))
-      local win = vim.api.nvim_open_win(new_buf, true, {vertical = false,})
+      local win = vim.api.nvim_open_win(new_buf, true, {
+        split='above',
+        height=20,
+      })
       vim.cmd "CSVInit"  -- chrisbra/csv.vim
     else
       vim.api.nvim_buf_set_lines(new_buf, 0, -1, false,
         vim.fn.split(tostring(output.code) .. ": " .. output.stderr, "\n")
       )
-      local win = vim.api.nvim_open_win(new_buf, true, {vertical = false,})
+      local win = vim.api.nvim_open_win(new_buf, true, {
+        split='above',
+        height=20,
+      })
     end
   else
     print('no stdin')
