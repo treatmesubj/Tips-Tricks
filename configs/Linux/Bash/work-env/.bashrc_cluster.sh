@@ -46,9 +46,9 @@ kfl() {
     pod_grep=$1
     while :; do
         pods=$(
-            kubectl get pods --field-selector=status.phase==Running \
+            kubectl get pods --no-headers -o custom-columns=":metadata.name" --field-selector=status.phase==Running \
             --sort-by=.status.startTime \
-            | grep -E ".*$pod_grep.*-[0-9]{10}-driver" | awk '{print $1}'
+            | grep -E ".*$pod_grep.*"
         )
         if [ $(wc -l <<< "$pods") -gt 1 ]; then
             pod=$(echo "$pods" | fzf)
