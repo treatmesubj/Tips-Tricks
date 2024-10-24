@@ -33,7 +33,7 @@ SELECT *
 FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partitioning=1);
 ```
 
-### Peristent Secrets
+### [Peristent Secrets](https://duckdb.org/docs/configuration/secrets_manager.html)
 ```sql
 -- https://duckdb.org/docs/configuration/secrets_manager
 -- https://duckdb.org/docs/extensions/httpfs/s3api
