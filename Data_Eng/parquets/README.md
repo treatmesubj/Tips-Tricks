@@ -49,9 +49,9 @@ CREATE PERSISTENT SECRET staging_buckets (
     SCOPE 's3://staging-two',
     SCOPE 's3://staging-three'
 );
-SELECT which_secret('s3://staging-one', 's3');
-SELECT which_secret('s3://staging-two', 's3');
-SELECT which_secret('s3://staging-three', 's3');
+SELECT * FROM which_secret('s3://staging-one', 's3');
+SELECT * FROM which_secret('s3://staging-two', 's3');
+SELECT * FROM which_secret('s3://staging-three', 's3');
 ```
 
 ### Querying Parquets
