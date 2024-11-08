@@ -1,6 +1,6 @@
 # curl https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/env_setup.sh > env_setup.sh
 # vim & nvim
-sudo apt install vim -y \
+sudo apt install curl vim -y \
     && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/.vimrc" \
         -o ~/.vimrc \
     && curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -35,7 +35,11 @@ sudo apt install fzf ripgrep -y \
 
 # bashrc & inputrc
 curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/.bashrc_john.sh" \
-    -o ~/.bashrc_john.sh
+    -o ~/.bashrc_john.sh \
+    curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/.bashrc_cirrus.sh" \
+        -o ~/.bashrc_cirrus.sh \
+    curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/.bashrc_cluster.sh" \
+        -o ~/.bashrc_cluster.sh \
 echo 'source ~/.bashrc_john.sh' >> ~/.bashrc
 echo 'source ~/.bashrc_john.sh' >> ~/.bash_profile
 echo 'source ~/.bashrc_john.sh' >> ~/.bash_login

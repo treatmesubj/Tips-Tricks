@@ -45,7 +45,11 @@ fi
 if [[ 'y' = $(update_prompt "bashrc") ]]; then
     cp ~/.bashrc_john.sh ~/.bashrc_john.sh.bak  &&\
     curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/.bashrc_john.sh" \
-        -o ~/.bashrc_john.sh
+        -o ~/.bashrc_john.sh \
+    && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/.bashrc_cirrus.sh" \
+        -o ~/.bashrc_cirrus.sh \
+    && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/.bashrc_cluster.sh" \
+        -o ~/.bashrc_cluster.sh \
     source ~/.bashrc_john.sh
 fi
 # inputrc
