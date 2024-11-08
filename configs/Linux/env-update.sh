@@ -49,7 +49,7 @@ if [[ 'y' = $(update_prompt "bashrc") ]]; then
     && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/work-env/.bashrc_cirrus.sh" \
         -o ~/.bashrc_cirrus.sh \
     && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/work-env/.bashrc_cluster.sh" \
-        -o ~/.bashrc_cluster.sh \
+        -o ~/.bashrc_cluster.sh
     source ~/.bashrc_john.sh
 fi
 # inputrc
