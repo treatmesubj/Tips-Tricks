@@ -21,6 +21,7 @@ curl -L "https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.
 sudo apt install python3-venv -y \
     && python3 -m venv ~/.venv_pynvim \
     && ~/.venv_pynvim/bin/pip install pynvim "python-lsp-server[all]" \
+    && ~/.venv_pynvim/bin/pip install typing-extensions \
     && python3 -m venv ~/.venv
 
 # tmux conf
