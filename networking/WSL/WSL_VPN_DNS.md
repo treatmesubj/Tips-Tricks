@@ -9,6 +9,7 @@ This assumes you're using SystemD
         [boot]
         systemd=true
         ```
+    - `PS> wsl --shutdown`
 2. Temporarily, we need Google's DNS to find things on the internet. Add below to `/etc/resolv.conf`
     ```
     nameserver   8.8.8.8
