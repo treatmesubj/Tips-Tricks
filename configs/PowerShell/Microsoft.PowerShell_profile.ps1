@@ -1,4 +1,5 @@
 # $profile => ~\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+# Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
 
 function ibm-art {
 Write-Host "===========  ============     ========       ======== `
