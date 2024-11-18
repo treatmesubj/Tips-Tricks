@@ -226,7 +226,7 @@ endfunction
 command! -bang Emoj
   \ call fzf#run({
       \ 'source': 'emoji-fzf preview',
-      \ 'options': '--preview ''emoji-fzf get --name {1}''',
+      \ 'options': '--preview-window=down,1 --preview ''emoji-fzf get --name {1}''',
       \ 'sink': function('InsertEmoji')
       \ })
 
