@@ -14,7 +14,7 @@ curl -L "https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.
     && tar xzvf ~/nvim-linux64.tar.gz --directory ~ \
     && sudo rm -rf /usr/bin/nvim && sudo cp -r ~/nvim-linux64/bin/* /usr/bin \
     && sudo rm -rf /usr/lib/nvim && sudo cp -r ~/nvim-linux64/lib/* /usr/lib \
-    && sudo rm -rf /usr/lib/nvim && sudo cp -r ~/nvim-linux64/share/* /usr/share \
+    && sudo rm -rf /usr/share/nvim && sudo cp -r ~/nvim-linux64/share/* /usr/share \
     && rm -rf ~/nvim-linux64*
 
 # python venvs
