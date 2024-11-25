@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 # /usr/local/bin/sqlfmt
+# /usr/bin/sqlformat installed via apt
 if [ $# -eq 1 ]  # file path arg
 then
     echo "$1"
