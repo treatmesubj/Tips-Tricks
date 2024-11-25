@@ -37,9 +37,9 @@ sudo apt install fzf ripgrep -y \
 # bashrc & inputrc
 curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/.bashrc_john.sh" \
     -o ~/.bashrc_john.sh \
-    curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/.bashrc_cirrus.sh" \
+    curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/work-env/.bashrc_cirrus.sh" \
         -o ~/.bashrc_cirrus.sh \
-    curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/.bashrc_cluster.sh" \
+    curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/work-env/.bashrc_cluster.sh" \
         -o ~/.bashrc_cluster.sh \
 echo 'source ~/.bashrc_john.sh' >> ~/.bashrc
 echo 'source ~/.bashrc_john.sh' >> ~/.bash_profile
@@ -54,13 +54,12 @@ sudo apt install git -y \
         -o ~/.gitignore \
     && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Git/.gitconfig" \
         -o ~/.gitconfig \
-    # git diff delta
     && curl -LO "https://github.com/dandavison/delta/releases/download/0.16.5/git-delta_0.16.5_amd64.deb" \
     && sudo dpkg -i git-delta_0.16.5_amd64.deb \
     && rm git-delta_0.16.5_amd64.deb \
 
 # sqlfmt
-curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/Linux/sqlfmt" \
+sudo curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/sqlfmt" \
     -o /usr/local/bin/sqlfmt
 
 # lfs requirements
