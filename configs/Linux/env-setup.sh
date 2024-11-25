@@ -1,6 +1,6 @@
 # curl https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/env_setup.sh > env_setup.sh
 # vim & nvim
-sudo apt install curl vim -y \
+sudo apt install curl vim sqlformat -y \
     && curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/.vimrc" \
         -o ~/.vimrc \
     && curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -58,6 +58,10 @@ sudo apt install git -y \
     && curl -LO "https://github.com/dandavison/delta/releases/download/0.16.5/git-delta_0.16.5_amd64.deb" \
     && sudo dpkg -i git-delta_0.16.5_amd64.deb \
     && rm git-delta_0.16.5_amd64.deb \
+
+# sqlfmt
+curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/Linux/sqlfmt" \
+    -o /usr/local/bin/sqlfmt
 
 # lfs requirements
 sudo apt install build-essential -y
