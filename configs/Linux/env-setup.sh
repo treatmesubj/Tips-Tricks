@@ -60,7 +60,8 @@ sudo apt install git -y \
 
 # sqlfmt
 sudo curl "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Bash/sqlfmt" \
-    -o /usr/local/bin/sqlfmt
+    -o /usr/local/bin/sqlfmt\
+    && sudo chmod +x /usr/local/bin/sqlfmt
 
 # lfs requirements
 sudo apt install build-essential -y
@@ -69,5 +70,4 @@ sudo apt install bison -y
 sudo apt install gawk -y
 sudo apt install texinfo -y
 
-printf "\nPlease, to finish Vim setup: '\$ vim ~/.vimrc', then ':PlugInstall'\n\n"
 printf "\nPlease, to finish Neovim setup: '\$ nvim ~/.vimrc', then ':PlugInstall', then ':UpdateRemotePlugins'\n\n"
