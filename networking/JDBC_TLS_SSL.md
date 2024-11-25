@@ -10,7 +10,7 @@ Commonly, an analyst will use a SQL client like [DBeaver](https://dbeaver.io/dow
         1. `cd <directory of downloaded file>`
         2. `tar -xvf v11.5.8_jdbc_sqlj.tar.gz`
         3. `cd jdbc_sqlj`
-        4. `tar -xvf db2_db2driver_for_jdbc_sqlj.zip`
+        4. `unzip db2_db2driver_for_jdbc_sqlj.zip`
             - You should see `db2jcc4.jar` in this directory
 2. Ensure you have proper trusted IBM CA certificates for TLS
     - Download the very commonly used [IBM Internal CA Root Certificate](https://daymvs1.pok.ibm.com/ibmca-wireless/view/downloadCarootCert.do?file=carootcert.der)
