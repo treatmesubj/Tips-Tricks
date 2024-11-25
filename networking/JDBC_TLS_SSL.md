@@ -67,6 +67,17 @@ ERRORCODE=-4499, SQLSTATE=08001
     - If in the output, you see `verify error:num=19:self signed certificate in certificate chain`, one of the certificates in the certificate-chain sent from the server was signed by itself, and that certificate was not in your TrustStore.
 - You may check a certificate directly: `openssl s_client -showcerts -connect <host>:<port> -servername <host> -CAfile <file.cert>`
     - If in the output, you see `verify error:num=7:certificate signature failure`, one of the certificates in certificate-chain sent from the server was not signed by your trusted certificate.
+    - If you get an error like below, try `ping`ing the server to see if you can reach it, then try `nmap`-ing the Db2's expected port on the server to see if it's open
+        ```
+        $ openssl s_client -showcerts -connect <host>:<port> -servername <host> -CAfile <file.cert>
+        4067DA19007F0000:error:8000006F:system library:BIO_connect:Connection refused:../crypto/bio/bio_sock2.c:114:calling connect()
+        4067DA19007F0000:error:10000067:BIO routines:BIO_connect:connect error:../crypto/bio/bio_sock2.c:116:
+        connect:errno=111
+        $ nmap -p 5520-5521 <host>
+        PORT     STATE  SERVICE
+        5520/tcp closed sdlog
+        5521/tcp closed unknown
+        ```
 
 #### [DB2 Authentication Methods Docs](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.6.x?topic=credentials-user-supported-authentication-methods)
 
