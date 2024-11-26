@@ -1,32 +1,5 @@
-- [K8s API](https://kubernetes.io/docs/reference/kubernetes-api/)
+- [Kubernetes (K8s) API](https://kubernetes.io/docs/reference/kubernetes-api/)
 - [Red Hat OpenShift Container Platform Templates](https://docs.openshift.com/container-platform/3.11/dev_guide/templates.html#dev-guide-templates)
-
-### Pods
-```bash
-kubectl get pods | grep 43729 | grep driver | column -t
-```
-
-### Logs
-```bash
-# follow logs
-while :; do
-    pod=$(
-        kubectl get pods --field-selector=status.phase==Running \
-        | grep -E '.*53572.*-[0-9]{10}-driver' | tail -1 \
-        | awk '{print $1}'
-    )
-    [[ $pod ]] && break
-    echo -n .
-    sleep 3
-done; kubectl logs -f $pod | tee $pod.log
-```
-```bash
-# dump logs
-kubectl logs $( \
-    kubectl get pods | grep -E '.*53572.*-[0-9]{10}-driver' \
-    | tail -1 | awk '{print $1}' \
-) | nvim - -c "set ft=log"
-```
 
 ### Resource Usage
 ```bash
@@ -35,4 +8,37 @@ kubectl describe nodes
 kubectl describe nodes | grep -A 2 -e "^\\s*CPU Requests"
 
 kubectl top pods -n <namespace>
+```
+
+### Get all K8s Resources/Objs
+```bash
+kubectl api-resources --verbs=list --namespaced -o name
+
+kubectl api-resources --verbs=list --namespaced -o name \
+  | xargs -n 1 kubectl get --show-kind --ignore-not-found -l <label>=<value> -n <namespace>
+```
+
+### Debug Pods
+- Bad: you shouldn't directly mess w/ app container
+```bash
+kubectl --namespace demo exec -it <pod-name> -- sh
+```
+
+- [Good](https://en.wikipedia.org/wiki/Linux_namespaces): create ephemeral container in app's same Linux Kernel namespace in an extra pod, which can be deleted after
+```bash
+kubectl --namespace demo get pod <pod-name> --output yaml
+kubectl debug --namespace demo <pod-name> --image alpine \
+    --stdin --tty --share-processes --copy-to <pod-copy-name>
+    # ps aufx
+    # exit
+kubectl --namespace demo delete pod <pod-copy-name>
+```
+
+```bash
+kubectl get <resource-type>
+kubectl logs -f <resource>
+kubectl describe <resource-type> <resource> --output-yaml
+kubectl edit <resource-type>/<resource>
+kubectl create job --from=cronjob/<cronjob> <name-for-job>
+kubectl get events --sort-by=.metadata.creationTimestamp  # cluster events
 ```
