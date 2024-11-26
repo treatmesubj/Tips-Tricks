@@ -54,12 +54,6 @@ randint() {
     fi
 }
 
-pod_shell() {
-    pod_name=$1
-    shell=$2
-    kubectl exec --stdin --tty $pod_name -- $shell || echo "usage: pod_shell <pod-name> <shell>"
-}
-
 tmux_clear_history() {
     for pane in $(tmux list-panes -F '#{pane_id}'); do
         tmux clear-history -t "${pane}"
@@ -167,6 +161,8 @@ nvim_fuzzline() {
 }
 alias nvim-fuzzfile=nvim_fuzzfile
 alias nvim-fuzzline=nvim_fuzzline
+
+alias k=kubectl
 
 # keys
 source ~/.bashrc_keys.sh
