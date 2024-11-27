@@ -163,6 +163,7 @@ alias nvim-fuzzfile=nvim_fuzzfile
 alias nvim-fuzzline=nvim_fuzzline
 
 alias k=kubectl
+ksort="--sort-by=.status.startTime"
 
 # keys
 source ~/.bashrc_keys.sh
