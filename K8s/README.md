@@ -35,10 +35,11 @@ kubectl --namespace demo delete pod <pod-copy-name>
 ```
 
 ```bash
+kubectl get events --sort-by=.metadata.creationTimestamp  # cluster events
 kubectl get <resource-type>
+kubectl describe <resource-type> <resource>
+kubectl get <resource-type> <resource> -o yaml
 kubectl logs -f <resource>
-kubectl describe <resource-type> <resource> --output-yaml
 kubectl edit <resource-type>/<resource>
 kubectl create job --from=cronjob/<cronjob> <name-for-job>
-kubectl get events --sort-by=.metadata.creationTimestamp  # cluster events
 ```
