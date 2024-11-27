@@ -1,6 +1,15 @@
 - [Kubernetes (K8s) API](https://kubernetes.io/docs/reference/kubernetes-api/)
 - [Red Hat OpenShift Container Platform Templates](https://docs.openshift.com/container-platform/3.11/dev_guide/templates.html#dev-guide-templates)
 
+### Config
+```bash
+kubectl config get-clusters
+kubectl config get-contexts
+kubectl config get-users
+
+kubectl config use-context <context-name>
+```
+
 ### Resource Usage
 ```bash
 kubectl top nodes
