@@ -48,6 +48,10 @@ db2jcc_license_cisuz.jar        -- DB2 z/OS license
 db2jcc_license_cu.jar           -- DB2 z/OS license
 ```
 
+---
+
+### [JDBC & SQLJ Driver Properties](https://www.ibm.com/docs/en/db2/12.1?topic=information-data-server-driver-jdbc-sqlj-configuration-properties)
+
 ### Troubleshooting Errors
 #### JDBC Driver Issues
 Common error below signifies a JDBC driver issue; [docs](https://www.ibm.com/docs/en/db2-for-zos/13?topic=jsri-error-codes-issued-by-data-server-driver-jdbc-sqlj)
