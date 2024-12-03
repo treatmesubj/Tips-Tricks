@@ -22,8 +22,7 @@ Commonly, an analyst will use a SQL client like [DBeaver](https://dbeaver.io/dow
         openssl s_client -connect usibmvrdp1h.ssiplex.pok.ibm.com:5521 -showcerts > /tmp/cert.tmp 2> /tmp/err.log
         if [ -f /tmp/cert.tmp ]; then
             sed -n '/^-----BEGIN CERTIFICATE-----/,/^-----END CERTIFICATE-----/p' /tmp/cert.tmp > /tmp/ibm.crt
-            keytool -import -file /tmp/ibm.crt -alias "ibmtest" -keystore /opt/ibm/HostOnDemand/HOD/CustomizedCAs.jks -storepass hodpwd
-            cp /tmp/ibm.crt  /opt/ibm/HostOnDemand/HOD/CustomizedCAs.jks ~/HostOnDemand-workspace/lib/
+            keytool -import -file /tmp/ibm.crt -alias "newcert" -keystore CustomizedCAs.jks -storepass changeit
         else
             echo "No cert found"
         fi
