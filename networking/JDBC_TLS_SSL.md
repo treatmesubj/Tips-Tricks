@@ -17,30 +17,17 @@ Commonly, an analyst will use a SQL client like [DBeaver](https://dbeaver.io/dow
     - Download the very commonly used [IBM Internal Intermediate CA Root Certificate](https://daymvs1.pok.ibm.com/ibmca/downloadCarootCert.do?file=caintermediatecert.der)
     - Each database has a unique CA Root SSL certificate, so you'll need to download their respective certificate.
     - You can fetch a server/port's public certificates via `openssl` like so
-    ```bash
-    #!/bin/bash
-    if [ -z "$1" ] || [ -z "$2" ]; then
-      echo Use
-      echo "./get-cert.sh hostname port"
-      echo "i.e."
-      echo "./get-cert.sh usibmvrdp1h.ssiplex.pok.ibm.com 5521"
-      exit 0
-    fi
-
-    # Clean up
-    [ -f /tmp/cert.tmp ] && sudo rm -f /tmp/cert.tmp
-    [ -f /tmp/ibm.crt ] && sudo rm -f /tmp/ibm.crt
-    [ -f /tmp/err.log ] && sudo rm -f /tmp/err.log
-
-    timeout 2 bash -c "openssl s_client -connect ${1}:${2} -showcerts > /tmp/cert.tmp 2> /tmp/err.log"
-    if [ -f /tmp/cert.tmp ]; then
-        sed -n '/^-----BEGIN CERTIFICATE-----/,/^-----END CERTIFICATE-----/p' /tmp/cert.tmp > /tmp/ibm.crt
-        # sudo keytool -import -file /tmp/ibm.crt -alias "ibmtest" -keystore /opt/ibm/HostOnDemand/HOD/CustomizedCAs.jks -storepass hodpwd
-        # cp /tmp/ibm.crt  /opt/ibm/HostOnDemand/HOD/CustomizedCAs.jks ~/HostOnDemand-workspace/lib/
-    else
-        echo "No cert found"
-    fi
-    ```
+        ```bash
+        #!/bin/bash
+        openssl s_client -connect usibmvrdp1h.ssiplex.pok.ibm.com:5521 -showcerts > /tmp/cert.tmp 2> /tmp/err.log
+        if [ -f /tmp/cert.tmp ]; then
+            sed -n '/^-----BEGIN CERTIFICATE-----/,/^-----END CERTIFICATE-----/p' /tmp/cert.tmp > /tmp/ibm.crt
+            keytool -import -file /tmp/ibm.crt -alias "ibmtest" -keystore /opt/ibm/HostOnDemand/HOD/CustomizedCAs.jks -storepass hodpwd
+            cp /tmp/ibm.crt  /opt/ibm/HostOnDemand/HOD/CustomizedCAs.jks ~/HostOnDemand-workspace/lib/
+        else
+            echo "No cert found"
+        fi
+        ```
 3. Ensure you have a Java TrustStore containing your trusted IBM certificates for TLS over JDBC
     - To use the IBM CA certificates with Java-based tools (i.e., JDBC), a "TrustStore" must be created and utilized in the respective JDBC configuration. You can [install Java](https://www.java.com/en/download/help/download_options.html) and use its `keytool` command-line utility to create a Java TrustStore file containing the IBM certificates with the following commands (assuming you add the directory of the Java `keytool` command-line utility to your machine's PATH)
         - `keytool -importcert -alias <my-preferred-alias-for-cert> -trustcacerts -file <my-cert-file.cert> -keystore ibm-truststore.jks`
