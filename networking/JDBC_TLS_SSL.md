@@ -1,5 +1,5 @@
 ## [About SSL/TLS Certificates](https://www.ssl.com/guide/pem-der-crt-and-cer-x-509-encodings-and-conversions/)
-Connections to infrastructure & databases are made with Transport Layer Security (TLS) encryption/cryptographic protocol, the successor to Secure Sockets Layer (SSL), for secure communications utilizing trusted digital certificates signed by the [IBM Internal Certificate Authority (IBMCAPKI)](https://daymvs1.pok.ibm.com/ibmca/welcome.do) or sometimes, self-signed certificates from the servers that host databases, commonly in the PKCS12 PEM format.\
+Connections to infrastructure & databases are made with Transport Layer Security (TLS) encryption/cryptographic protocol, the successor to Secure Sockets Layer (SSL), for secure communications utilizing trusted digital certificates signed by the [IBM Internal Certificate Authority (IBMCAPKI)](https://w3.ibm.com/w3publisher/certhub/ibm-internal-ca-application/capki-nextgen) or sometimes, self-signed certificates from the servers that host databases, commonly in the PKCS12 PEM format; [IBM CA Certificate Policy](https://w3.ibm.com/w3publisher/certhub/ibm-internal-ca-application/ibm-ca-certificate-policy)\
 Administrators of servers/databases distribute their respective certificates to users/clients; users/clients simply utilize those certificates in their connection-configuration.\
 Any databases that aren't using encryption are violating an ITSS standard; see [ITSS Use of Encryption](https://pages.github.ibm.com/ciso-psg/main/standards/itss.html#50-use-of-encryption) & [ITSS Acceptable Encryption Algorithms](https://pages.github.ibm.com/ciso-psg/main/supplemental/acceptable_encryption.html).\
 How these certificates are utilized in connection configurations amongst different software clients varies.\
@@ -12,9 +12,9 @@ Commonly, an analyst will use a SQL client like [DBeaver](https://dbeaver.io/dow
         3. `cd jdbc_sqlj`
         4. `unzip db2_db2driver_for_jdbc_sqlj.zip`
             - You should see `db2jcc4.jar` in this directory
-2. Ensure you have proper trusted IBM CA certificates for TLS
-    - Download the very commonly used [IBM Internal CA Root Certificate](https://daymvs1.pok.ibm.com/ibmca-wireless/view/downloadCarootCert.do?file=carootcert.der)
-    - Download the very commonly used [IBM Internal Intermediate CA Root Certificate](https://daymvs1.pok.ibm.com/ibmca/downloadCarootCert.do?file=caintermediatecert.der)
+2. Ensure you have proper trusted IBM CA certificates for TLS; [IBM Internal CA root certs](https://w3.ibm.com/w3publisher/certhub/ibm-internal-ca-application/root-intermediate)
+    - Download the very commonly used [IBM Internal CA Root Certificate](https://w3p-box-service.dal1a.cirrus.ibm.com/2224f170-115a-11ef-90da-75bb4bb2ddb4/1715781011725/download/55f70760-b199-11ef-845d-fd580bca0187?attachment=true)
+    - Download the very commonly used [IBM Internal Intermediate CA Root Certificate](https://w3p-box-service.dal1a.cirrus.ibm.com/2224f170-115a-11ef-90da-75bb4bb2ddb4/1715780217562/download/6d091880-b199-11ef-9764-692b47bd4265?attachment=true)
     - Each database has a unique CA Root SSL certificate, so you'll need to download their respective certificate.
     - You can fetch a server/port's public certificates via `openssl` like so
         ```bash
