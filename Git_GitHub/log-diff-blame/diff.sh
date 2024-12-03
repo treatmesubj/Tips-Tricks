@@ -3,10 +3,10 @@ git show
 git diff HEAD~1 HEAD
 
 # https://stackoverflow.com/questions/462974/what-are-the-differences-between-double-dot-and-triple-dot-in-git-com
-# see commits in HEAD after shared common anscestor w/ origin/master
-git diff origin/master...HEAD --name-only --relative
-# see commits in HEAD or origin/master after common anscestor
-git diff origin/master..HEAD --name-only --relative
+# see commits in feature-branch after shared common ancestor w/ origin/master
+git diff origin/master...feature-branch --name-only --relative
+# see commit-content delta in feature-branch or origin/master after common ancestor
+git diff origin/master..feature-branch --name-only --relative
 
 # see just changed file names
 git diff --stat HEAD~1 HEAD
