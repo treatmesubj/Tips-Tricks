@@ -60,3 +60,9 @@ kfl() {
         sleep 3
     done; echo $pod && kubectl logs -f $pod | tee /tmp/$pod.log
 }
+
+newlog() {
+    ls -1t /tmp/*.log | head -1
+    # newlog | xargs nvim
+    # nvim $(newlog)
+}
