@@ -87,7 +87,7 @@ if __name__ == "__main__":
     conf = SparkConf()
     conf.set(
         "spark.jars",
-        "/mnt/c/Users/JohnHupperts/Documents/JARs/db2jcc4.jar,/mnt/c/Users/JohnHupperts/Documents/JARs/db2jcc_license_cisuz.jar,/mnt/c/Users/JohnHupperts/Documents/JARs/db2jcc_license_cu.jar,",
+        "/mnt/c/Users/JohnHupperts/jdbc_sqlj/db2jcc4.jar,/mnt/c/Users/JohnHupperts/jdbc_sqlj/license/db2jcc_license_cisuz.jar,/mnt/c/Users/JohnHupperts/jdbc_sqlj/license/db2jcc_license_cu.jar,",
     )
     conf.set("spark.driver.memory", "4g")  # extra mem
     spark = SparkSession.builder.config(conf=conf).getOrCreate()
@@ -97,11 +97,10 @@ if __name__ == "__main__":
 
     df = simple_get_df(
         spark_session=spark,
-        fields="*",
-        schema_table="SYSIBM.SYSTABLES",
-        jdbc_url="jdbc:db2://db2w-host:50001/BLUDB:sslConnection=true;sslTrustStoreLocation=/home/john/ibm-truststore.jks;sslTrustStorePassword=changeit;",
+        jdbc_url="jdbc:db2://db2w-host:50001/BLUDB:sslConnection=true;sslTrustStoreLocation=/mnt/c/Users/JohnHupperts/ibm-truststore.jks;sslTrustStorePassword=changeit;",
         user=os.getenv("db_user"),
         password=os.getenv("db_pw"),
+        sql_statement="SELECT * FROM SYSIBM.SYSTABLES"
     )
     df.createOrReplaceTempView("df")
 
