@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from pyspark.sql import SparkSession
 from pyspark.conf import SparkConf
 from pyspark.sql.types import DateType, TimestampType
@@ -89,7 +90,7 @@ if __name__ == "__main__":
         "spark.jars",
         "/mnt/c/Users/JohnHupperts/jdbc_sqlj/db2jcc4.jar,/mnt/c/Users/JohnHupperts/jdbc_sqlj/license/db2jcc_license_cisuz.jar,/mnt/c/Users/JohnHupperts/jdbc_sqlj/license/db2jcc_license_cu.jar,",
     )
-    conf.set("spark.driver.memory", "4g")  # extra mem
+    conf.set("spark.driver.memory", "8g")  # extra mem
     spark = SparkSession.builder.config(conf=conf).getOrCreate()
 
     assert os.getenv("db_user"), f"no db_user env var"
@@ -100,7 +101,10 @@ if __name__ == "__main__":
         jdbc_url="jdbc:db2://db2w-host:50001/BLUDB:sslConnection=true;sslTrustStoreLocation=/mnt/c/Users/JohnHupperts/ibm-truststore.jks;sslTrustStorePassword=changeit;",
         user=os.getenv("db_user"),
         password=os.getenv("db_pw"),
-        sql_statement="SELECT * FROM SYSIBM.SYSTABLES"
+        sql_statement="""
+        SELECT *
+        FROM SYSIBM.SYSTABLES
+        """
     )
     df.createOrReplaceTempView("df")
 
