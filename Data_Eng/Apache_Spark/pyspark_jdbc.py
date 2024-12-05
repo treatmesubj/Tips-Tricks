@@ -93,8 +93,8 @@ if __name__ == "__main__":
     conf.set("spark.driver.memory", "8g")  # extra mem
     spark = SparkSession.builder.config(conf=conf).getOrCreate()
 
-    assert os.getenv("db_user"), f"no db_user env var"
-    assert os.getenv("db_pw"), f"no db_pw env var"
+    assert os.getenv("db_user"), "no db_user env var"
+    assert os.getenv("db_pw"), "no db_pw env var"
 
     df = simple_get_df(
         spark_session=spark,
@@ -104,7 +104,7 @@ if __name__ == "__main__":
         sql_statement="""
         SELECT *
         FROM SYSIBM.SYSTABLES
-        """
+        """,
     )
     df.createOrReplaceTempView("df")
 
@@ -127,8 +127,8 @@ if __name__ == "__main__":
     # version2
     # fix utf-8 char problems
     pd_sub_df = sub_df.toPandas().applymap(
-        lambda x: x.encode("unicode_escape").decode("utf-8")
-        if isinstance(x, str)
-        else x
+        lambda x: (
+            x.encode("unicode_escape").decode("utf-8") if isinstance(x, str) else x
+        )
     )
     pd_sub_df.to_excel("sub_df.xlsx")
