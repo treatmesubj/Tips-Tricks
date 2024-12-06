@@ -164,6 +164,7 @@ alias nvim-fuzzline=nvim_fuzzline
 
 alias k=kubectl
 ksort="--sort-by=.status.startTime"
+krunn="--field-selector=status.phase==Running"
 
 # keys
 source ~/.bashrc_keys.sh
