@@ -35,6 +35,8 @@ local function duckdb(args)
   end
 end
 
+-- :'<,'>Duckdb
+-- :%Duckdb
 vim.api.nvim_create_user_command("Duckdb", duckdb, {
   range = true,
   bang = true,
