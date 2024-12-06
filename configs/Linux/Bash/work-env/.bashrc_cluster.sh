@@ -61,8 +61,8 @@ kfl() {
     done; echo $pod && kubectl logs -f $pod | tee /tmp/$pod.log
 }
 
+# newlog | xargs nvim
+# nvim $(newlog)
 newlog() {
     ls -1t /tmp/*.log | head -1
-    # newlog | xargs nvim
-    # nvim $(newlog)
 }
