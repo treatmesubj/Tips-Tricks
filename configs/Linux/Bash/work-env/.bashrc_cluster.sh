@@ -66,3 +66,17 @@ kfl() {
 newlog() {
     ls -1t /tmp/*.log | head -1
 }
+
+alias k=kubectl
+ksort="--sort-by=.status.startTime"
+krunn="--field-selector=status.phase==Running"
+kerr="--field-selector=status.phase!=Succeeded,status.phase!=Running"
+kname="-o=custom-columns=NAME:.metadata.name"
+
+# creates dir of logs for failed pods
+kerrlogs() {
+    ts=$(date +%s%3N)
+    mkdir $ts
+    k get pods $kname $ksort $kerr | tail -n +2 | xargs -I{} bash -c "kubectl logs {} > $ts/{}.log"
+}
+
