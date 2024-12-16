@@ -15,7 +15,7 @@ awk '{print $1,$3}' infile.txt          # print 1st & 3rd space/tab field-separa
 ls -l | awk '{print $1,$NF}'            # print 1st & last space/tab field-demilited 'field'
 cat /etc/passwd | awk -F ':' '{print $1"\t"$7}'  # print 1st & 7th colon field-separated 'field' with tab between
 
-awk 'BEGIN{FS=":"; OFS="-"} {print $1, $7}' /etc/passwd 
+awk 'BEGIN{FS=":"; OFS="-"} {print $1, $7}' /etc/passwd
 
 awk -F "/" '/^\// {print $NF}' /etc/shells | uniq | sort
 

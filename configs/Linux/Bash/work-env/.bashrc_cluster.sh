@@ -40,13 +40,19 @@ EOF
     export kubeps1=true
 }
 
+# useful kubectl aliases
+alias k=kubectl
+ksort="--sort-by=.status.startTime"
+krunn="--field-selector=status.phase==Running"
+kerr="--field-selector=status.phase!=Succeeded,status.phase!=Running"
+kname="-o=custom-columns=NAME:.metadata.name"
 
+# follow logs of running pod
 kfl() {
-    # follow logs
     pod_grep=$1
     while :; do
         pods=$(
-            kubectl get pods --no-headers -o custom-columns=":metadata.name" --field-selector=status.phase==Running \
+            k get pods --no-headers $krunn $ksort $kname \
             --sort-by=.status.startTime \
             | grep -E ".*$pod_grep.*"
         )
@@ -61,17 +67,13 @@ kfl() {
     done; echo $pod && kubectl logs -f $pod | tee /tmp/$pod.log
 }
 
-# newlog | xargs nvim
-# nvim $(newlog)
+# read latest /tmp log in nvim
+# usage:
+#   newlog | xargs nvim
+#   nvim $(newlog)
 newlog() {
     ls -1t /tmp/*.log | head -1
 }
-
-alias k=kubectl
-ksort="--sort-by=.status.startTime"
-krunn="--field-selector=status.phase==Running"
-kerr="--field-selector=status.phase!=Succeeded,status.phase!=Running"
-kname="-o=custom-columns=NAME:.metadata.name"
 
 # creates dir of logs for failed pods
 kerrlogs() {
@@ -80,3 +82,16 @@ kerrlogs() {
     k get pods $kname $ksort $kerr | tail -n +2 | xargs -I{} bash -c "kubectl logs {} > $ts/{}.log"
 }
 
+# human readable cronjob schedules
+kcrons() {
+    pyscript="
+import sys;
+from cron_descriptor import get_description;
+fmt = lambda str: str.split('\t')[0]+'\t'+get_description(str.split('\t')[1]);
+print(*[fmt(line) for line in sys.stdin], sep='\n');
+"
+    k get cronjobs -o json \
+    | jq -r '.items[] | {"name":.metadata.name, "schedule": .spec.schedule} | [.[]] | @tsv' \
+    | python -c "$pyscript" \
+    | column -t
+}
