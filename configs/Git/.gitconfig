@@ -39,7 +39,7 @@
     blame-hard = blame --no-merges -w -C -C -C
     diff-sbs = -c delta.side-by-side=true diff
     diff-classic = -c pager.diff='less -R' diff
-    checkout-fzf = !git checkout $(git branch | fzf)
+    checkout-fzf = !git checkout $(git branch | fzf --height=10 --border=double --border-label="local-branches" --border-label-pos=3:bottom)
     show-merge-conflicts = !git diff --name-only --diff-filter=U --relative && echo \"---\" && git diff --check
     log-lil = log --pretty=\"format:%C(yellow)%h %C(Cyan)%>(10)%ad (%cr) %Cgreen%aN%Cred%d %Creset%s\" --date=short
     nvimdiff = difftool

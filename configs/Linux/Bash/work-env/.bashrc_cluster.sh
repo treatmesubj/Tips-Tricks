@@ -57,7 +57,7 @@ kfl() {
             | grep -E ".*$pod_grep.*"
         )
         if [ $(wc -l <<< "$pods") -gt 1 ]; then
-            pod=$(echo "$pods" | fzf)
+            pod=$(echo "$pods" | fzf --height=10 --border=double --border-label="pods" --border-label-pos=3:bottom)
         else
             pod=$pods
         fi
