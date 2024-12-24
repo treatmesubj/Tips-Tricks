@@ -39,7 +39,7 @@ vim.api.nvim_set_keymap(
 )
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- https://github.com/python-lsp/python-lsp-server
-require('lspconfig').pylsp.setup{
+require('lspconfig').pylsp.setup {
   cmd = {(os.getenv("HOME")..'/.venv_pynvim/bin/pylsp')};
   settings = {
     pylsp = {
@@ -61,17 +61,25 @@ require('nvim-treesitter.configs').setup {
   }
 }
 -- https://github.com/cuducos/yaml.nvim
-vim.api.nvim_create_autocmd({ "BufEnter", "CursorMoved" },{
-  pattern = { "*.yaml" },
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "yaml" },
   callback = function()
-    vim.opt_local.winbar = "." .. (require("yaml_nvim").get_yaml_key() or "")
+    vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+      callback = function()
+        vim.opt_local.winbar = "." .. (require("yaml_nvim").get_yaml_key() or "")
+      end,
+    })
   end,
 })
 -- https://github.com/phelipetls/jsonpath.nvim
-vim.api.nvim_create_autocmd({ "BufEnter", "CursorMoved" },{
-  pattern = { "*.json" },
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "json" },
   callback = function()
-    vim.opt_local.winbar = "." .. (require("jsonpath").get():sub(2) or "")
+    vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+      callback = function()
+        vim.opt_local.winbar = "." .. (require("jsonpath").get():sub(2) or "")
+      end,
+    })
   end,
 })
 vim.api.nvim_command('hi winbar ctermbg=89')
