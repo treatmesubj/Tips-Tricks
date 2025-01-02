@@ -60,28 +60,33 @@ require('nvim-treesitter.configs').setup {
     additional_vim_regex_highlighting = false,
   }
 }
--- https://github.com/cuducos/yaml.nvim
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "yaml" },
-  callback = function()
-    vim.api.nvim_create_autocmd({ "CursorMoved" }, {
-      callback = function()
-        vim.opt_local.winbar = "." .. (require("yaml_nvim").get_yaml_key() or "")
-      end,
-    })
+
+vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
+  group = vim.api.nvim_create_augroup("bufent_winbar", { clear = true }),
+  callback = function(opts)
+    -- https://github.com/cuducos/yaml.nvim
+    if vim.bo[opts.buf].filetype == "yaml" then
+      vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+        group = vim.api.nvim_create_augroup("curs_winbar", { clear = true }),
+        callback = function()
+          vim.opt_local.winbar = "." .. (require("yaml_nvim").get_yaml_key() or "")
+        end,
+      })
+    -- https://github.com/phelipetls/jsonpath.nvim
+    elseif vim.bo[opts.buf].filetype == "json" then
+      vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+        group = vim.api.nvim_create_augroup("curs_winbar", { clear = true }),
+        callback = function()
+          vim.opt_local.winbar = "." .. (require("jsonpath").get():sub(2) or "")
+        end,
+      })
+    else
+      vim.opt_local.winbar = ""
+      vim.api.nvim_create_augroup("curs_winbar", { clear = true })
+    end
   end,
 })
--- https://github.com/phelipetls/jsonpath.nvim
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "json" },
-  callback = function()
-    vim.api.nvim_create_autocmd({ "CursorMoved" }, {
-      callback = function()
-        vim.opt_local.winbar = "." .. (require("jsonpath").get():sub(2) or "")
-      end,
-    })
-  end,
-})
+
 vim.api.nvim_command('hi winbar ctermbg=89')
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
