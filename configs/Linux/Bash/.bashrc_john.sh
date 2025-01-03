@@ -137,6 +137,17 @@ nvimgitdiff() {
         echo "usage: nvimgitdiff <ref|branch|commit> <relative-file-path>"
     fi
 }
+nvimdiffsesh() {
+    if [[ "$#" == 1 ]]; then
+        local relfp=${1}
+        fname=$(basename ${relfp})
+        tmpfname=/tmp/tmp-$fname
+        cp $relfp $tmpfname
+        nvimdiff $tmpfname $relfp -c "setlocal nomodifiable" -c "foldopen!" -c "vert res 8" # RO ref buffer
+    else
+        echo "usage: nvimseshdiff <relative-file-path>"
+    fi
+}
 
 nvim_fuzzfile() {
     f=$(
