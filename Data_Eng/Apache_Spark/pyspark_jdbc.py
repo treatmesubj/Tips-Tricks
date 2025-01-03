@@ -99,6 +99,10 @@ if __name__ == "__main__":
     df = simple_get_df(
         spark_session=spark,
         jdbc_url="jdbc:db2://db2w-host:50001/BLUDB:sslConnection=true;sslTrustStoreLocation=/mnt/c/Users/JohnHupperts/ibm-truststore.jks;sslTrustStorePassword=changeit;",
+        # apiKey method
+        #   jdbc_url="jdbc:db2://db2w-host:50001/BLUDB:sslConnection=true;pluginName=IBMIAMauth;securityMechanism=15;apiKey=<apikey>;",
+        #   user=""
+        #   password=""
         user=os.getenv("db_user"),
         password=os.getenv("db_pw"),
         sql_statement="""
