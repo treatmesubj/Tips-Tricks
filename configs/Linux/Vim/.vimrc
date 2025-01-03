@@ -167,6 +167,7 @@ set formatoptions-=t " don't literally insert newlines
 set nowrap " don't wrap w/ virtual lines either
 " temporarily wrap current line
 nnoremap <silent> <Space><Space> :SoftWrapShow<CR>
+set noea  " don't auto-resize panes
 set directory=/tmp
 set backupdir=/tmp
 set undofile  " keep an undo file (undo changes after closing)
@@ -274,13 +275,13 @@ command! -nargs=1 -complete=command YAMLGoToKey call YAMLGoToKey(<q-args>)
 " Cheat Sheets -----------------------
 "
 " vertical list of incrementing numbers
-"   <C-v> to highlight numbers you want to increment then g<C-a>
+"   <CTRL-v> to highlight numbers you want to increment then g<CTRL-a>
 "
 " screen moves
-"  <C-u> scroll 1/2 page up
-"  <C-d> scroll 1/2 page down
-"  <C-j> scroll 1 line up
-"  <C-k> scroll 1 line down
+"  <CTRL-u> scroll 1/2 page up
+"  <CTRL-d> scroll 1/2 page down
+"  <CTRL-j> scroll 1 line up
+"  <CTRL-k> scroll 1 line down
 "  zz center cursor line
 "  zL 1/2 page right
 "  zH 1/2 page left
@@ -288,6 +289,11 @@ command! -nargs=1 -complete=command YAMLGoToKey call YAMLGoToKey(<q-args>)
 "  ctrl+y down 1 line
 "  zt top cursor line
 "  zb top cursor line
+"
+" windows/pands
+"   <CTRL-W => equally resize all windows
+"   <CTRL-W _> max height
+"   <CTRL-W |> max width
 "
 " csv.vim
 "   <L> to move to right
