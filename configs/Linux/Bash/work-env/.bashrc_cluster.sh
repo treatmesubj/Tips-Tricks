@@ -82,7 +82,7 @@ kerrlogs() {
     k get pods $kname $ksort $kerr | tail -n +2 | xargs -I{} bash -c "kubectl logs {} > $ts/{}.log"
 }
 
-# human readable cronjob schedules
+# human readable k8s cronjob expressions
 kcrons() {
     pyscript="
 import sys;
@@ -94,4 +94,13 @@ print(*[fmt(line) for line in sys.stdin], sep='\n');
     | jq -r '.items[] | {"name":.metadata.name, "schedule": .spec.schedule} | [.[]] | @tsv' \
     | python -c "$pyscript" \
     | column -t
+}
+
+# human readable cron expressions
+hcron() {
+    if [[ "$#" == 1 ]]; then
+        python -c "import sys; from cron_descriptor import get_description; print(get_description('$1'))"
+    else
+        echo "usage: hcron \"* * * * *\""
+    fi
 }
