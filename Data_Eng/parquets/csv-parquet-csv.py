@@ -42,6 +42,7 @@ if __name__ == "__main__":
     # https://spark.apache.org/docs/latest/sql-data-sources-csv.html#data-source-option
     if args.csv_to_parquet:
         df = spark.read.option("header", True).csv(args.in_file)
+        print("WARNING: might infer dates as varchars!")
         df.printSchema()
         print(df.head())
         df.write.parquet(out_file)
