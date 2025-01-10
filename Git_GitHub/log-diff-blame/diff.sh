@@ -6,6 +6,7 @@ git diff HEAD~1 HEAD
 # see commits in feature-branch after shared common ancestor w/ origin/master
 git diff origin/master...feature-branch --name-only --relative
 # see commit-content delta in feature-branch or origin/master after common ancestor
+# (what's in feature-branch that is not in master)
 git diff origin/master..feature-branch --name-only --relative
 
 # see just changed file names
