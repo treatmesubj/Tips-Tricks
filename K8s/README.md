@@ -50,5 +50,9 @@ kubectl describe <resource-type> <resource>
 kubectl get <resource-type> <resource> -o yaml
 kubectl logs -f <resource>
 kubectl edit <resource-type>/<resource>
+# cronjobs
+kubectl get cronjobs
 kubectl create job --from=cronjob/<cronjob> <name-for-job>
+kubectl get jobs
+kubectl get pods
 ```
