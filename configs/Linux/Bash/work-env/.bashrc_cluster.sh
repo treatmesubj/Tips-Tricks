@@ -46,6 +46,7 @@ ksort="--sort-by=.status.startTime"
 krunn="--field-selector=status.phase==Running"
 kerr="--field-selector=status.phase!=Succeeded,status.phase!=Running"
 kname="-o=custom-columns=NAME:.metadata.name"
+kip="-o=custom-columns=NAME:metadata.name,STATUS:status.phase,IP:status.podIP"
 
 # follow logs of running pod
 kfl() {
