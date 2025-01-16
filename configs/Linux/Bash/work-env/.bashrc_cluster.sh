@@ -62,9 +62,7 @@ kfl() {
         else
             pod=$pods
         fi
-        [[ $pod ]] && break
-        echo -n .
-        sleep 3
+        { [[ $pod ]] && break ;} || echo -n . && sleep 3
     done; echo $pod && kubectl logs -f $pod | tee /tmp/$pod.log
 }
 
