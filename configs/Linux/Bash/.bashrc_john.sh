@@ -141,7 +141,10 @@ nvimdiffsesh() {
         fname=$(basename ${relfp})
         tmpfname=/tmp/tmp-$fname
         cp $relfp $tmpfname
-        nvimdiff $tmpfname $relfp -c "setlocal nomodifiable" -c "foldopen!" -c "vert res 8" # RO ref buffer
+        nvimdiff $tmpfname $relfp \
+            "+setlocal nomodifiable" "+foldopen!" \
+            "+set diffopt-=hiddenoff" "+set diffopt-=closeoff" \
+            "+0hide"  # RO ref buffer
     else
         echo "usage: nvimseshdiff <relative-file-path>"
     fi
