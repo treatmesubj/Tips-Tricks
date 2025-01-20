@@ -37,6 +37,7 @@ let g:python3_host_prog = $HOME . '/.venv_pynvim/bin/python'
 """""""""""""""""""""""""""""""""
 " Custom Colors
 """""""""""""""""""""""""""""""""
+set notermguicolors
 set background=dark
 " Diagnostic Colors
 function! DiagHighlights() abort
