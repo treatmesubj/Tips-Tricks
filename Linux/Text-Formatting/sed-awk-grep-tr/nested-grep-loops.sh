@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# nested grep loops
 # grep list of strings in list of files
 time ( parallel rg -io {2} {1} :::: <(rg -il 'WF360_HR\.DIM_EMPLOYEE\w+' .) wf360-dep-fields.txt )
 time ( f=$(rg -il 'WF360_HR\.DIM_EMPLOYEE\w+' .); parallel rg -io {1} $f :::: wf360-dep-fields.txt )
