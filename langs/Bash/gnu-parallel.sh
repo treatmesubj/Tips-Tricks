@@ -5,7 +5,8 @@
 # man parallel
 
 parallel echo "\<{}\>" :::: data.txt  # :::: file
-parallel echo "\<{}\>" ::: < data.txt  # ::: stdin
+parallel echo "\<{}\>" :::: <(cat data.txt)  # :::: file; <(...) is path to file descriptor e.g. "/dev/fd/63"
+parallel echo "\<{}\>" ::: < data.txt # ::: stdin
 cat data.txt | parallel echo "\<{}\>"
 # <you what's up everyone>
 # <my name's dave>
