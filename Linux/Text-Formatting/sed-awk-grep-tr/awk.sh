@@ -44,6 +44,5 @@ awk '{ print NR, $0 }' OFS='\t' tmp.json
 # 4         "d": 1, "e": 1
 # 5       }
 
-
-head -1 data.csv | csvquote | awk -v RS=',' '{print NR, $0}' | fzf | cut -d ' ' -f 1
-col=3; regfilt='IV'; awk -v col=$col -v regfilt=$regfilt -F, '{ if ($col ~ regfilt) { print $0 } }' data.csv
+# contiguous DAG operator text around job
+job="COREHW"; awk -v 'BEGIN{RS="\n)\n"} /.*job="'"$job"'"/ {print "# ---\n# "FILENAME"\n# ---\n", $0, "\n)"}' $(rg -il "job=\"$job\"" || echo no-files) |& nvim -c "set ft=python"
