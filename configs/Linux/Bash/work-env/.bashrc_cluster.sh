@@ -66,6 +66,12 @@ kfl() {
     done; echo $pod && kubectl logs -f $pod | tee /tmp/$pod.log
 }
 
+# usage:
+#   k exec -it $(kpodname) -- bash
+kpodname() {
+    k get pods --no-headers $kname | fzf --height=10 --border=double --border-label="pods" --border-label-pos=3:bottom
+}
+
 # read latest /tmp log in nvim
 # usage:
 #   newlog | xargs nvim
