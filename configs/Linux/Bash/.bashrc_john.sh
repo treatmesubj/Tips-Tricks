@@ -122,19 +122,10 @@ export MANPAGER='nvim +Man! -c "set nowrap"'
 export MANWIDTH=999
 
 alias nvimdiff='nvim -d'
-nvimgitdiff() {
-    if [[ "$#" == 2 ]]; then
-        local ref=${1}
-        local gitrelfp=${2}
-        gitfullfp=$(git ls-files --full-name $gitrelfp)
-        fname=$(basename ${gitrelfp})
-        tmpfname=/tmp/$(sed "s/\//-/g" <<< $ref)-$fname
-        git show $ref:$gitfullfp > $tmpfname
-        nvimdiff $tmpfname $gitrelfp -c "setlocal nomodifiable"  # RO ref buffer
-    else
-        echo "usage: nvimgitdiff <ref|branch|commit> <relative-file-path>"
-    fi
-}
+# git nvimdiff master...HEAD -- file.sh
+# git nvimdiff --staged master -- file.sh
+# git nvimdiff master -- file.sh
+
 nvimdiffsesh() {
     if [[ "$#" == 1 ]]; then
         local relfp=${1}

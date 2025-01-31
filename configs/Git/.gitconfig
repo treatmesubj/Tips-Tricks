@@ -42,6 +42,7 @@
     checkout-fzf = !git checkout $(git branch | fzf --height=10 --border=double --border-label="local-branches" --border-label-pos=3:bottom)
     show-merge-conflicts = !git diff --name-only --diff-filter=U --relative && echo \"---\" && git diff --check
     log-lil = log --pretty=\"format:%C(yellow)%h %C(Cyan)%>(10)%ad (%cr) %Cgreen%aN%Cred%d %Creset%s\" --date=short
+    log-big = log -p -M --stat
     nvimdiff = difftool
     branch-short = "!git branch | sed -n '/\\* /s///p' #"
     # https://stackoverflow.com/a/39616600

@@ -14,12 +14,15 @@ git diff --stat HEAD~1 HEAD
 git diff --name-only
 
 # only show certain file(s) in git diff
-git diff 154c4b9 HEAD -- ./epmingestion
+git diff 154c4b9...HEAD -- ./epmingestion
 # ignore file(s) in git diff; don't show their changes
-git diff 44a65e HEAD -- ':!./pipelines/drafts/*'
+git diff 44a65e...HEAD -- ':!./pipelines/drafts/*'
 
 # diff 2 files with different names
 git diff --no-index <path> <path>
+
+# diff revision & plain working-tree file
+git diff master -- file.sh
 
 # see staged, uncommitted files' changes
 git add .

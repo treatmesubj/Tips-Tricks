@@ -20,6 +20,7 @@ Blaming lines: 100% (15/15), done.
 ```
 
 - `git blame -L 9,13 git-diff.sh`
+    - honorary mention: `git log -L 9,13:git-diff.sh`
 ```text
 4 days ago      treatmesubj     0a763e1f│  9 │ # ignore file(s) in git diff; don't show their changes
                                         │ 10 │ git diff 44a65e HEAD -- ':!./pipelines/drafts/*'
@@ -34,3 +35,9 @@ Blaming lines: 100% (15/15), done.
     - detect lines moved/copied in same commit
         - or commit that created file
         - or any commit at all
+
+## review your feat-branch commits for a file
+```bash
+git blame $(git merge-base master HEAD)...HEAD -- file.sh
+git blame $(git merge-base master feat)...feat -- file.sh
+```
