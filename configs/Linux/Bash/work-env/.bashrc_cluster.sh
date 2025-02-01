@@ -67,9 +67,9 @@ kfl() {
 }
 
 # usage:
-#   k exec -it $(kpodname) -- bash
+#   k -n kube-system exec -it $(kpodname -A) -- bash
 kpodname() {
-    k get pods --no-headers $kname | fzf --height=10 --border=double --border-label="pods" --border-label-pos=3:bottom
+    k get pods --no-headers $kname "$@" | fzf --height=10 --border=double --border-label="pods" --border-label-pos=3:bottom
 }
 
 # read latest /tmp log in nvim
