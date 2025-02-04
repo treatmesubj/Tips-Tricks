@@ -60,7 +60,7 @@ kubectl get pods
 ## Networking
 ```bash
 kubectl apply -f https://k8s.io/examples/admin/dns/dnsutils.yaml
-kubectl exec -it dnsutils bash
+kubectl exec -it dnsutils -- bash
 kubectl get services  # note IP addresses
 cat /etc/resolv.conf  # cluster DNS service
 dig +search <service>
