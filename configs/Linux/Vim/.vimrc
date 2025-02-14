@@ -148,11 +148,11 @@ if has('syntax') && has('eval')
 endif
 
 " save folds to ~/.vim/view/
-" augroup remember_folds
-"   autocmd!
-"   au BufWinLeave ?* mkview 1
-"   au BufWinEnter ?* silent! loadview 1
-" augroup END
+augroup remember_folds
+  autocmd!
+  au BufWinLeave ?* mkview 1
+  au BufWinEnter ?* silent! loadview 1
+augroup END
 
 set hlsearch " highlight search
 set incsearch " incremental highlight search
@@ -303,6 +303,9 @@ command! -nargs=1 -complete=command YAMLGoToKey call YAMLGoToKey(<q-args>)
 "   let g:csv_autocmd_arrange = 1
 "
 " folds
+"   zM closes all open folds.
+"   zR decreases the foldlevel to zero -- all folds will be open.
+"
 "   zf#j creates a fold from the cursor down # lines.
 "   zf/string creates a fold from the cursor to string .
 "   zj moves the cursor to the next fold.
@@ -310,9 +313,7 @@ command! -nargs=1 -complete=command YAMLGoToKey call YAMLGoToKey(<q-args>)
 "   zo opens a fold at the cursor.
 "   zO opens all folds at the cursor.
 "   zm increases the foldlevel by one.
-"   zM closes all open folds.
 "   zr decreases the foldlevel by one.
-"   zR decreases the foldlevel to zero -- all folds will be open.
 "   zd deletes the fold at the cursor.
 "   zE deletes all folds.
 "   [z move to start of open fold.
