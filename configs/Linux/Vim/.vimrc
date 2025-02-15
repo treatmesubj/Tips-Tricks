@@ -147,6 +147,8 @@ if has('syntax') && has('eval')
   packadd! matchit
 endif
 
+" don't unfold when searching
+set fdo-=search
 " save folds to ~/.vim/view/
 augroup remember_folds
   autocmd!
