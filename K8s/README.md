@@ -65,3 +65,43 @@ kubectl get services  # note IP addresses
 cat /etc/resolv.conf  # cluster DNS service
 dig +search <service>
 ```
+
+Your laptop, the host, has a bridge network interface `cni0` into the private network that the containers are running in.
+Your host's IP is `10.42.0.1` on that private network.
+```
+$ ip addr show dev cni0
+188: cni0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1450 qdisc noqueue state UP group default qlen 1000
+    link/ether 06:d3:9b:0c:ee:be brd ff:ff:ff:ff:ff:ff
+    inet 10.42.0.1/24 brd 10.42.0.255 scope global cni0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::4d3:9bff:fe0c:eebe/64 scope link
+       valid_lft forever preferred_lft forever
+```
+Each of those containers have a routing table and their default gateway to any other IP is your host: `10.42.0.1`
+```
+$ sudo ip -all netns exec route
+...
+netns: cni-bd52b5cc-b724-fd82-01c7-bcf0f0d97f49
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         10.42.0.1       0.0.0.0         UG    0      0        0 eth0
+10.42.0.0       0.0.0.0         255.255.255.0   U     0      0        0 eth0
+10.42.0.0       10.42.0.1       255.255.0.0     UG    0      0        0 eth0
+```
+
+Services and pods have IPs
+```
+$ kubectl get services -A
+NAMESPACE     NAME                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+default       kubernetes            ClusterIP   10.43.0.1       <none>        443/TCP                      2d23h
+kube-system   kube-dns              ClusterIP   10.43.0.10      <none>        53/UDP,53/TCP,9153/TCP       2d23h
+kube-system   metrics-server        ClusterIP   10.43.3.140     <none>        443/TCP                      2d23h
+
+$ kubectl get pods -A -o=custom-columns=NAME:metadata.name,STATUS:status.phase,IP:status.podIP
+NAME                                      STATUS    IP
+dnsutils                                  Running   10.42.0.16
+coredns-ccb96694c-7vgbs                   Running   10.42.0.3
+local-path-provisioner-5cf85fd84d-g5q46   Running   10.42.0.5
+metrics-server-5985cbc9d7-9mkb6           Running   10.42.0.6
+```
+
