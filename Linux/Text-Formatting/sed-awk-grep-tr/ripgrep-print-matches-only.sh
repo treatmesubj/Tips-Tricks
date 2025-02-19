@@ -1,4 +1,4 @@
-rg -i -I -N "match"
+rg -iIN "match"
 # match
 #                   match
 # match
