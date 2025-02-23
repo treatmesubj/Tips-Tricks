@@ -13,7 +13,7 @@ tag
 # CSS Combinators
 ```
 + adjacent sibling, right after
-~ sibling 
+~ sibling
 > direct children, not grand children
 descendent
 ```
