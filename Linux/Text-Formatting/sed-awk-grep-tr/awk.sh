@@ -46,3 +46,6 @@ awk '{ print NR, $0 }' OFS='\t' tmp.json
 
 # contiguous DAG operator text around job
 job="COREHW"; awk -v 'BEGIN{RS="\n)\n"} /.*job="'"$job"'"/ {print "# ---\n# "FILENAME"\n# ---\n", $0, "\n)"}' $(rg -il "job=\"$job\"" || echo no-files) |& nvim -c "set ft=python"
+
+# trim surrounding whitespace
+awk '{$1=$1};1' < file.txt
