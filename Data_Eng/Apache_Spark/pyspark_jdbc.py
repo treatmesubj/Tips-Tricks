@@ -4,6 +4,9 @@ from pyspark.conf import SparkConf
 from pyspark.sql.types import DateType, TimestampType
 from pyspark.sql.functions import date_format
 import os
+from rich import pretty, print
+
+pretty.install()
 
 
 def simple_get_df(
@@ -112,27 +115,46 @@ if __name__ == "__main__":
     )
     df.createOrReplaceTempView("df")
 
-    sub_df = spark.sql(
-        """
-        SELECT *
-        FROM df
-        LIMIT 50;
-        """
-    )
-    print(sub_df.head())
+    print(df.head())
+    print(df.schema)
 
-    # fixing up types for conversion to Pandas DF
-    for field in sub_df.schema:
-        if field.dataType in (DateType(), TimestampType()):
-            sub_df = sub_df.withColumn(field.name, date_format(field.name, "MM-dd-yyy"))
-
-    # version 1
-    sub_df.toPandas().to_excel("sub_df.xlsx", engine="xlsxwriter")
-    # version2
-    # fix utf-8 char problems
-    pd_sub_df = sub_df.toPandas().applymap(
-        lambda x: (
-            x.encode("unicode_escape").decode("utf-8") if isinstance(x, str) else x
+    def query_again(query):
+        df = simple_get_df(
+            spark_session=spark,
+            jdbc_url="jdbc:db2://db2w-rjouofk.us-east.db2w.cloud.ibm.com:50001/BLUDB:sslConnection=true;",
+            user=os.getenv("db_user"),
+            password=os.getenv("db_pw"),
+            sql_statement=query,
         )
-    )
-    pd_sub_df.to_excel("sub_df.xlsx")
+        return df
+
+    # SparkSession.DataFrameReader.options(**options).csv("path.csv")
+    # spark.read.option("header", True).csv("path.csv")
+
+    # pyspark-df.DataFrameWriter.parquet("path.csv")
+    df.coalesce(1).write.mode("overwrite").option("header", "true").csv("df.csv")
+
+    # sub_df = spark.sql(
+    #     """
+    #     SELECT *
+    #     FROM df
+    #     LIMIT 50;
+    #     """
+    # )
+    # print(sub_df.head())
+
+    # # fixing up types for conversion to Pandas DF
+    # for field in sub_df.schema:
+    #     if field.dataType in (DateType(), TimestampType()):
+    #         sub_df = sub_df.withColumn(field.name, date_format(field.name, "MM-dd-yyy"))
+
+    # # version 1
+    # sub_df.toPandas().to_excel("sub_df.xlsx", engine="xlsxwriter")
+    # # version2
+    # # fix utf-8 char problems
+    # pd_sub_df = sub_df.toPandas().applymap(
+    #     lambda x: (
+    #         x.encode("unicode_escape").decode("utf-8") if isinstance(x, str) else x
+    #     )
+    # )
+    # pd_sub_df.to_excel("sub_df.xlsx")
