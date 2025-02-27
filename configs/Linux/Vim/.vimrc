@@ -254,6 +254,20 @@ map <leader>p "0p<CR>
 " switch & preview buffers
 map <leader>bb :Buffer<CR>
 
+
+function! VertCursLock()
+  nnoremap k kzz
+  nnoremap j jzz
+endfunction
+command! -bang VertCursLock
+  \ call VertCursLock()
+function! NoVertCursLock()
+  unmap k
+  unmap j
+endfunction
+command! -bang NoVertCursLock
+  \ call NoVertCursLock()
+
 " shift + arrow-key to resize pane
 map <S-Up> <c-w>-
 map <S-Down> <c-w>+
