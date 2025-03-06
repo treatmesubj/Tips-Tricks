@@ -56,6 +56,7 @@ SELECT * FROM which_secret('s3://staging-three', 's3');
 ```
 
 ### Querying Parquets
+#### [Investigating Parquet Metadata](https://duckdb.org/docs/stable/data/parquet/metadata.html)
 ```sql
 SELECT *
 FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partitioning=1, filename=1);
