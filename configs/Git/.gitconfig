@@ -7,6 +7,8 @@
     # https://github.com/dandavison/delta
     pager = delta
     autocrlf = input
+[branch]
+    sort = -committerdate
 [interactive]
     diffFilter = delta --color-only
 [delta]
@@ -31,8 +33,11 @@
 [merge]
     conflictstyle = diff3
 [diff]
-    colorMoved = default
+    colorMoved = plain
     tool = nvimdiff
+    algorithm = histogram
+    mnemonicPrefix = true
+    renames = true
 [difftool]
     prompt = false
 [alias]
