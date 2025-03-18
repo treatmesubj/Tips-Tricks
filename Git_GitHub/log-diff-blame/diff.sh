@@ -5,6 +5,7 @@ git diff HEAD~1 HEAD
 # https://stackoverflow.com/questions/462974/what-are-the-differences-between-double-dot-and-triple-dot-in-git-com
 # see commits in feature-branch after shared common ancestor w/ origin/master
 git diff origin/master...feature-branch --name-only --relative
+git diff $(git merge-base master feature-branch)...feature-branch --name-only --relative
 # see commit-content delta in feature-branch or origin/master after common ancestor
 # (what's in feature-branch that is not in master)
 git diff origin/master..feature-branch --name-only --relative
