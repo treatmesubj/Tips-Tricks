@@ -3,7 +3,11 @@
 # good
 while read -r line; do
     echo "<$line>"
-done < data.txt <(cat data2.txt)
+done < data.txt
+
+while read -r line; do
+    echo "<$line>"
+done < <(ls -1 ./direcotry)
 
 # bad
 for token in $(cat data.txt); do
