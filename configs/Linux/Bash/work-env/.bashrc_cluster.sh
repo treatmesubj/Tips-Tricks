@@ -89,8 +89,8 @@ kerrlogs() {
 
 # human readable k8s cronjob expressions
 kcrons() {
-    echo -e "local:\t$(date +%T)"
-    echo -e "UTC:\t$(date -u +%T)"
+    echo -e "local:\t$(date +%r)"
+    echo -e "UTC:\t$(date -u +%r)"
     pyscript="
 import sys;
 from cron_descriptor import get_description;
@@ -105,8 +105,8 @@ print(*[fmt(line) for line in sys.stdin], sep='\n');
 
 # human readable cron expressions
 hcron() {
-    echo -e "local:\t$(date +%T)"
-    echo -e "UTC:\t$(date -u +%T)"
+    echo -e "local:\t$(date +%r)"
+    echo -e "UTC:\t$(date -u +%r)"
     if [[ "$#" == 1 ]]; then
         python -c "import sys; from cron_descriptor import get_description; print(get_description('$1'))"
     else
