@@ -9,7 +9,7 @@
 mkdir out
 while read -r filey; do
     echo $filey
-    duckdb.exe :memory: "SELECT row_group_num_columns, column_id, path_in_schema, type, compression FROM parquet_metadata('s3://epm-enterprise-dimensions-black-2/dimension/EMPLOYEE_DIMENSION/transform.parquet/$filey');" -csv < /dev/null > out/$filey.csv
+    duckdb :memory: "SELECT row_group_num_columns, column_id, path_in_schema, type, compression FROM parquet_metadata('s3://epm-enterprise-dimensions-black-2/dimension/EMPLOYEE_DIMENSION/transform.parquet/$filey');" -csv < /dev/null > out/$filey.csv
     echo 'next'
 done < emp-dim-files.txt
 
