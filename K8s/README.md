@@ -43,13 +43,15 @@ kubectl debug --namespace demo <pod-name> --image alpine \
 kubectl --namespace demo delete pod <pod-copy-name>
 ```
 
+#### Investigating
 ```bash
-kubectl get events --sort-by=.metadata.creationTimestamp  # cluster events
-kubectl get <resource-type>
-kubectl describe <resource-type> <resource>
 kubectl get <resource-type> <resource> -o yaml
+kubectl describe <resource-type> <resource|pod>
+kubectl get event --sort-by=.metadata.creationTimestamp --field-selector involvedObject.name=<resource|pod>
 kubectl logs -f <resource>
+
 kubectl edit <resource-type>/<resource>
+
 # cronjobs
 kubectl get cronjobs
 kubectl create job --from=cronjob/<cronjob> <name-for-job>
