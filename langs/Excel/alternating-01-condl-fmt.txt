@@ -1,0 +1,8 @@
+Excel Formulas, Column C
+    C2: =0
+    C3: =IF(B3=B2,C2,ABS(C2-1))
+
+
+Conditional Formatting, Column B
+    Formula: =$C2=0
+    Applies to: =$B$2:$B$810
