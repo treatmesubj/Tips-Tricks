@@ -13,6 +13,11 @@ cat data.txt | parallel echo "\<{}\>"
 # <and you suck at programming>
 
 parallel echo "\<{}\>" ::: multiple input sources ::: with values
+# similar via brace expansion
+array=({multiple,input,sources}" "{with,values})
+for item in "${array[@]}"; do
+    echo "<$item>"
+done
 
 # group & print stdout by stdin when jobs are complete
 parallel -k traceroute ::: debian.org freenetproject.org
