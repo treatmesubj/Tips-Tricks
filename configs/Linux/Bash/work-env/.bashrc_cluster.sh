@@ -8,19 +8,19 @@ cluster_login() {
 
     cat << EOF
 
-cluster - epm-finance-staging
-    Staging namespace - CRD:        epm-kitt
-    Staging namespace - Datamart:   epm-finance-datamart
-    Staging namespace - FBI:        epm-raptors
-    Staging namespace - FBI:        epm-raptors-sandbox
+epm-finance-staging
+    Staging  CRD:       epm-kitt
+    Staging  Datamart:  epm-finance-datamart
+    Staging  FBI:       epm-raptors
+    Sandbox  FBI:       epm-raptors-sandbox
 
-cluster - epm-finance-production
-    Pre-Prod namespace - CRD:       epm-kitt-red
-    Pre-Prod namespace - Datamart:  epm-finance-datamart-preprod
-    Pre-Prod namespace - FBI:       epm-raptors-red
-    Prod namespace - CRD:           epm-kitt-black
-    Prod namespace - Datamart:      epm-finance-datamart
-    Prod namespace - FBI:           epm-raptors-black
+epm-finance-production
+    Pre-Prod  CRD:       epm-kitt-red
+    Prod      CRD:       epm-kitt-black
+    Pre-Prod  Datamart:  epm-finance-datamart-preprod
+    Prod      Datamart:  epm-finance-datamart
+    Pre-Prod  FBI:       epm-raptors-red
+    Prod      FBI:       epm-raptors-black
 
 EOF
 
