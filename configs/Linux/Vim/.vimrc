@@ -307,7 +307,7 @@ command! -nargs=1 -complete=command YAMLGoToKey call YAMLGoToKey(<q-args>)
 "  zt top cursor line
 "  zb top cursor line
 "
-" windows/pands
+" windows/panes
 "   <CTRL-W => equally resize all windows
 "   <CTRL-W _> max height
 "   <CTRL-W |> max width
