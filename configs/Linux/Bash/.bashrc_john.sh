@@ -124,7 +124,7 @@ export MANWIDTH=999
 alias nvimdiff='nvim -d'
 # git nvimdiff master...HEAD -- file.sh
 # git nvimdiff --staged master -- file.sh
-# git nvimdiff master -- file.sh
+# git nvimdiff master -- file.sh  # to actually edit the real file in working directory
 
 nvimdiffsesh() {
     if [[ "$#" == 1 ]]; then
