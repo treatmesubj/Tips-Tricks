@@ -64,30 +64,39 @@ require('nvim-treesitter.configs').setup {
 vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
   group = vim.api.nvim_create_augroup("bufent_winbar", { clear = true }),
   callback = function(opts)
-    -- https://github.com/cuducos/yaml.nvim
-    if vim.bo[opts.buf].filetype == "yaml" then
-      vim.api.nvim_create_autocmd({ "CursorMoved" }, {
-        group = vim.api.nvim_create_augroup("curs_winbar", { clear = true }),
-        callback = function()
-          vim.opt_local.winbar = "." .. (require("yaml_nvim").get_yaml_key() or "")
-        end,
-      })
-    -- https://github.com/phelipetls/jsonpath.nvim
-    elseif vim.bo[opts.buf].filetype == "json" then
-      vim.api.nvim_create_autocmd({ "CursorMoved" }, {
-        group = vim.api.nvim_create_augroup("curs_winbar", { clear = true }),
-        callback = function()
-          vim.opt_local.winbar = "." .. (require("jsonpath").get():sub(2) or "")
-        end,
-      })
+    if vim.fn.line('$') < 10000 then
+      -- https://github.com/cuducos/yaml.nvim
+      if vim.bo[opts.buf].filetype == "yaml" then
+        vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+          group = vim.api.nvim_create_augroup("curs_winbar", { clear = true }),
+          callback = function()
+            vim.opt_local.winbar = "." .. (require("yaml_nvim").get_yaml_key() or "")
+          end,
+        })
+      -- https://github.com/phelipetls/jsonpath.nvim
+      elseif vim.bo[opts.buf].filetype == "json" then
+        vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+          group = vim.api.nvim_create_augroup("curs_winbar", { clear = true }),
+          callback = function()
+            vim.opt_local.winbar = "." .. (require("jsonpath").get():sub(2) or "")
+          end,
+        })
+      end
     else
       vim.opt_local.winbar = ""
       vim.api.nvim_create_augroup("curs_winbar", { clear = true })
     end
   end,
 })
-
 vim.api.nvim_command('hi winbar ctermbg=89')
+-- :Nowinbar
+local function nowinbar()
+  vim.api.nvim_command('autocmd! curs_winbar')
+  vim.opt_local.winbar = ""
+end
+vim.api.nvim_create_user_command("Nowinbar", nowinbar, {
+})
+
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
