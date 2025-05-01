@@ -25,6 +25,9 @@ git log -p -S string # https://git-scm.com/docs/git-log#Documentation/git-log.tx
 # where regex in commit message
 git log -p --grep=regex
 
+# pickaxe; where string in commit contents
+git log -i -Sstring --oneline -- path/file.yaml
+
 # log across all branches by author
 git log --all --stat --author="John.Hupperts@ibm.com"
 # branches with last commit by author
