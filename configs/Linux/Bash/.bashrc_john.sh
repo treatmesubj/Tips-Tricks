@@ -141,16 +141,16 @@ nvimdiffsesh() {
     fi
 }
 
-nvim_fuzzfile() {
+fuzzfile() {
     f=$(
         fzf --preview 'batcat --color=always --theme="Monokai Extended" \
         --style=numbers --line-range=:500 -n {}' \
         --preview-window up --print-query | tail -1
     )
     echo $f
-    nvim $f
 }
-nvim_fuzzline() {
+# fuzzfile | xargs nvim
+fuzzline() {
     i=$(
         rg . --no-heading --hidden --line-number \
         | fzf --preview 'batcat --color=always --theme="Monokai Extended" \
@@ -159,11 +159,9 @@ nvim_fuzzline() {
     )
     f=$(echo $i | cut -d ":" -f 1)
     l=$(echo $i | cut -d ":" -f 2)
-    echo "$f:$l"
-    nvim $f -c "norm ${l}gg"
+    echo "$f +$l"
 }
-alias nvim-fuzzfile=nvim_fuzzfile
-alias nvim-fuzzline=nvim_fuzzline
+# fuzzline | xargs nvim
 
 # keys
 source ~/.bashrc_keys.sh
