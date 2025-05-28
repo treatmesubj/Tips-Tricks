@@ -27,7 +27,7 @@ prompt() {
         export PS1+="\[\e[44;97m\]Θ\[\e[m\] \[\e[3;93m\]$kctxt\[\e[m\]:\[\e[3;94m\]$kns\[\e[m\]\r\n"
     fi
     # $
-    export PS1+="\[\e[1;92m\] \$ \[\e[m\]"
+    export PS1+="\[\e[1;92m\]\$ \[\e[m\]"
 }
 PROMPT_COMMAND=prompt
 
