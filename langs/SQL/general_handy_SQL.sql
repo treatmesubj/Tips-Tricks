@@ -103,7 +103,7 @@ WITH UR;
 
 /* get row count of table */
 SELECT COUNT(*) FROM SCHEMA.TABLE
-/* Excel Formula for writing SQL to get row counts for list of tables in Excel 
+/* Excel Formula for writing SQL to get row counts for list of tables in Excel
 ="SELECT '"&B3&"' TABLE_NAME, COUNT(*) RECORDS FROM WSDIW."&B3&" UNION"
 */
 
@@ -113,11 +113,11 @@ SELECT TABSCHEMA, TABNAME, TRIM(TABSCHEMA) CONCAT '.' CONCAT TRIM(TABNAME) AS FU
     CARD AS ROWS,
     STATS_TIME
 FROM SYSCAT.TABLES
-ORDER BY CARD DESC 
+ORDER BY CARD DESC
 
 /* to get table organization (row vs column) from DB2 */
-SELECT TABSCHEMA, TABNAME, TYPE, TABLEORG 
-FROM SYSCAT.TABLES t 
+SELECT TABSCHEMA, TABNAME, TYPE, TABLEORG
+FROM SYSCAT.TABLES t
 WHERE TABSCHEMA IN ('WSDIW_A', 'WSDIW_B', 'ECOSYSTEMS_IZ')
 
 /* Get counts of column values for column */
@@ -126,8 +126,8 @@ FROM SCHEMA_NAME.TABLE_NAME
 GROUP BY COLUMN_NAME;
 
 /* Cases */
-SELECT 
-    COLUMN_A, 
+SELECT
+    COLUMN_A,
     COLUMN_B,
     CASE
        WHEN ...
@@ -140,11 +140,11 @@ FROM SCHEMA.TABLE
 
 /* Learn Alias Table Targets */
 SELECT  TYPE,
-        TABSCHEMA, 
-        TABNAME, 
-        BASE_TABSCHEMA, 
-        BASE_TABNAME 
-FROM SYSCAT.TABLES 
+        TABSCHEMA,
+        TABNAME,
+        BASE_TABSCHEMA,
+        BASE_TABNAME
+FROM SYSCAT.TABLES
 WHERE TABNAME LIKE '%WW_LOAD_SMS%'
 WITH UR
 
@@ -236,10 +236,10 @@ ORDER BY ATTRIBUTE;
 
 /* HAVING is WHERE for GROUP BY */
 select distinct director
-from moviesInfo 
+from moviesInfo
 where year > 2000
 group by director
-having sum(oscars) > 2  
+having sum(oscars) > 2
 order by director;
 
 /* GROUP_CONCAT */
@@ -289,7 +289,7 @@ SELECT ROUND(
                                )
                          )
                   )
-             ) 
+             )
 AS combinations
 FROM discs;
 
@@ -311,7 +311,7 @@ WITH SUMMED AS (
         SUM(IF(match_host= 1, second_team_score, 0)) team2_away_goals
     FROM scores
 )
-SELECT 
+SELECT
     CASE
         WHEN team1_wins > team2_wins THEN 1
         WHEN team2_wins > team1_wins THEN 2
@@ -489,4 +489,3 @@ SELECT
     SALARY VALUE
 FROM WORKERS_INFO
 WHERE SALARY IS NOT NULL
-
