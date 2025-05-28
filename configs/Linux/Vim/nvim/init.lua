@@ -153,3 +153,7 @@ require('log-highlight').setup {
 
 -- ~/.config/nvim/lua/Duckdb.lua
 require('Duckdb')
+
+
+-- ~/.config/nvim/lua/ANSI.lua
+require('ANSI')

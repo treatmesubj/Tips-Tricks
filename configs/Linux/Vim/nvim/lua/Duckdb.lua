@@ -3,25 +3,25 @@
 -- https://gist.github.com/romainl/eae0a260ab9c135390c30cd370c20cd7
 
 local function results_pane(output)
-    vim.opt_local.winbar = nil
-    local new_buf = vim.api.nvim_create_buf(true, false)
-    if output.code == 0 then
-      vim.api.nvim_set_option_value("ft", "csv", { buf = new_buf})
-      vim.api.nvim_buf_set_lines(new_buf, 0, -1, false, vim.fn.split(output.stdout, "\n"))
-      local win = vim.api.nvim_open_win(new_buf, true, {
-        split='above',
-        height=20,
-      })
-      vim.cmd "CSVInit"  -- chrisbra/csv.vim
-    else
-      vim.api.nvim_buf_set_lines(new_buf, 0, -1, false,
-        vim.fn.split(tostring(output.code) .. ": " .. output.stderr, "\n")
-      )
-      local win = vim.api.nvim_open_win(new_buf, true, {
-        split='above',
-        height=20,
-      })
-    end
+  vim.opt_local.winbar = nil
+  local new_buf = vim.api.nvim_create_buf(true, false)
+  if output.code == 0 then
+    vim.api.nvim_set_option_value("ft", "csv", { buf = new_buf})
+    vim.api.nvim_buf_set_lines(new_buf, 0, -1, false, vim.fn.split(output.stdout, "\n"))
+    local win = vim.api.nvim_open_win(new_buf, true, {
+      split='above',
+      height=20,
+    })
+    vim.cmd "CSVInit"  -- chrisbra/csv.vim
+  else
+    vim.api.nvim_buf_set_lines(new_buf, 0, -1, false,
+      vim.fn.split(tostring(output.code) .. ": " .. output.stderr, "\n")
+    )
+    local win = vim.api.nvim_open_win(new_buf, true, {
+      split='above',
+      height=20,
+    })
+  end
 end
 
 local function duckdb(args)
