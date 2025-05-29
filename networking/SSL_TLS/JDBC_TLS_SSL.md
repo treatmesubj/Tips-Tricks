@@ -15,6 +15,8 @@ Commonly, an analyst will use a SQL client like [DBeaver](https://dbeaver.io/dow
         ```sql
         SELECT service_level, fixpack_num
         FROM TABLE (sysproc.env_get_inst_info()) as INSTANCEINFO
+        -- SERVICE_LEVEL	FIXPACK_NUM
+        -- DB2 v11.5.9.0	0
         ```
     - You'll probably want to download the `Data Server Driver for JDBC and SQLJ (JCC Driver)` package, which has a `.tar.gz` file extension. The driver resides in a `(.zip) compressed archive` in a `(.tar.gz) compressed archive`. Extract the driver; on most machines, you should be able to extract the driver from the from the archive with the below commands
         1. `cd <directory of downloaded file>`
