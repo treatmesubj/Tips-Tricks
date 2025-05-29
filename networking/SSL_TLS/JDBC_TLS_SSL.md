@@ -6,6 +6,8 @@ How these certificates are utilized in connection configurations amongst differe
 Some clients like [db2cli](https://www.ibm.com/docs/en/db2/11.5?topic=commands-db2cli-db2-interactive-cli) or [Python-ibmdb library](https://github.com/ibmdb/python-ibmdb) or [node-ibm-db library](https://github.com/ibmdb/node-ibm_db) utilize various formats of certificates.\
 Commonly, an analyst will use a SQL client like [DBeaver](https://dbeaver.io/download/) or IBM's Query Management Facility (QMF) For Workstation on their computer. Both DBeaver & QMF applications utilize Java and the Java-specific Java TrustStore file containing the certificates of trustworthy servers.
 1. If you don't already have the latest Type 4 DB2 JDBC driver, download it and utilize it in your tool: [JDBC 4.0 Driver for DB2/BigSQL](http://www-01.ibm.com/support/docview.wss?uid=swg21363866)
+    - [https://www.ibm.com/support/pages/db2-jdbc-driver-versions-and-downloads](https://www.ibm.com/support/pages/db2-jdbc-driver-versions-and-downloads)
+        - check your driver version: `$ java -cp ./db2jcc4.jar com.ibm.db2.jcc.DB2Jcc -version  # IBM Data Server Driver for JDBC and SQLJ 4.25.13`
     - You'll probably want to download the `Data Server Driver for JDBC and SQLJ (JCC Driver)` package, which has a `.tar.gz` file extension. The driver resides in a `(.zip) compressed archive` in a `(.tar.gz) compressed archive`. Extract the driver; on most machines, you should be able to extract the driver from the from the archive with the below commands
         1. `cd <directory of downloaded file>`
         2. `tar -xvf v11.5.8_jdbc_sqlj.tar.gz`
