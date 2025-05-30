@@ -1,12 +1,25 @@
 #!/usr/bin/env bash
 cluster_login() {
-    nologin=$(ibmcloud ks cluster ls 2>&1 >/dev/null | grep FAILED)
-    if [[ $nologin ]]; then
-        ibmcloud login -r 'us-south' --apikey $ibmc_api_gcdo
-    fi
-    ibmcloud ks cluster ls
+    case "$1" in
+        -q|--quick)
+            :
+            ;;
+        *)
+            nologin=$(ibmcloud ks cluster ls 2>&1 >/dev/null | grep FAILED)
+            if [[ $nologin ]]; then
+                ibmcloud login -r 'us-south' --apikey $ibmc_api_gcdo
+            fi
+            ibmcloud target --choose-account
+            echo -e "\n### Account's Clusters ###\c"
+            ibmcloud ks cluster ls -q
+            echo "\n##########################"
+            ;;
+    esac
 
     cat << EOF
+
+EDP CLOUD Account's Clusters' Namespaces
+----------------------------------------
 
 epm-finance-staging
     Staging  CRD:       epm-kitt

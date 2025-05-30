@@ -48,7 +48,7 @@ randint() {
     if [ $# -eq 2 ]; then
         python -c "import random; print(random.randint($1, $2))"
     else
-        echo "provide 2 integers as arguments"
+        echo "Usage: randint <lower-bound> <upper-bound>"
     fi
 }
 
