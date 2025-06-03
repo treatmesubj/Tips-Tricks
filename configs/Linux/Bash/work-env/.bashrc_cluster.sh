@@ -7,12 +7,13 @@ cluster_login() {
         *)
             nologin=$(ibmcloud ks cluster ls 2>&1 >/dev/null | grep FAILED)
             if [[ $nologin ]]; then
-                ibmcloud login -r 'us-south' --apikey $ibmc_api_gcdo
+                ibmcloud login --sso
+            else
+                ibmcloud target --choose-account
             fi
-            ibmcloud target --choose-account
-            echo -e "\n### Account's Clusters ###\c"
+            echo -e "\n### Account's Clusters ###"
             ibmcloud ks cluster ls -q
-            echo "\n##########################"
+            echo -e "\n##########################"
             ;;
     esac
 
