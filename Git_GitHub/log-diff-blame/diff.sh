@@ -3,6 +3,7 @@ git show
 git diff HEAD~1 HEAD
 
 # https://stackoverflow.com/questions/462974/what-are-the-differences-between-double-dot-and-triple-dot-in-git-com
+# two dot, 2 dot, three dot, 3 dot
 # see commits in feature-branch after shared common ancestor w/ origin/master
 git diff origin/master...feature-branch --name-only --relative
 git diff $(git merge-base master feature-branch)...feature-branch --name-only --relative
