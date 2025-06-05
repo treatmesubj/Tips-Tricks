@@ -33,6 +33,9 @@ git log --all --stat --author="John.Hupperts@ibm.com"
 # branches with last commit by author
 git log-lil -10 --all --simplify-by-decoration --date-order --author="John.Hupperts@ibm.com"
 
+# commits in feat-branch since branching off master
+git log-lil master..feat-branch
+
 ####
 # Reference logs, record when the tips of branches and other references were updated in the local repo
 git reflog
