@@ -150,11 +150,11 @@ endif
 " don't unfold when searching
 set fdo-=search
 " save folds to ~/.vim/view/
-augroup remember_folds
-  autocmd!
-  au BufWinLeave ?* mkview 1
-  au BufWinEnter ?* silent! loadview 1
-augroup END
+" augroup remember_folds
+"   autocmd!
+"   au BufWinLeave ?* mkview 1
+"   au BufWinEnter ?* silent! loadview 1
+" augroup END
 
 set hlsearch " highlight search
 set incsearch " incremental highlight search
