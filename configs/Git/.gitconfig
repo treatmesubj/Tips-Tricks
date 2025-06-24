@@ -38,8 +38,6 @@
     algorithm = histogram
     mnemonicPrefix = true
     renames = true
-[difftool]
-    prompt = false
 [alias]
     blame-hard = blame --no-merges -w -C -C -C
     diff-sbs = -c delta.side-by-side=true diff
@@ -48,7 +46,12 @@
     show-merge-conflicts = !git diff --name-only --diff-filter=U --relative && echo \"---\" && git diff --check
     log-lil = log --pretty=\"format:%C(yellow)%h %C(Cyan)%>(10)%ad (%cr) %Cgreen%aN%Cred%d %Creset%s\" --date=short
     log-big = log -p -M --stat
-    nvimdiff = difftool
+    nvimdiff = "!git difftool -y \"$1\" -- $(git diff \"$1\" --name-only --relative | fzf --preview 'git diff '\"$1\"' -- {} | delta' --preview-window up)"
+    # Usage:
+      # diff refs:
+        # $ git nvimdiff master...HEAD
+      # edit working tree files changed in (master...HEAD + tracked):
+        # $ git nvimdiff $(git merge-base master HEAD)
     branch-short = "!git branch | sed -n '/\\* /s///p' #"
     # https://stackoverflow.com/a/39616600
     quote-string = "!read -r l; printf \\\"!; printf %s \"$l\" | sed 's/\\([\\\"]\\)/\\\\\\1/g'; printf \" #\\\"\\n\" #"
