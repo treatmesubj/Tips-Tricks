@@ -46,7 +46,7 @@
     show-merge-conflicts = !git diff --name-only --diff-filter=U --relative && echo \"---\" && git diff --check
     log-lil = log --pretty=\"format:%C(yellow)%h %C(Cyan)%>(10)%ad (%cr) %Cgreen%aN%Cred%d %Creset%s\" --date=short
     log-big = log -p -M --stat
-    nvimdiff = "!git difftool -y \"$1\" -- $(git diff \"$1\" --name-only --relative | fzf --preview 'git diff '\"$1\"' -- {} | delta' --preview-window up)"
+    nvimdiff = "!while :; do f=$(git diff \"$1\" --name-only --relative | fzf --preview 'git diff '\"$1\"' -- {} | delta' --preview-window up) || exit; git difftool -y \"$1\" -- $f; done;"
     # Usage:
       # diff refs:
         # $ git nvimdiff master...HEAD
