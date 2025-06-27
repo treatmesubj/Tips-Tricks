@@ -5,7 +5,7 @@ Any databases that aren't using encryption are violating an ITSS standard; see [
 How these certificates are utilized in connection configurations amongst different software clients varies.\
 Some clients like [db2cli](https://www.ibm.com/docs/en/db2/11.5?topic=commands-db2cli-db2-interactive-cli) or [Python-ibmdb library](https://github.com/ibmdb/python-ibmdb) or [node-ibm-db library](https://github.com/ibmdb/node-ibm_db) utilize various formats of certificates.\
 Commonly, an analyst will use a SQL client like [DBeaver](https://dbeaver.io/download/) or IBM's Query Management Facility (QMF) For Workstation on their computer. Both DBeaver & QMF applications utilize Java and the Java-specific Java TrustStore file containing the certificates of trustworthy servers.
-1. If you don't already have the latest Type 4 DB2 JDBC driver, download it and utilize it in your tool: [JDBC 4.0 Driver for DB2/BigSQL](https://www.ibm.com/support/pages/db2-jdbc-driver-versions-and-downloads)
+1. If you don't already have the latest Type 4 DB2 JDBC driver, download it and utilize it in your tool: [Db2 versions & corresponding drivers](https://www.ibm.com/support/pages/db2-jdbc-driver-versions-and-downloads)
     - check your driver version:
         ```bash
         java -cp ./db2jcc4.jar com.ibm.db2.jcc.DB2Jcc -version
