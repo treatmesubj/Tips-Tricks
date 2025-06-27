@@ -57,6 +57,14 @@ kubectl get cronjobs
 kubectl create job --from=cronjob/<cronjob> <name-for-job>
 kubectl get jobs
 kubectl get pods
+
+# copy file from pod to local machine
+kubectl exec -it <pod> -- bash
+# find / -type f -name 'myfile'
+kubectl cp <pod>:/path/to/myfile myfile
+
+# copy local file to pod
+kubectl cp myfile <pod>:/path/to/myfile
 ```
 
 ## Networking
