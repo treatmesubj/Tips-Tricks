@@ -281,6 +281,9 @@ function! NetRWPaneResizeShortcuts()
 endfunction
 autocmd filetype netrw call NetRWPaneResizeShortcuts()
 
+" JSON
+" lua print(require("jsonpath").get())
+
 function YAMLGoToKey(key)
   let yqcmd = "yq '" . a:key . " | line' " . expand('%:p')
   let line = trim(system(yqcmd))

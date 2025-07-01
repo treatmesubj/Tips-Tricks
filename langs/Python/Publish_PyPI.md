@@ -51,7 +51,7 @@
 5. Create GitHub release w/ title and tag as `v0.0.2`
 6. `python -m pip install build twine`
 7. `python -m build`
-8. `twine check dist/*` 
+8. `twine check dist/*`
 9. `twine upload dist/*`
     - see `https://pypi.org/help/#apitoken`
     - username: `__token__`
