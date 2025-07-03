@@ -168,9 +168,10 @@ if !has('nvim')
 endif
 set formatoptions-=t " don't literally insert newlines
 set nowrap " don't wrap w/ virtual lines either
-" temporarily wrap current line
-nnoremap <silent> <Space><Space> :SoftWrapShow<CR>
 set noea  " don't auto-resize panes
+set diffopt+=algorithm:histogram  " diff algo
+set diffopt-=hiddenoff  " keep diff'ing after hide buffer
+set diffopt-=closeoff  " keep diff'ing after close buffer
 set directory=/tmp
 set backupdir=/tmp
 set undofile  " keep an undo file (undo changes after closing)
