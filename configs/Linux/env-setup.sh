@@ -9,13 +9,13 @@ sudo apt install curl vim sqlformat -y \
         "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/nvim/init.lua" \
     && curl -fLo ~/.config/nvim/lua/Duckdb.lua --create-dirs \
         "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/nvim/lua/Duckdb.lua"
-curl -L "https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz" \
-    -o ~/nvim-linux64.tar.gz \
-    && tar xzvf ~/nvim-linux64.tar.gz --directory ~ \
-    && sudo rm -rf /usr/bin/nvim && sudo cp -r ~/nvim-linux64/bin/* /usr/bin \
-    && sudo rm -rf /usr/lib/nvim && sudo cp -r ~/nvim-linux64/lib/* /usr/lib \
-    && sudo rm -rf /usr/share/nvim && sudo cp -r ~/nvim-linux64/share/* /usr/share \
-    && rm -rf ~/nvim-linux64*
+curl -L "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz" \
+    -o ~/nvim-linux-x86_64.tar.gz \
+    && tar xzvf ~/nvim-linux-x86_64.tar.gz --directory ~ \
+    && sudo rm -rf /usr/bin/nvim && sudo cp -r ~/nvim-linux-x86_64/bin/* /usr/bin \
+    && sudo rm -rf /usr/lib/nvim && sudo cp -r ~/nvim-linux-x86_64/lib/* /usr/lib \
+    && sudo rm -rf /usr/share/nvim && sudo cp -r ~/nvim-linux-x86_64/share/* /usr/share \
+    && rm -rf ~/nvim-linux-x86_64*
 
 # python venvs
 sudo apt install python3-venv -y \
