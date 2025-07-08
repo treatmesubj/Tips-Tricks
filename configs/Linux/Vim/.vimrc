@@ -248,6 +248,7 @@ let g:netrw_winsize = 30
 let g:netrw_banner = 0
 
 " space, y to copy last yank to clipboard
+let g:clipboard = "tmux"
 let mapleader = " "
 map <leader>y :let @+=@0<CR>
 " space, p to paste last yanked
