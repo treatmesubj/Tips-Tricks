@@ -102,9 +102,9 @@ match ExtraWhitespace /\s\+$/
 hi clear CursorLine
 hi CursorLine cterm=underline gui=underline
 augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
 augroup END
 
 " off-white normal text
@@ -138,7 +138,7 @@ if !has('nvim')
 endif
 
 augroup vimrcEx
-  au!
+  autocmd!
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
 augroup END
@@ -152,8 +152,8 @@ set fdo-=search
 " save folds to ~/.vim/view/
 " augroup remember_folds
 "   autocmd!
-"   au BufWinLeave ?* mkview 1
-"   au BufWinEnter ?* silent! loadview 1
+"   autocmd BufWinLeave ?* mkview 1
+"   autocmd BufWinEnter ?* silent! loadview 1
 " augroup END
 
 set hlsearch " highlight search
@@ -198,8 +198,10 @@ autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab  " lua
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab  " yaml
 autocmd FileType sql setlocal ts=2 sts=2 sw=2 expandtab  " sql
 autocmd FileType yaml set nowrap  " yaml
-au BufRead,BufNewFile *.ddl set ft=sql  " ddl is sql
-au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml " foldmethod=indent
+autocmd FileType sh set makeprg=shellcheck\ %
+autocmd FileType sh au BufWritePost * :make
+autocmd BufRead,BufNewFile *.ddl set ft=sql  " ddl is sql
+autocmd! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml " foldmethod=indent
 
 " chrisbra/csv.vim CSVTable
 let g:csv_table_leftalign=1
@@ -214,10 +216,10 @@ let g:vim_markdown_strikethrough = 1
 " let g:vim_markdown_new_list_item_indent = 0
 " preservim/vim-markdown
 augroup markdown_conceal
-  au!
-  au BufRead,BufNewFile *.md set conceallevel=2  " md
+  autocmd!
+  autocmd BufRead,BufNewFile *.md set conceallevel=2  " md
   " don't conceal brackets
-  au BufRead,BufNewFile *.md execute 'syn region mkdLink matchgroup=mkdDelimiter  start="\\\@<!!\?\[" end="\n\{-,1}[^]]\{-}\zs\]\ze[[(]" contains=@mkdNonListItem,@Spell nextgroup=mkdURL,mkdID skipwhite oneline'
+  autocmd BufRead,BufNewFile *.md execute 'syn region mkdLink matchgroup=mkdDelimiter  start="\\\@<!!\?\[" end="\n\{-,1}[^]]\{-}\zs\]\ze[[(]" contains=@mkdNonListItem,@Spell nextgroup=mkdURL,mkdID skipwhite oneline'
 augroup END
 
 " pip install emoji-fzf
