@@ -3,7 +3,7 @@
 prompt() {
     # user@host:~
     long_path=$(dirs)
-    short_path1=$(echo $long_path | sed "s/\/mnt\/c\/Users\/JohnHupperts/\$winhome/")
+    short_path1=$(echo "$long_path" | sed "s/\/mnt\/c\/Users\/JohnHupperts/\$winhome/")
     export PS1="\[\e[1;31m\]\u\[\e[m\]@\[\e[1;93m\]\h\[\e[m\]:\[\e[1;34m\]\$short_path1\[\e[m\]\r\n";
     # export PS1="\[\e[1;31m\]\u\[\e[m\]@\[\e[1;33m\]\h\[\e[m\]:\[\e[1;34m\]\w\[\e[m\]\r\n";
 
@@ -33,11 +33,11 @@ PROMPT_COMMAND=prompt
 
 sizeup() {
     if [ $# -eq 1 ]; then
-        path=$(readlink -m $1)
-        if [ -d $path ]; then
-            du -sh $path/* $path/.[^.]* 2>/dev/null | sort -hr
+        path=$(readlink -m "$1")
+        if [ -d "$path" ]; then
+            du -sh "$path"/* "$path"/.[^.]* 2>/dev/null | sort -hr
         else
-            du -sh $path | sort -hr
+            du -sh "$path" | sort -hr
         fi
     else
         du -sh * .[^.]* 2>/dev/null | sort -hr
@@ -64,29 +64,29 @@ csv_filter() {
     local data=${1:-'-'}
     if [ "$data" = "-" ]; then
         local data=$(mktemp)
-        cp /dev/stdin $data
+        cp /dev/stdin "$data"
     fi
-    headers=$(head -1 < $data | csvquote)
+    headers=$(head -1 < "$data" | csvquote)
     colname=$(
-        echo $headers \
+        echo "$headers" \
         | awk -v RS=',' '{print NR, $0}' \
         | grep . \
         | fzf --preview-window='down:80%' --preview "batcat --language 'csv' \
         --color=always --line-range=:50 $data"
     )
-    colnum=$(echo $colname | cut -d ' ' -f 1)
+    colnum=$(echo "$colname" | cut -d ' ' -f 1)
     reggie=$(
-        csvquote < $data \
-        | awk -v colnum=$colnum -F, '!seen[$colnum]++ { print $colnum }' \
+        csvquote < "$data" \
+        | awk -v colnum="$colnum" -F, '!seen[$colnum]++ { print $colnum }' \
         | fzf --print-query --disabled --preview-window='down:80%' --preview \
         "csvquote < $data \
         | awk -v colnum=$colnum -v reggie={q} -F, \
         '{ if (NR==1) { print \$0 } else if (\$colnum $cludesym reggie) { print \$0 } }' \
         | batcat --language 'csv' --color=always" | head -1
     )
-    csvquote < $data \
-    | awk -v colnum=$colnum -v reggie=$reggie -F, \
-    '{ if (NR==1) { print $0 } else if ($colnum '$cludesym' reggie) { print $0 } }'
+    csvquote < "$data" \
+    | awk -v colnum="$colnum" -v reggie="$reggie" -F, \
+    '{ if (NR==1) { print $0 } else if ($colnum '"$cludesym"' reggie) { print $0 } }'
 }
 alias csv-filter=csv_filter
 
@@ -129,10 +129,10 @@ alias nvimdiff='nvim -d'
 nvimdiffsesh() {
     if [[ "$#" == 1 ]]; then
         local relfp=${1}
-        fname=$(basename ${relfp})
+        fname=$(basename "${relfp}")
         tmpfname=/tmp/tmp-$fname
-        cp $relfp $tmpfname
-        nvimdiff $tmpfname $relfp \
+        cp "$relfp" "$tmpfname"
+        nvimdiff "$tmpfname" "$relfp" \
             "+setlocal nomodifiable" "+foldopen!" \
             "+set diffopt-=hiddenoff" "+set diffopt-=closeoff" \
             "+0hide"  # RO ref buffer
@@ -147,7 +147,7 @@ fuzzfile() {
         --style=numbers --line-range=:500 -n {}' \
         --preview-window up --print-query | tail -1
     )
-    echo $f
+    echo "$f"
 }
 # fuzzfile | xargs nvim
 fuzzline() {
@@ -157,8 +157,8 @@ fuzzline() {
         --style=numbers --line-range=:500 $(echo {} | cut -d ":" -f 1)' \
         --preview-window up
     )
-    f=$(echo $i | cut -d ":" -f 1)
-    l=$(echo $i | cut -d ":" -f 2)
+    f=$(echo "$i" | cut -d ":" -f 1)
+    l=$(echo "$i" | cut -d ":" -f 2)
     echo "$f +$l"
 }
 # fuzzline | xargs nvim
