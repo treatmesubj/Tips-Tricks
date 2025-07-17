@@ -198,10 +198,15 @@ autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab  " lua
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab  " yaml
 autocmd FileType sql setlocal ts=2 sts=2 sw=2 expandtab  " sql
 autocmd FileType yaml set nowrap  " yaml
-autocmd FileType sh set makeprg=shellcheck\ %
-autocmd FileType sh au BufWritePost * :make
+autocmd FileType sh set makeprg=shellcheck\ -f\ gcc\ %  " shell lint
+autocmd FileType sh au BufWritePost * if &ft=='sh'| :silent make | redraw! | endif
+augroup quickfix
+    autocmd!
+    autocmd QuickFixCmdPost [^l]* cwindow
+    autocmd QuickFixCmdPost    l* lwindow
+augroup END
 autocmd BufRead,BufNewFile *.ddl set ft=sql  " ddl is sql
-autocmd! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml " foldmethod=indent
+autocmd! BufNewFile,BufReadPost *.{yaml,yml} set ft=yaml " foldmethod=indent
 
 " chrisbra/csv.vim CSVTable
 let g:csv_table_leftalign=1
