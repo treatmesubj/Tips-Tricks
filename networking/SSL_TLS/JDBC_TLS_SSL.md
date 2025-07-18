@@ -71,6 +71,9 @@ db2jcc_license_cisuz.jar        -- DB2 z/OS license
 db2jcc_license_cu.jar           -- DB2 z/OS license
 ```
 
+To check version of your JAR, you can unpack it and check its manifest
+- `tar -xf db2jcc4.jar && cat META-INF/MANIFEST.MF`
+
 ---
 
 ### [JDBC & SQLJ Driver Properties](https://www.ibm.com/docs/en/db2/12.1?topic=information-data-server-driver-jdbc-sqlj-configuration-properties)
