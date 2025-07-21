@@ -90,6 +90,10 @@ csv_filter() {
 }
 alias csv-filter=csv_filter
 
+jqstruct() {
+    jq -r '[path(..)|map(if type=="number" then "[]" else tostring end)|join(".")|split(".[]")|join("[]")]|unique|map("."+.)|.[]'
+}
+
 # Windows
 # access Windows executables when System D enbaled
 # https://github.com/microsoft/WSL/issues/8843
