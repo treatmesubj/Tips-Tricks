@@ -40,11 +40,11 @@ EOF
 
     echo -n -e "\033[92m\$\033[m "
     read -r -p "ibmcloud ks cluster config --cluster " cluster
-    ibmcloud ks cluster config --cluster $cluster
+    ibmcloud ks cluster config --cluster "$cluster"
     echo ""
     echo -n -e "\033[92m\$\033[m "
     read -r -p "kubectl config set-context --current --namespace=" namespace
-    kubectl config set-context --current --namespace=$namespace
+    kubectl config set-context --current --namespace="$namespace"
 
     kctxt="$(kubectl config current-context | cut -f1 -d"/" 2>/dev/null)"
     kns="$(kubectl config view --minify -o jsonpath='{..namespace}')"
@@ -62,6 +62,11 @@ kerr="--field-selector=status.phase!=Succeeded,status.phase!=Running"
 kname="-o=custom-columns=NAME:.metadata.name"
 kip="-o=custom-columns=NAME:metadata.name,STATUS:status.phase,IP:status.podIP"
 
+# autocompletion
+# sudo apt install bash-completion
+source <(kubectl completion bash)
+complete -o default -F __start_kubectl k
+
 # follow logs of running pod
 kfl() {
     pod_grep=$1
@@ -77,8 +82,8 @@ kfl() {
             pod=$pods
         fi
         {
-            [[ $pod ]] && echo $pod \
-            && kubectl logs -f $pod | tee /tmp/$pod.log \
+            [[ $pod ]] && echo "$pod" \
+            && kubectl logs -f "$pod" | tee /tmp/"$pod".log \
             && break;
         } || {
             echo -n . && sleep 3;
@@ -103,7 +108,7 @@ newlog() {
 # creates dir of logs for failed pods
 kerrlogs() {
     ts=$(date +%s%3N)
-    mkdir $ts
+    mkdir "$ts"
     k get pods $kname $ksort $kerr | tail -n +2 | xargs -I{} bash -c "kubectl logs {} > $ts/{}.log"
 }
 
