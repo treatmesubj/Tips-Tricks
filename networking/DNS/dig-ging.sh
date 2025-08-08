@@ -1,7 +1,9 @@
 # domain to IP
 dig thesr.online
+host w3.ibm.com 9.0.0.1
 
-# IP to domain
+# IP to primary host (PTR)
+# does not reveal CNAMEs that also resolve to the IP or PTR host
 dig -x 140.82.113.4
 
 # ipv4
