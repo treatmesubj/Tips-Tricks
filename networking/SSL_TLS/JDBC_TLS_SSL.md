@@ -108,5 +108,28 @@ ERRORCODE=-4499, SQLSTATE=08001
         5520/tcp closed sdlog
         5521/tcp closed unknown
         ```
+```
+ERRORCODE=-20576, SQLSTATE=08001
+[jcc][t4][20162][14259][4.34.30] Connection failed: could not establish a SSL connection with the server. The connection has been configured to use hostname validation and the servers TLS certificate does not contain a hostname or IP address which matches the value configured by the client. ERRORCODE=-20576, SQLSTATE=08001
+```
+- Last TLS certificate in chain from host is not signed by the host
+    - If you trust the host anyway, you can add ignore hostname validation with driver property: `sslClientHostnameValidation: off`
+- Take a look at the certificate chain and verify: `openssl s_client -verify 100 -showcerts -connect <host>:<port> -servername <host> -CAfile  <(keytool -list -rfc -keystore <ibm-truststore.jks> -storepass <TrustStore-password>)`
+    ```
+    $ openssl s_client -showcerts -connect g53pr00011115.az13.dal.cpc.ibm.com:50001 -servername g53pr00011115.az13.dal.cpc.ibm.com -CAfile <(keytool -list -rfc -keystore $winhome/ibm-truststore.jks -storepass changeit)
+    CONNECTED(00000003)
+    depth=2 C = US, O = International Business Machines Corporation, CN = IBM Internal Root CA
+    verify return:1
+    depth=1 C = US, O = International Business Machines Corporation, CN = IBM INTERNAL INTERMEDIATE CA
+    verify return:1
+    depth=0 C = US, ST = "Dallas, TX", L = "Dallas, TX", O = ibm.com, OU = IBMCIO, CN = cdsdb.cirrus.ibm.com, UID = 061150744, mail = arijitbiswas@in.ibm.com
+    verify return:1
+    ---
+    Certificate chain
+     0 s:C = US, ST = "Dallas, TX", L = "Dallas, TX", O = ibm.com, OU = IBMCIO, CN = cdsdb.cirrus.ibm.com, UID = 061150744, mail = arijitbiswas@in.ibm.com
+       i:C = US, O = International Business Machines Corporation, CN = IBM INTERNAL INTERMEDIATE CA
+       a:PKEY: rsaEncryption, 2048 (bit); sigalg: RSA-SHA256
+       v:NotBefore: Aug 17 04:00:00 2023 GMT; NotAfter: Aug 16 03:59:59 2025 GMT
+    ```
 
 #### [DB2 Authentication Methods Docs](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.6.x?topic=credentials-user-supported-authentication-methods)
