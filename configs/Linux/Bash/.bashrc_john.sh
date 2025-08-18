@@ -18,7 +18,7 @@ prompt() {
     # branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' | cut -d\  -f2-)
     branch=$(git branch 2> /dev/null | sed -n '/\* /s///p')
     if [[ $branch ]]; then
-       export PS1+="\[\e[1;35m\]±\[\e[m\] \[\e[1;45m\]* \[\e[m\]\[\e[m\]\[\e[92;45m\]$branch\[\e[m\]\r\n";
+        export PS1+="\[\e[1;35m\]±\[\e[m\] \[\e[1;45m\]* \[\e[m\]\[\e[m\]\[\e[92;45m\]$branch\[\e[m\]\r\n";
     fi;
 
     if [[ $kubeps1 ]]; then
@@ -178,6 +178,8 @@ source ~/.bashrc_cluster.sh
 # see also ~/.inputrc
 set -o vi
 bind -m vi-command 'Control-l: clear-screen'
+bind -m vi-command 'j: '  # bad habit
+bind -m vi-command 'k: '  # bad habit
 bind -m vi-insert 'Control-l: clear-screen'
 
 # add bash history in real time
