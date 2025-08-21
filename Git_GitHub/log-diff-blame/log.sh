@@ -9,6 +9,9 @@ git log path/to/file
 # pertaining to certain lines in file
 git log -L 14,26:path/to/file
 
+# excluding/igonring files
+git log -p -- ':!.secrets.baseline' ':!poetry.lock' ':!pyproject.toml'
+
 # log of commits, with diffs, with merges diff'd as 1 commit
 git log -p --first-parent -m
 
