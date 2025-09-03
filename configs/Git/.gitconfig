@@ -50,7 +50,9 @@
     # Usage:
       # diff refs:
         # $ git nvimdiff master...HEAD
-      # edit working tree files changed in (master...HEAD + tracked):
+      # diff ref..working-tree & edit working tree
+        # $ git nvimdiff master
+      # diff ref...HEAD + working-tree & edit working tree
         # $ git nvimdiff $(git merge-base master HEAD)
     branch-short = "!git branch | sed -n '/\\* /s///p' #"
     # https://stackoverflow.com/a/39616600
