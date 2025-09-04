@@ -32,13 +32,30 @@ done
 # alternatives #
 ################
 
+# mapfile: read stdin newlines into array
 mapfile -t array < data.txt
+declare -p array
 printf '<%s>\n' "${array[@]}"
-
+#
 coolfunc() {
     line=$1
     echo "(mapfile) called with line: $line"
 }
 mapfile -t -C coolfunc -c 1 array < data.txt
-# print array
+declare -p array
 printf '<%s>\n' "${array[@]}"
+#
+mapfile -t array < <(ls -1)
+declare -p array
+printf '<%s>\n' "${array[@]}"
+
+# collect IFS-separated-stdout into array
+# default IFS is space/tab/newline
+array=( $(ls -1) )
+declare -p array
+printf '<%s>\n' "${array[@]}"
+#
+IFS=$'?'; array=( $(ls -1) ); unset IFS
+declare -p array
+printf '<%s>\n' "${array[@]}"
+
