@@ -33,6 +33,7 @@ git log -i -Sstring --oneline -- path/file.yaml
 
 # log across all branches by author
 git log --all --stat --author="John.Hupperts@ibm.com"
+git log --all --stat --author=".*john.*" --regexp-ignore-case
 # branches with last commit by author
 git log-lil -10 --all --simplify-by-decoration --date-order --author="John.Hupperts@ibm.com"
 
