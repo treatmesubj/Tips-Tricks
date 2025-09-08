@@ -4,6 +4,9 @@ git log --pretty=\"format:%C(yellow)%h %C(Cyan)%>(10)%ad (%cr) %Cgreen%aN%Cred%d
 # Ascii Tree
 git log --graph --pretty=oneline --abbrev-commit
 
+# number of commits by email, sorted; get all committers
+git shortlog -e -s -n
+
 # pertaining to file
 git log path/to/file
 # pertaining to certain lines in file
