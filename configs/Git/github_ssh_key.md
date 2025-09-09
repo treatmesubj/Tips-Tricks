@@ -15,7 +15,7 @@ git config --global user.email "jrock4503@hotmail.com"
 cat ~/.ssh/my_github_key.pub
 ```
 
-# add the public key to GitHub: https://github.com/settings/keys
+# add the public key as a GitHub authentication key: https://github.com/settings/keys
 
 # if git doesn't know which key to use, add below to `~/.ssh/config`
 ```
@@ -29,4 +29,12 @@ ssh git@github.com
 # PTY allocation request failed on channel 0
 # Hi user! You've successfully authenticated, but GitHub does not provide shell access.
 # Connection to github.com closed.
+```
+
+You can also create another ssh/gpg key for signing commits.
+Add the public key to GitHub as a signing key.
+Then, configure your local repo to use the key to sign commits.
+```bash
+git config gpg.format ssh
+git config user.signingkey ~/.ssh/my_github_sign_key.pub
 ```
