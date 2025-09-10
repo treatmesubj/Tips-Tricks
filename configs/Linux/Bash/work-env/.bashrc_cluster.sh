@@ -7,7 +7,8 @@ cluster_login() {
         *)
             nologin=$(ibmcloud ks cluster ls 2>&1 >/dev/null | grep FAILED)
             if [[ $nologin ]]; then
-                ibmcloud login --sso
+                ibmcloud login -r 'us-south' --apikey $ibmc_api_gcdo
+                # ibmcloud login --sso
             else
                 ibmcloud target --choose-account
             fi
@@ -27,6 +28,8 @@ epm-finance-staging
     Staging  Datamart:  epm-finance-datamart
     Staging  FBI:       epm-raptors
     Sandbox  FBI:       epm-raptors-sandbox
+    Staging  macgyver:  epm-macgyver
+    Sandbox  macgyver:  macgyver-sandbox
 
 epm-finance-production
     Pre-Prod  CRD:       epm-kitt-red
@@ -35,6 +38,8 @@ epm-finance-production
     Prod      Datamart:  epm-finance-datamart
     Pre-Prod  FBI:       epm-raptors-red
     Prod      FBI:       epm-raptors-black
+    Pre-Prod  macgyver:  epm-macgyver-red
+    Prod      macgyver:  epm-macgyver-black
 
 EOF
 
