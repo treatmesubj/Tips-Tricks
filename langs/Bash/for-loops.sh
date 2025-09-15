@@ -33,29 +33,29 @@ done
 ################
 
 # mapfile: read stdin newlines into array
-mapfile -t array < data.txt
-declare -p array
-printf '<%s>\n' "${array[@]}"
+mapfile -t myarray < data.txt
+declare -p myarray
+printf '<%s>\n' "${myarray[@]}"
 #
 coolfunc() {
     line=$1
     echo "(mapfile) called with line: $line"
 }
-mapfile -t -C coolfunc -c 1 array < data.txt
-declare -p array
-printf '<%s>\n' "${array[@]}"
+mapfile -t -C coolfunc -c 1 myarray < data.txt
+declare -p myarray
+printf '<%s>\n' "${myarray[@]}"
 #
-mapfile -t array < <(ls -1)
-declare -p array
-printf '<%s>\n' "${array[@]}"
+mapfile -t myarray < <(ls -1)
+declare -p myarray
+printf '<%s>\n' "${myarray[@]}"
 
 # collect IFS-separated-stdout into array
 # default IFS is space/tab/newline
-array=( $(ls -1) )
-declare -p array
-printf '<%s>\n' "${array[@]}"
+myarray=( $(ls -1) )
+declare -p myarray
+printf '<%s>\n' "${myarray[@]}"
 #
-IFS=$'?'; array=( $(ls -1) ); unset IFS
-declare -p array
-printf '<%s>\n' "${array[@]}"
+IFS=$'?'; myarray=( $(ls -1) ); unset IFS
+declare -p myarray
+printf '<%s>\n' "${myarray[@]}"
 
