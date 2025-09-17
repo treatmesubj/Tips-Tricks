@@ -42,6 +42,42 @@ FROM SCHEMA.TABLE tab
 RIGHT JOIN BLAH
   ON 1=0;
 
+/* 1 Row, all nulls if no results from main query*/
+WITH mainquery AS (
+  SELECT * FROM (VALUES ('Hello world')) mytab (mycol)
+  WHERE 1 = 1
+),
+onerowtab AS (
+  SELECT * FROM (VALUES (1)) mytab (col1)
+)
+SELECT mainquery.*
+FROM onerowtab
+LEFT JOIN mainquery
+  on onerowtab.col1 = 1;
+
+/* 1 Row, all nulls if no results from main query*/
+WITH mainquery AS (
+  SELECT *
+  FROM (
+    VALUES
+      ('hey'),
+      ('yo'),
+      ('sup')
+  ) mytab (FACT)
+  WHERE 1 = 0
+),
+onerowtab AS (
+  SELECT *
+  FROM (
+    VALUES
+      (2025, 3, 8)
+  ) mytab (YEAR, QUARTER, MONTH)
+)
+SELECT onerowtab.*, mainquery.*
+FROM mainquery
+RIGHT JOIN onerowtab
+  ON 1 = 1
+
 /* ensure 2 strings are equal; string compare */
 SELECT instr(',' || replace('     blah ', ' ', '') || ',', ',' || replace('  blah    ', ' ', '') || ',')
 FROM BLAH
