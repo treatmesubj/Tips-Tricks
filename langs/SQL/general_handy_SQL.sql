@@ -1,82 +1,110 @@
-/* Meaningless Query */
-WITH BLAH AS (
-    SELECT *
-    FROM (
-        VALUES ('Hello world')
-    ) t1 (col1)
-    WHERE 1 = 1
-)
-SELECT *
-FROM BLAH
-LIMIT 1 OFFSET 0
+/* Db2 LUW */
 
-/* Meaningless Query */
-WITH MY_TAB AS (
+    /* Meaningless Query */
+    WITH BLAH AS (
+        SELECT *
+        FROM (
+            VALUES ('Hello world')
+        ) t1 (col1)
+        WHERE 1 = 1
+    )
     SELECT *
-    FROM (
+    FROM BLAH
+    LIMIT 1 OFFSET 0
+
+    /* Meaningless Query */
+    WITH MY_TAB AS (
+        SELECT *
+        FROM (
+            VALUES
+              ('Hello world', '2024'),
+              ('Hey all', '2023')
+        ) t1 (HEY, YR)
+        WHERE 1 = 1
+    ),
+    DUMMY AS (
+      SELECT *
+      FROM SYSIBM.SYSDUMMY1
+    )
+    SELECT MY_TAB.*
+    FROM DUMMY
+    LEFT JOIN MY_TAB
+      ON 1 = 0
+
+    /* 1 Row, all nulls */
+    WITH BLAH AS (
+      SELECT *
+      FROM (
         VALUES
-          ('Hello world', '2024'),
-          ('Hey all', '2023')
-    ) t1 (HEY, YR)
-    WHERE 1 = 1
-),
-DUMMY AS (
-  SELECT *
-  FROM SYSIBM.SYSDUMMY1
-)
-SELECT MY_TAB.*
-FROM DUMMY
-LEFT JOIN MY_TAB
-  ON 1 = 0
+          (null),
+      ) t1 (blah)
+    )
+    SELECT tab.*
+    FROM SCHEMA.TABLE tab
+    RIGHT JOIN BLAH
+      ON 1=0;
 
-/* 1 Row, all nulls */
-WITH BLAH AS (
-  SELECT *
-  FROM (
-    VALUES
-      (null),
-  ) t1 (blah)
-)
-SELECT tab.*
-FROM SCHEMA.TABLE tab
-RIGHT JOIN BLAH
-  ON 1=0;
+    /* 1 Row, all nulls if no results from main query*/
+    WITH mainquery AS (
+      SELECT * FROM (VALUES ('Hello world')) mytab (mycol)
+      WHERE 1 = 1
+    ),
+    onerowtab AS (
+      SELECT * FROM (VALUES (1)) mytab (col1)
+    )
+    SELECT mainquery.*
+    FROM onerowtab
+    LEFT JOIN mainquery
+      on onerowtab.col1 = 1;
 
-/* 1 Row, all nulls if no results from main query*/
-WITH mainquery AS (
-  SELECT * FROM (VALUES ('Hello world')) mytab (mycol)
-  WHERE 1 = 1
-),
-onerowtab AS (
-  SELECT * FROM (VALUES (1)) mytab (col1)
-)
-SELECT mainquery.*
-FROM onerowtab
-LEFT JOIN mainquery
-  on onerowtab.col1 = 1;
+    /* 1 Row, all nulls if no results from main query*/
+    WITH mainquery AS (
+      SELECT *
+      FROM (
+        VALUES
+          ('hey'),
+          ('yo'),
+          ('sup')
+      ) mytab (FACT)
+      WHERE 1 = 0
+    ),
+    onerowtab AS (
+      SELECT *
+      FROM (
+        VALUES
+          (2025, 3, 8)
+      ) mytab (YEAR, QUARTER, MONTH)
+    )
+    SELECT onerowtab.*, mainquery.*
+    FROM mainquery
+    RIGHT JOIN onerowtab
+      ON 1 = 1
 
-/* 1 Row, all nulls if no results from main query*/
-WITH mainquery AS (
-  SELECT *
-  FROM (
-    VALUES
-      ('hey'),
-      ('yo'),
-      ('sup')
-  ) mytab (FACT)
-  WHERE 1 = 0
-),
-onerowtab AS (
-  SELECT *
-  FROM (
-    VALUES
-      (2025, 3, 8)
-  ) mytab (YEAR, QUARTER, MONTH)
-)
-SELECT onerowtab.*, mainquery.*
-FROM mainquery
-RIGHT JOIN onerowtab
-  ON 1 = 1
+/* Db2 z/OS (and Db2 LUW) */
+
+    /* 1 Row, all nulls if no results from main query*/
+    WITH mainquery AS (
+      SELECT 'hey' AS FACT
+      FROM SYSIBM.SYSDUMMY1
+      WHERE 1 = 1
+      UNION ALL
+      SELECT 'yo' AS FACT
+      FROM SYSIBM.SYSDUMMY1
+      WHERE 1 = 1
+      UNION ALL
+      SELECT 'sup' AS FACT
+      FROM SYSIBM.SYSDUMMY1
+      WHERE 1 = 1
+    ),
+    onerowtab AS (
+      SELECT 2025 AS YEAR, 3 AS QUARTER, 9 AS MONTH
+      FROM SYSIBM.SYSDUMMY1
+    )
+    SELECT onerowtab.*, mainquery.*
+    FROM onerowtab
+    LEFT JOIN mainquery
+      ON 1 = 1
+
 
 /* ensure 2 strings are equal; string compare */
 SELECT instr(',' || replace('     blah ', ' ', '') || ',', ',' || replace('  blah    ', ' ', '') || ',')
