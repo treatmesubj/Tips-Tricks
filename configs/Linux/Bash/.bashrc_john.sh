@@ -99,6 +99,7 @@ jqstruct() {
 # https://github.com/microsoft/WSL/issues/8843
 # sudo sh -c 'echo :WSLInterop:M::MZ::/init:PF > /usr/lib/binfmt.d/WSLInterop.conf'
 alias pshell='powershell.exe'
+alias pwdw='powershell.exe '\''$pwd.Path'\'''
 alias duckdb='duckdb.exe'
 export winhome="/mnt/c/Users/JohnHupperts"
 
