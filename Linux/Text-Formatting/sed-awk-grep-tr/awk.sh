@@ -49,3 +49,8 @@ job="COREHW"; awk -v 'BEGIN{RS="\n)\n"} /.*job="'"$job"'"/ {print "# ---\n# "FIL
 
 # trim surrounding whitespace
 awk '{$1=$1};1' < file.txt
+
+# return unique lines in order of appearance
+# like sort -u, but preserves order
+cat file | sort -u
+cat file | awk '!visited[$0]++'
