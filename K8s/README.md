@@ -19,8 +19,10 @@ kubectl describe nodes | grep -A 2 -e "^\\s*CPU Requests"
 kubectl top pods -n <namespace>
 ```
 
-### Get all K8s Resources/Objs
+### Get all K8s Resources/Objs (and their shortname)
 ```bash
+kubectl api-resources
+
 kubectl api-resources --verbs=list --namespaced -o name
 
 kubectl api-resources --verbs=list --namespaced -o name \
