@@ -39,6 +39,7 @@ vim.api.nvim_set_keymap(
 )
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- https://github.com/python-lsp/python-lsp-server
+-- ~/.config/pycodestyle
 vim.lsp.enable('pylsp')
 vim.lsp.config('pylsp', {
   cmd = {(os.getenv("HOME")..'/.venv_pynvim/bin/pylsp')};
