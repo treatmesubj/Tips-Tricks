@@ -39,7 +39,8 @@ vim.api.nvim_set_keymap(
 )
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- https://github.com/python-lsp/python-lsp-server
-require('lspconfig').pylsp.setup {
+vim.lsp.enable('pylsp')
+vim.lsp.config('pylsp', {
   cmd = {(os.getenv("HOME")..'/.venv_pynvim/bin/pylsp')};
   settings = {
     pylsp = {
@@ -50,7 +51,7 @@ require('lspconfig').pylsp.setup {
       }
     }
   },
-}
+})
 -- https://github.com/nvim-treesitter/nvim-treesitter
 require('nvim-treesitter.configs').setup {
   -- A list of parser names, or "all"
