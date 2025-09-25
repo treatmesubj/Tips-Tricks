@@ -162,6 +162,7 @@ set ic  " ignore-case
 set is  " partial-search-match
 set number  " line-numbers
 set relativenumber " relative line-numbers
+set colorcolumn=90  " column marker
 set mouse=  " no-mouse
 if !has('nvim')
   set ttymouse=  " no-mouse
