@@ -34,6 +34,8 @@ git log -p --grep=regex
 # pickaxe; where string in commit contents
 git log -i -Sstring --oneline -- path/file.yaml
 
+# log by author
+git log -p --author="John.Hupperts@ibm.com"
 # log across all branches by author
 git log --all --stat --author="John.Hupperts@ibm.com"
 git log --all --stat --author=".*john.*" --regexp-ignore-case
