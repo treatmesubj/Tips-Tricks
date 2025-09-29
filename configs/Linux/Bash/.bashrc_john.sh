@@ -188,3 +188,6 @@ shopt -s histappend
 PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 # expand aliases for non-interactive shells
 shopt -s expand_aliases
+
+# no C-D bash EOF
+set -o ignoreeof
