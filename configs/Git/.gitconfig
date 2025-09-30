@@ -39,6 +39,7 @@
     mnemonicPrefix = true
     renames = true
 [alias]
+    root = rev-parse --show-toplevel
     blame-hard = blame --no-merges -w -C -C -C
     diff-sbs = -c delta.side-by-side=true diff
     diff-classic = -c pager.diff='less -R' diff
