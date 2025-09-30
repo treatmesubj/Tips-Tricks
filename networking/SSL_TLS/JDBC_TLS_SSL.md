@@ -72,7 +72,7 @@ db2jcc_license_cu.jar           -- DB2 z/OS license
 ```
 
 To check version of your JAR, you can unpack it and check its manifest
-- `tar -xf db2jcc4.jar && cat META-INF/MANIFEST.MF`
+- `jar -xvf db2jcc4.jar META-INF && cat META-INF/MANIFEST.MF`
 
 ---
 
