@@ -10,6 +10,7 @@ Commonly, an analyst will use a SQL client like [DBeaver](https://dbeaver.io/dow
         ```bash
         java -cp ./db2jcc4.jar com.ibm.db2.jcc.DB2Jcc -version
         # IBM Data Server Driver for JDBC and SQLJ 4.25.13`
+        jar -xvf db2jcc4.jar META-INF && cat META-INF/MANIFEST.MF
         ```
     - if you're already connected to the Db2, you can check its version, so you know how to find an appropriate corresponding driver version
         ```sql
@@ -70,9 +71,6 @@ db2jcc.jar                      -- older DB2 driver & class
 db2jcc_license_cisuz.jar        -- DB2 z/OS license
 db2jcc_license_cu.jar           -- DB2 z/OS license
 ```
-
-To check version of your JAR, you can unpack it and check its manifest
-- `jar -xvf db2jcc4.jar META-INF && cat META-INF/MANIFEST.MF`
 
 ---
 
