@@ -125,13 +125,13 @@ DELETE FROM
      FROM SCHEMA.TABLE) AS A
 WHERE RN > 1;
 
-/* Looking for Schemas */
+/* finding/Looking for Schemas */
 SELECT *
 FROM SYSCAT.SCHEMATA --SYSIBM.SYSSCHEMAS
 WHERE SCHEMANAME = 'BLAH'
 WITH UR;
 
-/* Looking for Tables */
+/* finding/Looking for Tables */
 SELECT NAME, CREATOR, TYPE, CTIME, BASE_NAME, BASE_SCHEMA, LAST_REGEN_TIME, ALTER_TIME, LASTUSED
 FROM SYSIBM.SYSTABLES
 WHERE (
@@ -148,26 +148,26 @@ WHERE NAME LIKE 'FACT_HEAD_COUNT_MONTHLY_STATIC%'
 ORDER BY CREATOR, NAME
 WITH UR;
 
-/* Looking for Processes */
+/* finding/Looking for Processes */
 SELECT PROCSCHEMA, PROCNAME
 FROM SYSCAT.PROCEDURES
 WHERE PROCSCHEMA LIKE 'SYS%'
 ORDER BY PROCSCHEMA, PROCNAME
 
-/* Looking for Functions */
+/* finding/Looking for Functions */
 SELECT DISTINCT FUNCSCHEMA, FUNCNAME
 FROM SYSCAT.FUNCTIONS
 WHERE FUNCSCHEMA LIKE 'SYS%'
 ORDER BY FUNCSCHEMA, FUNCNAME
 
-/* Looking for Views that SELECT from something else */
+/* finding/Looking for Views that SELECT from something else */
 SELECT NAME, CREATOR, TYPE, STATEMENT
 FROM SYSIBM.SYSVIEWS
 WHERE NAME IN ('BLAH', 'BLEH', 'BLEK')
 WITH UR;
 
 
-/* Looking for Columns */
+/* finding/Looking for Columns */
 SELECT NAME, TBNAME, TBCREATOR, REMARKS, COLTYPE, LENGTH, NULLS
 FROM SYSIBM.SYSCOLUMNS
 WHERE (
@@ -274,7 +274,7 @@ WITH UR;
 GRANT SELECT ON SCHMEMA.TABLE TO USER "USER_NAME";
 GRANT SELECT ON SCHMEMA.TABLE TO ROLE READER;
 
-/* Looking for duplicates from join */
+/* finding/Looking for duplicates from join */
 WITH joined AS (
     SELECT
         a.COL1,
