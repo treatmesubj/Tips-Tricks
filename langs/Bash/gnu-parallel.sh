@@ -8,7 +8,7 @@ parallel echo "\<{}\>" :::: data.txt  # :::: file
 parallel echo "\<{}\>" :::: <(cat data.txt)  # :::: file; <(...) is path to file descriptor e.g. "/dev/fd/63"
 parallel echo "\<{}\>" ::: < data.txt # ::: stdin
 cat data.txt | parallel echo "\<{}\>"
-# <you what's up everyone>
+# <yo what's up everyone>
 # <my name's dave>
 # <and you suck at programming>
 
@@ -33,13 +33,12 @@ seq 1 5000 | parallel -X mkdir test-{}.dir
 seq 1 5000 | parallel -X rm -rf test-{}.dir
 
 
-# nested loops
-    # (for colour in red green blue ; do
-    #   for size in S M L XL XXL ; do
-    #     echo $colour $size
-    #   done
-    # done) | sort
+# nested loops, cross joining, etc.
+    (for colour in red green blue ; do
+      for size in S M L XL XXL ; do
+        echo $colour $size
+      done
+    done) | sort
 parallel echo {1} {2} ::: red green blue ::: S M L XL XXL | sort
 parallel --header : echo {colour} {size} \
   ::: colour red green blue ::: size S M L XL XXL | sort
-
