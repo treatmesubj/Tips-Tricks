@@ -203,6 +203,7 @@ autocmd BufRead,BufNewFile *.ddl set ft=sql  " ddl is sql
 autocmd! BufNewFile,BufReadPost *.{yaml,yml} set ft=yaml " foldmethod=indent
 " shellscript config
 autocmd FileType sh set makeprg=shellcheck\ -f\ gcc\ %  " :make - shell lint
+" also see shellcheck -f diff file.sh | delta
 function! Shellcheck()
   if &ft=='sh'| :silent make! | redraw! | endif
 endfunction
