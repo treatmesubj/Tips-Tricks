@@ -40,16 +40,16 @@ while [[ "$#" -gt 0 ]]; do
 done
 
 # validate script arguments
-if [[ -z $pipeline && -z $validation ]]; then
+if [[ -z "$pipeline" && -z "$validation" ]]; then
     echo "Missing required parameter --pipeline or --validation"
     exit 1
-elif [[ -n $pipeline && -n $validation ]]; then
+elif [[ -n "$pipeline" && -n "$validation" ]]; then
     echo "Provide only --pipeline or --validation, not both"
     exit 1
-elif [[ -z $job_type ]]; then
+elif [[ -z "$job_type" ]]; then
     echo "Missing required parameter --job_type"
     exit 1
-elif [[ -n $cool && $cool != @(true|yes|yep) ]]; then
+elif [[ -n "$cool" && "$cool" != @(true|yes|yep) ]]; then
     echo "--cool value invalid: $cool"
     exit 1
 fi
