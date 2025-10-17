@@ -131,6 +131,28 @@ alias nvimdiff='nvim -d'
 # git nvimdiff --staged master -- file.sh
 # git nvimdiff master -- file.sh  # to actually edit the real file in working directory
 
+
+diffleft() {
+    if [ $# -eq 2 ]; then
+        diff $1 $2 \
+            --old-line-format='%L' \
+            --new-line-format='' \
+            --unchanged-line-format=''
+    else
+        echo "give me 2 items to diff"
+    fi
+}
+diffright() {
+    if [ $# -eq 2 ]; then
+        diff $1 $2 \
+            --old-line-format='' \
+            --new-line-format='%L' \
+            --unchanged-line-format=''
+    else
+        echo "give me 2 items to diff"
+    fi
+}
+
 nvimdiffsesh() {
     if [[ "$#" == 1 ]]; then
         local relfp=${1}
