@@ -15,6 +15,7 @@ go install github.com/hangxie/parquet-tools@latest
 ```
 
 # [DuckDB & DBeaver](https://duckdb.org/docs/guides/sql_editors/dbeaver)
+Install Duckdb on Windows with `winget`\
 __NOTE__: for DBeaver, Maven's latest driver may not have latest features; you
 can grab latest JAR files from
 [duckdb/releases](https://github.com/duckdb/duckdb/releases), and in DBeaver
