@@ -311,6 +311,16 @@ endfunction
 " :YAMLGoToKey
 command! -nargs=1 -complete=command YAMLGoToKey call YAMLGoToKey(<q-args>)
 
+" sums first space-separated number in each line
+function! SumLines() range
+  let l:lines = getline(a:firstline, a:lastline)
+  let l:input_text = join(l:lines, "\n")
+  let l:output = system("awk '{print; total+=$1}END{print total}'", l:input_text)
+  call setline(a:firstline, split(l:output, "\n"))
+endfunction
+" :SumLines
+command! -range SumLines <line1>,<line2> call SumLines()
+
 " Cheat Sheets -----------------------
 "
 " vertical list of incrementing numbers
