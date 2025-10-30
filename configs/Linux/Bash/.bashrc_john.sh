@@ -127,10 +127,43 @@ export MANPAGER='nvim +Man! -c "set nowrap"'
 export MANWIDTH=999
 
 alias nvimdiff='nvim -d'
-# git nvimdiff master...HEAD -- file.sh
-# git nvimdiff --staged master -- file.sh
-# git nvimdiff master -- file.sh  # to actually edit the real file in working directory
-
+gitnvimdiff() {
+    if [ $# -eq 0 ]; then
+        echo -e "usage: git nvimdiff <rev-list> [[--] file]]\n"
+        echo "diff refs:"
+        echo "  git nvimdiff master...HEAD"
+        echo "diff ref..working-tree & edit working tree:"
+        echo "  git nvimdiff master"
+        echo "diff ref...HEAD + working-tree & edit working tree:"
+        echo "  git nvimdiff \$(git merge-base master HEAD)"
+        return 1
+    fi
+    rvl="$1"; shift
+    files=$(git diff "$rvl" --name-only --relative "$@")
+    if [[ $(wc -l <<< "$files") == 1 ]]; then
+        f=$(head -1 <<< "$files")
+        git difftool -y "$rvl" -- "$f"
+    else
+        while :; do
+            f=$(fzf -0 --preview 'git diff '"$rvl"' -- {} | delta' --preview-window up --select-1 <<< "$files") || return 0
+            git difftool -y "$rvl" -- "$f"
+        done
+    fi
+}
+nvimdiffsesh() {
+    if [[ "$#" == 1 ]]; then
+        local relfp=${1}
+        fname=$(basename "${relfp}")
+        tmpfname=/tmp/tmp-$fname
+        cp "$relfp" "$tmpfname"
+        nvimdiff "$tmpfname" "$relfp" \
+            "+setlocal nomodifiable" "+foldopen!" \
+            "+set diffopt-=hiddenoff" "+set diffopt-=closeoff" \
+            "+0hide"  # RO ref buffer
+    else
+        echo "usage: nvimseshdiff <relative-file-path>"
+    fi
+}
 
 diffleft() {
     if [ $# -eq 2 ]; then
@@ -150,21 +183,6 @@ diffright() {
             --unchanged-line-format=''
     else
         echo "give me 2 items to diff"
-    fi
-}
-
-nvimdiffsesh() {
-    if [[ "$#" == 1 ]]; then
-        local relfp=${1}
-        fname=$(basename "${relfp}")
-        tmpfname=/tmp/tmp-$fname
-        cp "$relfp" "$tmpfname"
-        nvimdiff "$tmpfname" "$relfp" \
-            "+setlocal nomodifiable" "+foldopen!" \
-            "+set diffopt-=hiddenoff" "+set diffopt-=closeoff" \
-            "+0hide"  # RO ref buffer
-    else
-        echo "usage: nvimseshdiff <relative-file-path>"
     fi
 }
 
