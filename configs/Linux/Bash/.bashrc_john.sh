@@ -140,9 +140,11 @@ gitnvimdiff() {
     fi
     rvl="$1"; shift
     files=$(git diff "$rvl" --name-only --relative "$@")  # relative
-    if [[ $(wc -l <<< "$files") == 1 ]]; then
+    if [[ $(sed '/^$/d' <<< "$files" | wc -l) == 1 ]]; then
         f=$(head -1 <<< "$files")
         git difftool -y "$rvl" -- "$f"  # relative
+    elif [[ $(sed '/^$/d' <<< "$files" | wc -l) == 0 ]]; then
+        echo "identical: $rvl -- $@"
     else
         while :; do
             f=$(fzf -0 --preview 'git diff '"$rvl"' -- {} | delta' --preview-window up --select-1 <<< "$files") || return 0
