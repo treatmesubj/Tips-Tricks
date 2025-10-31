@@ -6,6 +6,7 @@
 
 parallel echo "\<{}\>" :::: data.txt  # :::: file
 parallel echo "\<{}\>" :::: <(cat data.txt)  # :::: file; <(...) is path to file descriptor e.g. "/dev/fd/63"
+parallel echo "\<{}\>" ::: "$shirtsizes" ::: "$shirtcolors" # :::: variables
 parallel echo "\<{}\>" ::: < data.txt # ::: stdin
 cat data.txt | parallel echo "\<{}\>"
 # <yo what's up everyone>
@@ -19,6 +20,9 @@ array=({multiple,input,sources}" "{with,values})
 for item in "${array[@]}"; do
     echo "<$item>"
 done
+
+# quoting
+parallel rg -iH '"'pipeline: '{1}" -A 1 {2}' ::: "$dag_files" ::: "$raps_pipelines"
 
 # group & print stdout by stdin when jobs are complete
 parallel -k traceroute ::: debian.org freenetproject.org
