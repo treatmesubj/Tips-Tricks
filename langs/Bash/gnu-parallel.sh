@@ -13,6 +13,7 @@ cat data.txt | parallel echo "\<{}\>"
 # <and you suck at programming>
 
 parallel echo "\<{}\>" ::: multiple input sources ::: with values
+parallel echo "\<{1}\>" "\<{2}\>" ::: multiple input sources ::: with values
 # similar via brace expansion
 array=({multiple,input,sources}" "{with,values})
 for item in "${array[@]}"; do
