@@ -1,16 +1,7 @@
-# update .gitignore
-git add .gitignore
-git commit -m "gitignore"
+# personally, don't track a yet untracked file
+echo "<file>" >> .git/info/exclude
+# shared-repo, don't track a file; requires commit
+echo "<file>" >> .gitignore
+# personally, don't track a file, period
 git update-index --assume-unchanged <file-list>
-git status
-# desired ignored files not tracked
-
-##############################
-# start tracking files again #
-##############################
-# update .gitignore
-git add .gitignore
-git commit -m "gitignore"
-git update-index --no-assume-unchanged <file-list>
-git status
-# desired files tracked, not staged
+# git update-index --no-assume-unchanged <file-list>
