@@ -120,6 +120,7 @@ export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 # sqlfmt is /usr/local/bin/sqlfmt (bash script)
 # fzf
 export FZF_DEFAULT_COMMAND='find .'  # hidden files
+export FZF_DEFAULT_OPTS="--bind up:preview-up+preview-up,down:preview-down+preview-down"
 source /usr/share/doc/fzf/examples/key-bindings.bash  # fzf \C-r reverse search
 
 # man pages in nvim
@@ -147,7 +148,7 @@ gitnvimdiff() {
         echo "identical: $rvl -- $@"
     else
         while :; do
-            f=$(fzf -0 --preview 'git diff '"$rvl"' -- {} | delta' --preview-window up --select-1 <<< "$files") || return 0
+            f=$(fzf -0 --preview 'git diff '"$rvl"' -- {} | delta' --preview-window up,70%,~4,cycle --select-1 <<< "$files") || return 0
             git difftool -y "$rvl" -- "$f"
         done
     fi
