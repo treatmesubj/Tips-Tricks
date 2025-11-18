@@ -36,6 +36,8 @@ git log -i -Sstring --oneline -- path/file.yaml
 
 # log by author
 git log -p --author="John.Hupperts@ibm.com"
+# my commits where contents contain word 'patch'
+git log --author="John.Hupperts@ibm.com" -i -Spatch --oneline
 # log across all branches by author
 git log --all --stat --author="John.Hupperts@ibm.com"
 git log --all --stat --author=".*john.*" --regexp-ignore-case
