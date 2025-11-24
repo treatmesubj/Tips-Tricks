@@ -90,7 +90,8 @@ csv_filter() {
 }
 alias csv-filter=csv_filter
 
-jqstruct() {
+jqshape() {
+    # shows shape/structure of JSON object
     jq -r '[path(..)|map(if type=="number" then "[]" else tostring end)|join(".")|split(".[]")|join("[]")]|unique|map("."+.)|.[]'
 }
 
