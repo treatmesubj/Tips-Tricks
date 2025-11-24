@@ -191,6 +191,7 @@ diffright() {
 }
 
 fuzzfile() {
+    # fuzzfile | xargs nvim
     f=$(
         fzf --preview 'batcat --color=always --theme="Monokai Extended" \
         --style=numbers --line-range=:500 -n {}' \
@@ -198,8 +199,9 @@ fuzzfile() {
     )
     echo "$f"
 }
-# fuzzfile | xargs nvim
+
 fuzzline() {
+    # fuzzline | xargs nvim
     i=$(
         rg . --no-heading --hidden --line-number \
         | fzf --preview 'batcat --color=always --theme="Monokai Extended" \
@@ -210,7 +212,6 @@ fuzzline() {
     l=$(echo "$i" | cut -d ":" -f 2)
     echo "$f +$l"
 }
-# fuzzline | xargs nvim
 
 # keys
 source ~/.bashrc_keys.sh
