@@ -82,8 +82,8 @@ csv_filter() {
         | awk -v colnum="$colnum" -F, '!seen[$colnum]++ { print $colnum }' \
         | fzf --prompt "$colname ~ " \
         --print-query --preview-window='down:80%' --preview \
-        "csvquote < $data \
-        | awk -v colnum=$colnum -v reggie={q} -F, \
+        "csvquote < \"$data\" \
+        | awk -v colnum=\"$colnum\" -v reggie={q} -F, \
         '{ IGNORECASE=1; if (NR==1) { print \$0 } else if (\$colnum ~ reggie) { print \$0 } }' \
         | batcat -p --language 'csv' --color=always" | head -1
     )
@@ -92,6 +92,22 @@ csv_filter() {
     '{ IGNORECASE=1; if (NR==1) { print $0 } else if ($colnum ~ reggie) { print $0 } }'
 }
 alias csv-filter=csv_filter
+
+grepi() {
+    # interactive case-insensitive grep
+    # grepi file.txt
+    local data=${1:-'-'}
+    if [ "$data" = "-" ]; then
+        local data=$(mktemp)
+        cp /dev/stdin "$data"
+    fi
+    query=$(true | fzf --prompt 'grep -i ' --print-query \
+        --preview-window='down:80%' \
+        --preview "grep -i {q} --color=always \"$data\""
+    )
+    echo "grep -i \"$query\" \"$data\"" >&2
+    grep -i "$query" "$data"
+}
 
 jqshape() {
     # shows shape/structure of JSON object
@@ -149,7 +165,7 @@ gitnvimdiff() {
         f=$(head -1 <<< "$files")
         git difftool -y "$rvl" -- "$f"  # relative
     elif [[ $(sed '/^$/d' <<< "$files" | wc -l) == 0 ]]; then
-        echo "identical: $rvl -- $@"
+        echo "identical: \"$rvl\" -- \"$@\""
     else
         while :; do
             f=$(fzf -0 --preview 'git diff '"$rvl"' -- {} | delta' --preview-window up,70%,~4,cycle --select-1 <<< "$files") || return 0
@@ -174,7 +190,7 @@ nvimdiffsesh() {
 
 diffleft() {
     if [ $# -eq 2 ]; then
-        diff $1 $2 \
+        diff "$1" "$2" \
             --old-line-format='%L' \
             --new-line-format='' \
             --unchanged-line-format=''
@@ -184,7 +200,7 @@ diffleft() {
 }
 diffright() {
     if [ $# -eq 2 ]; then
-        diff $1 $2 \
+        diff "$1" "$2" \
             --old-line-format='' \
             --new-line-format='%L' \
             --unchanged-line-format=''
