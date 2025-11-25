@@ -191,7 +191,7 @@ diffright() {
 }
 
 fuzzfile() {
-    # fuzzfile | xargs nvim
+    # fuzzfile | xargs -t nvim
     f=$(
         fzf --preview 'batcat --color=always --theme="Monokai Extended" \
         --style=numbers --line-range=:500 -n {}' \
@@ -201,10 +201,11 @@ fuzzfile() {
 }
 
 fuzzline() {
-    # fuzzline | xargs nvim
+    # fuzzline | xargs -t nvim
     i=$(
         rg . --no-heading --hidden --line-number \
-        | fzf --preview 'batcat --color=always --theme="Monokai Extended" \
+        | fzf --nth 3 -d ':' \
+        --preview 'batcat --color=always --theme="Monokai Extended" \
         --style=numbers --line-range=:500 $(echo {} | cut -d ":" -f 1)' \
         --preview-window up
     )
