@@ -16,3 +16,11 @@ if response := get_user_input():
     print('You pressed:', response)
 else:
     print('You pressed nothing')
+
+# one line conditional string concatenation
+dicty = {"a": 1, "b": 2, "c": None, "d": 4}
+stringy = ", ".join(
+    guy + (f" is {str(v)}" if (v := dicty.get(guy)) else " isn't")
+    for guy in ["a", "b", "c", "d", "e"]
+)
+print(stringy)
