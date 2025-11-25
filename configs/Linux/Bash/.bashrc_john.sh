@@ -32,6 +32,7 @@ prompt() {
 PROMPT_COMMAND=prompt
 
 sizeup() {
+    # sizeup [relative-directory]
     if [ $# -eq 1 ]; then
         path=$(readlink -m "$1")
         if [ -d "$path" ]; then
@@ -59,8 +60,8 @@ tmux_clear_history() {
 }
 
 csv_filter() {
-    # cludesym='!~' csv_filter <file|stdin>
-    local cludesym=${cludesym:-'~'}
+    # csv_filter <file|stdin>
+    # interactively filters a csv-column via case-insensitive regex
     local data=${1:-'-'}
     if [ "$data" = "-" ]; then
         local data=$(mktemp)
@@ -71,22 +72,24 @@ csv_filter() {
         echo "$headers" \
         | awk -v RS=',' '{print NR, $0}' \
         | grep . \
-        | fzf --preview-window='down:80%' --preview "batcat --language 'csv' \
-        --color=always --line-range=:50 $data"
+        | fzf --prompt "column-to-filter: " \
+        --preview-window='down:80%' --preview "batcat -p --language 'csv' \
+        --color=always --line-range=:50 \"$data\""
     )
     colnum=$(echo "$colname" | cut -d ' ' -f 1)
     reggie=$(
         csvquote < "$data" \
         | awk -v colnum="$colnum" -F, '!seen[$colnum]++ { print $colnum }' \
-        | fzf --print-query --disabled --preview-window='down:80%' --preview \
+        | fzf --prompt "$colname ~ " \
+        --print-query --preview-window='down:80%' --preview \
         "csvquote < $data \
         | awk -v colnum=$colnum -v reggie={q} -F, \
-        '{ if (NR==1) { print \$0 } else if (\$colnum $cludesym reggie) { print \$0 } }' \
-        | batcat --language 'csv' --color=always" | head -1
+        '{ IGNORECASE=1; if (NR==1) { print \$0 } else if (\$colnum ~ reggie) { print \$0 } }' \
+        | batcat -p --language 'csv' --color=always" | head -1
     )
     csvquote < "$data" \
     | awk -v colnum="$colnum" -v reggie="$reggie" -F, \
-    '{ if (NR==1) { print $0 } else if ($colnum '"$cludesym"' reggie) { print $0 } }'
+    '{ IGNORECASE=1; if (NR==1) { print $0 } else if ($colnum ~ reggie) { print $0 } }'
 }
 alias csv-filter=csv_filter
 
@@ -199,7 +202,6 @@ fuzzfile() {
     )
     echo "$f"
 }
-
 fuzzline() {
     # fuzzline | xargs -t nvim
     i=$(
