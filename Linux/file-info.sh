@@ -1,5 +1,5 @@
 which
-type
+type -a
 realpath
 readlink
 file
