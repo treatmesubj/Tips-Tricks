@@ -7,7 +7,7 @@ cluster_login() {
         *)
             nologin=$(ibmcloud ks cluster ls 2>&1 >/dev/null | grep FAILED)
             if [[ $nologin ]]; then
-                ibmcloud login -r 'us-south' --apikey $ibmc_api_gcdo
+                ibmcloud login -r 'us-south' --apikey $ibmc_api_edp
                 # ibmcloud login --sso
             else
                 ibmcloud target --choose-account
@@ -121,10 +121,12 @@ kerrlogs() {
 kcrons() {
     echo -e "local:\t$(date +%r)"
     echo -e "UTC:\t$(date -u +%r)"
+    echo "crons converted from UTC -> US/Central"
     pyscript="
 import sys;
 from cron_descriptor import get_description;
-fmt = lambda str: str.split('\t')[0]+'\t'+get_description(str.split('\t')[1]);
+from crontzconvert import convert;
+fmt = lambda str: str.split('\t')[0]+'\t'+get_description(convert(str.split('\t')[1],'UTC', 'US/Central'));
 print(*[fmt(line) for line in sys.stdin], sep='\n');
 "
     k get cronjobs -o json \
@@ -137,8 +139,15 @@ print(*[fmt(line) for line in sys.stdin], sep='\n');
 hcron() {
     echo -e "local:\t$(date +%r)"
     echo -e "UTC:\t$(date -u +%r)"
+    echo "cron converted from UTC -> US/Central"
+    pyscript="
+import sys;
+from cron_descriptor import get_description;
+from crontzconvert import convert;
+print(get_description(convert('$1','UTC', 'US/Central')));
+"
     if [[ "$#" == 1 ]]; then
-        python -c "import sys; from cron_descriptor import get_description; print(get_description('$1'))"
+        python -c "$pyscript"
     else
         echo "usage: hcron \"* * * * *\""
     fi
