@@ -147,6 +147,13 @@ source /usr/share/doc/fzf/examples/key-bindings.bash  # fzf \C-r reverse search
 export MANPAGER='nvim +Man! -c "set nowrap"'
 export MANWIDTH=999
 
+helpmebash() {
+    # bash help for builtins, man-page stype in nvim
+    local pattern=$1
+    local page=$(help -m "$pattern")
+    [[ -n "$page" ]] && nvim +Man! -c "set nowrap" <<< "$page"
+}
+
 alias nvimdiff='nvim -d'
 gitnvimdiff() {
     if [ $# -eq 0 ]; then
