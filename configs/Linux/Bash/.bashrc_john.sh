@@ -2,16 +2,14 @@
 # append 'source ~/.bashrc_john.sh' to ~/.bashrc ~/.bash_profile ~/.bash_login
 prompt() {
     # user@host:~
-    long_path=$(dirs)
-    short_path1=$(echo "$long_path" | sed "s/\/mnt\/c\/Users\/JohnHupperts/\$winhome/")
-    export PS1="\[\e[1;31m\]\u\[\e[m\]@\[\e[1;93m\]\h\[\e[m\]:\[\e[1;34m\]\$short_path1\[\e[m\]\r\n";
-    # export PS1="\[\e[1;31m\]\u\[\e[m\]@\[\e[1;33m\]\h\[\e[m\]:\[\e[1;34m\]\w\[\e[m\]\r\n";
+    short_home_path=${PWD/#$HOME/\~}
+    short_home_path=${short_home_path/#\/mnt\/c\/Users\/JohnHupperts/\$winhome}
+    export PS1="\[\e[1;31m\]\u\[\e[m\]@\[\e[1;93m\]\h\[\e[m\]:\[\e[1;34m\]\$short_home_path\[\e[m\]\r\n";
 
     # py-venv: (~/.venv)
     if [[ $VIRTUAL_ENV ]]; then
-        # short_path2=$(echo "$VIRTUAL_ENV" | sed "s/\/home\/rock/~/")
-        short_path2=$(echo "$VIRTUAL_ENV" | sed "s/\/home\/john/~/")
-        export PS1+="\[\e[1;36m\]§\[\e[m\] \[\e[1;92m\](\[\e[m\]\[\e[1;36m\]\$short_path2\[\e[m\]\[\e[1;92m\])\[\e[m\]\r\n";
+        venv=${VIRTUAL_ENV/#$HOME/\~}
+        export PS1+="\[\e[1;36m\]§\[\e[m\] \[\e[1;92m\](\[\e[m\]\[\e[1;36m\]\$venv\[\e[m\]\[\e[1;92m\])\[\e[m\]\r\n";
     fi;
 
     # branch: * master
@@ -119,7 +117,7 @@ jqshape() {
 # https://github.com/microsoft/WSL/issues/8843
 # sudo sh -c 'echo :WSLInterop:M::MZ::/init:PF > /usr/lib/binfmt.d/WSLInterop.conf'
 alias pshell='powershell.exe'
-alias pwdw='powershell.exe '\''$pwd.Path'\'''
+alias pwdw='wslpath -w .'
 alias duckdb='duckdb.exe'
 export winhome="/mnt/c/Users/JohnHupperts"
 
