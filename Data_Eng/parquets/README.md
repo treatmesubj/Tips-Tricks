@@ -62,6 +62,9 @@ SELECT * FROM which_secret('s3://staging-three', 's3');
 SELECT *
 FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partitioning=1, filename=1);
 
+SELECT *
+FROM parquet_metadata('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*');
+
 DESCRIBE SELECT *
 FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partitioning=1, filename=1);
 
