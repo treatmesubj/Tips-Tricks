@@ -1,8 +1,11 @@
+awk 'line-matching-logic {processing-logic}' file.txt
+awk -f awk-script.awk file.txt
+
 # print lines that have Column(.*) or start with 'logical_type'
-cat file.txt | awk '/Column\(.*\)|^logical_type/'
+awk '/Column\(.*\)|^logical_type/' file.txt
 
 # for each line, print string that starts with 'stringstart'
-cat file.txt | gawk 'match($0, /(stringstart\w*)/, a) {print a[1]}'
+gawk 'match($0, /(stringstart\w*)/, a) {print a[1]}' file.txt
 
 # find pod name
 set orc_pod = kubectl get pods | awk '{ if ($1 ~ /orchestrator/ && $3 == "Running") { print $1 } }'
@@ -13,7 +16,7 @@ awk '{print $0}' infile.txt             # print each space/tab field-separated '
 awk '{print $1}' infile.txt             # print 1st space/tab field-separated 'field'
 awk '{print $1,$3}' infile.txt          # print 1st & 3rd space/tab field-separated 'field'
 ls -l | awk '{print $1,$NF}'            # print 1st & last space/tab field-demilited 'field'
-cat /etc/passwd | awk -F ':' '{print $1"\t"$7}'  # print 1st & 7th colon field-separated 'field' with tab between
+< /etc/passwd awk -F ':' '{print $1"\t"$7}'  # print 1st & 7th colon field-separated 'field' with tab between
 
 awk 'BEGIN{FS=":"; OFS="-"} {print $1, $7}' /etc/passwd
 
@@ -52,5 +55,5 @@ awk '{$1=$1};1' < file.txt
 
 # return unique lines in order of appearance
 # like sort -u, but preserves order
-cat file | sort -u
-cat file | awk '!visited[$0]++'
+< file.txt sort -u
+< file.txt awk '!visited[$0]++'
