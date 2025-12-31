@@ -30,6 +30,8 @@
 # >(cat) expands to
 #   cat <named-pipe>
 # where <named-pipe> is a file containing the stdout of uname
+#   uname 1> >(cat) returns immediately, but cat <named-pipe> may run
+#       in the background for a while
 # i.e.
 #   cat /dev/fd/63
 # e.g.
