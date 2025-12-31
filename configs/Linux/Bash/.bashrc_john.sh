@@ -13,14 +13,14 @@ prompt() {
     fi;
 
     # branch: * master
-    # branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' | cut -d\  -f2-)
     branch=$(git branch 2> /dev/null | sed -n '/\* /s///p')
     if [[ $branch ]]; then
         export PS1+="\[\e[1;35m\]±\[\e[m\] \[\e[1;45m\]* \[\e[m\]\[\e[m\]\[\e[92;45m\]$branch\[\e[m\]\r\n";
     fi;
 
-    if [[ $kubeps1 ]]; then
-        kctxt="$(kubectl config current-context | cut -f1 -d"/" 2>/dev/null)"
+    # Θ cluster:namespace
+    kctxt="$(kubectl config current-context 2>/dev/null | cut -f1 -d"/")"
+    if [[ $kctxt ]]; then
         kns="$(kubectl config view --minify -o jsonpath='{..namespace}')"
         export PS1+="\[\e[44;97m\]Θ\[\e[m\] \[\e[3;93m\]$kctxt\[\e[m\]:\[\e[3;94m\]$kns\[\e[m\]\r\n"
     fi
