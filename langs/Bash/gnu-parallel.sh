@@ -21,6 +21,9 @@ for item in "${array[@]}"; do
     echo "<$item>"
 done
 
+# double grep
+parallel rg -il findduplicate :::: <(rg -il addsurrogatekey) | wc -l
+
 # quoting
 parallel rg -iH '"'pipeline: '{1}" -A 1 {2}' ::: "$dag_files" ::: "$raps_pipelines"
 
