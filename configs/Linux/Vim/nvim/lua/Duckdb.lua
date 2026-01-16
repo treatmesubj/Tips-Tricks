@@ -41,7 +41,8 @@ local function duckdb(args)
   local stdin = vim.api.nvim_buf_get_lines(0, line1, line2, false)
 
   if range ~= 0 then
-    vim.opt_local.winbar = "Duckdb: " .. table.concat(stdin, " ") .. "%="
+    local winbar_str = string.gsub(table.concat(stdin, " "), "%%", "%%%%")
+    vim.opt_local.winbar = "Duckdb: " .. winbar_str .. "%="
     -- log sql to tmp-file
     local file, err = io.open("/tmp/duckdb-nvim.sql", "a")
     file:write(table.concat(stdin, "\n") .. "\n/* --- */\n\n")
