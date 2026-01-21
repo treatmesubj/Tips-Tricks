@@ -4,7 +4,7 @@ import argparse
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--file", "-f", action="store")
+    parser.add_argument("file", action="store")
     parser.add_argument(
         "--drops",
         "-d",
@@ -18,10 +18,16 @@ if __name__ == "__main__":
     df = pd.read_csv(args.file).drop(columns=args.drops)
     print(df.to_json(orient="columns"))
 
+# add this to path
+"""
+sudo cp ./csv-to-json.py /usr/local/bin/csv-to-json
+"""
+
 # diff 2 CSVs in bash:
 """
 diff -u \
-    <(./csv-to-json.py -f old.csv -d rowCreateTs rowUpdateTs | jq) \
-    <(./csv-to-json.py -f new.csv -d rowCreateTs rowUpdateTs | jq) \
+    <(csv-to-json old.csv -d rowCreateTs rowUpdateTs | jq) \
+    <(csv-to-json new.csv -d rowCreateTs rowUpdateTs | jq) \
 | delta
 """
+
