@@ -58,3 +58,6 @@
     branch-short = "!git branch | sed -n '/\\* /s///p' #"
     # https://stackoverflow.com/a/39616600
     quote-string = "!read -r l; printf \\\"!; printf %s \"$l\" | sed 's/\\([\\\"]\\)/\\\\\\1/g'; printf \" #\\\"\\n\" #"
+    # don't track local changes to a file
+    shut-up-about = update-index --assume-unchanged
+    # update-index --no-assume-unchanged
