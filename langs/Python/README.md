@@ -1,0 +1,59 @@
+```
+Run Script With Interpreter Open at End
+    cmd: python -i <script.py>
+    or
+    in <script.py @ head>: #! python -i
+
+Open Debugger at Common Error
+    in <script.py @ line>: breakpoint()
+        in <pdb>: interact
+
+Run Script With Specific Python Version
+    in <script.py @ head>: #! python3.7
+
+Compile .py Files in Directory to .pyc
+    cmd: python -m compileall
+   or
+    cmd: python -m py_compile <script.py>
+
+Extract .pyc Files From .exe
+    cmd: python pyinstxtractor.py <app.exe>
+
+Get Magic Number For Python Version
+    in python:
+        >>> from importlib import util
+        >>> util.MAGIC_NUMBER.hex()
+
+Create Functional .pyc From .exe Extract
+    in <script.pyc @ head>: MAGIC_NUMBER.hex() + 0000 0000 0000 0000
+
+Decompile .pyc to .py
+    cmd: decompyle3 <script.pyc>
+
+Pip Install GitHub Repository
+    cmd: pip install https://github.com/<user>/<package>/archive/<branch>.tar.gz
+
+Upgrade pip package
+    pip install <package> --upgrade
+
+How Does CPython Work?
+    <source_code.py [human readable]>
+------->(parser.py [grammar checker])---> continue
+------->(py_compile.py [compiler])---> <source_code.pyc [ascii bytecode]>
+------->(python.c interpreter [written in C])---> <ascii table indeces via ascii keys> ---> <opcode table opcodes via indeces>
+------->(python.exe stack-oriented VM)---> executed opcode instructions
+------->(OS API)---> executed OS API instructions
+------->(OS Kernel)---> executed OS Kernel instructions
+------->(Machine's CPU)---> executed hardware instructions [transistors open/closed alter circuits of electrons]
+------->(Machine's Memory)---> <different electrically charged diodes in ROM>
+
+Paths
+    os.getcwd()
+    returns directory-path of whereever you were when you called the script
+
+    sys.argv[0]
+    returns the path of the script; where it's located
+
+    os.path.dirname(sys.argv[0])
+    returns the directory-path of where the script is
+```
