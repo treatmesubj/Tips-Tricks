@@ -25,7 +25,6 @@ EDP CLOUD Account's Clusters' Namespaces
 
 epm-finance-staging
     Staging  CRD:       epm-kitt
-    Staging  Datamart:  epm-finance-datamart
     Staging  FBI:       epm-raptors
     Sandbox  FBI:       epm-raptors-sandbox
     Staging  macgyver:  epm-macgyver
@@ -34,8 +33,6 @@ epm-finance-staging
 epm-finance-production
     Pre-Prod  CRD:       epm-kitt-red
     Prod      CRD:       epm-kitt-black
-    Pre-Prod  Datamart:  epm-finance-datamart-preprod
-    Prod      Datamart:  epm-finance-datamart
     Pre-Prod  FBI:       epm-raptors-red
     Prod      FBI:       epm-raptors-black
     Pre-Prod  macgyver:  epm-macgyver-red
