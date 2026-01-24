@@ -108,8 +108,12 @@ grepi() {
 }
 
 jqshape() {
-    # shows shape/structure of JSON object
+    # shows shape/structure, all nodes of JSON
     jq -r '[path(..)|map(if type=="number" then "[]" else tostring end)|join(".")|split(".[]")|join("[]")]|unique|map("."+.)|.[]'
+}
+yqshape() {
+    # shows shape/structure, all nodes of YAML
+    yq eval '.. | select((tag == "!!map" or tag == "!!seq") | not) | path | join(".")'
 }
 
 # Windows
