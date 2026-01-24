@@ -111,10 +111,12 @@ jqshape() {
     # shows shape/structure, all nodes of JSON
     jq -r '[path(..)|map(if type=="number" then "[]" else tostring end)|join(".")|split(".[]")|join("[]")]|unique|map("."+.)|.[]'
 }
+export -f jqshape
 yqshape() {
     # shows shape/structure, all nodes of YAML
-    yq eval '.. | select((tag == "!!map" or tag == "!!seq") | not) | path | join(".")'
+    yq eval '.. | select((tag == "!!map" or tag == "!!seq") | not) | path | join(".") | "." + .'
 }
+export -f yqshape
 
 # Windows
 # access Windows executables when System D enbaled

@@ -305,13 +305,19 @@ autocmd filetype netrw call NetRWPaneResizeShortcuts()
 " JSON
 " lua print(require("jsonpath").get())
 
+" TODO
 function YAMLGoToKey(key)
   let yqcmd = "yq '" . a:key . " | line' " . expand('%:p')
   let line = trim(system(yqcmd))
   execute "norm " . line . "gg"
 endfunction
 " :YAMLGoToKey
-command! -nargs=1 -complete=command YAMLGoToKey call YAMLGoToKey(<q-args>)
+
+command! -bang YAMLGoToKey
+  \ call fzf#run({
+      \ 'source': 'yqshape < ' . shellescape(expand('%:p')),
+      \ 'sink': function('YAMLGoToKey')
+      \ })
 
 " sums first space-separated number in each line
 function! SumLines() range
