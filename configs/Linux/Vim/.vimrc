@@ -302,20 +302,16 @@ function! NetRWPaneResizeShortcuts()
 endfunction
 autocmd filetype netrw call NetRWPaneResizeShortcuts()
 
-" JSON
-" lua print(require("jsonpath").get())
-
-" TODO
+" jump to key in YAML
 function YAMLGoToKey(key)
-  let yqcmd = "yq '" . a:key . " | line' " . expand('%:p')
-  let line = trim(system(yqcmd))
-  execute "norm " . line . "gg"
+  let l:line = trim(system("yq '" . a:key . " | line' ", join(getline(1, '$'), "\n")))
+  execute "norm " . l:line . "gg"
 endfunction
 " :YAMLGoToKey
 
 command! -bang YAMLGoToKey
   \ call fzf#run({
-      \ 'source': 'yqshape < ' . shellescape(expand('%:p')),
+      \ 'source': systemlist("yqshape ", join(getline(1, '$'), "\n")),
       \ 'sink': function('YAMLGoToKey')
       \ })
 
