@@ -310,7 +310,7 @@ function YAMLGoToKey(key)
 endfunction
 " :YAMLGoToKey
 
-command! -bang YAMLGoToKey
+autocmd FileType yaml command! -bang YAMLGoToKey
   \ call fzf#run({
       \ 'source': systemlist("yqshape ", join(getline(1, '$'), "\n")),
       \ 'window': { 'width': 0.8, 'height': 0.6 },
