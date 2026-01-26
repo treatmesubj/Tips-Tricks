@@ -69,6 +69,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
     if vim.fn.line('$') < 10000 then
       -- https://github.com/cuducos/yaml.nvim
       if vim.bo[opts.buf].filetype == "yaml" then
+        vim.opt_local.winbar = "." .. (require("yaml_nvim").get_yaml_key() or "")
         vim.api.nvim_create_autocmd({ "CursorMoved" }, {
           group = vim.api.nvim_create_augroup("curs_winbar", { clear = true }),
           callback = function()
@@ -77,12 +78,16 @@ vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
         })
       -- https://github.com/phelipetls/jsonpath.nvim
       elseif vim.bo[opts.buf].filetype == "json" then
+        vim.opt_local.winbar = "." .. (require("jsonpath").get():sub(2) or "")
         vim.api.nvim_create_autocmd({ "CursorMoved" }, {
           group = vim.api.nvim_create_augroup("curs_winbar", { clear = true }),
           callback = function()
             vim.opt_local.winbar = "." .. (require("jsonpath").get():sub(2) or "")
           end,
         })
+      else
+        vim.opt_local.winbar = ""
+        vim.api.nvim_create_augroup("curs_winbar", { clear = true })
       end
     else
       vim.opt_local.winbar = ""
