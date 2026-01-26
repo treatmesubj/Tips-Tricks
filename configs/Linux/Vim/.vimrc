@@ -247,6 +247,7 @@ endfunction
 command! -bang Emoj
   \ call fzf#run({
       \ 'source': 'emoji-fzf preview',
+      \ 'window': { 'width': 0.8, 'height': 0.6 },
       \ 'options': '--preview-window=down,1 --preview ''emoji-fzf get --name {1}''',
       \ 'sink': function('InsertEmoji')
       \ })
@@ -312,6 +313,7 @@ endfunction
 command! -bang YAMLGoToKey
   \ call fzf#run({
       \ 'source': systemlist("yqshape ", join(getline(1, '$'), "\n")),
+      \ 'window': { 'width': 0.8, 'height': 0.6 },
       \ 'sink': function('YAMLGoToKey')
       \ })
 
