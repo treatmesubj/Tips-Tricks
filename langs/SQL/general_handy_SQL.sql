@@ -243,6 +243,24 @@ FROM SYSCAT.TABLES
 WHERE TABNAME LIKE '%WW_LOAD_SMS%'
 WITH UR
 
+
+-- Janky user security on view
+CREATE OR REPLACE VIEW SCHEMA.VIEW
+AS
+SELECT
+    FACT.*
+FROM
+    SCHEMA.TABLE FACT
+LEFT JOIN (SELECT * FROM (
+    VALUES
+      ('DEV_USER1'), ('USER1'),
+      ('DEV_USER2'), ('USER2'),
+      ('DEV_USER3'), ('USER3')
+) t1 (USERS)) AUTH_USERS
+  ON 1=1
+WHERE SESSION_USER = AUTH_USERS.USERS;
+
+
 /* Learn about schema access */
 SELECT * FROM syscat.SCHEMAAUTH WHERE schemaname='EAL_EAL' WITH ur;
 
