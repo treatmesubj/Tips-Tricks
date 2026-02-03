@@ -1,3 +1,13 @@
+/*
+https://www.ibm.com/docs/en/db2-for-zos/12.0.0?topic=procedures-compound-statement
+The order of statements in a compound statement must be:
+    1. SQL variable, condition declarations, and return codes declarations
+    2. Cursor declarations
+    3. Handler declarations
+    4. SQL procedure statements
+*/
+
+
 /* stored procedure */
 CREATE OR REPLACE PROCEDURE SCHEMA.SYNC_COLORS (
     IN ALIAS_SCHEMA_ARG VARCHAR(100),
