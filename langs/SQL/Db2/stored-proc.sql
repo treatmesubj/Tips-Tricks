@@ -7,6 +7,12 @@ The order of statements in a compound statement must be:
     4. SQL procedure statements
 */
 
+/*
+To execute below in DBeaver, adjust settings:
+  Settings -> Editors -> SQL Editor -> SQL Processing:
+    Statemetns delimiter: @
+    [x] Ignore native delimiter
+*/
 
 /* stored procedure */
 CREATE OR REPLACE PROCEDURE SCHEMA.SYNC_COLORS (
