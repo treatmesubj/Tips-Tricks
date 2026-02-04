@@ -184,6 +184,7 @@ gitnvimdiff() {
         done
     fi
 }
+export -f gitnvimdiff
 nvimdiffsesh() {
     if [[ "$#" == 1 ]]; then
         local relfp=${1}
