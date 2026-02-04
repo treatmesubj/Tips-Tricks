@@ -161,26 +161,27 @@ helpmebash() {
 alias nvimdiff='nvim -d'
 gitnvimdiff() {
     if [ $# -eq 0 ]; then
-        echo -e "usage: git nvimdiff <rev-list> [[--] file]]\n"
+        echo -e "usage: git nvimdiff <rev-list> [[--] relative-path]]\n"
         echo "diff refs:"
         echo "  git nvimdiff master...HEAD"
         echo "diff ref..working-tree & edit working tree:"
         echo "  git nvimdiff master"
+        echo "  git nvimdiff HEAD"
         echo "diff ref...HEAD + working-tree & edit working tree:"
         echo "  git nvimdiff \$(git merge-base master HEAD)"
         return 1
     fi
     rvl="$1"; shift
-    files=$(git diff "$rvl" --name-only --relative "$@")  # relative
+    files=$(git diff "$rvl" --name-only "$@")
     if [[ $(sed '/^$/d' <<< "$files" | wc -l) == 1 ]]; then
         f=$(head -1 <<< "$files")
-        git difftool -y "$rvl" -- "$f"  # relative
+        git difftool -y "$rvl" -- $(git root)/"$f"
     elif [[ $(sed '/^$/d' <<< "$files" | wc -l) == 0 ]]; then
         echo "identical: \"$rvl\" -- \"$@\""
     else
         while :; do
-            f=$(fzf -0 --preview 'git diff '"$rvl"' -- {} | delta' --preview-window up,70%,~4,cycle --select-1 <<< "$files") || return 0
-            git difftool -y "$rvl" -- "$f"
+            f=$(fzf -0 --preview 'git diff '"$rvl"' -- '"$(git root)"'/{} | delta' --preview-window up,70%,~4,cycle --select-1 <<< "$files") || return 0
+            git difftool -y "$rvl" -- $(git root)/"$f"
         done
     fi
 }

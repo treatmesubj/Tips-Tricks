@@ -47,12 +47,13 @@
     show-merge-conflicts = !git diff --name-only --diff-filter=U --relative && echo \"---\" && git diff --check
     log-lil = log --pretty=\"format:%C(yellow)%h %C(Cyan)%>(10)%ad (%cr) %Cgreen%aN%Cred%d %Creset%s\" --date=short
     log-big = log -p -M --stat
-    nvimdiff = !cd -- "${GIT_PREFIX:-.}" && bash -c 'source ~/.bashrc_john.sh && gitnvimdiff \"$@\"' -bash
+    nvimdiff = !cd -- "${GIT_PREFIX:-.}" && bash -c 'gitnvimdiff \"$@\"' -bash
     # Usage:
       # diff refs:
         # $ git nvimdiff master...HEAD
       # diff ref..working-tree & edit working tree:
         # $ git nvimdiff master
+        # $ git nvimdiff HEAD
       # diff ref...HEAD + working-tree & edit working tree:
         # $ git nvimdiff $(git merge-base master HEAD)
     branch-short = "!git branch | sed -n '/\\* /s///p' #"
