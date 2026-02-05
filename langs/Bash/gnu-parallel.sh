@@ -24,8 +24,17 @@ done
 # double grep
 parallel rg -il findduplicate :::: <(rg -il addsurrogatekey) | wc -l
 
-# quoting
+###########
+# quoting #
+###########
+# ex 1
 parallel rg -iH '"'pipeline: '{1}" -A 1 {2}' ::: "$dag_files" ::: "$raps_pipelines"
+# ex 2
+parallel 'yq "filename + \" \" + .dag.dag_id + \" \" + .dag.schedule // \"no-schedule\""' {} :::: <(rg -il "owner.*raptors" ./dags/deployable) | grep -v "no-schedule"
+# ex 3
+cmd() { yq 'filename + " " + .dag.dag_id + " " + .dag.schedule // "no-schedule"' "$1"; } \
+export -f cmd; \
+parallel cmd {} :::: <(rg -il "owner.*raptors" ./dags/deployable) | grep -v "no-schedule";
 
 # group & print stdout by stdin when jobs are complete
 parallel -k traceroute ::: debian.org freenetproject.org
