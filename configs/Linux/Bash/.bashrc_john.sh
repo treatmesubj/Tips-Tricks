@@ -67,14 +67,13 @@ csv_filter() {
     fi
     headers=$(head -1 < "$data" | csvquote)
     colname=$(
-        echo "$headers" \
-        | awk -v RS=',' '{print NR, $0}' \
+        awk -v RS=',' '{print NR, $0}' <<< "$headers" \
         | grep . \
         | fzf --prompt "column-to-filter: " \
         --preview-window='down:80%' --preview "batcat -p --language 'csv' \
         --color=always --line-range=:50 \"$data\""
     )
-    colnum=$(echo "$colname" | cut -d ' ' -f 1)
+    colnum=$(cut -d ' ' -f 1 <<< "$colname")
     reggie=$(
         csvquote < "$data" \
         | awk -v colnum="$colnum" -F, '!seen[$colnum]++ { print $colnum }' \
@@ -240,8 +239,8 @@ fuzzline() {
         --style=numbers --line-range=:500 $(echo {} | cut -d ":" -f 1)' \
         --preview-window up
     )
-    f=$(echo "$i" | cut -d ":" -f 1)
-    l=$(echo "$i" | cut -d ":" -f 2)
+    f=$(cut -d ":" -f 1 <<< "$i")
+    l=$(cut -d ":" -f 2 <<< "$i")
     echo "$f +$l"
 }
 
