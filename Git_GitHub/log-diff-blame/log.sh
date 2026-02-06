@@ -56,3 +56,19 @@ git reset --hard HEAD@{2}
 # This will take all commits on topic that aren't on master
 # and replay them on top of 0deadbeef, an old commit in master
 git rebase --onto 0deadbeef master topic
+
+
+# identifying giant blobs in repo
+# https://github.com/steffen/git-metrics
+git metrics
+git log --all --source -- path/to/massive-file
+
+# show which branches contain a commit
+git branch --all --contains c84ae34
+# find merge-commit that incorporated a specific commit
+git log --ancestry-path --merges 6496163..master
+# find commit that squash-merged a branch
+    # typically/conventionally a squash-merge commit,
+    # which is not technically a merge commit,
+    # will mention the feature-branch's name
+git log master --graph --oneline --grep="EPMKEY 14488" -i
