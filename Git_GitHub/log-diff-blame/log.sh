@@ -71,4 +71,4 @@ git log --ancestry-path --merges 6496163..master
     # typically/conventionally a squash-merge commit,
     # which is not technically a merge commit,
     # will mention the feature-branch's name
-git log master --graph --oneline --grep="EPMKEY 14488" -i
+git log master --graph --oneline --grep="EPMKEY.14488" -i
