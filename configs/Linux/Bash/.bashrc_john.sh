@@ -9,23 +9,23 @@ prompt() {
     # py-venv: (~/.venv)
     if [[ $VIRTUAL_ENV ]]; then
         venv=${VIRTUAL_ENV/#$HOME/\~}
-        export PS1+="\[\e[1;36m\]§\[\e[m\] \[\e[1;92m\](\[\e[m\]\[\e[1;36m\]\$venv\[\e[m\]\[\e[1;92m\])\[\e[m\]\r\n";
+        export PS1+="\[\e[1;36m\]§\[\e[m\] \[\e[1;92m\](\[\e[m\]\[\e[1;36m\]\$venv\[\e[m\]\[\e[1;92m\])\[\e[m\] ";
     fi;
 
     # branch: * master
     branch=$(git branch 2> /dev/null | sed -n '/\* /s///p')
     if [[ $branch ]]; then
-        export PS1+="\[\e[1;35m\]±\[\e[m\] \[\e[1;45m\]* \[\e[m\]\[\e[m\]\[\e[92;45m\]$branch\[\e[m\]\r\n";
+        export PS1+="\[\e[1;35m\]±\[\e[m\] \[\e[1;45m\]* \[\e[m\]\[\e[m\]\[\e[92;45m\]$branch\[\e[m\] ";
     fi;
 
     # Θ cluster:namespace
     kctxt="$(kubectl config current-context 2>/dev/null | cut -f1 -d"/")"
     if [[ $kctxt ]]; then
         kns="$(kubectl config view --minify -o jsonpath='{..namespace}')"
-        export PS1+="\[\e[44;97m\]Θ\[\e[m\] \[\e[3;93m\]$kctxt\[\e[m\]:\[\e[3;94m\]$kns\[\e[m\]\r\n"
+        export PS1+="\[\e[44;97m\]Θ\[\e[m\] \[\e[3;93m\]$kctxt\[\e[m\]:\[\e[3;94m\]$kns\[\e[m\] "
     fi
     # $
-    export PS1+="\[\e[1;92m\]\$ \[\e[m\]"
+    export PS1+="\r\n\[\e[1;92m\]\$ \[\e[m\]"
 }
 PROMPT_COMMAND=prompt
 
