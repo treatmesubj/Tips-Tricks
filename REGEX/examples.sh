@@ -1,3 +1,23 @@
+# nested quotes contents
+cat blah.log
+# jfdklajfksla "jfdkslajfkls"target"jfdksljakl" jfdkasljfaksljkl
+#
+rg -io '"[^"]*tar[^"]*"' blah.log
+# 4:"target"
+
+# multi-line nested quotes
+cat blah.log
+# jfdklajfksla "jfdksla
+#
+# jfkls"ho
+# hey
+# target"jfdksljakl" jfdkasljfaksljkl
+#
+rg -ioU --multiline-dotall '"[^"]*tar[^"]*"' blah.log
+# 3:"ho
+# 4:hey
+# 5:target"
+
 # grep for any SCHEMA.TABLE
 rg -i '\w+\.\w+\s'
 # grep for any MY_SCHEMA*.TABLE
