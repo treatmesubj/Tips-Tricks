@@ -65,10 +65,13 @@ FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partition
 SELECT *
 FROM parquet_metadata('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*');
 
-DESCRIBE SELECT *
+SUMMARIZE SELECT *  -- null-fields, stats
 FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partitioning=1, filename=1);
 
-EXPLAIN ANALYZE SELECT *
+DESCRIBE SELECT *  -- schema
+FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partitioning=1, filename=1);
+
+EXPLAIN ANALYZE SELECT *  -- query plan performance
 FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partitioning=1, filename=1);
 
 -- https://duckdb.org/docs/data/partitioning/partitioned_writes.html
