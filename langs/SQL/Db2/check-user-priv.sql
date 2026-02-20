@@ -19,13 +19,13 @@ WHERE (
 )
 WITH UR;
 
--- User's roles
+-- User's roles (replace SESSION_USER with '<user>')
 SELECT myauth.GRANTEE, myauth.ROLENAME
 FROM TABLE (SYSPROC.AUTH_LIST_ROLES_FOR_AUTHID (SESSION_USER, 'U') ) AS myauth
 WHERE myauth.GRANTEE = SESSION_USER
 ORDER BY ROLENAME
 
--- User's roles' tables
+-- User's roles' tables (replace SESSION_USER with '<user>')
 SELECT myauth.GRANTEE, myauth.ROLENAME,
   tabauth.TABSCHEMA, tabauth.TABNAME, tabauth.GRANTEETYPE
 FROM TABLE (SYSPROC.AUTH_LIST_ROLES_FOR_AUTHID (SESSION_USER, 'U') ) AS myauth
@@ -36,7 +36,7 @@ WHERE myauth.GRANTEE = SESSION_USER
 ORDER BY ROLENAME, TABSCHEMA, TABNAME
 
 
--- User's roles' schemas
+-- User's roles' schemas (replace SESSION_USER with '<user>')
 SELECT myauth.GRANTEE, myauth.ROLENAME,
   schemaauth.SCHEMANAME
 FROM TABLE (SYSPROC.AUTH_LIST_ROLES_FOR_AUTHID (SESSION_USER, 'U') ) AS myauth
