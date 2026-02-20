@@ -158,6 +158,7 @@ helpmebash() {
 }
 
 alias nvimdiff='nvim -d'
+# see also diff -u file1 file2 | delta --side-by-side
 gitnvimdiff() {
     if [ $# -eq 0 ]; then
         echo -e "usage: git nvimdiff <rev-list> [[--] relative-path]]\n"
