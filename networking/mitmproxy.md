@@ -3,7 +3,9 @@ sudo apt install mitmproxy
 mitmweb
 # Web server listening at http://127.0.0.1:8081/
 # Proxy server listening at *:8080
-curl -k -x http://localhost:8080 https://google.com
+curl -k -x http://localhost:8080 https://example.com
+# https://docs.mitmproxy.org/stable/concepts/certificates/
+curl -x http://localhost:8080 --cacert ~/.mitmproxy/mitmproxy-ca-cert.pem https://example.com
 ```
 
 ## VSCode configure proxy
