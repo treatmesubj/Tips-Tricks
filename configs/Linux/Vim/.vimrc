@@ -327,6 +327,13 @@ endfunction
 " :SumLines
 command! -range SumLines <line1>,<line2> call SumLines()
 
+" surround a visual selection w/ a string/character, such as a quote
+function Surround(str) range
+  execute "normal! gvc" . a:str . "\<c-R>\"" . a:str . "\<Esc>"
+endfunction
+command! -range=% -nargs=+ Surround :call Surround(<f-args>)
+" :'<,'>Surround "
+
 " Cheat Sheets -----------------------
 "
 " vertical list of incrementing numbers
