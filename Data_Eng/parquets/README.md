@@ -93,6 +93,7 @@ COPY (
 
 ### DuckDB CLI Execute Statement
 ```bash
+duckdb -csv < tmp.sql | less -SEX
 duckdb -markdown < tmp.sql | nvim
 duckdb :memory: "SELECT 'hey' yo" -csv
 ```
