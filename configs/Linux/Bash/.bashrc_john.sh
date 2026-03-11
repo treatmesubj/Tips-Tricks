@@ -226,24 +226,26 @@ fuzzfile() {
     # fuzzfile | xargs -t nvim
     f=$(
         fzf --preview 'batcat --color=always --theme="Monokai Extended" \
-        --style=numbers --line-range=:500 -n {}' \
+        --style=header,numbers --line-range=:500 -P {}' \
         --preview-window up --print-query | tail -1
     )
     echo "$f"
 }
+alias ff='fuzzfile | xargs -t nvim'
 fuzzline() {
     # fuzzline | xargs -t nvim
     i=$(
         rg . --no-heading --hidden --line-number \
-        | fzf --nth 3 -d ':' \
+        | fzf --nth 3.. -d ':' \
         --preview 'batcat --color=always --theme="Monokai Extended" \
-        --style=numbers --line-range=:500 $(echo {} | cut -d ":" -f 1)' \
-        --preview-window up
+        --style=numbers -P --highlight-line {2} {1}' \
+        --preview-window up --preview-window +{2}-5
     )
     f=$(cut -d ":" -f 1 <<< "$i")
     l=$(cut -d ":" -f 2 <<< "$i")
     echo "$f +$l"
 }
+alias fl='fuzzline | xargs -t nvim'
 
 # keys
 source ~/.bashrc_keys.sh
