@@ -175,13 +175,13 @@ gitnvimdiff() {
     files=$(git diff "$rvl" --name-only "$@")
     if [[ $(sed '/^$/d' <<< "$files" | wc -l) == 1 ]]; then
         f=$(head -1 <<< "$files")
-        git difftool -y "$rvl" -- $(git root)/"$f"
+        git difftool -y "$rvl" -- "$(git root)/$f"
     elif [[ $(sed '/^$/d' <<< "$files" | wc -l) == 0 ]]; then
         echo "identical: \"$rvl\" -- \"$@\""
     else
         while :; do
             f=$(fzf -0 --preview 'git diff '"$rvl"' -- '"$(git root)"'/{} | delta' --preview-window up,70%,~4,cycle --select-1 <<< "$files") || return 0
-            git difftool -y "$rvl" -- $(git root)/"$f"
+            git difftool -y "$rvl" -- "$(git root)/$f"
         done
     fi
 }
