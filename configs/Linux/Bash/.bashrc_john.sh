@@ -157,6 +157,22 @@ helpmebash() {
     [[ -n "$page" ]] && nvim +Man! -c "set nowrap" <<< "$page"
 }
 
+gurl() {
+    # from within a git repo, return a git URL for a file
+    if [ $# -eq 1 ]; then
+        local base=$(
+            git config --get remote.origin.url \
+            | sed -e "s+\.git$+/blob/$(git branch --show-current)+" -e 's/^git@//' -e 's+com:+com/+'
+        )
+        [[ -z "$base" ]] && return 1
+        local filepath=$(realpath "$1" | sed "s+$(git root)/++")
+        [[ -z "$filepath" ]] && return 1
+        echo "https://${base}/${filepath}"
+    else
+        echo "Usage: gurl <relative-file-path>"
+    fi
+}
+
 alias nvimdiff='nvim -d'
 # see also diff -u file1 file2 | delta --side-by-side
 gitnvimdiff() {
