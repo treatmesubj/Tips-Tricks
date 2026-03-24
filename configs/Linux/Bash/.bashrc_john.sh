@@ -13,7 +13,7 @@ prompt() {
     fi;
 
     # branch: * master
-    branch=$(git branch 2> /dev/null | sed -n '/\* /s///p')
+    branch=$(git branch --show-current 2> /dev/null)
     if [[ $branch ]]; then
         export PS1+="\[\e[1;35m\]±\[\e[m\] \[\e[1;45m\]* \[\e[m\]\[\e[m\]\[\e[92;45m\]$branch\[\e[m\] ";
     fi;
