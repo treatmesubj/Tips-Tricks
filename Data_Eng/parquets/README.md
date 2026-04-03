@@ -68,6 +68,9 @@ FROM parquet_metadata('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*');
 SUMMARIZE SELECT *  -- null-fields, stats
 FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partitioning=1, filename=1);
 
+SELECT * EXCLUDE file_name -- schema
+FROM parquet_schema('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*') whole
+
 DESCRIBE SELECT *  -- schema
 FROM read_parquet('s3://<bucket>/path/YEAR=*/QUARTER=*/WEEK=*/*', hive_partitioning=1, filename=1);
 
