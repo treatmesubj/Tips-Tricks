@@ -2,7 +2,7 @@
 
 # good
 while read -r line; do
-    echo "<$line>"
+    echo "<$line>" < /dev/null
 done < data.txt
 
 while read -r line; do
