@@ -3,18 +3,33 @@ function duckdb() { duckdb.exe "$@"; }
 
 duckdb -csv -noheader -c "
     SELECT DISTINCT filename
-    FROM read_parquet('s3://epm-finance-black-2/fact/FBI/BUDGET_RCE_FACT/transform.parquet/2026/COREHW/planning_case_key=*/part-*', hive_partitioning=1, filename=1)
+    FROM read_parquet('s3://bucket/part-*', hive_partitioning=1, filename=1)
 " > ./fileys.txt
 
-mkdir -p out
+# metadata
+mkdir -p metadata
 while read -r filey; do
-    echo $filey
+    echo fetching metadata for $filey
     duckdb -csv -c "SELECT row_group_num_columns, column_id, path_in_schema, type, compression FROM parquet_metadata('$filey');" < /dev/null \
-         > ./out/"$(basename "$filey")".csv
+         > ./metadata/"$(basename "$filey")".csv
 done < fileys.txt
 
-baseline=$(ls -1 out/ | head -1)
+baseline=$(ls -1 metadata/ | head -1)
 
 while read -r fili; do
-    diff -s ./out/"$baseline" ./out/"$fili"
-done < <(ls -1 ./out)
+    diff -s ./metadata/"$baseline" ./metadata/"$fili" | grep --color=always -E 'identical|$'
+done < <(ls -1 ./metadata)
+
+# schemas
+mkdir -p schema
+while read -r filey; do
+    echo fetching schema for $filey
+    duckdb -csv -c "SELECT * EXCLUDE file_name FROM parquet_schema('$filey')" < /dev/null \
+         > ./schema/"$(basename "$filey")".csv
+done < fileys.txt
+
+baseline=$(ls -1 schema/ | head -1)
+
+while read -r fili; do
+    diff -s ./schema/"$baseline" ./schema/"$fili" | grep --color=always -E 'identical|$'
+done < <(ls -1 ./schema)
