@@ -54,7 +54,7 @@ vim.lsp.config('pylsp', {
   },
 })
 -- https://github.com/nvim-treesitter/nvim-treesitter
-require('nvim-treesitter.configs').setup {
+require('nvim-treesitter').setup {
   -- A list of parser names, or "all"
   ensure_installed = { "yaml", "json" },
   highlight = {

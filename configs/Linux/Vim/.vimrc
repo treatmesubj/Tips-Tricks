@@ -275,7 +275,7 @@ map <leader>p "0p<CR>
 map <leader>bb :Buffer<CR>
 
 " echo path info in status bar
-nnoremap <C-g> :echo "  pwd: "system('pwd') "file: "expand('%')<CR>
+nnoremap <C-g> :echo "  pwd: "system('pwd') "file: "expand('%') "\n gurl: "<CR>
 
 function! VertCursLock()
   nnoremap k kzz
