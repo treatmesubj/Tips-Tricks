@@ -19,9 +19,9 @@ if has('nvim')
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'L3MON4D3/LuaSnip'
   " LSP-Zero
-  Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v3.x'}
+  Plug 'VonHeikemen/lsp-zero.nvim', { 'branch': 'v3.x' }
   Plug 'hrsh7th/cmp-buffer'
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " :TSUpdate
+  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate', 'commit': '4916d6592ede8c07973490d9322f187e07dfefac' }  " :TSUpdate
   " :TSInstall yaml
   Plug 'cuducos/yaml.nvim'
   " :TSInstall json
