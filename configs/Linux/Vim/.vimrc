@@ -9,6 +9,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'treatmesubj/rock-lightline'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'unblevable/quick-scope'
 if has('nvim')
   Plug 'wookayin/semshi'  " python highlights
   Plug 'lukas-reineke/indent-blankline.nvim'
