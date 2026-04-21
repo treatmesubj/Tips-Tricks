@@ -108,6 +108,9 @@ augroup CursorLine
   autocmd WinLeave * setlocal nocursorline
 augroup END
 
+" hard-scope
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
 " off-white normal text
 hi Normal ctermfg=254  guifg=#e4e4e4
 
