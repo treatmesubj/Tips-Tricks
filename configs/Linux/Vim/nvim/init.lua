@@ -26,11 +26,10 @@ cmp.setup({
 })
 
 -- show most severe errors on top
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        severity_sort = true
-    }
-)
+vim.diagnostic.config({
+  -- Sort diagnostics by severity (Errors > Warnings > Info > Hints)
+  severity_sort = true
+})
 -- keybinding: show all diagnostics on current line in floating window
 -- <Leader>d to show diagnostic (error) message
 vim.api.nvim_set_keymap(
@@ -54,9 +53,8 @@ vim.lsp.config('pylsp', {
   },
 })
 -- https://github.com/nvim-treesitter/nvim-treesitter
+require('nvim-treesitter').install { "yaml", "json" }
 require('nvim-treesitter').setup {
-  -- A list of parser names, or "all"
-  ensure_installed = { "yaml", "json" },
   highlight = {
     enable = false,
     additional_vim_regex_highlighting = false,

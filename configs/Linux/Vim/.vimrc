@@ -9,7 +9,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'treatmesubj/rock-lightline'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'unblevable/quick-scope'
+Plug 'treatmesubj/quick-scope'
 if has('nvim')
   Plug 'wookayin/semshi'  " python highlights
   Plug 'lukas-reineke/indent-blankline.nvim'
@@ -22,9 +22,10 @@ if has('nvim')
   " LSP-Zero
   Plug 'VonHeikemen/lsp-zero.nvim', { 'branch': 'v3.x' }
   Plug 'hrsh7th/cmp-buffer'
-  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate', 'commit': '4916d6592ede8c07973490d9322f187e07dfefac' }  " :TSUpdate
+  " cargo install tree-sitter-cli
+  Plug 'nvim-treesitter/nvim-treesitter', { 'branch': 'main', 'do': ':TSUpdate' }
   " :TSInstall yaml
-  Plug 'cuducos/yaml.nvim'
+  Plug 'https://tangled.org/cuducos.me/yaml.nvim'
   " :TSInstall json
   Plug 'treatmesubj/jsonpath.nvim'
   " marks
