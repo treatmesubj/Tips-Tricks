@@ -59,6 +59,12 @@ vim.lsp.config('pylsp', {
     }
   },
 })
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#yamlls
+-- https://github.com/redhat-developer/yaml-language-serve
+-- npm install -g yaml-language-server@latest
+vim.lsp.enable('yamlls')
+--
+
 -- https://github.com/nvim-treesitter/nvim-treesitter
 require('nvim-treesitter').install { "yaml", "json" }
 require('nvim-treesitter').setup {
