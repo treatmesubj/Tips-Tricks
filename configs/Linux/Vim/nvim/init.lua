@@ -25,19 +25,26 @@ cmp.setup({
   formatting = cmp_format,
 })
 
--- show most severe errors on top
+
+-- Diagnositcs virtual-text
 vim.diagnostic.config({
-  -- Sort diagnostics by severity (Errors > Warnings > Info > Hints)
-  severity_sort = true
+  virtual_text = {
+    prefix = '🤮',
+    virt_text_pos = 'right_align'
+  },
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
 })
--- keybinding: show all diagnostics on current line in floating window
--- <Leader>d to show diagnostic (error) message
+-- Diagnostics keybinding for float-window
 vim.api.nvim_set_keymap(
   'n', '<Leader>d', ':lua vim.diagnostic.open_float()<CR>',
   { noremap = true, silent = true }
 )
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#pylsp
 -- https://github.com/python-lsp/python-lsp-server
+-- https://github.com/davidhalter/jedi
 -- ~/.config/pycodestyle
 vim.lsp.enable('pylsp')
 vim.lsp.config('pylsp', {

@@ -2,7 +2,6 @@
 call plug#begin('~/.vim/plugged')
 " :PlugInstall, :PlugUpdate, :PlugUpgrade
 Plug 'patstockwell/vim-monokai-tasty'
-Plug 'vim-python/python-syntax'
 Plug 'preservim/vim-markdown'
 Plug 'chrisbra/csv.vim'
 Plug 'itchyny/lightline.vim'
