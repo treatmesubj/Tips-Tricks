@@ -63,6 +63,23 @@ vim.lsp.config('pylsp', {
 -- https://github.com/redhat-developer/yaml-language-serve
 -- npm install -g yaml-language-server@latest
 vim.lsp.enable('yamlls')
+vim.lsp.config('yamlls', {
+  settings = {
+    yaml = {
+      validate = true,
+      completion = true,
+      format = {
+          enable = true,
+      },
+      root_markers = { ".git" },
+      --  yq '.spec.versions[0].schema.openAPIV3Schema' my-CRD.yaml -o json > my-CRD-schema.json
+      -- schemas = {
+      --   ["kubernetes"] = "/**",
+      -- },
+      filetypes = { 'yaml', 'yml' },
+    },
+  }
+})
 --
 
 -- https://github.com/nvim-treesitter/nvim-treesitter
