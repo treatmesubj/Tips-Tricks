@@ -90,7 +90,7 @@ csv_filter() {
 }
 alias csv-filter=csv_filter
 
-hl() { grep --color=always -E 'yo|$' "$1"; }
+hl() { grep --color=always -E "$1"; }
 
 grepi() {
     # interactive case-insensitive grep
