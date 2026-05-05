@@ -84,12 +84,6 @@ vim.lsp.config('yamlls', {
 
 -- https://github.com/nvim-treesitter/nvim-treesitter
 require('nvim-treesitter').install { "yaml", "json" }
-require('nvim-treesitter').setup {
-  highlight = {
-    enable = false,
-    additional_vim_regex_highlighting = false,
-  }
-}
 
 vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
   group = vim.api.nvim_create_augroup("bufent_winbar", { clear = true }),
@@ -143,14 +137,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- https://github.com/lukas-reineke/indent-blankline.nvim
-vim.cmd('hi RainbowRed ctermfg=88 guifg=#E06C75')
-vim.cmd('hi RainbowYellow ctermfg=3 guifg=#E5C07B')
-vim.cmd('hi RainbowBlue ctermfg=4 guifg=#61AFEF')
-vim.cmd('hi RainbowOrange ctermfg=202 guifg=#D19A66')
-vim.cmd('hi RainbowGreen ctermfg=2 guifg=#98C379')
-vim.cmd('hi RainbowViolet ctermfg=5 guifg=#C678DD')
-vim.cmd('hi RainbowCyan ctermfg=14 guifg=#56B6C2')
-local highlite = {
+local highlight = {
     "RainbowRed",
     "RainbowYellow",
     "RainbowBlue",
@@ -159,9 +146,20 @@ local highlite = {
     "RainbowViolet",
     "RainbowCyan",
 }
-require("ibl").setup({
-  indent = { highlight = highlite }
-})
+
+local hooks = require "ibl.hooks"
+-- create the highlight groups in the highlight setup hook, so they are reset
+-- every time the colorscheme changes
+hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+    vim.api.nvim_set_hl(0, "RainbowRed", { ctermfg = 88, fg = "#E06C75" })
+    vim.api.nvim_set_hl(0, "RainbowYellow", { ctermfg = 3, fg = "#E5C07B" })
+    vim.api.nvim_set_hl(0, "RainbowBlue", { ctermfg = 4, fg = "#61AFEF" })
+    vim.api.nvim_set_hl(0, "RainbowOrange", { ctermfg = 202, fg = "#D19A66" })
+    vim.api.nvim_set_hl(0, "RainbowGreen", { ctermfg = 2, fg = "#98C379" })
+    vim.api.nvim_set_hl(0, "RainbowViolet", { ctermfg = 5, fg = "#C678DD" })
+    vim.api.nvim_set_hl(0, "RainbowCyan", { ctermfg = 14, fg = "#56B6C2" })
+end)
+require("ibl").setup { indent = { highlight = highlight } }
 
 -- https://github.com/chentoast/marks.nvim
 require('marks').setup {
