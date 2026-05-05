@@ -84,6 +84,13 @@ vim.lsp.config('yamlls', {
 
 -- https://github.com/nvim-treesitter/nvim-treesitter
 require('nvim-treesitter').install { "yaml", "json" }
+-- use old-school vim regex preservim/vim-markdown
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.treesitter.stop()
+  end,
+})
 
 vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
   group = vim.api.nvim_create_augroup("bufent_winbar", { clear = true }),
