@@ -17,7 +17,7 @@ done < fileys.txt
 baseline=$(ls -1 metadata/ | head -1)
 
 while read -r fili; do
-    diff -s ./metadata/"$baseline" ./metadata/"$fili" | grep --color=always -E 'identical|$'
+    diff -us ./metadata/"$baseline" ./metadata/"$fili" | grep --color=always -E 'identical|$'
 done < <(ls -1 ./metadata)
 
 # schemas
@@ -31,5 +31,5 @@ done < fileys.txt
 baseline=$(ls -1 schema/ | head -1)
 
 while read -r fili; do
-    diff -s ./schema/"$baseline" ./schema/"$fili" | grep --color=always -E 'identical|$'
+    diff -us ./schema/"$baseline" ./schema/"$fili" | grep --color=always -E 'identical|$'
 done < <(ls -1 ./schema)
