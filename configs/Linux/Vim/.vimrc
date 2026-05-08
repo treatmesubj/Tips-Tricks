@@ -12,15 +12,6 @@ Plug 'treatmesubj/quick-scope'
 if has('nvim')
   Plug 'wookayin/semshi'  " python highlights
   Plug 'lukas-reineke/indent-blankline.nvim'
-  " LSP Support
-  Plug 'neovim/nvim-lspconfig'
-  " Autocompletion
-  Plug 'hrsh7th/nvim-cmp'
-  Plug 'hrsh7th/cmp-nvim-lsp'
-  Plug 'L3MON4D3/LuaSnip'
-  " LSP-Zero
-  Plug 'VonHeikemen/lsp-zero.nvim', { 'branch': 'v3.x' }
-  Plug 'hrsh7th/cmp-buffer'
   " cargo install tree-sitter-cli
   Plug 'nvim-treesitter/nvim-treesitter', { 'branch': 'main', 'do': ':TSUpdate' }
   " :TSInstall yaml

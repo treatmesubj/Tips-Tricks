@@ -5,27 +5,6 @@ vim.api.nvim_command('source ~/.vimrc')
 
 vim.opt.inccommand = "split"
 
-local lsp_zero = require('lsp-zero')
-lsp_zero.on_attach(function(client, bufnr)
-  lsp_zero.default_keymaps({buffer = bufnr})
-
-  --if client.server_capabilities.documentSymbolProvider then
-  --  require('nvim-navic').attach(client, bufnr)
-  --end
-end)
--- auto-complete source: words already in buffer
--- https://github.com/hrsh7th/cmp-buffer
-local cmp = require('cmp')
-local cmp_format = lsp_zero.cmp_format()
-cmp.setup({
-  sources = {
-    {name = 'nvim_lsp'},
-    {name = 'buffer'},
-  },
-  formatting = cmp_format,
-})
-
-
 -- Diagnositcs virtual-text
 vim.diagnostic.config({
   virtual_text = {
@@ -46,8 +25,8 @@ vim.api.nvim_set_keymap(
 -- https://github.com/python-lsp/python-lsp-server
 -- https://github.com/davidhalter/jedi
 -- ~/.config/pycodestyle
-vim.lsp.enable('pylsp')
 vim.lsp.config('pylsp', {
+  filetypes = { 'python' },
   cmd = {(os.getenv("HOME")..'/.venv_pynvim/bin/pylsp')};
   settings = {
     pylsp = {
@@ -59,11 +38,13 @@ vim.lsp.config('pylsp', {
     }
   },
 })
+vim.lsp.enable('pylsp')
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#yamlls
 -- https://github.com/redhat-developer/yaml-language-serve
 -- npm install -g yaml-language-server@latest
-vim.lsp.enable('yamlls')
 vim.lsp.config('yamlls', {
+  filetypes = { 'yaml' },
+  cmd = { "yaml-language-server", "--stdio" },
   settings = {
     yaml = {
       validate = true,
@@ -80,7 +61,19 @@ vim.lsp.config('yamlls', {
     },
   }
 })
---
+vim.lsp.enable('yamlls')
+
+vim.o.autocomplete = true
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(ev)
+    local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
+    if client:supports_method('textDocument/completion') then
+      vim.lsp.completion.enable(true, client.id, ev.buf, {autotrigger = true})
+    end
+  end,
+})
+vim.opt.complete:append('o')
+vim.opt.completeopt = { 'menuone', 'noselect' }
 
 -- https://github.com/nvim-treesitter/nvim-treesitter
 require('nvim-treesitter').install { "yaml", "json" }
