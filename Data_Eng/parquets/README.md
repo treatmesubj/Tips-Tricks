@@ -46,9 +46,11 @@ CREATE PERSISTENT SECRET staging_buckets (
     SECRET '',
     ENDPOINT 's3.us.cloud-object-storage.appdomain.cloud',
     REGION 's3.us.cloud-object-storage.appdomain.cloud',
-    SCOPE 's3://staging-one',
-    SCOPE 's3://staging-two',
-    SCOPE 's3://staging-three'
+    SCOPE [
+      's3://staging-one',
+      's3://staging-two',
+      's3://staging-three'
+    ]
 );
 SELECT * FROM duckdb_secrets();
 SELECT * FROM which_secret('s3://staging-one', 's3');
