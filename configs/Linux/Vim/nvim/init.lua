@@ -21,22 +21,41 @@ vim.api.nvim_set_keymap(
   'n', '<Leader>d', ':lua vim.diagnostic.open_float()<CR>',
   { noremap = true, silent = true }
 )
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#pylsp
 -- https://github.com/python-lsp/python-lsp-server
+-- https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
 -- https://github.com/davidhalter/jedi
 -- ~/.config/pycodestyle
 vim.lsp.config('pylsp', {
   filetypes = { 'python' },
-  cmd = {(os.getenv("HOME")..'/.venv_pynvim/bin/pylsp')};
+  cmd = {(os.getenv("HOME")..'/.venv/bin/pylsp')};
   settings = {
     pylsp = {
       plugins = {
         jedi = {
-          environment = (os.getenv("HOME")..'/.venv_pynvim/bin/python')
-        }
+          environment = (os.getenv("HOME")..'/.venv/bin/python'),
+          auto_import_modules = {},
+        },
+        jedi_completion = {
+          enabled = true,
+          include_params = true,
+          include_class_objects = false,
+          include_function_objects = false,
+          fuzzy = false,
+          eager = false,
+        },
+        jedi_definition = {
+          follow_imports = true,
+          follow_builtin_imports = true,
+          follow_builtin_definitions = true,
+        },
+        jedi_hover = { enabled = true },
+        jedi_references = { enabled = true },
+        jedi_signature_help = { enabled = true },
+        jedi_symbols = { enabled = true },
+        jedi_type_definition = { enabled = true }
       }
     }
-  },
+  }
 })
 vim.lsp.enable('pylsp')
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#yamlls
@@ -69,6 +88,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
     if client:supports_method('textDocument/completion') then
       vim.lsp.completion.enable(true, client.id, ev.buf, {autotrigger = true})
+      vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = ev.buf })
     end
   end,
 })

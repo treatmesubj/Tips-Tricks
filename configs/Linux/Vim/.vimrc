@@ -192,6 +192,7 @@ set tabstop=4 shiftwidth=4 expandtab " every tab -> 4 spaces
 autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab  " vimscript
 autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab  " lua
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab  " yaml
+" disable /usr/share/nvim/runtime/ftplugin/sql-bak.vim
 autocmd FileType sql setlocal ts=2 sts=2 sw=2 expandtab  " sql
 autocmd FileType yaml set nowrap  " yaml
 autocmd BufRead,BufNewFile *.ddl set ft=sql  " ddl is sql
