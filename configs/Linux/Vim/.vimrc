@@ -173,6 +173,11 @@ set backupdir=/tmp
 set undofile  " keep an undo file (undo changes after closing)
 set undodir=~/.vim/undodir  " put all undo files in a tidy dir
 set iskeyword-=_  " word boundaries
+augroup InsertModeToggleKeywordUnderscore " ignore _ for better autocomplete
+  autocmd!
+  autocmd InsertEnter * set iskeyword+=_  " word boundaries
+  autocmd InsertLeave * set iskeyword-=_  " word boundaries
+augroup END
 set shellcmdflag=-c
 let $BASH_ENV = "~/.bashrc_john.sh"  " expand aliases for non-interactive shells
 
