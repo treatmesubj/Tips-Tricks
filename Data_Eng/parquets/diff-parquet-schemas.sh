@@ -6,7 +6,9 @@ duckdb -csv -noheader -c "
     FROM read_parquet('s3://bucket/part-*', hive_partitioning=1, filename=1)
 " > ./fileys.txt
 
-# metadata
+[[ -s fileys.txt ]] || { echo "Error: No files found" >&2; exit 1; }
+
+# extract metadata
 mkdir -p metadata
 while read -r filey; do
     echo fetching metadata for "$filey"
@@ -16,11 +18,12 @@ done < fileys.txt
 
 baseline=$(find ./metadata/ -type f | head -1)
 
+# compare metadata
 while read -r fili; do
     diff -us ./metadata/"$baseline" ./metadata/"$fili" | grep --color=always -E 'identical|$'
 done < <(find ./metadata -type f)
 
-# schemas
+# extract schemas
 mkdir -p schema
 while read -r filey; do
     echo fetching schema for "$filey"
@@ -30,6 +33,7 @@ done < fileys.txt
 
 baseline=$(find ./schema/ -type f | head -1)
 
+# compare schemas
 while read -r fili; do
     diff -us ./schema/"$baseline" ./schema/"$fili" | grep --color=always -E 'identical|$'
 done < <(find ./schema -type f)
