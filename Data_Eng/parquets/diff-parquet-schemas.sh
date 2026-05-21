@@ -9,27 +9,27 @@ duckdb -csv -noheader -c "
 # metadata
 mkdir -p metadata
 while read -r filey; do
-    echo fetching metadata for $filey
+    echo fetching metadata for "$filey"
     duckdb -csv -c "SELECT row_group_num_columns, column_id, path_in_schema, type, compression FROM parquet_metadata('$filey');" < /dev/null \
          > ./metadata/"$(basename "$filey")".csv
 done < fileys.txt
 
-baseline=$(ls -1 metadata/ | head -1)
+baseline=$(find ./metadata/ -type f | head -1)
 
 while read -r fili; do
     diff -us ./metadata/"$baseline" ./metadata/"$fili" | grep --color=always -E 'identical|$'
-done < <(ls -1 ./metadata)
+done < <(find ./metadata -type f)
 
 # schemas
 mkdir -p schema
 while read -r filey; do
-    echo fetching schema for $filey
+    echo fetching schema for "$filey"
     duckdb -csv -c "SELECT * EXCLUDE file_name FROM parquet_schema('$filey')" < /dev/null \
          > ./schema/"$(basename "$filey")".csv
 done < fileys.txt
 
-baseline=$(ls -1 schema/ | head -1)
+baseline=$(find ./schema/ -type f | head -1)
 
 while read -r fili; do
     diff -us ./schema/"$baseline" ./schema/"$fili" | grep --color=always -E 'identical|$'
-done < <(ls -1 ./schema)
+done < <(find ./schema -type f)
