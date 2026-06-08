@@ -158,10 +158,6 @@ set is  " partial-search-match
 set number  " line-numbers
 set relativenumber " relative line-numbers
 set colorcolumn=90  " column marker
-set mouse=  " no-mouse
-if !has('nvim')
-  set ttymouse=  " no-mouse
-endif
 set formatoptions-=t " don't literally insert newlines
 set nowrap " don't wrap w/ virtual lines either
 set noea  " don't auto-resize panes
@@ -186,8 +182,13 @@ command! W write
 command! Q quit
 command! Wq write <bar> quit
 
+" scroll up/down
 map <C-j> <C-e>
 map <C-k> <C-y>
+noremap <ScrollWheelDown> <C-e>
+noremap <ScrollWheelUp> <C-y>
+inoremap <ScrollWheelDown> <C-O><C-e>
+inoremap <ScrollWheelUp> <C-O><C-y>
 
 "keep visual mode after indent
 vnoremap > >gv
