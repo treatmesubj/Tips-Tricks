@@ -182,13 +182,29 @@ command! W write
 command! Q quit
 command! Wq write <bar> quit
 
-" scroll up/down
+" mouse scroll up/down
 map <C-j> <C-e>
 map <C-k> <C-y>
 noremap <ScrollWheelDown> <C-e>
 noremap <ScrollWheelUp> <C-y>
 inoremap <ScrollWheelDown> <C-O><C-e>
 inoremap <ScrollWheelUp> <C-O><C-y>
+" disable all other mouse stuff
+map <LeftMouse> <Nop>
+imap <LeftMouse> <Nop>
+vmap <LeftMouse> <Nop>
+map <MiddleMouse> <Nop>
+imap <MiddleMouse> <Nop>
+vmap <MiddleMouse> <Nop>
+map <RightMouse> <Nop>
+imap <RightMouse> <Nop>
+vmap <RightMouse> <Nop>
+map <2-LeftMouse> <Nop>
+imap <2-LeftMouse> <Nop>
+vmap <2-LeftMouse> <Nop>
+map <3-LeftMouse> <Nop>
+imap <3-LeftMouse> <Nop>
+vmap <3-LeftMouse> <Nop>
 
 "keep visual mode after indent
 vnoremap > >gv
