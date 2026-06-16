@@ -116,18 +116,17 @@ kerrlogs() {
 kcrons() {
     echo -e "local:\t$(date +%r)"
     echo -e "UTC:\t$(date -u +%r)"
-    echo "crons converted from UTC -> US/Central"
     pyscript="
 import sys;
 from cron_descriptor import get_description;
 from crontzconvert import convert;
-fmt = lambda str: str.split('\t')[0]+'\t'+get_description(convert(str.split('\t')[1],'UTC', 'US/Central'));
+fmt = lambda str: str.split('\t')[0]+'\t'+get_description(str.split('\t')[1])+'\t'+str.split('\t')[2];
 print(*[fmt(line) for line in sys.stdin], sep='\n');
 "
     k get cronjobs -o json \
-    | jq -r '.items[] | {"name":.metadata.name, "schedule": .spec.schedule} | [.[]] | @tsv' \
+    | jq -r '.items[] | {"name":.metadata.name, "schedule": .spec.schedule, "timezone": .spec.timeZone} | [.[]] | @tsv' \
     | python -c "$pyscript" \
-    | column -t
+    | column -s $'\t' -t
 }
 
 # human readable cron expressions
