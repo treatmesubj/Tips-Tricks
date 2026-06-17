@@ -249,7 +249,11 @@ fuzzfile() {
     )
     echo "$f"
 }
-alias ff='fuzzfile | xargs -t nvim'
+ff() {
+    read -r -a c <<<$(fuzzfile | xargs echo nvim)
+    history -s "${c[@]}"
+    echo "${c[@]}" && "${c[@]}"
+}
 fuzzline() {
     # fuzzline | xargs -t nvim
     i=$(
@@ -263,7 +267,11 @@ fuzzline() {
     l=$(cut -d ":" -f 2 <<< "$i")
     echo "$f +$l"
 }
-alias fl='fuzzline | xargs -t nvim'
+fl() {
+    read -r -a c <<<$(fuzzline | xargs echo nvim)
+    history -s "${c[@]}"
+    echo "${c[@]}" && "${c[@]}"
+}
 
 # keys
 source ~/.bashrc_keys.sh
