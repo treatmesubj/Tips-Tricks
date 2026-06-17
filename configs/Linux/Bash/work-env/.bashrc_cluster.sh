@@ -43,10 +43,12 @@ EOF
     echo -n -e "\033[92m\$\033[m "
     read -r -p "ibmcloud ks cluster config --cluster " cluster
     ibmcloud ks cluster config --cluster "$cluster"
+    history -s "ibmcloud ks cluster config --cluster $cluster"
     echo ""
     echo -n -e "\033[92m\$\033[m "
     read -r -p "kubectl config set-context --current --namespace=" namespace
     kubectl config set-context --current --namespace="$namespace"
+    history -s "kubectl config set-context --current --namespace=$namespace"
 
     kctxt="$(kubectl config current-context | cut -f1 -d"/" 2>/dev/null)"
     kns="$(kubectl config view --minify -o jsonpath='{..namespace}')"
