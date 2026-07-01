@@ -206,6 +206,8 @@ require('log-highlight').setup {
 
 -- ~/.config/nvim/lua/Duckdb.lua
 require('Duckdb')
+-- ~/.config/nvim/lua/Gitloglast.lua
+require('Gitloglast')
 
 
 -- ~/.config/nvim/lua/ANSI.lua

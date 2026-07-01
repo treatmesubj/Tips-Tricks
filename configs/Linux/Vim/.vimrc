@@ -86,17 +86,6 @@ function! HiGitMergeConflict()
 endfunction
 autocmd BufEnter * call HiGitMergeConflict()
 
-" git log -1 line under cursor
-function Gitloglast()
-  let l:current_line = getpos('.')[1]
-  let @+ = "git log -1 -L " . current_line . "," . current_line . ":" . expand('%')
-  let l:stdout = system("git log -1  --pretty=\"format:%h %>(10)%ad (%cr) %aN%d %s\" --date=short -L " . current_line . "," . current_line . ":" . expand('%') . " | sed -E '/^(diff --git|index|---|\\+\\+\\+)/d'")
-  echo l:stdout
-endfunction
-" :GitBlame
-command! -bang Gitloglast
-  \ call Gitloglast()
-
 " higlight trailing white spaces
 highlight ExtraWhitespace ctermbg=197
 match ExtraWhitespace /\s\+$/
