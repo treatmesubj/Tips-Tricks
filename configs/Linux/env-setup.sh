@@ -9,6 +9,8 @@ sudo apt install curl vim sqlformat -y \
         "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/nvim/init.lua" \
     && curl -fLo ~/.config/nvim/lua/Duckdb.lua --create-dirs \
         "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/nvim/lua/Duckdb.lua"
+    && curl -fLo ~/.config/nvim/lua/Gitloglast.lua --create-dirs \
+        "https://raw.githubusercontent.com/treatmesubj/Tips-Tricks/master/configs/Linux/Vim/nvim/lua/Gitloglast.lua"
 curl -L "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz" \
     -o ~/nvim-linux-x86_64.tar.gz \
     && tar xzvf ~/nvim-linux-x86_64.tar.gz --directory ~ \
