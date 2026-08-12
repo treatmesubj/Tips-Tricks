@@ -288,6 +288,9 @@ bind -m vi-command 'j: '  # bad habit
 bind -m vi-command 'k: '  # bad habit
 bind -m vi-insert 'Control-l: clear-screen'
 
+# expand history substitution commands on enter
+# e.g. !$ -> last arg
+shopt -s histverify
 # add bash history in real time
 shopt -s histappend
 PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
