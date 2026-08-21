@@ -110,14 +110,59 @@ grepi() {
 
 jqshape() {
     # shows shape/structure, all nodes of JSON
-    jq -r '[path(..)|map(if type=="number" then "[]" else tostring end)|join(".")|split(".[]")|join("[]")]|unique|map("."+.)|.[]' "$@"
+    jq -r '[path(..)|map(if type=="number" then "[\( . | tostring)]" else "[\"\(. | tostring)\"]" end)|join(".")|split(".[]")|join(".[]")]|unique|map("."+.)|.[]' "$@"
 }
 export -f jqshape
+ijq() {
+    # interactive jq
+    # ijq <file|stdin>
+    local data=${1:-'-'}
+    if [ "$data" = "-" ]; then
+        local data=$(mktemp)
+        cp /dev/stdin "$data"
+    fi
+    query=$(jqshape "$data" | fzf \
+            --select-1 \
+            --preview-window='down:50%' -q "." \
+            --preview "jq {} \"$data\" | batcat \
+                 -p --language 'json' --color=always --line-range=:50"
+    )
+    history -s "jq ${query@Q} $data"
+    jq "$query" "$data"
+}
+export -f ijq
 yqshape() {
     # shows shape/structure, all nodes of YAML
-    yq eval '.. | select((tag == "!!map" or tag == "!!seq") | not) | path | join(".") | "." + .' "$@"
+    echo "."
+    yq eval '.. | select((tag == "!!map" or tag == "!!seq") | not) | path
+    | map(
+        (tag == "!!int") as $is_int
+        | select($is_int) // "[\"" + (. | tostring) + "\"]"
+    )
+    | map(
+        (tag != "!!int") as $is_int
+        | select($is_int) // "[" + (. | tostring) + "]"
+    )
+    | join(".") | "." + .' "$@"
 }
 export -f yqshape
+iyq() {
+    # interactive yq
+    # iyq <file|stdin>
+    local data=${1:-'-'}
+    if [ "$data" = "-" ]; then
+        local data=$(mktemp)
+        cp /dev/stdin "$data"
+    fi
+    query=$(yqshape "$data" | fzf \
+            --select-1 \
+            --preview-window='down:50%' -q "." \
+            --preview "yq {} \"$data\" | batcat \
+                -p --language 'yaml' --color=always --line-range=:50"
+    )
+    history -s "yq ${query@Q} $data"
+    yq "$query" "$data"
+}
 
 # Windows
 # access Windows executables when System D enbaled
