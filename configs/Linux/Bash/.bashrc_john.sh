@@ -141,10 +141,12 @@ jqir() {
     query=$(true | fzf \
             --print-query \
             --preview-window='down:50%' \
-            --preview "jq -r 'tostream | select(has(1)) | \".\(first | map(\"[\(@json)]\") | join(\".\")) = \(last)\"' \"$data\" | grep -i {q}"
+            --preview "jq -r 'tostream | select(has(1)) | \".\(first | map(\"[\(@json)]\") | join(\".\")) = \(last)\"' \"$data\" \
+                | awk -v reggie={q} -F= '\$2 ~ reggie'
+    "
     )
-    echo "$query"
-    jq -r 'tostream | select(has(1)) | ".\(first | map("[\(@json)]") | join(".")) = \(last)"' cool-thesr.json | grep -i "$query"
+    jq -r 'tostream | select(has(1)) | ".\(first | map("[\(@json)]") | join(".")) = \(last)"' "$data" \
+        | awk -v reggie="$query" -F= '$2 ~ reggie'
 }
 yqshape() {
     # shows shape/structure, all nodes of YAML
