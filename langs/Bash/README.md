@@ -5,6 +5,8 @@
     - `set -xe`: print commands as executed, exit upon error
 - `shopt`
 
+## [Shell Expansion Order](https://bash.cyberciti.biz/bash-reference-manual/Shell-Expansions.html)
+
 ### [Bash Brackets Ref](https://www.assertnotmagic.com/2018/06/20/bash-brackets-quick-reference/)
 ### [Bash Comparison Operators](https://tldp.org/LDP/abs/html/comparison-ops.html)
 Also, see `man bash` - `CONDITIONAL EXPRESSIONS`
