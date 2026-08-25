@@ -113,9 +113,9 @@ jqshape() {
     jq -r '[path(..)|map(if type=="number" then "[\( . | tostring)]" else "[\"\(. | tostring)\"]" end)|join(".")|split(".[]")|join(".[]")]|unique|map("."+.)|.[]' "$@"
 }
 export -f jqshape
-ijq() {
-    # interactive jq
-    # ijq <file|stdin>
+jqi() {
+    # interactive jq selector
+    # jqi <file|stdin>
     local data=${1:-'-'}
     if [ "$data" = "-" ]; then
         local data=$(mktemp)
@@ -130,7 +130,22 @@ ijq() {
     history -s "jq ${query@Q} $data"
     jq "$query" "$data"
 }
-export -f ijq
+jqir() {
+    # interactive jq reverse value-to-selector
+    # jqir <file|stdin>
+    local data=${1:-'-'}
+    if [ "$data" = "-" ]; then
+        local data=$(mktemp)
+        cp /dev/stdin "$data"
+    fi
+    query=$(true | fzf \
+            --print-query \
+            --preview-window='down:50%' \
+            --preview "jq -r 'tostream | select(has(1)) | \".\(first | map(\"[\(@json)]\") | join(\".\")) = \(last)\"' \"$data\" | grep -i {q}"
+    )
+    echo "$query"
+    jq -r 'tostream | select(has(1)) | ".\(first | map("[\(@json)]") | join(".")) = \(last)"' cool-thesr.json | grep -i "$query"
+}
 yqshape() {
     # shows shape/structure, all nodes of YAML
     echo "."
@@ -146,9 +161,9 @@ yqshape() {
     | join(".") | "." + .' "$@"
 }
 export -f yqshape
-iyq() {
-    # interactive yq
-    # iyq <file|stdin>
+yqi() {
+    # interactive yq selector
+    # yqi <file|stdin>
     local data=${1:-'-'}
     if [ "$data" = "-" ]; then
         local data=$(mktemp)
