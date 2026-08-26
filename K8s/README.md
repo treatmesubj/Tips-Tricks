@@ -49,6 +49,7 @@ kubectl --namespace demo delete pod <pod-copy-name>
 ```bash
 kubectl get <resource-type> <resource> -o yaml
 kubectl describe <resource-type> <resource|pod>
+# By default, Kubernetes garbage-collects events after 1 hour
 kubectl get events -n <namespace> --sort-by=.lastTimestamp
 kubectl get event --sort-by=.metadata.creationTimestamp --field-selector involvedObject.name=<resource|pod>
 kubectl logs -f <resource>
