@@ -109,10 +109,15 @@ grepi() {
 }
 
 jqshape() {
-    # shows shape/structure, all nodes of JSON
-    jq -r '[path(..)|map(if type=="number" then "[\( . | tostring)]" else "[\"\(. | tostring)\"]" end)|join(".")|split(".[]")|join(".[]")]|unique|map("."+.)|.[]' "$@"
+    # shows shape/structure, all nodes of JSON in selector format
+    jq -r 'tostream | select(has(1)) | ".\(first | map("[\(@json)]") | join("."))"' "$@"
 }
 export -f jqshape
+jqshaper() {
+    # shows shape/structure, all nodes of JSON in selector format
+    jq -r 'tostream | select(has(1)) | ".\(first | map("[\(@json)]") | join(".")): \(last)"' "$@"
+}
+export -f jqshaper
 jqi() {
     # interactive jq selector
     # jqi <file|stdin>
@@ -141,28 +146,46 @@ jqir() {
     query=$(true | fzf \
             --print-query \
             --preview-window='down:50%' \
-            --preview "jq -r 'tostream | select(has(1)) | \".\(first | map(\"[\(@json)]\") | join(\".\")) = \(last)\"' \"$data\" \
-                | awk -v reggie={q} -F= '\$2 ~ reggie'
+            --preview "jqshaper \"$data\" \
+                | awk -v reggie={q} -F: '\$2 ~ reggie'
     "
     )
-    jq -r 'tostream | select(has(1)) | ".\(first | map("[\(@json)]") | join(".")) = \(last)"' "$data" \
-        | awk -v reggie="$query" -F= '$2 ~ reggie'
+    jqshaper "$data" | awk -v reggie="$query" -F: '$2 ~ reggie'
 }
 yqshape() {
-    # shows shape/structure, all nodes of YAML
+    # shows shape/structure, all nodes of YAML in selector format
+    # yq '.. | select(. == "*") | path | join(".")'
     echo "."
     yq eval '.. | select((tag == "!!map" or tag == "!!seq") | not) | path
-    | map(
-        (tag == "!!int") as $is_int
-        | select($is_int) // "[\"" + (. | tostring) + "\"]"
-    )
-    | map(
-        (tag != "!!int") as $is_int
-        | select($is_int) // "[" + (. | tostring) + "]"
-    )
-    | join(".") | "." + .' "$@"
+        | map(
+            (tag == "!!int") as $is_int
+            | select($is_int) // "[\"" + (. | tostring) + "\"]"
+        )
+        | map(
+            (tag != "!!int") as $is_int
+            | select($is_int) // "[" + (. | tostring) + "]"
+        )
+        | join(".") | "." + .' "$@"
 }
 export -f yqshape
+yqshaper() {
+    # shows shape/structure, all nodes of YAML in selector format
+    # yq '.. | select(. == "*") | path | join(".")'
+    echo "."
+    yq eval '.. | select((tag == "!!map" or tag == "!!seq") | not) | {(
+        path
+        | map(
+            (tag == "!!int") as $is_int
+            | select($is_int) // "[\"" + (. | tostring) + "\"]"
+        )
+        | map(
+            (tag != "!!int") as $is_int
+            | select($is_int) // "[" + (. | tostring) + "]"
+        )
+        | join(".") | "." + .
+    ): .}' "$@"
+}
+export -f yqshaper
 yqi() {
     # interactive yq selector
     # yqi <file|stdin>
@@ -179,6 +202,23 @@ yqi() {
     )
     history -s "yq ${query@Q} $data"
     yq "$query" "$data"
+}
+yqir() {
+    # interactive jq reverse value-to-selector
+    # jqir <file|stdin>
+    local data=${1:-'-'}
+    if [ "$data" = "-" ]; then
+        local data=$(mktemp)
+        cp /dev/stdin "$data"
+    fi
+    query=$(true | fzf \
+            --print-query \
+            --preview-window='down:50%' \
+            --preview "yqshaper \"$data\" \
+                | awk -v IGNORECASE=1 -v reggie={q} -F: '\$2 ~ reggie'
+    "
+    )
+    yqshaper "$data" | awk -v IGNORECASE=1 -v reggie="$query" -F: '$2 ~ reggie'
 }
 
 # Windows
