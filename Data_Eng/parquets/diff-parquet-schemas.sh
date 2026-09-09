@@ -20,7 +20,7 @@ baseline=$(find ./metadata/ -type f | head -1)
 
 # compare metadata
 while read -r fili; do
-    diff -us ./metadata/"$baseline" ./metadata/"$fili" | grep --color=always -E 'identical|$'
+    diff -us "$baseline" "$fili" | grep --color=always -E 'identical|$'
 done < <(find ./metadata -type f)
 
 # extract schemas
@@ -35,5 +35,5 @@ baseline=$(find ./schema/ -type f | head -1)
 
 # compare schemas
 while read -r fili; do
-    diff -us ./schema/"$baseline" ./schema/"$fili" | grep --color=always -E 'identical|$'
+    diff -us "$baseline" "$fili" | grep --color=always -E 'identical|$'
 done < <(find ./schema -type f)
