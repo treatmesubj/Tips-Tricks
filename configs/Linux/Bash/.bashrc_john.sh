@@ -263,18 +263,23 @@ helpmebash() {
 
 gurl() {
     # from within a git repo, return a git URL for a file
-    if [ $# -eq 1 ]; then
-        local base=$(
-            git config --get remote.origin.url \
-            | sed -e "s+\.git$+/blob/$(git branch --show-current)+" -e 's/^git@//' -e 's+com:+com/+'
-        )
-        [[ -z "$base" ]] && return 1
-        local filepath=$(realpath "$1" | sed "s+$(git root)/++")
-        [[ -z "$filepath" ]] && return 1
-        echo "https://${base}/${filepath}"
+    # Usage: gurl <relative-file-path> [branch]
+    if [[ -n "$2" ]]; then
+        branch="$2"
     else
-        echo "Usage: gurl <relative-file-path>"
+        branch=$(git branch --show-current)
     fi
+
+    local base=$(
+        git config --get remote.origin.url \
+        | sed -e "s+\.git$+/blob/$branch+" -e 's/^git@//' -e 's+com:+com/+'
+    )
+    [[ -z "$base" ]] && return 1
+
+    local filepath=$(realpath "$1" | sed "s+$(git root)/++")
+    [[ -z "$filepath" ]] && return 1
+
+    echo "https://${base}/${filepath}"
 }
 
 alias nvimdiff='nvim -d'
