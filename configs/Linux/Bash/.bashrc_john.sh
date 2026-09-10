@@ -352,12 +352,12 @@ fuzzfile() {
     f=$(
         fzf --preview 'batcat --color=always --theme="Monokai Extended" \
         --style=header,numbers --line-range=:500 -P {}' \
-        --preview-window="up:80%" --print-query | tail -1
-    )
+        --preview-window="up:80%"
+    ) || return $?
     echo "$f"
 }
 ff() {
-    read -r -a c <<<$(fuzzfile | xargs echo nvim)
+    read -r -a c <<<$(f=$(fuzzfile) && xargs echo nvim <<<"$f")
     history -s "${c[@]}"
     echo "${c[@]}" && "${c[@]}"
 }
@@ -369,13 +369,13 @@ fuzzline() {
         --preview 'batcat --color=always --theme="Monokai Extended" \
         --style=numbers -P --highlight-line {2} {1}' \
         --preview-window="up:80%" --preview-window +{2}-5
-    )
+    ) || return $?
     f=$(cut -d ":" -f 1 <<< "$i")
     l=$(cut -d ":" -f 2 <<< "$i")
     echo "$f +$l"
 }
 fl() {
-    read -r -a c <<<$(fuzzline | xargs echo nvim)
+    read -r -a c <<<$(f=$(fuzzline) && xargs echo nvim <<<"$f")
     history -s "${c[@]}"
     echo "${c[@]}" && "${c[@]}"
 }
