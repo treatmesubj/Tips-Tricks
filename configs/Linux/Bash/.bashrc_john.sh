@@ -240,7 +240,7 @@ export PATH=$PATH:/usr/local/go/bin
 # packages
 export PATH=$PATH:~/go/bin/
 
-alias list='ls -asht -1 --color -I . -I ..'
+alias list='ls -asht -1 --color -I . -I .. -p'
 alias thesr='python3 -m thesr.thesr'
 # ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
