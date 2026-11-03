@@ -51,6 +51,15 @@ randint() {
     fi
 }
 
+# convert epoch to human readable date
+epoch() {
+    local num=${1:--1}
+    printf '%(%B %d, %Y %-I:%M:%S %p %Z)T\n' "$num"
+    if [ "$num" = "-1" ]; then
+        date +%s
+    fi
+}
+
 tmux_clear_history() {
     for pane in $(tmux list-panes -F '#{pane_id}'); do
         tmux clear-history -t "${pane}"
