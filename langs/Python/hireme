@@ -17,7 +17,7 @@ def get_builtin_url():
 
 
 def get_linkedin_url():
-    url = 'https://www.linkedin.com/jobs/search/?keywords=&location=United%20States&f_TPR=&f_WT'
+    url = 'https://www.linkedin.com/jobs/search/?keywords=&location=United%20States&f_TPR=&f_WT=2'
     rand_page = random.randint(1, 5000)
     rand_url = f"{url}&start={rand_page}"
     return rand_url
