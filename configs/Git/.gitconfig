@@ -60,5 +60,9 @@
     # https://stackoverflow.com/a/39616600
     quote-string = "!read -r l; printf \\\"!; printf %s \"$l\" | sed 's/\\([\\\"]\\)/\\\\\\1/g'; printf \" #\\\"\\n\" #"
     # don't track local changes to a file
-    shut-up-about = update-index --assume-unchanged
     # update-index --no-assume-unchanged
+    shut-up-about = update-index --assume-unchanged
+    # gh cli oauth
+    goth = "!gh auth login -h github.ibm.com --expiring=false"
+[credential "https://github.ibm.com"]
+	helper = !/usr/bin/gh auth git-credential
